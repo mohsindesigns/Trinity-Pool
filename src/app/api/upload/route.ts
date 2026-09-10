@@ -1,0 +1,22 @@
+import { NextResponse } from "next/server";
+import { uploadFile } from "@/lib/storage";
+
+export async function POST(req: Request) {
+  try {
+    const formData = await req.formData();
+    const file = formData.get("file") as File;
+
+    if (!file) {
+      return NextResponse.json({ error: "No file received." }, { status: 400 });
+    }
+
+    const buffer = Buffer.from(await file.arrayBuffer());
+    const { url } = await uploadFile(file, buffer);
+
+    return NextResponse.json({ url });
+  } catch (error) {
+    console.error("Error uploading file:", error);
+    return NextResponse.json({ error: "Failed to upload file." }, { status: 500 });
+  }
+}
+

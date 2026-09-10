@@ -1,0 +1,839 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@media (min-width: 350px) and (max-width: 750px) {
+  .logooo {
+    transform: translateX(-35px) !important;
+  }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 35s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+
+@layer base {
+  :root {
+    /* ════════════════════════════════════════════════
+       BRAND PALETTE
+       Deep Petroleum : #071B1C  → hero / dark sections
+       Graphite        : #111516  → header / footer / overlays
+       Warm Ivory      : #F3F0E8  → main background
+       Brass           : #C89A45  → accents / buttons / lines
+       Muted Steel     : #899397  → secondary text
+       Pure White      : #FFFFFF  → primary text
+    ════════════════════════════════════════════════ */
+
+    /* Background - Warm Ivory */
+    --background: 40 29% 93%;
+    /* Foreground - Pure White (used on dark sections) / default dark on light */
+    --foreground: 184 48% 7%;
+
+    /* Card - slight ivory tint */
+    --card: 40 29% 95%;
+    --card-foreground: 184 48% 7%;
+
+    /* Popover */
+    --popover: 40 29% 95%;
+    --popover-foreground: 184 48% 7%;
+
+    /* Primary - Brass */
+    --primary: 38 50% 52%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary - deeper Brass */
+    --secondary: 38 50% 40%;
+    --secondary-foreground: 0 0% 100%;
+
+    /* Muted - based on Warm Ivory darker */
+    --muted: 40 15% 88%;
+    --muted-foreground: 200 6% 57%;
+    /* Muted Steel */
+
+    /* Accent - Brass */
+    --accent: 38 50% 52%;
+    --accent-foreground: 0 0% 100%;
+
+    /* Destructive */
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Borders */
+    --border: 40 15% 83%;
+    --input: 40 15% 83%;
+    --ring: 38 50% 52%;
+    /* Brass ring focus */
+
+    --radius: 0.5rem;
+
+    /* Deep - Deep Petroleum */
+    --deep: 184 48% 7%;
+    --surface: 40 29% 97%;
+    --surface-light: 0 0% 100%;
+    --text-dark: 184 48% 7%;
+
+    /* Sidebar - Graphite */
+    --sidebar-background: 186 15% 8%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 38 50% 52%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 38 50% 40%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 186 15% 14%;
+    --sidebar-ring: 38 50% 52%;
+
+    /* Fonts */
+    --font-heading: 'Space Grotesk', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+
+    /* ── Brand Colors ─────────────────────────────────── */
+    /* Brass accent system */
+    --color-gold:           #C89A45;
+    --color-gold-dark:      #A07A30;
+    --color-gold-hover:     #D4AA5A;
+    --color-gold-light:     #E8C87A;
+    --color-gold-muted:     rgba(200, 154, 69, 0.12);
+
+    /* ── Dark Backgrounds ───────────────────────────────── */
+    /* Deep Petroleum as primary dark */
+    --color-dark:           #071B1C;
+    /* Graphite for overlays/header/footer */
+    --color-dark-2:         #111516;
+    --color-dark-3:         #1A2223;
+    --color-dark-4:         #243031;
+
+    /* ── Light Backgrounds ──────────────────────────────── */
+    /* Warm Ivory as main background */
+    --color-warm-white:     #F3F0E8;
+    --color-warm-cream:     #F7F4EC;
+    --color-card-bg:        #F5F2EA;
+    --color-warm-gray:      #E8E4DA;
+    --color-off-white:      #F0EDE5;
+
+    /* ── Text ───────────────────────────────────────────── */
+    --color-body:           #071B1C;
+    /* Muted Steel for secondary text */
+    --color-muted:          #899397;
+    --color-faint:          #A8AAAB;
+
+    /* ── Borders ────────────────────────────────────────── */
+    --color-border-light:   #DDD9CE;
+    --color-border-dark:    rgba(255, 255, 255, 0.10);
+    --color-border-dark-2:  rgba(255, 255, 255, 0.06);
+
+    /* ── Custom Theme Extracted Colors ─────────────────── */
+    --color-brand-bg-light:      #F3F0E8;
+    --color-brand-border-light:  #DDD9CE;
+    --color-brand-border-muted:  #D5D1C6;
+    --color-brand-hover-cream:   #EDE9DC;
+
+    /* ── Typography ─────────────────────────────────────── */
+    --font-sans:    var(--font-inter), Inter, ui-sans-serif, system-ui, -apple-system, sans-serif;
+    --font-display: var(--font-playfair), 'Playfair Display', Georgia, 'Times New Roman', serif;
+  }
+
+  /* Dark mode — Deep Petroleum base */
+  .dark {
+    --background: 184 48% 7%;
+    /* Deep Petroleum */
+    --foreground: 0 0% 100%;
+    /* Pure White */
+    --card: 186 15% 8%;
+    /* Graphite */
+    --card-foreground: 0 0% 100%;
+    --popover: 186 15% 8%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 38 50% 52%;
+    /* Brass */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 38 50% 40%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 184 20% 14%;
+    --muted-foreground: 200 6% 57%;
+    /* Muted Steel */
+    --accent: 38 50% 52%;
+    /* Brass */
+    --accent-foreground: 0 0% 100%;
+    --border: 184 20% 16%;
+    --input: 184 20% 16%;
+    --ring: 38 50% 52%;
+    /* Brass */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* ALL headings default to BLACK */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-foreground;
+    font-family: var(--font-heading);
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+  }
+
+  /* Paragraphs default to BLACK */
+  p {
+    @apply text-foreground;
+  }
+
+  /* Links default to BLACK, hover to BLUE (excluding buttons/styled links and navbar links) */
+  a:not([class*="bg-"]):not([class*="btn"]):not([class*="button"]):not(.nav-link) {
+    @apply text-foreground transition-colors duration-300;
+  }
+
+  a:not([class*="bg-"]):not([class*="btn"]):not([class*="button"]):not(.nav-link):hover {
+    @apply text-primary;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .section-padding {
+    @apply px-6 md:px-12 lg:px-24 py-20 md:py-32;
+  }
+
+  .heading-xl {
+    @apply text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-medium text-foreground;
+    font-family: var(--font-heading);
+    letter-spacing: -0.04em;
+    line-height: 0.95;
+  }
+
+  .heading-lg {
+    @apply text-4xl md:text-5xl lg:text-6xl font-medium text-foreground;
+    font-family: var(--font-heading);
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+
+  .heading-md {
+    @apply text-2xl md:text-3xl lg:text-4xl font-medium text-foreground;
+    font-family: var(--font-heading);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+
+  .body-lg {
+    @apply text-lg md:text-xl text-foreground;
+    font-family: var(--font-body);
+    line-height: 1.6;
+  }
+
+  .body-sm {
+    @apply text-sm md:text-base text-foreground;
+    font-family: var(--font-body);
+    line-height: 1.5;
+  }
+
+  .accent-line {
+    @apply w-12 h-0.5 bg-primary;
+  }
+
+  .grid-editorial {
+    @apply grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8;
+  }
+
+  /* Brass-to-dark gradient for special text */
+  .text-gradient {
+    background: linear-gradient(135deg, #C89A45 0%, #071B1C 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Brass gradient for CTAs */
+  .bg-gradient-cta {
+    background: linear-gradient(135deg, #C89A45 0%, #A07A30 100%);
+    color: #FFFFFF;
+  }
+
+  /* Deep Petroleum for dark sections */
+  .bg-patriotic {
+    background: linear-gradient(135deg, #071B1C 0%, #111516 100%);
+    color: #FFFFFF;
+  }
+
+  .border-american {
+    border-color: #C89A45;
+  }
+
+  .hover-lift {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+  }
+
+  /* Text color utilities */
+  .text-navy {
+    color: #071B1C;
+    /* Deep Petroleum */
+  }
+
+  .text-american-red {
+    color: #C89A45;
+    /* Brass accent */
+  }
+
+  .bg-navy {
+    background-color: #071B1C;
+    /* Deep Petroleum */
+  }
+
+  .bg-american-red {
+    background-color: #C89A45;
+    /* Brass accent */
+  }
+
+  .glass {
+    @apply backdrop-blur-xl bg-white/10 border border-white/20;
+  }
+
+  .shadow-premium {
+    box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.1);
+  }
+
+  .font-heading {
+    font-family: var(--font-heading);
+  }
+
+  .font-body {
+    font-family: var(--font-body);
+  }
+
+  /* TipTap Content Styles - Tightened */
+  .rich-text-content h1 { @apply text-4xl sm:text-5xl font-black mb-3 mt-4 text-foreground; }
+  .rich-text-content h2 { @apply text-2xl sm:text-4xl font-bold mb-2 mt-3 text-foreground; }
+  .rich-text-content h3 { @apply text-xl sm:text-2xl font-bold mb-2 mt-2 text-foreground; }
+  .rich-text-content h4 { @apply text-lg sm:text-xl font-bold mb-1 mt-2 text-foreground; }
+  
+  .rich-text-content ul { 
+    @apply list-disc list-outside mb-2 pl-5 space-y-1 text-foreground;
+  }
+  .rich-text-content ol { 
+    @apply list-decimal list-outside mb-2 pl-5 space-y-1 text-foreground;
+  }
+  .rich-text-content li {
+    @apply pl-1;
+  }
+  .rich-text-content p {
+    @apply mb-2 last:mb-0;
+  }
+  .rich-text-content a,
+  .rich-text-content a * {
+    color: var(--color-gold) !important;
+  }
+  .rich-text-content a:hover,
+  .rich-text-content a:hover * {
+    color: var(--color-gold-light) !important;
+  }
+
+  /* Prose & Blog Content Links - Gold styling for all links, including nested bold tags */
+  .prose a,
+  .prose-invert a {
+    color: var(--color-gold) !important;
+    font-weight: 600;
+    text-decoration: underline !important;
+    text-decoration-color: rgba(243, 227, 140, 0.5) !important;
+    text-underline-offset: 3px !important;
+    transition: color 0.2s ease, text-decoration-color 0.2s ease, opacity 0.2s ease !important;
+  }
+  .prose a:hover,
+  .prose-invert a:hover {
+    color: var(--color-gold-light) !important;
+    text-decoration-color: var(--color-gold-light) !important;
+    opacity: 0.9 !important;
+  }
+  .prose a strong,
+  .prose a b,
+  .prose a span,
+  .prose strong a,
+  .prose b a,
+  .prose-invert a strong,
+  .prose-invert a b,
+  .prose-invert a span,
+  .prose-invert strong a,
+  .prose-invert b a {
+    color: inherit !important;
+  }
+
+  /* Prose List Spacing Fixes */
+  .prose li p {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+  .prose li {
+    margin-top: 0.25rem !important;
+    margin-bottom: 0.25rem !important;
+  }
+  .prose ul, .prose ol {
+    margin-top: 1rem !important;
+    margin-bottom: 1rem !important;
+  }
+}
+
+/* ════════════════════════════════════════════════════════
+   NEW DESIGN SYSTEM — Base & Component Styles
+   ════════════════════════════════════════════════════════ */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    overflow-x: clip;
+  }
+
+  h1, h2, h3, h4, h5, h6 { 
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+  p { 
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+}
+
+@layer components {
+  /* ── Layout ─────────────────────────────────────────── */
+  .site-container {
+    max-width: 1280px;
+    margin-inline: auto;
+    padding-inline: 16px;
+  }
+  @media (min-width: 640px) {
+    .site-container {
+      padding-inline: 24px;
+    }
+  }
+  @media (min-width: 768px) {
+    .site-container {
+      padding-inline: 40px;
+    }
+  }
+
+  /* ── Typography ─────────────────────────────────────── */
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+  }
+
+  .display-heading {
+    font-family: var(--font-display);
+    font-weight: 700;
+    line-height: 1.08;
+  }
+
+  /* ── Buttons ─────────────────────────────────────────── */
+  .btn-gold {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    padding: 14px 28px;
+    background: linear-gradient(135deg, #D4AA5A 0%, #C89A45 50%, #A07A30 100%);
+    color: #FFFFFF;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    border: none;
+    box-shadow: 0 4px 15px rgba(200, 154, 69, 0.35);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    line-height: 1;
+    max-width: 100%;
+  }
+
+  @media (max-width: 380px) {
+    .btn-gold {
+      padding: 12px 18px;
+      font-size: 10.5px;
+      gap: 6px;
+    }
+  }
+
+  .btn-gold:hover {
+    background: linear-gradient(135deg, #E0B868 0%, #D4AA5A 50%, #B08840 100%);
+    color: #FFFFFF;
+    box-shadow: 0 6px 22px rgba(200, 154, 69, 0.55);
+    transform: translateY(-2px);
+  }
+
+  /* Rounded pill CTA — used in the navbar */
+  .btn-gold-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: 9999px;
+    background: linear-gradient(135deg, #D4AA5A 0%, #C89A45 50%, #A07A30 100%);
+    color: #FFFFFF;
+    font-size: 13.5px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow: 0 4px 15px rgba(200, 154, 69, 0.35);
+    cursor: pointer;
+    white-space: nowrap;
+    line-height: 1;
+    transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  }
+
+  .btn-gold-pill svg {
+    transition: transform 0.3s ease;
+  }
+
+  .btn-gold-pill:hover {
+    background: linear-gradient(135deg, #E0B868 0%, #D4AA5A 50%, #B08840 100%);
+    color: #FFFFFF;
+    box-shadow: 0 8px 26px rgba(200, 154, 69, 0.5);
+    transform: translateY(-2px);
+  }
+
+  .btn-gold-pill:hover svg:last-child {
+    transform: translateX(3px);
+  }
+
+  .btn-gold-dark {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 14px 28px;
+    background-color: var(--color-gold-dark);
+    color: #ffffff;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    white-space: nowrap;
+    line-height: 1;
+  }
+
+  .btn-gold-dark:hover { 
+    background-color: var(--color-gold); 
+    color: var(--color-dark); 
+  }
+
+  .btn-outline-white {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 14px 28px;
+    background-color: transparent;
+    color: #ffffff;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+    white-space: nowrap;
+    line-height: 1;
+  }
+
+  .btn-outline-white:hover { 
+    border-color: rgba(255, 255, 255, 0.65); 
+  }
+
+  .btn-dark {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 14px 28px;
+    background-color: var(--color-dark);
+    color: #ffffff;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    white-space: nowrap;
+    line-height: 1;
+  }
+
+  .btn-dark:hover { 
+    background-color: var(--color-dark-3); 
+  }
+
+  /* ── Overlays ─────────────────────────────────────────── */
+  .hero-img-overlay {
+    background: linear-gradient(
+      to right,
+      #071B1C 0%,
+      #071B1C 5%,
+      rgba(7, 27, 28, 0.82) 26%,
+      rgba(7, 27, 28, 0.25) 55%,
+      transparent 78%
+    );
+  }
+
+  /* ── Stat Grid ────────────────────────────────────────── */
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 32px 20px;
+    gap: 8px;
+    flex: 1;
+  }
+
+  .stat-item:not(:last-child) {
+    border-right: 1px solid var(--color-border-light);
+  }
+
+  /* ── Service List Item ────────────────────────────────── */
+  .service-list-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--color-border-dark-2);
+    cursor: pointer;
+    transition: color 0.2s;
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  .service-list-item:hover { 
+    color: rgba(255, 255, 255, 0.85); 
+  }
+
+  .service-list-item.active {
+    color: var(--color-gold);
+  }
+
+  /* ── Cards ────────────────────────────────────────────── */
+  .blog-card { 
+    display: flex; 
+    flex-direction: column; 
+  }
+
+  .img-hero-side {
+    position: absolute;
+    top: 0; right: 0; bottom: 0;
+    width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    .img-hero-side {
+      width: 54%;
+    }
+  }
+
+  .img-testimonial {
+    position: relative;
+    height: 300px;
+    overflow: hidden;
+  }
+
+  .img-testimonial img {
+    transition: transform 0.7s ease;
+  }
+
+  .img-testimonial:hover img {
+    transform: scale(1.08);
+  }
+
+  .img-testimonial-tile {
+    position: relative;
+    height: 100%;
+    min-height: 170px;
+    overflow: hidden;
+  }
+
+  .img-testimonial-tile img {
+    transition: transform 0.7s ease;
+  }
+
+  .img-testimonial-tile:hover img {
+    transform: scale(1.08);
+  }
+
+  .img-blog {
+    position: relative;
+    height: 210px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+
+  .img-service-preview {
+    position: relative;
+    height: 176px;
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 28px;
+  }
+
+  .img-therapist {
+    position: relative;
+    height: 580px;
+    overflow: hidden;
+  }
+
+  .font-signature {
+    font-family: var(--font-signature), cursive;
+  }
+}
+
+/* ════════════════════════════════════════════════════════
+   NEW DESIGN SYSTEM - UTILITY CLASSES
+   ════════════════════════════════════════════════════════ */
+@layer utilities {
+  .bg-radial-dots-gold {
+    background-image: radial-gradient(circle, var(--color-gold-dark) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  .bg-radial-dots-black {
+    background-image: radial-gradient(#000 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  .bg-grid-pattern-black {
+    background-image: linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .bg-grid-pattern-white {
+    background-image: repeating-linear-gradient(0deg, #fff 0px, #fff 1px, transparent 1px, transparent 20px), repeating-linear-gradient(90deg, #fff 0px, #fff 1px, transparent 1px, transparent 20px);
+  }
+
+  .bg-grid-pattern-white-faint {
+    background-image: repeating-linear-gradient(0deg, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 1px, transparent 1px, transparent 20px), repeating-linear-gradient(90deg, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 1px, transparent 1px, transparent 20px);
+  }
+
+  .bg-diagonal-stripes-black {
+    background-image: repeating-linear-gradient(-45deg, #000 0px, #000 1px, transparent 1px, transparent 12px);
+  }
+
+  .bg-radial-dots-gold {
+    background-image: radial-gradient(var(--color-gold) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  /* ── Blog Section ─────────────────────────── */
+  .blog-card {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid var(--brand-border-light, #e8e2d9);
+    overflow: hidden;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+
+  .blog-card:hover {
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+    transform: translateY(-4px);
+  }
+
+  .img-blog {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+  }
+
+  /* ── Service Detail custom overrides ── */
+  .stepper-card-dark {
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  }
+  .stepper-card-dark:hover {
+    border-color: #C89A45 !important;
+    /* Brass */
+  }
+
+  .candidate-card-clean {
+    border: 1px solid transparent !important;
+  }
+  .candidate-card-clean:hover {
+    border-color: #C89A45 !important;
+    /* Brass */
+  }
+
+  .stepper-step-num {
+    border: 1px solid rgba(200, 154, 69, 0.3) !important;
+    transition: all 0.3s ease;
+  }
+  .stepper-card-dark:hover .stepper-step-num {
+    background-color: #C89A45 !important;
+    /* Brass */
+    color: #FFFFFF !important;
+    border-color: #C89A45 !important;
+  }
+
+  .stepper-step-time {
+    border: 1px solid rgba(200, 154, 69, 0.2) !important;
+  }
+
+  .stepper-banner-cta {
+    border: 1px solid rgba(200, 154, 69, 0.3) !important;
+  }
+
+  /* ── Custom Scrollbar for Blog Navigation & TOC ── */
+  .custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(200, 154, 69, 0.4) transparent;
+    /* Brass */
+  }
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(200, 154, 69, 0.3);
+    border-radius: 4px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(200, 154, 69, 0.6);
+  }
+}

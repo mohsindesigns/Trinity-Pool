@@ -131,7 +131,7 @@ export default function Footer() {
 
   /* Brand */
   const brandText1 = stripHtml(company.name || navbar?.logoText1 || navbar?.siteTitle || "");
-  const brandText2 = stripHtml(company.tagline || navbar?.logoText2 || "");
+  const brandText2 = stripHtml(company.tagline || "");
   const brandDescription = stripHtml(company.description || (footer as any)?.brandDescription || "");
 
   /* Contact */

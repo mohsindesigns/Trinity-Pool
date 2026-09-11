@@ -6,8 +6,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, ArrowRight, Menu, X } from "lucide-react";
 import { Icon } from "../config/icons";
 import { useContent } from "../hooks/useContent";
-import logo from "../assets/logo.png";
-import Image from "next/image";
 import Link from "next/link";
 
 const stripHtml = (html: string) => {
@@ -110,15 +108,6 @@ const Navbar = () => {
                 </svg>
               </div>
             )}
-
-            <span className="flex flex-col text-left leading-none">
-              <span className="text-[14px] min-[400px]:text-[16px] md:text-[19px] font-extrabold tracking-wide text-white uppercase leading-none whitespace-nowrap">
-                {navbar.logoText1 || navbar.siteTitle || "Oil & Pump Supply"}
-              </span>
-              <span className="text-[7.5px] min-[400px]:text-[8.5px] md:text-[9.5px] font-semibold tracking-[0.16em] text-gold uppercase leading-none mt-1.5 whitespace-nowrap">
-                {navbar.logoText2 || "Reliable • Efficient • Sustainable"}
-              </span>
-            </span>
           </Link>
 
           {/* ── Desktop Nav Links ──────────────────────── */}
@@ -188,7 +177,7 @@ const Navbar = () => {
                                       {service.title}
                                     </h3>
                                     <p className="text-white/45 text-[11px] leading-tight line-clamp-1 mt-0.5 font-light">
-                                      {stripHtml(service.heroDescription || service.description || "Specialized clinical therapy protocol")}
+                                      {stripHtml(service.heroDescription || service.description || "Learn more about this service")}
                                     </p>
                                   </div>
                                 </Link>
@@ -198,7 +187,7 @@ const Navbar = () => {
 
                           {/* Megamenu Footer */}
                           <div className="mt-4 pt-3.5 border-t border-border-dark/80 flex items-center justify-between text-xs px-1">
-                            <span className="text-white/40 font-light">Explore all individualized clinical bodywork options</span>
+                            <span className="text-white/40 font-light">Explore our full range of pump & oilfield supply services</span>
                             <Link
                               href="/services/"
                               onClick={handleLinkClick}

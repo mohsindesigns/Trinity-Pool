@@ -254,7 +254,6 @@ const navbarPatch = {
   'data.navbar.logo': '',
   'data.navbar.siteTitle': COMPANY,
   'data.navbar.logoText1': 'TRINITY PUMP & SUPPLY',
-  'data.navbar.logoText2': 'Downhole Rod Pumps • Oilfield Supplies',
   'data.navbar.ctaText': 'Call Now',
   'data.navbar.ctaLink': PHONE_TEL,
   'data.navbar.companyLinks': navbarLinks,
@@ -264,7 +263,7 @@ const navbarPatch = {
 const footerPatch = {
   'data.footer.company.logo': '',
   'data.footer.company.name': 'TRINITY PUMP & SUPPLY',
-  'data.footer.company.tagline': 'Downhole Rod Pumps • Oilfield Supplies',
+  'data.footer.company.tagline': '',
   'data.footer.company.description': 'Delivering high-quality USA-manufactured pump parts and services across Texas and New Mexico.',
   'data.footer.services.title': 'Our Services',
   'data.footer.services.selectedServices': serviceCatalogue.map((s) => s.slug),

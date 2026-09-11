@@ -360,19 +360,7 @@ export default function SettingsEditor() {
                <SettingsRow label="Navbar Logo" description="Optional image shown at the left of the brand text. Leave empty to use the built-in shield mark.">
                   <ImageField value={data.navbar?.logo || ""} onChange={(val) => updateData("navbar", "logo", val)} label="Logo" />
                </SettingsRow>
-               <SettingsRow label="Brand Text" description="The two lines next to the logo in the header and footer.">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl">
-                     <div className="space-y-1">
-                        <label className="text-[11px] text-[#646970]">Brand name (line 1)</label>
-                        <input type="text" value={data.navbar?.logoText1 || ""} onChange={(e) => updateData("navbar", "logoText1", e.target.value)} className="w-full border border-[#8c8f94] px-3 py-1.5 text-[14px] rounded-[3px]" placeholder="e.g. OIL & PUMP SUPPLY" />
-                     </div>
-                     <div className="space-y-1">
-                        <label className="text-[11px] text-[#646970]">Tagline (line 2)</label>
-                        <input type="text" value={data.navbar?.logoText2 || ""} onChange={(e) => updateData("navbar", "logoText2", e.target.value)} className="w-full border border-[#8c8f94] px-3 py-1.5 text-[14px] rounded-[3px]" placeholder="e.g. Reliable • Efficient • Sustainable" />
-                     </div>
-                  </div>
-               </SettingsRow>
-               <SettingsRow label="Logo Alt Text" description="Accessibility text for the logo image; also used as the fallback brand name.">
+               <SettingsRow label="Logo Alt Text" description="Accessibility text for the logo image. The header shows the logo only, no brand text.">
                   <input type="text" value={data.navbar?.siteTitle || ""} onChange={(e) => updateData("navbar", "siteTitle", e.target.value)} className="w-full max-w-md border border-[#8c8f94] px-3 py-1.5 text-[14px] rounded-[3px]" placeholder="e.g. Oil & Pump Supply" />
                </SettingsRow>
                <SettingsRow label="CTA Button">

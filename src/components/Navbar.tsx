@@ -80,12 +80,12 @@ const Navbar = () => {
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled || isMenuOpen ? 'bg-dark shadow-[0_4px_24px_rgba(0,0,0,0.6)] py-1' : 'bg-transparent py-3'}`}
       >
-        <div className="site-container flex items-center justify-between h-[76px]">
+        <div className="site-container flex items-center justify-between h-[76px] sm:h-[96px]">
 
           {/* ── Logo ───────────────────────────────────── */}
           <Link href="/" className="flex items-center gap-2.5 md:gap-3" onClick={handleLinkClick}>
             {navbar.logo && (navbar.logo.startsWith('http') || navbar.logo.startsWith('/uploads') || navbar.logo.startsWith('/cdn-images')) ? (
-              <div className="relative h-14 w-14 sm:h-[64px] sm:w-[64px] flex items-center justify-center overflow-hidden flex-shrink-0">
+              <div className="relative h-16 w-16 sm:h-[84px] sm:w-[84px] flex items-center justify-center overflow-hidden flex-shrink-0">
                 <img
                   src={navbar.logo}
                   alt={navbar.siteTitle || "Company Logo"}
@@ -93,7 +93,7 @@ const Navbar = () => {
                 />
               </div>
             ) : (
-              <div className="flex items-center justify-center h-14 w-14 sm:h-[64px] sm:w-[64px] flex-shrink-0">
+              <div className="flex items-center justify-center h-16 w-16 sm:h-[84px] sm:w-[84px] flex-shrink-0">
                 <svg width="100%" height="100%" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M22 2L38 9.5V23.5C38 33.2 31.2 39.6 22 42C12.8 39.6 6 33.2 6 23.5V9.5L22 2Z"

@@ -62,7 +62,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         title: seo.ogTitle || seo.metaTitle || title,
         description: seo.ogDescription || seo.metaDescription || description,
         url: pageUrl,
-        siteName: "410 Muscle Therapy",
+        siteName: settings.siteTitle,
         type: "website",
         images: [
           {
@@ -78,8 +78,6 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         title: seo.twitterTitle || seo.ogTitle || seo.metaTitle || title,
         description: seo.twitterDescription || seo.ogDescription || seo.metaDescription || description,
         images: [twitterImage || `${BASE_URL}/logo.png`],
-        site: "@410MuscleTherapy",
-        creator: "@410MuscleTherapy",
       },
     };
   }
@@ -100,7 +98,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title: seo.ogTitle || seo.metaTitle || page.title,
       description: seo.ogDescription || seo.metaDescription,
       url: pageUrl,
-      siteName: "410 Muscle Therapy",
+      siteName: settings.siteTitle,
       type: "website",
       images: [
         {

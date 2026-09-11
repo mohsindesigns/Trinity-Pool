@@ -118,6 +118,9 @@ const Navbar = () => {
 
               // Case 1: Mega Menu
               if (link.useMegaMenu) {
+                const menuServices = link.megaCategory
+                  ? services.filter((s: any) => s.category === link.megaCategory)
+                  : services;
                 return (
                   <li key={linkIdx} className="static">
                     <button
@@ -138,7 +141,7 @@ const Navbar = () => {
                     >
                       {link.icon && <Icon name={link.icon} className="h-4 w-4" />}
                       <span>{link.label}</span>
-                      {services.length > 0 && (
+                      {menuServices.length > 0 && (
                         <motion.span animate={{ rotate: activeMegaMenu === `mega-${linkIdx}` ? 180 : 0 }}>
                           <ChevronDown size={14} className="opacity-70 ml-0.5" />
                         </motion.span>
@@ -158,7 +161,7 @@ const Navbar = () => {
                           style={{ zIndex: 1000 }}
                         >
                           <div className="grid grid-cols-2 lg:grid-cols-3 gap-3">
-                            {services.map((service: any) => {
+                            {menuServices.map((service: any) => {
                               const isThisHovered = hoveredService === service.title;
                               return (
                                 <Link
@@ -372,7 +375,7 @@ const Navbar = () => {
                           >
                             <div className="pl-4 flex flex-col gap-2 mt-1 mb-2 border-l border-white/10 ml-2">
                               {isMegaMenu ? (
-                                services.map((service: any) => (
+                                (link.megaCategory ? services.filter((s: any) => s.category === link.megaCategory) : services).map((service: any) => (
                                   <Link
                                     key={service.slug}
                                     href={`/${service.slug}/`}

@@ -6,6 +6,11 @@
  *
  * Run:  node scripts/seed_trinity_homepage.cjs
  * Images live under public/images/trinity/ (see CREDITS.md there).
+ *
+ * NOTE: after this script, also run scripts/update_client_changes.cjs — it
+ * overrides the navbar (Artificial Lift / Projects & Supplies mega menus),
+ * the 13-item service catalogue, team/leadership bios and the shop address
+ * with the client's latest requested structure.
  */
 const { MongoClient } = require('mongodb');
 const path = require('path');
@@ -19,7 +24,7 @@ const COMPANY = 'Trinity Pump & Supply';
 const PHONE = '830-279-3996';
 const PHONE_TEL = 'tel:8302793996';
 const EMAIL = 'trinitypumpsupply@gmail.com';
-const ADDRESS = '2501 FM 866, Odessa, TX 79763';
+const ADDRESS = '4608 Gist Ave, Odessa, TX 79764';
 
 const hero = {
   label: 'DOWNHOLE ROD PUMPS & OILFIELD SUPPLIES',
@@ -192,7 +197,7 @@ const faq = {
   items: [
     { question: 'What do you manufacture and repair?', answer: 'We manufacture, build and repair downhole sucker rod pumps, and we supply the Burleson HD Rod Rotator, downhole supplies, general oilfield supplies, battery and wellhead supplies, and poly pipe and fittings.' },
     { question: 'What materials do you use for pump parts?', answer: 'We exclusively use high-quality USA-manufactured alloy steel, 316 Stainless and Monel for our downhole pump parts, designed for longer pump runs.' },
-    { question: 'Where do you operate?', answer: 'We serve oilfield operators throughout Texas and New Mexico from our shop at 2501 FM 866, Odessa, TX 79763.' },
+    { question: 'Where do you operate?', answer: `We serve oilfield operators throughout Texas and New Mexico from our shop at ${ADDRESS}.` },
     { question: 'How do you help lower lifting costs?', answer: 'By producing long-lasting pump parts and repairing pumps to last, we reduce how often you have to pull a well, minimizing pulling costs and extending equipment life.' },
     { question: 'How do I get a quote?', answer: `Call ${PHONE}, email ${EMAIL}, or use the form on this page. Tell us about your well and we will respond promptly with pricing and availability.` },
   ].map((f) => ({ ...f, q: f.question, a: f.answer })),

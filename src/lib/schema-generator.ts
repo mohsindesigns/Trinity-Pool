@@ -15,14 +15,26 @@ interface SchemaOptions {
   dateModified?: string;
 }
 
+const BUSINESS_NAME = "Trinity Pump & Supply";
+const BUSINESS_PHONE = "830-279-3996";
+const BUSINESS_EMAIL = "trinitypumpsupply@gmail.com";
+const BUSINESS_ADDRESS = {
+  "@type": "PostalAddress",
+  "streetAddress": "4608 Gist Ave",
+  "addressLocality": "Odessa",
+  "addressRegion": "TX",
+  "postalCode": "79764",
+  "addressCountry": "US"
+};
+
 export function getHomepageSchemas(servicesList?: Array<{ name: string }>, faqs?: Array<{ question?: string; answer?: string; q?: string; a?: string }>) {
   const defaultServices = [
-    { name: "Deep Tissue Massage" },
-    { name: "Sports Massage" },
-    { name: "Myofascial Release" },
-    { name: "Cupping Therapy" },
-    { name: "Stretch Therapy" },
-    { name: "Hot Stone Massage" }
+    { name: "Downhole Rod Pumps" },
+    { name: "HD Rod Rotator" },
+    { name: "Artificial Lift Supplies" },
+    { name: "Pipe, Valves & Fittings" },
+    { name: "Poly" },
+    { name: "General Oilfield Supply" }
   ];
 
   const serviceOffers = (servicesList && servicesList.length > 0 ? servicesList : defaultServices).map(s => ({
@@ -40,7 +52,7 @@ export function getHomepageSchemas(servicesList?: Array<{ name: string }>, faqs?
         "@type": "WebPage",
         "@id": `${BASE_URL}/`,
         "url": `${BASE_URL}/`,
-        "name": "Massage Therapy in Timonium Maryland | 410 Muscle Therapy",
+        "name": `Downhole Rod Pumps & Oilfield Supplies in Odessa, TX | ${BUSINESS_NAME}`,
         "isPartOf": {
           "@id": `${BASE_URL}/#website`
         },
@@ -49,7 +61,7 @@ export function getHomepageSchemas(servicesList?: Array<{ name: string }>, faqs?
         },
         "datePublished": "2025-02-07T15:28:30+00:00",
         "dateModified": "2026-07-24T16:08:21+00:00",
-        "description": "Get real pain relief with massage therapy Timonium Maryland. 410 Muscle Therapy melts deep knots, eases stiffness and gets you moving. Book your session now.",
+        "description": "Trinity Pump & Supply delivers high-quality USA-manufactured downhole rod pumps, artificial lift equipment and oilfield supplies across Texas and New Mexico.",
         "breadcrumb": {
           "@id": `${BASE_URL}/#breadcrumb`
         },
@@ -78,8 +90,8 @@ export function getHomepageSchemas(servicesList?: Array<{ name: string }>, faqs?
         "@type": "WebSite",
         "@id": `${BASE_URL}/#website`,
         "url": `${BASE_URL}/`,
-        "name": "410 Muscle Therapy",
-        "description": "Heal. Perform. Thrive. – Your Path to Pain-Free Living",
+        "name": BUSINESS_NAME,
+        "description": "Downhole Rod Pumps & Oilfield Supplies serving the Permian Basin",
         "publisher": {
           "@id": `${BASE_URL}/#organization`
         },
@@ -102,7 +114,7 @@ export function getHomepageSchemas(servicesList?: Array<{ name: string }>, faqs?
       {
         "@type": "Organization",
         "@id": `${BASE_URL}/#organization`,
-        "name": "410 Muscle Therapy",
+        "name": BUSINESS_NAME,
         "url": `${BASE_URL}/`,
         "logo": {
           "@type": "ImageObject",
@@ -110,15 +122,11 @@ export function getHomepageSchemas(servicesList?: Array<{ name: string }>, faqs?
           "@id": `${BASE_URL}/#/schema/logo/image/`,
           "url": "",
           "contentUrl": "",
-          "caption": "410 Muscle Therapy"
+          "caption": BUSINESS_NAME
         },
         "image": {
           "@id": `${BASE_URL}/#/schema/logo/image/`
-        },
-        "sameAs": [
-          "https://www.instagram.com/Twonlyles_muscletherapy/",
-          "https://www.youtube.com/@Twon410"
-        ]
+        }
       }
     ]
   };
@@ -126,30 +134,22 @@ export function getHomepageSchemas(servicesList?: Array<{ name: string }>, faqs?
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
-    "serviceType": "Massage Therapy Services",
+    "serviceType": "Oilfield Equipment & Artificial Lift Supply",
     "provider": {
       "@type": "LocalBusiness",
-      "name": "410 Muscle Therapy",
-      "image": "https://410-muscletherapy.com/wp-content/uploads/2024/10/410-muscle-therapy-logo.png",
+      "name": BUSINESS_NAME,
       "url": `${BASE_URL}/`,
-      "telephone": "(410) 555-1234",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "1301 York Rd., 8th Floor, Ste 48",
-        "addressLocality": "Timonium",
-        "addressRegion": "MD",
-        "postalCode": "21093",
-        "addressCountry": "US"
-      }
+      "telephone": BUSINESS_PHONE,
+      "address": BUSINESS_ADDRESS
     },
     "areaServed": {
       "@type": "Place",
-      "name": "Timonium, Maryland"
+      "name": "Permian Basin, Texas & New Mexico"
     },
-    "description": "410 Muscle Therapy provides expert massage therapy services in Maryland, including Deep Tissue Massage, Sports Massage, Myofascial Release, and Cupping Therapy designed to relieve pain, enhance mobility, and restore body balance.",
+    "description": "Trinity Pump & Supply manufactures, builds and repairs downhole rod pumps, and supplies artificial lift equipment, pipe, valves, fittings and general oilfield supplies across Texas and New Mexico.",
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
-      "name": "Massage Therapy Services",
+      "name": "Oilfield Equipment & Supplies",
       "itemListElement": serviceOffers
     }
   };
@@ -157,38 +157,22 @@ export function getHomepageSchemas(servicesList?: Array<{ name: string }>, faqs?
   const localBusinessSchema = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "name": "410 Muscle Therapy",
-    "image": "https://410-muscletherapy.com/wp-content/uploads/2024/10/410-muscle-therapy-logo.png",
+    "name": BUSINESS_NAME,
     "@id": `${BASE_URL}/`,
     "url": `${BASE_URL}/`,
-    "telephone": "(410) 555-1234",
+    "telephone": BUSINESS_PHONE,
+    "email": BUSINESS_EMAIL,
     "priceRange": "$$",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "1301 York Rd., 8th Floor, Ste 48",
-      "addressLocality": "Timonium",
-      "addressRegion": "MD",
-      "postalCode": "21093",
-      "addressCountry": "US"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": 39.421,
-      "longitude": -76.615
-    },
+    "address": BUSINESS_ADDRESS,
     "openingHoursSpecification": [
       {
         "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
-        "opens": "08:00",
-        "closes": "19:00"
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+        "opens": "07:00",
+        "closes": "18:00"
       }
     ],
-    "sameAs": [
-      "https://www.facebook.com/410muscletherapy",
-      "https://www.instagram.com/410muscletherapy"
-    ],
-    "description": "410 Muscle Therapy in Timonium, Maryland specializes in professional massage therapy services including deep tissue massage, sports massage, myofascial release, cupping therapy, and stretch therapy to help relieve pain and improve mobility."
+    "description": "Trinity Pump & Supply, based in Odessa, Texas, specializes in USA-manufactured downhole rod pumps, HD rod rotators, artificial lift supplies and general oilfield supplies for operators across the Permian Basin."
   };
 
   let faqSchema: any = null;
@@ -245,51 +229,32 @@ export function generateSchema(options: SchemaOptions) {
   const organizationSchema = {
     "@type": "Organization",
     "@id": `${BASE_URL}/#organization`,
-    "name": "410 Muscle Therapy",
+    "name": BUSINESS_NAME,
     "url": `${BASE_URL}/`,
     "logo": {
       "@type": "ImageObject",
       "url": `${BASE_URL}/logo.png`,
       "width": 512,
       "height": 512
-    },
-    "sameAs": [
-      "https://www.instagram.com/Twonlyles_muscletherapy/",
-      "https://www.youtube.com/@Twon410",
-      "https://www.facebook.com/410muscletherapy",
-      "https://www.instagram.com/410muscletherapy"
-    ]
+    }
   };
 
   // 2. LocalBusiness Schema
   const localBusinessSchema = {
     "@type": "LocalBusiness",
     "@id": `${BASE_URL}/#localbusiness`,
-    "name": "410 Muscle Therapy",
+    "name": BUSINESS_NAME,
     "image": `${BASE_URL}/logo.png`,
-    "telephone": "(410) 555-1234",
-    "email": "antoine.lyles@yahoo.com",
+    "telephone": BUSINESS_PHONE,
+    "email": BUSINESS_EMAIL,
     "url": `${BASE_URL}/`,
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "1301 York Rd., 8th Floor, Ste 48",
-      "addressLocality": "Timonium",
-      "addressRegion": "MD",
-      "postalCode": "21093",
-      "addressCountry": "US"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": 39.421,
-      "longitude": -76.615
-    },
+    "address": BUSINESS_ADDRESS,
     "areaServed": [
-      { "@type": "AdministrativeArea", "name": "Maryland" },
-      { "@type": "AdministrativeArea", "name": "Baltimore County" },
-      { "@type": "AdministrativeArea", "name": "Timonium" },
-      { "@type": "AdministrativeArea", "name": "Towson" },
-      { "@type": "AdministrativeArea", "name": "Lutherville" },
-      { "@type": "AdministrativeArea", "name": "Cockeysville" }
+      { "@type": "AdministrativeArea", "name": "Texas" },
+      { "@type": "AdministrativeArea", "name": "New Mexico" },
+      { "@type": "AdministrativeArea", "name": "Permian Basin" },
+      { "@type": "AdministrativeArea", "name": "Odessa" },
+      { "@type": "AdministrativeArea", "name": "Midland" }
     ],
     "priceRange": "$$"
   };
@@ -299,7 +264,7 @@ export function generateSchema(options: SchemaOptions) {
     "@type": "WebSite",
     "@id": `${BASE_URL}/#website`,
     "url": `${BASE_URL}/`,
-    "name": "410 Muscle Therapy",
+    "name": BUSINESS_NAME,
     "publisher": { "@id": `${BASE_URL}/#organization` }
   };
 
@@ -360,7 +325,7 @@ export function generateSchema(options: SchemaOptions) {
     "@type": "WebPage",
     "@id": `${pageUrl}`,
     "url": pageUrl,
-    "name": `${title} in Timonium Maryland | 410 Muscle Therapy`,
+    "name": `${title} | ${BUSINESS_NAME}`,
     "description": description,
     "datePublished": datePublished,
     "dateModified": dateModified,

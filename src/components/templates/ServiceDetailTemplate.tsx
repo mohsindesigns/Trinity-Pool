@@ -86,101 +86,101 @@ export default function ServiceDetailTemplate({ pageData, params: syncParams }: 
   const pageContent = pageData?.content || {};
   const serviceDetailPage = pageContent.serviceDetailPage || globalServiceDetailPage || {};
 
-  const defaultBookingUrl = "https://www.styleseat.com/m/v/410muscletherapy";
+  const defaultBookingUrl = "/contact-us/";
   const globalBooking = globalMetadata?.bookingUrl || defaultBookingUrl;
 
   // Hydrate configurations cleanly with zero duplicate texts
   const pg = {
     backLink: service.backLink || serviceDetailPage.backLink || "Back to All Services",
-    heroSectionLabel: service.heroSectionLabel || serviceDetailPage.heroSectionLabel || "CLINICAL RECOVERY PROTOCOL",
+    heroSectionLabel: service.heroSectionLabel || serviceDetailPage.heroSectionLabel || "OILFIELD SERVICE OVERVIEW",
 
     // Single distinct Hero Description
-    heroDescription: service.heroDescription || service.heroSubtitle || service.heroDescriptionSuffix || serviceDetailPage.heroDescription || "Targeted manual therapy engineered to eliminate chronic pain, unlock joint mobility, and accelerate athletic recovery.",
+    heroDescription: service.heroDescription || service.heroSubtitle || service.heroDescriptionSuffix || service.subheadline || service.description || serviceDetailPage.heroDescription || "USA-manufactured equipment and dependable supply, built to keep your lease producing.",
 
     // Specs Strip
-    specDurationValue: service.specDurationValue || serviceDetailPage.specDurationValue || "60 / 90 Mins",
-    specIntensityValue: service.specIntensityValue || serviceDetailPage.specIntensityValue || "Targeted Deep",
-    specFocusValue: service.specFocusValue || serviceDetailPage.specFocusValue || "Trigger Mapping",
+    specDurationValue: service.specDurationValue || serviceDetailPage.specDurationValue || "USA-Made Parts",
+    specIntensityValue: service.specIntensityValue || serviceDetailPage.specIntensityValue || "Odessa, TX Shop",
+    specFocusValue: service.specFocusValue || serviceDetailPage.specFocusValue || "TX & NM Coverage",
 
     // CTAs & Links
-    bookingCta: service.bookingCta || serviceDetailPage.bookingCta || "Book Appointment Now",
+    bookingCta: service.bookingCta || serviceDetailPage.bookingCta || "Get a Quote",
     bookingCtaUrl: service.bookingCtaUrl || globalBooking,
-    heroCtaSecondary: service.heroCtaSecondary || serviceDetailPage.heroCtaSecondary || "SEE HOW IT HELPS",
+    heroCtaSecondary: service.heroCtaSecondary || serviceDetailPage.heroCtaSecondary || "SEE THE DETAILS",
     heroCtaSecondaryUrl: service.heroCtaSecondaryUrl || "#overview",
 
     // Stats Strip
-    statsItem1Val: service.statsItem1Val || serviceDetailPage.statsItem1Val || "8 Yrs",
-    statsItem1Label: service.statsItem1Label || serviceDetailPage.statsItem1Label || "Clinical Experience",
-    statsItem2Val: service.statsItem2Val || serviceDetailPage.statsItem2Val || "5.0 ★",
-    statsItem2Label: service.statsItem2Label || serviceDetailPage.statsItem2Label || "Google Reviews",
-    statsItem3Val: service.statsItem3Val || serviceDetailPage.statsItem3Val || "100%",
-    statsItem3Label: service.statsItem3Label || serviceDetailPage.statsItem3Label || "Satisfaction Guarantee",
-    statsItem4Val: service.statsItem4Val || serviceDetailPage.statsItem4Val || "5,000+",
-    statsItem4Label: service.statsItem4Label || serviceDetailPage.statsItem4Label || "Sessions Completed",
+    statsItem1Val: service.statsItem1Val || serviceDetailPage.statsItem1Val || "100+",
+    statsItem1Label: service.statsItem1Label || serviceDetailPage.statsItem1Label || "Years Combined Experience",
+    statsItem2Val: service.statsItem2Val || serviceDetailPage.statsItem2Val || "USA",
+    statsItem2Label: service.statsItem2Label || serviceDetailPage.statsItem2Label || "Manufactured Parts",
+    statsItem3Val: service.statsItem3Val || serviceDetailPage.statsItem3Val || "TX & NM",
+    statsItem3Label: service.statsItem3Label || serviceDetailPage.statsItem3Label || "Oilfield Coverage",
+    statsItem4Val: service.statsItem4Val || serviceDetailPage.statsItem4Val || "24/7",
+    statsItem4Label: service.statsItem4Label || serviceDetailPage.statsItem4Label || "Field Support",
 
     // Overview Section
-    overviewSectionLabel: service.overviewSectionLabel || serviceDetailPage.overviewSectionLabel || "FIX THE PATTERNS THAT KEEP PAIN RETURNING",
-    overviewTitle1: service.overviewTitle1 || service.overviewTitlePrefix || serviceDetailPage.overviewTitle1 || "Targeted Bodywork.",
-    overviewTitle2: service.overviewTitle2 || service.overviewTitleHighlight || serviceDetailPage.overviewTitle2 || "Engineered For Recovery.",
-    overviewWatermark: service.overviewWatermark || serviceDetailPage.overviewWatermark || "SPECIALIST PRACTICE • EST. 2020",
-    overviewSuccessRate: service.overviewSuccessRate || serviceDetailPage.overviewSuccessRate || "5.0 RATED PRACTICE",
-    tailoredLabel: service.tailoredLabel ?? serviceDetailPage.tailoredLabel ?? "100% Tailored Therapy",
-    tailoredSub: service.tailoredSub ?? serviceDetailPage.tailoredSub ?? "Individualized Protocols",
+    overviewSectionLabel: service.overviewSectionLabel || serviceDetailPage.overviewSectionLabel || "BUILT FOR RELIABLE WELL PERFORMANCE",
+    overviewTitle1: service.overviewTitle1 || service.overviewTitlePrefix || serviceDetailPage.overviewTitle1 || "Quality Equipment.",
+    overviewTitle2: service.overviewTitle2 || service.overviewTitleHighlight || serviceDetailPage.overviewTitle2 || "Built to Last.",
+    overviewWatermark: service.overviewWatermark || serviceDetailPage.overviewWatermark || "TRINITY PUMP & SUPPLY",
+    overviewSuccessRate: service.overviewSuccessRate || serviceDetailPage.overviewSuccessRate || "ODESSA, TX",
+    tailoredLabel: service.tailoredLabel ?? serviceDetailPage.tailoredLabel ?? "USA-Made Materials",
+    tailoredSub: service.tailoredSub ?? serviceDetailPage.tailoredSub ?? "Built for the Permian Basin",
 
     // Single distinct Overview Clinical Narrative
-    overviewDescription: service.overviewDescription || service.overviewIntroSuffix || service.description || serviceDetailPage.overviewDescription || "We look at mobility, stability, posture, soft-tissue restrictions, and movement habits. Then we pair bodywork with guided exercises that help your body share the load more comfortably.",
+    overviewDescription: service.overviewDescription || service.overviewIntroSuffix || service.description || serviceDetailPage.overviewDescription || "We manufacture, build and supply oilfield equipment using USA-made materials, matched to your well conditions to lower lifting costs and extend run life.",
 
-    overviewCtaText: service.overviewCtaText || serviceDetailPage.overviewCtaText || "BOOK YOUR SESSION NOW",
+    overviewCtaText: service.overviewCtaText || serviceDetailPage.overviewCtaText || "REQUEST A QUOTE",
     overviewCtaUrl: service.overviewCtaUrl || service.bookingCtaUrl || globalBooking,
-    overviewHipaaText: service.overviewHipaaText || serviceDetailPage.overviewHipaaText || "100% Satisfaction Guaranteed & Certified",
+    overviewHipaaText: service.overviewHipaaText || serviceDetailPage.overviewHipaaText || "USA-Manufactured & Field-Tested",
 
     // Candidates / Why Choose Us Section
-    candidateSectionLabel: service.candidateSectionLabel || serviceDetailPage.candidateSectionLabel || "WHY 410 MUSCLE THERAPY FEELS DIFFERENT",
-    candidateTitle1: service.candidateTitle1 || serviceDetailPage.candidateTitle1 || "Targeted Care.",
-    candidateTitle2: service.candidateTitle2 || serviceDetailPage.candidateTitle2 || "Built Around You.",
-    candidateDescription: service.candidateDescription || serviceDetailPage.candidateDescription || "Movement work shaped around what your body can comfortably do. The goal is useful progress, not a rushed routine or generic adjustment.",
+    candidateSectionLabel: service.candidateSectionLabel || serviceDetailPage.candidateSectionLabel || "WHY OPERATORS CHOOSE TRINITY",
+    candidateTitle1: service.candidateTitle1 || serviceDetailPage.candidateTitle1 || "Reliable Supply.",
+    candidateTitle2: service.candidateTitle2 || serviceDetailPage.candidateTitle2 || "Built Around Your Lease.",
+    candidateDescription: service.candidateDescription || serviceDetailPage.candidateDescription || "Equipment and support sized to your well conditions, backed by a team that answers the phone and shows up on time.",
     profileBadgePrefix: service.profileBadgePrefix || serviceDetailPage.profileBadgePrefix || "ADVANTAGE",
-    candidateSuitability: service.candidateSuitability ?? serviceDetailPage.candidateSuitability ?? "CLINICAL STANDARD",
+    candidateSuitability: service.candidateSuitability ?? serviceDetailPage.candidateSuitability ?? "TRINITY STANDARD",
     whoProfiles: service.whoProfiles || serviceDetailPage.whoProfiles || [
       {
-        label: "Eight Years Of Experience",
-        desc: "Eight years of professional experience guide every session. Skilled observation and hands-on work matter when pain has several contributors.",
-        suitability: "CERTIFIED CARE"
+        label: "100+ Years Combined Experience",
+        desc: "Decades of hands-on rod pump and oilfield supply experience guide every recommendation we make for your well.",
+        suitability: "FIELD-TESTED"
       },
       {
-        label: "Five-Star Reputation",
-        desc: "A 5.0 Google rating gives you confidence before you book. Clients praise our knowledge, professionalism, and targeted muscle relief.",
-        suitability: "5.0 ★ RATED"
+        label: "USA-Manufactured Parts",
+        desc: "Alloy steel, 316 Stainless and Monel components built to hold up under demanding Permian Basin conditions.",
+        suitability: "USA-MADE"
       },
       {
-        label: "Guaranteed Client Satisfaction",
-        desc: "Backed by our 100% Customer Satisfaction Guarantee. We explain every technique and adjust pressure to your exact comfort.",
-        suitability: "100% GUARANTEED"
+        label: "Lower Lifting Costs",
+        desc: "Longer equipment runs mean fewer pulls and less downtime, keeping your lease producing and costs down.",
+        suitability: "COST-FOCUSED"
       },
       {
-        label: "York Road Convenience",
-        desc: "Conveniently located at 1301 York Rd., Timonium, MD, serving Towson, Lutherville, Cockeysville, and Baltimore County with dedicated one-on-one care.",
-        suitability: "TIMONIUM, MD"
+        label: "Odessa, TX Shop",
+        desc: "Based at 4608 Gist Ave, Odessa, TX, serving operators throughout Texas and New Mexico with dependable delivery.",
+        suitability: "ODESSA, TX"
       }
     ],
 
     // Treatment Protocol / Stepper Section
-    protocolSectionLabel: service.protocolSectionLabel || serviceDetailPage.protocolSectionLabel || "SESSION WORKFLOW PROTOCOL",
-    protocolTitle1: service.protocolTitle1 || serviceDetailPage.protocolTitle1 || "What Your Session",
-    protocolTitle2: service.protocolTitle2 || serviceDetailPage.protocolTitle2 || "Looks Like.",
-    protocolDescription: service.protocolDescription || serviceDetailPage.protocolDescription || "Your visit follows a clear path: listen, observe, release, practice, and retest so you always know what we are working on and why.",
+    protocolSectionLabel: service.protocolSectionLabel || serviceDetailPage.protocolSectionLabel || "HOW WE WORK",
+    protocolTitle1: service.protocolTitle1 || serviceDetailPage.protocolTitle1 || "From Well Evaluation",
+    protocolTitle2: service.protocolTitle2 || serviceDetailPage.protocolTitle2 || "to Longer Pump Runs.",
+    protocolDescription: service.protocolDescription || serviceDetailPage.protocolDescription || "A straightforward process focused on one goal: lowering your lifting costs and maximizing the longevity of your well.",
     protocolPhasePrefix: service.protocolPhasePrefix || serviceDetailPage.protocolPhasePrefix || "STEP 0",
-    protocolDurations: service.protocolDurations || serviceDetailPage.protocolDurations || ["15 MIN", "30 MIN", "30 MIN", "15 MIN"],
-    protocolBannerBadge: service.protocolBannerBadge || serviceDetailPage.protocolBannerBadge || "MOVE BETTER STARTING RIGHT HERE",
+    protocolDurations: service.protocolDurations || serviceDetailPage.protocolDurations || ["STEP 1", "STEP 2", "STEP 3", "STEP 4"],
+    protocolBannerBadge: service.protocolBannerBadge || serviceDetailPage.protocolBannerBadge || "READY TO GET STARTED",
     protocolBannerTitle: service.protocolBannerTitle || serviceDetailPage.protocolBannerTitle,
-    protocolBannerTitlePrefix: service.protocolBannerTitlePrefix || serviceDetailPage.protocolBannerTitlePrefix || "Ready to experience",
+    protocolBannerTitlePrefix: service.protocolBannerTitlePrefix || serviceDetailPage.protocolBannerTitlePrefix || "Ready to request a quote",
     protocolBannerTitleSuffix: service.protocolBannerTitleSuffix || serviceDetailPage.protocolBannerTitleSuffix || "?",
     protocolBannerDescription: service.protocolBannerDescription || serviceDetailPage.protocolBannerDescription,
-    protocolBannerCta: service.protocolBannerCta || serviceDetailPage.protocolBannerCta || "BOOK YOUR APPOINTMENT",
+    protocolBannerCta: service.protocolBannerCta || serviceDetailPage.protocolBannerCta || "CONTACT US",
     protocolBannerCtaUrl: service.protocolBannerCtaUrl || service.bookingCtaUrl || globalBooking,
 
-    benefitsTitle: service.benefitsTitle || serviceDetailPage.benefitsTitle || "Patterns & Focus Areas",
-    benefitCardDesc: service.benefitCardDesc || serviceDetailPage.benefitCardDesc || "Targeted mechanical and myofascial input designed to restore movement.",
+    benefitsTitle: service.benefitsTitle || serviceDetailPage.benefitsTitle || "Key Benefits",
+    benefitCardDesc: service.benefitCardDesc || serviceDetailPage.benefitCardDesc || "Built to lower costs and keep your well running longer between pulls.",
 
     // Dynamic Step Sequence
     sessionSteps: service.sessionSteps || (service.process && service.process.length > 0 ? service.process.map((step: any, idx: number) => ({
@@ -190,23 +190,23 @@ export default function ServiceDetailTemplate({ pageData, params: syncParams }: 
     })) : null) || serviceDetailPage.sessionSteps || [
         {
           num: "01",
-          title: "Talk And Screen",
-          desc: "We talk about what hurts and where motion feels guarded with standing, walking, reaching, or squatting assessments."
+          title: "Well Evaluation",
+          desc: "We evaluate your well and pumping conditions to recommend the right equipment for your duty cycle and fluid characteristics."
         },
         {
           num: "02",
-          title: "Release Restricted Tissue",
-          desc: "Hands-on myofascial work targets deep muscle knots and stuck fascia matched to your comfortable pressure level."
+          title: "Build or Repair",
+          desc: "We manufacture, build and repair equipment using USA-manufactured alloy steel, 316 Stainless and Monel components."
         },
         {
           num: "03",
-          title: "Practice Better Patterns",
-          desc: "We work on breathing, hip control, shoulder mechanics, balance, and core stability drills connected to daily life."
+          title: "Timely Delivery",
+          desc: "On-time delivery across Texas and New Mexico, with clear communication throughout so your lease stays on schedule."
         },
         {
           num: "04",
-          title: "Retest And Plan",
-          desc: "We retest key movements, evaluate improvements, and provide practical next steps to practice between sessions."
+          title: "Inspection & Support",
+          desc: "Ongoing inspection, repair and field support to keep your equipment running longer between pulls."
         }
       ]
   };
@@ -215,25 +215,25 @@ export default function ServiceDetailTemplate({ pageData, params: syncParams }: 
   const titleWords = serviceName.split(' ');
   const mainTitle = titleWords.slice(0, -1).join(' ');
   const lastTitleWord = titleWords[titleWords.length - 1] || "";
-  const serviceImage = service.image || service.featuredImage || "/images/service-massage.webp";
+  const serviceImage = service.image || service.featuredImage || "/images/trinity/hero.jpg";
 
-  // Format clinical benefits array
+  // Format benefits array
   const benefits = (service.benefits && service.benefits.length > 0) ? service.benefits : [
     {
-      title: "Recurring Low Back Tightness",
-      description: "Targeted mobility drills and soft-tissue release to take strain off the lumbar spine and restore hip motion."
+      title: "USA-Manufactured Materials",
+      description: "Alloy steel, 316 Stainless and Monel components built for durability and corrosion resistance."
     },
     {
-      title: "Hips That Feel Stuck",
-      description: "Soft-tissue work and joint control drills so you practice moving with less compensation during daily tasks."
+      title: "Matched to Your Well",
+      description: "Equipment sized and configured to your specific well depth, fluid characteristics and duty cycle."
     },
     {
-      title: "Neck And Shoulder Strain",
-      description: "Upper-back mobility and shoulder-blade mechanics to make reaching, turning, and desk posture feel natural."
+      title: "Lower Lifting Costs",
+      description: "Longer equipment runs mean fewer pulls, less downtime, and lower overall cost per barrel."
     },
     {
-      title: "Posture & Compensation Patterns",
-      description: "Balance, coordination, and joint control practice supporting easier standing, walking, training, and work."
+      title: "Odessa, TX Shop & Support",
+      description: "Local shop team and fast delivery across Texas and New Mexico keep your lease on schedule."
     }
   ];
 

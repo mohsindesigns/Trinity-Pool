@@ -620,5 +620,50 @@ export const useContent = () => {
                 { image: "", title: "Industrial Manufacturing", subtitle: "General Manufacturing",      cta: "Learn More", ctaLink: "#" },
             ]
         }),
+        process: getSafe(completeData, 'process', {
+            label: "OUR PROCESS",
+            title: "How We Work",
+            titleItalicWord: "Work",
+            description: "From initial inquiry to long-term support, our process is designed to be simple, transparent and efficient — so you get the right solutions, exactly when you need them.",
+            phaseLabel: "STEP",
+            items: [
+                {
+                    title: "Request a Quote",
+                    shortDescription: "Tell us what you need and get a quick, competitive quote.",
+                    description: "Share your requirements with our team. We'll review your needs and provide a competitive, no-obligation quote — fast and hassle-free.",
+                    ctaText: "GET A QUOTE",
+                    ctaUrl: "/contact-us/",
+                    image: "/images/trinity/process-1.jpg",
+                    icon: "FileText"
+                },
+                {
+                    title: "Consultation",
+                    shortDescription: "We understand your requirements and provide the best solution.",
+                    description: "Our expert engineering team assesses your technical specifications, fluid dynamics, and operational requirements to recommend optimal, cost-efficient pump systems.",
+                    ctaText: "SCHEDULE CONSULTATION",
+                    ctaUrl: "/contact-us/",
+                    image: "/images/trinity/process-2.jpg",
+                    icon: "MessageSquare"
+                },
+                {
+                    title: "Supply & Delivery",
+                    shortDescription: "We source, prepare and deliver on time.",
+                    description: "Fast-track logistics, certified equipment packaging, and guaranteed on-time site dispatch ensure zero operational downtime for your plant or drilling facility.",
+                    ctaText: "TRACK SHIPMENTS",
+                    ctaUrl: "/contact-us/",
+                    image: "/images/trinity/process-3.jpg",
+                    icon: "Truck"
+                },
+                {
+                    title: "After-Sales Support",
+                    shortDescription: "Ongoing support for maximum uptime.",
+                    description: "24/7 technical hotline, rapid OEM spare parts replacement, preventative field diagnostics, and certified technician maintenance for maximum equipment uptime.",
+                    ctaText: "GET SUPPORT",
+                    ctaUrl: "/contact-us/",
+                    image: "/images/trinity/process-4.jpg",
+                    icon: "Wrench"
+                }
+            ]
+        }),
     };
 };

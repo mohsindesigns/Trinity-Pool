@@ -2,26 +2,66 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { useContent } from "../hooks/useContent";
 import { stripHtml } from "../lib/utils";
-import { Icon } from "../config/icons";
 
-const AUTOPLAY_MS = 5000;
+const AUTOPLAY_MS = 6000;
 
-export default function HowItWorksSection() {
+export default function HowWeWork() {
   const { process } = useContent();
-  const { label, title, description, phaseLabel, items = [] } = process || {};
-  const stepWord = stripHtml(phaseLabel || "Step");
-  const steps: any[] = Array.isArray(items) ? items : [];
+  const {
+    label = "OUR PROCESS",
+    title = "How We Work",
+    titleItalicWord = "Work",
+    description = "From initial inquiry to long-term support, our process is designed to be simple, transparent and efficient — so you get the right solutions, exactly when you need them.",
+    phaseLabel = "STEP",
+    items = []
+  } = process || {};
+
+  const defaultSteps = [
+    {
+      title: "Request a Quote",
+      shortDescription: "Tell us what you need and get a quick, competitive quote.",
+      description: "Share your requirements with our team. We'll review your needs and provide a competitive, no-obligation quote — fast and hassle-free.",
+      ctaText: "GET A QUOTE",
+      ctaUrl: "/contact-us/",
+      image: "/images/trinity/process-1.jpg"
+    },
+    {
+      title: "Consultation",
+      shortDescription: "We understand your requirements and provide the best solution.",
+      description: "Our expert engineering team assesses your technical specifications, fluid dynamics, and operational requirements to recommend optimal, cost-efficient pump systems.",
+      ctaText: "SCHEDULE CONSULTATION",
+      ctaUrl: "/contact-us/",
+      image: "/images/trinity/process-2.jpg"
+    },
+    {
+      title: "Supply & Delivery",
+      shortDescription: "We source, prepare and deliver on time.",
+      description: "Fast-track logistics, certified equipment packaging, and guaranteed on-time site dispatch ensure zero operational downtime for your plant or drilling facility.",
+      ctaText: "TRACK SHIPMENTS",
+      ctaUrl: "/contact-us/",
+      image: "/images/trinity/process-3.jpg"
+    },
+    {
+      title: "After-Sales Support",
+      shortDescription: "Ongoing support for maximum uptime.",
+      description: "24/7 technical hotline, rapid OEM spare parts replacement, preventative field diagnostics, and certified technician maintenance for maximum equipment uptime.",
+      ctaText: "GET SUPPORT",
+      ctaUrl: "/contact-us/",
+      image: "/images/trinity/process-4.jpg"
+    }
+  ];
+
+  const steps: any[] = Array.isArray(items) && items.length > 0 ? items : defaultSteps;
 
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
-  const [cycle, setCycle] = useState(0); // restarts the progress bar animation
 
   const go = useCallback((i: number) => {
     setActive(((i % steps.length) + steps.length) % steps.length);
-    setCycle((c) => c + 1);
   }, [steps.length]);
 
   useEffect(() => {
@@ -32,146 +72,259 @@ export default function HowItWorksSection() {
 
   if (steps.length === 0) return null;
 
-  const numberOf = (step: any, i: number) => String(step.step || step.id || i + 1).padStart(2, "0");
+  const numberOf = (i: number) => String(i + 1).padStart(2, "0");
   const current = steps[active] || steps[0];
 
+  // Helper to highlight the italic word in the title
+  const renderTitle = () => {
+    const rawTitle = stripHtml(title) || "How We Work";
+    const italicWord = stripHtml(titleItalicWord) || "Work";
+
+    if (!italicWord || !rawTitle.toLowerCase().includes(italicWord.toLowerCase())) {
+      return <span>{rawTitle}</span>;
+    }
+
+    const regex = new RegExp(`(${italicWord})`, "i");
+    const parts = rawTitle.split(regex);
+
+    return parts.map((part, index) => {
+      if (part.toLowerCase() === italicWord.toLowerCase()) {
+        return (
+          <span key={index} className="font-serif italic font-normal text-gold-light ml-2">
+            {part}
+          </span>
+        );
+      }
+      return <span key={index}>{part}</span>;
+    });
+  };
+
   return (
-    <section id="process" className="relative bg-dark text-white py-16 md:py-24 overflow-x-clip">
-      {/* CMS background image (optional), kept faint under a navy gradient */}
-      {process?.image && (
-        <>
-          <div
-            className="absolute inset-0 bg-cover bg-center opacity-[0.22] pointer-events-none"
-            style={{ backgroundImage: `url(${process.image})` }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-dark via-dark/85 to-dark pointer-events-none" />
-        </>
-      )}
+    <section
+      id="process"
+      className="relative bg-[#080b0f] text-white py-20 md:py-28 overflow-hidden select-none"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
+      {/* Background ambient lighting */}
       <div
-        className="absolute -top-40 left-[-10%] w-[620px] h-[620px] rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(200,154,69,0.2) 0%, rgba(200,154,69,0) 62%)" }}
+        className="absolute top-1/4 left-[-15%] w-[650px] h-[650px] rounded-full pointer-events-none opacity-20 blur-[120px]"
+        style={{ background: "radial-gradient(circle, #C89A45 0%, rgba(200,154,69,0) 70%)" }}
       />
       <div
-        className="bg-radial-dots-gold absolute bottom-0 right-0 w-[460px] h-[460px] opacity-[0.14] pointer-events-none"
-        style={{
-          WebkitMaskImage: "radial-gradient(circle at bottom right, black, transparent 70%)",
-          maskImage: "radial-gradient(circle at bottom right, black, transparent 70%)",
-        }}
+        className="absolute bottom-0 right-[-10%] w-[500px] h-[500px] rounded-full pointer-events-none opacity-15 blur-[100px]"
+        style={{ background: "radial-gradient(circle, #E5B869 0%, rgba(200,154,69,0) 70%)" }}
       />
 
-      <div className="site-container relative">
-        <div
-          className="grid grid-cols-1 lg:grid-cols-[0.95fr_1.05fr] gap-12 lg:gap-16 items-center"
-          onMouseEnter={() => setPaused(true)}
-          onMouseLeave={() => setPaused(false)}
-        >
+      {/* Subtle bottom textured silhouette */}
+      <div
+        className="absolute bottom-0 left-0 right-0 h-28 pointer-events-none opacity-40 bg-gradient-to-t from-black via-black/40 to-transparent"
+      />
 
-          {/* ── Left: intro + step list ── */}
-          <div>
-            <p className="section-label mb-3">{stripHtml(label) || "Our Process"}</p>
-            <h2 className="display-heading text-[28px] min-[400px]:text-[32px] md:text-[40px] leading-[1.12] text-white mb-4">
-              {stripHtml(title) || "How We Work"}
+      <div className="site-container relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
+
+          {/* ════════════════ LEFT COLUMN: HEADER & TIMELINE ════════════════ */}
+          <div className="lg:col-span-5 flex flex-col justify-center">
+            {/* Header Badge */}
+            <div className="flex items-center gap-3 mb-4">
+              <span className="w-8 h-[2px] bg-gradient-to-r from-gold to-gold/40" />
+              <span className="text-[12px] font-bold tracking-[0.22em] uppercase text-gold">
+                {stripHtml(label) || "OUR PROCESS"}
+              </span>
+            </div>
+
+            {/* Main Headline */}
+            <h2 className="display-heading text-[36px] sm:text-[44px] md:text-[50px] leading-[1.08] text-white tracking-tight mb-5">
+              {renderTitle()}
             </h2>
+
+            {/* Subtitle description */}
             {description && (
-              <p className="text-white/60 text-[14.5px] leading-[1.75] font-light max-w-lg mb-10">
+              <p className="text-white/60 text-[14.5px] leading-[1.75] font-light max-w-md mb-12">
                 {stripHtml(description)}
               </p>
             )}
 
-            <ol className="relative flex flex-col">
-              {/* vertical rail */}
-              <span className="absolute left-[23px] top-6 bottom-6 w-px bg-white/10" />
+            {/* Vertical timeline steps */}
+            <div className="relative flex flex-col">
               {steps.map((step: any, i: number) => {
                 const isActive = i === active;
+                const isLast = i === steps.length - 1;
+                const stepNum = numberOf(i);
+                const stepBadgeText = `${stripHtml(phaseLabel) || "STEP"} ${stepNum}`;
+                const stepShortDesc = stripHtml(step.shortDescription || step.description || "");
+
                 return (
-                  <li key={i}>
-                    <button
-                      onClick={() => go(i)}
-                      className="group relative w-full flex items-center gap-5 py-3.5 text-left"
-                    >
+                  <div key={i} className="relative flex items-start group">
+                    {/* Vertical Connector Line */}
+                    {!isLast && (
                       <span
-                        className={`relative z-10 h-12 w-12 rounded-full flex items-center justify-center text-[12px] font-extrabold flex-shrink-0 ring-[6px] ring-dark transition-all duration-300 ${
+                        className={`absolute left-[21px] top-[46px] bottom-[-6px] w-[1.5px] transition-colors duration-500 z-0 ${
+                          isActive || i < active ? "bg-gradient-to-b from-gold to-gold/40" : "bg-white/10"
+                        }`}
+                      />
+                    )}
+
+                    {/* Step button container */}
+                    <button
+                      type="button"
+                      onClick={() => go(i)}
+                      className="relative z-10 w-full flex items-start gap-4 sm:gap-5 py-3.5 text-left transition-all duration-300 rounded-xl focus:outline-none"
+                    >
+                      {/* Step Circle Badge */}
+                      <span
+                        className={`h-11 w-11 rounded-full flex items-center justify-center text-[13px] font-bold flex-shrink-0 transition-all duration-300 ${
                           isActive
-                            ? "bg-gradient-to-br from-gold-light via-gold to-gold-dark text-dark shadow-[0_8px_20px_rgba(200,154,69,0.4)] scale-105"
-                            : "bg-white/[0.06] text-white/60 border border-white/10 group-hover:border-gold/50 group-hover:text-gold"
+                            ? "border-[1.5px] border-gold text-gold bg-[#12171f] shadow-[0_0_15px_rgba(200,154,69,0.35)] scale-105"
+                            : "border border-white/20 text-white/50 bg-[#0c1015]/80 group-hover:border-gold/50 group-hover:text-white"
                         }`}
                       >
-                        {numberOf(step, i)}
+                        {stepNum}
                       </span>
-                      <span className="min-w-0 flex-1">
-                        <span className={`block text-[16px] font-bold leading-snug transition-colors duration-300 ${isActive ? "text-white" : "text-white/60 group-hover:text-white"}`}>
+
+                      {/* Step Text */}
+                      <div className="flex-1 min-w-0 pt-0.5">
+                        <span
+                          className={`block text-[11px] font-bold tracking-[0.16em] uppercase mb-0.5 transition-colors duration-300 ${
+                            isActive ? "text-gold" : "text-white/40 group-hover:text-white/60"
+                          }`}
+                        >
+                          {stepBadgeText}
+                        </span>
+                        <span
+                          className={`block text-[17px] sm:text-[19px] font-bold leading-snug transition-colors duration-300 ${
+                            isActive ? "text-white" : "text-white/70 group-hover:text-white"
+                          }`}
+                        >
                           {stripHtml(step.title)}
                         </span>
-                        {/* Description under the title on mobile only (panel is hidden there) */}
-                        <span className="lg:hidden block text-white/55 text-[13px] leading-[1.65] font-light mt-1">
-                          {stripHtml(step.description)}
-                        </span>
-                      </span>
-                      <ArrowRight
-                        size={16}
-                        className={`hidden lg:block flex-shrink-0 text-gold transition-all duration-300 ${isActive ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-2 group-hover:opacity-60 group-hover:translate-x-0"}`}
-                      />
+                        {stepShortDesc && (
+                          <span className="block text-white/55 text-[13px] leading-[1.6] font-light mt-1 max-w-sm">
+                            {stepShortDesc}
+                          </span>
+                        )}
+                      </div>
+
+                      {/* Active Indicator Arrow */}
+                      <div className="pt-3 pr-2">
+                        <ArrowRight
+                          size={18}
+                          className={`text-gold transition-all duration-300 ${
+                            isActive
+                              ? "opacity-100 translate-x-0"
+                              : "opacity-0 -translate-x-2 pointer-events-none"
+                          }`}
+                        />
+                      </div>
                     </button>
-                  </li>
+                  </div>
                 );
               })}
-            </ol>
+            </div>
           </div>
 
-          {/* ── Right: active step panel (desktop) ── */}
-          <div className="hidden lg:block">
-            <div className="relative rounded-[28px] p-[1px] bg-gradient-to-br from-gold/60 via-white/10 to-transparent">
-              <div className="relative rounded-[27px] bg-dark-2 overflow-hidden min-h-[440px] flex flex-col">
-                <div
-                  className="absolute -top-24 -right-24 w-[380px] h-[380px] rounded-full pointer-events-none"
-                  style={{ background: "radial-gradient(circle, rgba(200,154,69,0.25) 0%, rgba(200,154,69,0) 62%)" }}
-                />
+          {/* ════════════════ RIGHT COLUMN: INTERACTIVE SHOWCASE CARD ════════════════ */}
+          <div className="lg:col-span-7 relative">
+            {/* Massive Background Watermark Number */}
+            <div className="absolute -top-16 -right-6 lg:-top-20 lg:-right-4 text-[130px] sm:text-[170px] lg:text-[200px] font-serif font-black text-white/[0.04] select-none pointer-events-none leading-none tracking-tighter z-0">
+              {numberOf(active)}
+            </div>
 
+            {/* Geometric Gold Line Accent */}
+            <div className="absolute -top-6 -right-6 w-36 h-36 pointer-events-none hidden sm:block z-10">
+              <svg viewBox="0 0 140 140" fill="none" className="w-full h-full stroke-gold/60">
+                <line x1="140" y1="0" x2="60" y2="140" strokeWidth="1.5" strokeLinecap="round" />
+              </svg>
+            </div>
+
+            {/* Showcase Card Container */}
+            <div className="relative z-10 rounded-[24px] sm:rounded-[28px] p-[1px] bg-gradient-to-br from-white/20 via-white/5 to-gold/20 shadow-2xl overflow-hidden backdrop-blur-sm">
+              <div className="relative rounded-[23px] sm:rounded-[27px] bg-[#0d1219] overflow-hidden aspect-[4/3] sm:aspect-[16/11] lg:aspect-[16/11] min-h-[440px] flex flex-col justify-end">
+
+                {/* Animated Image Background */}
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={active}
-                    initial={{ opacity: 0, y: 18 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -12 }}
-                    transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                    className="relative flex-1 p-10 xl:p-12 flex flex-col"
-                  >
-                    <div className="flex items-center justify-between mb-10">
-                      <span className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/10 px-3.5 py-1.5 text-[11px] font-bold tracking-[0.18em] uppercase text-gold">
-                        {stepWord} {numberOf(current, active)} <span className="text-gold/50">/ {String(steps.length).padStart(2, "0")}</span>
-                      </span>
-                      <span className="text-[72px] leading-none font-black text-[rgba(255,255,255,0.05)] select-none">
-                        {numberOf(current, active)}
-                      </span>
-                    </div>
-
-                    <div className="h-20 w-20 rounded-2xl bg-gradient-to-br from-gold-light via-gold to-gold-dark text-dark flex items-center justify-center shadow-[0_14px_30px_rgba(200,154,69,0.35)] mb-8">
-                      <Icon name={current.icon || "ClipboardList"} className="h-9 w-9" strokeWidth={1.8} />
-                    </div>
-
-                    <h3 className="display-heading text-[28px] xl:text-[32px] text-white leading-[1.15] mb-4">
-                      {stripHtml(current.title)}
-                    </h3>
-                    <p className="text-white/65 text-[15px] leading-[1.8] font-light max-w-md">
-                      {stripHtml(current.description)}
-                    </p>
-                  </motion.div>
+                    initial={{ opacity: 0, scale: 1.05 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                    className="absolute inset-0 bg-cover bg-center"
+                    style={{
+                      backgroundImage: `url(${current.image || defaultSteps[active % defaultSteps.length].image})`
+                    }}
+                  />
                 </AnimatePresence>
 
-                {/* Progress bar (autoplay) */}
-                {steps.length > 1 && (
-                  <div className="relative h-1 bg-white/10">
-                    <motion.div
-                      key={`${active}-${cycle}-${paused}`}
-                      className="absolute left-0 top-0 h-full bg-gradient-to-r from-gold-dark via-gold to-gold-light"
-                      initial={{ width: "0%" }}
-                      animate={{ width: paused ? "0%" : "100%" }}
-                      transition={{ duration: paused ? 0 : AUTOPLAY_MS / 1000, ease: "linear" }}
-                    />
-                  </div>
-                )}
+                {/* Cinematic Vignette Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#080b0f] via-[#080b0f]/60 to-transparent z-10" />
+                <div className="absolute inset-0 bg-gradient-to-r from-[#080b0f]/80 via-transparent to-transparent z-10" />
+
+                {/* Card Content */}
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={active}
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                    className="relative z-20 p-8 sm:p-10 lg:p-12 max-w-xl"
+                  >
+                    {/* Step Tag */}
+                    <span className="block text-[11px] sm:text-[12px] font-bold tracking-[0.2em] uppercase text-gold mb-2">
+                      {stripHtml(phaseLabel) || "STEP"} {numberOf(active)}
+                    </span>
+
+                    {/* Step Title */}
+                    <h3 className="display-heading text-[26px] sm:text-[32px] md:text-[36px] text-white leading-[1.12] mb-3">
+                      {stripHtml(current.title)}
+                    </h3>
+
+                    {/* Step Detailed Description */}
+                    <p className="text-white/80 text-[14px] sm:text-[15px] leading-[1.75] font-light mb-6 line-clamp-3 sm:line-clamp-none">
+                      {stripHtml(current.description || current.shortDescription || "")}
+                    </p>
+
+                    {/* Pill CTA Button */}
+                    <div>
+                      <Link
+                        href={current.ctaUrl || "/contact-us/"}
+                        className="inline-flex items-center gap-2.5 px-6 py-2.5 rounded-full border border-gold/70 text-gold text-[12px] font-bold tracking-[0.14em] uppercase transition-all duration-300 hover:bg-gold hover:text-black hover:border-gold hover:shadow-[0_0_20px_rgba(200,154,69,0.4)] group"
+                      >
+                        <span>{stripHtml(current.ctaText) || "GET A QUOTE"}</span>
+                        <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
+                      </Link>
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
               </div>
             </div>
+
+            {/* Bottom Horizontal Carousel Indicator Bars */}
+            <div className="flex items-center gap-2.5 mt-6 px-4 sm:px-2">
+              {steps.map((_: any, idx: number) => {
+                const isCurrent = idx === active;
+                return (
+                  <button
+                    key={idx}
+                    type="button"
+                    onClick={() => go(idx)}
+                    aria-label={`Go to step ${idx + 1}`}
+                    className="py-2 focus:outline-none transition-all"
+                  >
+                    <span
+                      className={`block h-[3.5px] rounded-full transition-all duration-400 ${
+                        isCurrent
+                          ? "w-10 bg-gold shadow-[0_0_12px_rgba(200,154,69,0.8)]"
+                          : "w-7 bg-white/20 hover:bg-white/40"
+                      }`}
+                    />
+                  </button>
+                );
+              })}
+            </div>
+
           </div>
 
         </div>

@@ -1,14 +1,21 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useCallback } from "react";
 import Link from "next/link";
-import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { useContent } from "../hooks/useContent";
 import { stripHtml } from "../lib/utils";
 import { Icon } from "../config/icons";
 
-const CARDS_PER_PAGE = 4;
+/* Cursor-following spotlight: sets CSS vars the card's overlay reads. */
+function useSpotlight() {
+  return useCallback((e: React.MouseEvent<HTMLElement>) => {
+    const r = e.currentTarget.getBoundingClientRect();
+    e.currentTarget.style.setProperty("--sx", `${e.clientX - r.left}px`);
+    e.currentTarget.style.setProperty("--sy", `${e.clientY - r.top}px`);
+  }, []);
+}
 
 export default function ServicesSection() {
   const { services: servicesContent } = useContent();
@@ -18,49 +25,43 @@ export default function ServicesSection() {
     description,
     ctaAll,
     ctaAllUrl,
-    items: allServices = [], // curated in the Home editor; falls back to all published services
+    ctaLearnMore,
+    items = [], // curated in the Home editor; falls back to all published services
   } = servicesContent || {};
 
-  const [page, setPage] = useState(0);
+  const list: any[] = Array.isArray(items) ? items : [];
+  const learnMore = stripHtml(ctaLearnMore || "") || "Learn more";
+  const onMove = useSpotlight();
 
-  // Group services into pages of 4 (2x2 grid per page) — becomes a slider
-  // automatically once there are more than 4 services.
-  const pages = useMemo(() => {
-    const list = Array.isArray(allServices) ? allServices : [];
-    if (list.length <= CARDS_PER_PAGE) return [list];
-    // Slide one row (2 cards) at a time; the last page is clamped so it is always a full 2x2.
-    const starts: number[] = [];
-    for (let s = 0; s + CARDS_PER_PAGE < list.length; s += 2) starts.push(s);
-    starts.push(list.length - CARDS_PER_PAGE);
-    return Array.from(new Set(starts)).map((s) => list.slice(s, s + CARDS_PER_PAGE));
-  }, [allServices]);
-
-  const totalPages = pages.length;
-  const isSlider = totalPages > 1;
-
-  const goTo = (idx: number) => setPage((idx + totalPages) % totalPages);
+  if (list.length === 0) return null;
 
   return (
-    <section id="services" className="relative bg-white py-20 md:py-28 overflow-hidden border-t border-border-light/40">
-      {/* Subtle decorative dot pattern, top-left */}
+    <section id="services" className="relative bg-white py-16 md:py-24 overflow-x-clip border-t border-border-light/40">
+      {/* Ambient texture */}
       <div
-        className="bg-radial-dots-gold absolute top-0 left-0 w-[360px] h-[360px] opacity-[0.14] pointer-events-none"
+        className="bg-radial-dots-gold absolute top-0 right-0 w-[520px] h-[520px] opacity-[0.16] pointer-events-none"
         style={{
-          WebkitMaskImage: "radial-gradient(circle at top left, black, transparent 70%)",
-          maskImage: "radial-gradient(circle at top left, black, transparent 70%)",
+          WebkitMaskImage: "radial-gradient(circle at top right, black, transparent 70%)",
+          maskImage: "radial-gradient(circle at top right, black, transparent 70%)",
         }}
+      />
+      <div
+        className="absolute -bottom-40 -left-32 w-[560px] h-[560px] rounded-full pointer-events-none"
+        style={{ background: "radial-gradient(circle, rgba(200,154,69,0.12) 0%, rgba(200,154,69,0) 65%)" }}
       />
 
       <div className="site-container relative">
-        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,380px)_1fr] gap-12 lg:gap-16 items-center">
 
-          {/* ── Left: Section Intro ── */}
-          <div className="flex flex-col">
-            <p className="section-label mb-4">{stripHtml(label) || "Our Services"}</p>
-            <h2 className="display-heading text-[30px] min-[400px]:text-[34px] md:text-[38px] text-dark leading-[1.2] mb-5">
+        {/* ── Header ── */}
+        <div className="mb-12 md:mb-14 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 lg:gap-12">
+          <div className="max-w-2xl">
+            <p className="section-label mb-3">{stripHtml(label) || "Our Services"}</p>
+            <h2 className="display-heading text-[30px] min-[400px]:text-[34px] md:text-[42px] text-dark leading-[1.1]">
               {stripHtml(title)}
             </h2>
-            <p className="text-dark/55 text-[14.5px] leading-[1.75] font-light mb-8 max-w-[420px]">
+          </div>
+          <div className="max-w-md lg:text-right flex flex-col lg:items-end gap-5">
+            <p className="text-dark/55 text-[14.5px] leading-[1.75] font-light">
               {stripHtml(typeof description === "string" ? description : "")}
             </p>
             <Link href={ctaAllUrl || "/services/"} className="btn-gold-pill w-fit">
@@ -68,92 +69,129 @@ export default function ServicesSection() {
               <ArrowRight size={15} />
             </Link>
           </div>
-
-          {/* ── Right: Service Cards (slider when > 4) ── */}
-          <div className="w-full min-w-0">
-            {/* Clip the horizontal slide only. overflow-x:'clip' (unlike
-                'hidden') does NOT force the y-axis into a clipping scroll
-                container, so hover shadows/lift on the cards stay fully
-                visible with no padding/margin hacks needed. */}
-            <div style={{ overflowX: "clip", overflowY: "visible" }}>
-              <motion.div
-                className="flex items-start"
-                animate={{ x: `-${page * 100}%` }}
-                transition={{ type: "tween", duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
-              >
-                {pages.map((group, pIdx) => (
-                  <div
-                    key={pIdx}
-                    className="w-full flex-shrink-0 grid grid-cols-1 sm:grid-cols-2 gap-x-5 gap-y-6 auto-rows-min p-3"
-                  >
-                    {group.map((svc: any, i: number) => (
-                      <Link
-                        key={svc.slug || `${pIdx}-${i}`}
-                        href={`/${svc.slug}/`}
-                        className="group relative flex flex-col min-h-[212px] bg-white rounded-2xl p-6 pb-14 border border-border-light will-change-transform shadow-[0_2px_10px_rgba(7,27,28,0.05)] transition-all duration-300 ease-out hover:-translate-y-2 hover:border-transparent hover:shadow-[0_18px_38px_-12px_rgba(200,154,69,0.4)]"
-                      >
-                        {/* Top accent bar, sweeps in on hover (scaled, not width-clipped — avoids corner artifacts) */}
-                        <span className="absolute top-0 left-0 right-0 h-[3px] rounded-t-2xl bg-gradient-to-r from-gold-light via-gold to-gold-dark scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-500 ease-out" />
-
-                        <div className="h-12 w-12 rounded-xl bg-gold/10 flex items-center justify-center mb-4 transition-all duration-300 group-hover:bg-gold group-hover:scale-105">
-                          <Icon
-                            name={svc.icon || "Wrench"}
-                            className="h-6 w-6 text-gold transition-colors duration-300 group-hover:text-white"
-                            strokeWidth={1.7}
-                          />
-                        </div>
-
-                        <h3 className="text-[15.5px] font-bold text-dark mb-1.5 leading-snug transition-colors duration-300 group-hover:text-gold-dark">
-                          {stripHtml(svc.title || svc.name)}
-                        </h3>
-                        <p className="text-dark/50 text-[12.5px] leading-[1.6] font-light">
-                          {stripHtml(svc.description)}
-                        </p>
-
-                        <span className="absolute bottom-5 right-5 h-9 w-9 rounded-full border border-gold/30 flex items-center justify-center text-gold transition-all duration-300 group-hover:bg-gold group-hover:border-gold group-hover:text-white group-hover:translate-x-0.5">
-                          <ArrowRight size={15} />
-                        </span>
-                      </Link>
-                    ))}
-                  </div>
-                ))}
-              </motion.div>
-            </div>
-
-            {isSlider && (
-              <div className="flex items-center justify-between mt-7">
-                <div className="flex items-center gap-2">
-                  {pages.map((_, dotIdx) => (
-                    <button
-                      key={dotIdx}
-                      onClick={() => goTo(dotIdx)}
-                      aria-label={`Go to services page ${dotIdx + 1}`}
-                      className={`h-1.5 rounded-full transition-all duration-300 ${dotIdx === page ? "w-6 bg-gold" : "w-1.5 bg-border-light hover:bg-gold/50"
-                        }`}
-                    />
-                  ))}
-                </div>
-                <div className="flex items-center gap-2.5">
-                  <button
-                    onClick={() => goTo(page - 1)}
-                    aria-label="Previous services"
-                    className="h-10 w-10 rounded-full border border-border-light flex items-center justify-center text-dark hover:border-gold hover:text-gold transition-all duration-200"
-                  >
-                    <ChevronLeft size={17} />
-                  </button>
-                  <button
-                    onClick={() => goTo(page + 1)}
-                    aria-label="Next services"
-                    className="h-10 w-10 rounded-full border border-border-light flex items-center justify-center text-dark hover:border-gold hover:text-gold transition-all duration-200"
-                  >
-                    <ChevronRight size={17} />
-                  </button>
-                </div>
-              </div>
-            )}
-          </div>
-
         </div>
+
+        {/* ── Bento grid ── */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {list.map((svc: any, i: number) => {
+            const featured = i === 0;
+            const number = String(i + 1).padStart(2, "0");
+            const isLast = i === list.length - 1 && !featured;
+            // The feature tile spans 2 of 3 columns; stretch the last tile so no row is left with a gap.
+            const lgSpan = isLast ? 3 - (list.length % 3 || 3) + (list.length % 3 === 0 ? 3 : 0) : 1;
+            const mdSpan = isLast && (list.length - 1) % 2 === 1 ? 2 : 1;
+            const spanClass = [
+              featured ? "md:col-span-2 lg:col-span-2" : "",
+              !featured && mdSpan === 2 ? "md:col-span-2" : "",
+              !featured && lgSpan === 2 ? "lg:col-span-2" : "",
+              !featured && lgSpan === 3 ? "lg:col-span-3" : "",
+            ].join(" ");
+
+            return (
+              <motion.div
+                key={svc.slug || i}
+                className={spanClass}
+                initial={{ opacity: 0, y: 22 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.5, delay: Math.min(i, 6) * 0.07, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <Link
+                  href={`/${svc.slug}/`}
+                  onMouseMove={onMove}
+                  className={`group relative flex h-full flex-col overflow-hidden rounded-3xl p-7 md:p-8 transition-all duration-300 ease-out hover:-translate-y-1.5 ${lgSpan === 3 ? "lg:flex-row lg:items-center lg:gap-10" : ""} ${
+                    featured
+                      ? "bg-dark text-white shadow-[0_30px_60px_-30px_rgba(7,27,28,0.6)] min-h-[300px]"
+                      : "bg-white text-dark border border-border-light/80 shadow-[0_1px_2px_rgba(7,27,28,0.04),0_12px_30px_-18px_rgba(7,27,28,0.16)] hover:border-gold/50 hover:shadow-[0_28px_56px_-24px_rgba(200,154,69,0.5)]"
+                  }`}
+                  style={{ ["--sx" as any]: "50%", ["--sy" as any]: "50%" }}
+                >
+                  {/* Cursor spotlight */}
+                  <span
+                    className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                    style={{
+                      background: featured
+                        ? "radial-gradient(420px circle at var(--sx) var(--sy), rgba(200,154,69,0.28), transparent 45%)"
+                        : "radial-gradient(360px circle at var(--sx) var(--sy), rgba(200,154,69,0.16), transparent 45%)",
+                    }}
+                  />
+                  {/* Gold ring on hover (white cards) */}
+                  {!featured && (
+                    <span className="pointer-events-none absolute inset-0 rounded-3xl ring-0 ring-inset ring-gold group-hover:ring-1 transition-[box-shadow] duration-500" />
+                  )}
+
+                  {featured && (
+                    <>
+                      {/* Gold glow + concentric rings for the feature tile */}
+                      <span
+                        className="pointer-events-none absolute -top-24 -right-24 w-[420px] h-[420px] rounded-full"
+                        style={{ background: "radial-gradient(circle, rgba(200,154,69,0.35) 0%, rgba(200,154,69,0) 62%)" }}
+                      />
+                      <svg className="pointer-events-none absolute -right-16 -bottom-16 w-[360px] h-[360px] opacity-[0.12]" viewBox="0 0 400 400" fill="none">
+                        {[60, 110, 160, 200].map((r) => (
+                          <circle key={r} cx="200" cy="200" r={r} stroke="#E8C87A" strokeWidth="1" />
+                        ))}
+                      </svg>
+                    </>
+                  )}
+
+                  {/* Watermark number */}
+                  <span
+                    className={`pointer-events-none absolute right-6 top-4 select-none text-[84px] leading-none font-black transition-colors duration-500 ${
+                      featured ? "text-[rgba(255,255,255,0.05)] group-hover:text-[rgba(200,154,69,0.14)]" : "text-[rgba(7,27,28,0.04)] group-hover:text-[rgba(200,154,69,0.16)]"
+                    }`}
+                  >
+                    {number}
+                  </span>
+
+                  {/* Content */}
+                  <div className={`relative flex items-start justify-between mb-7 ${lgSpan === 3 ? "lg:mb-0 lg:flex-shrink-0" : ""}`}>
+                    <span
+                      className={`flex items-center justify-center rounded-2xl bg-gradient-to-br from-gold-light via-gold to-gold-dark text-white shadow-[0_12px_24px_-8px_rgba(200,154,69,0.55)] transition-transform duration-300 group-hover:scale-105 group-hover:-rotate-3 ${
+                        featured ? "h-16 w-16" : "h-14 w-14"
+                      }`}
+                    >
+                      <Icon name={svc.icon || "Wrench"} className={featured ? "h-7 w-7" : "h-6 w-6"} strokeWidth={1.8} />
+                    </span>
+                    {/* In the wide row-layout card this wrapper is a flex item, not a
+                        stretched block, so justify-between has no room to act — the big
+                        watermark digit already numbers that card, so skip the small badge. */}
+                    {lgSpan !== 3 && (
+                      <span className={`text-[11px] font-bold tracking-[0.22em] ${featured ? "text-gold" : "text-dark/30 group-hover:text-gold-dark"} transition-colors`}>
+                        {number}
+                      </span>
+                    )}
+                  </div>
+
+                  <div className={`relative flex-1 ${lgSpan === 3 ? "lg:max-w-2xl" : ""}`}>
+                    <h3
+                      className={`font-bold leading-snug mb-2.5 transition-colors duration-300 ${
+                        featured ? "display-heading text-[24px] md:text-[28px] text-white" : "text-[17px] text-dark group-hover:text-gold-dark"
+                      }`}
+                    >
+                      {stripHtml(svc.title || svc.name)}
+                    </h3>
+                    <p className={`text-[13.5px] leading-[1.7] font-light ${featured ? "text-white/65 max-w-md md:text-[15px]" : "text-dark/55"}`}>
+                      {stripHtml(svc.description)}
+                    </p>
+                  </div>
+
+                  <span className={`relative mt-7 inline-flex items-center gap-2.5 text-[13px] font-semibold ${lgSpan === 3 ? "lg:mt-0 lg:flex-shrink-0" : ""} ${featured ? "text-gold-light" : "text-gold-dark"}`}>
+                    <span
+                      className={`h-9 w-9 rounded-full flex items-center justify-center transition-all duration-300 ${
+                        featured ? "bg-gold text-dark group-hover:bg-gold-light" : "border border-gold/40 text-gold-dark group-hover:bg-gold group-hover:border-gold group-hover:text-white"
+                      }`}
+                    >
+                      <ArrowUpRight size={15} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    </span>
+                    {learnMore}
+                  </span>
+                </Link>
+              </motion.div>
+            );
+          })}
+        </div>
+
       </div>
     </section>
   );

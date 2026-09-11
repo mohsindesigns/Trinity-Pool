@@ -73,12 +73,47 @@ export default function HomeEditor({ pageId, data, setData }: { pageId: string, 
         process: {
           label: "OUR PROCESS",
           title: "How We Work",
-          description: "A simple and transparent process to get you the right solutions, exactly when you need them.",
+          titleItalicWord: "Work",
+          description: "From initial inquiry to long-term support, our process is designed to be simple, transparent and efficient — so you get the right solutions, exactly when you need them.",
           image: "",
-          phaseLabel: "Step",
+          phaseLabel: "STEP",
           items: [
-            { title: "Request a Quote", description: "Share your requirements with our team.", icon: "FileText" },
-            { title: "Consultation", description: "We analyze your needs and suggest the best solution.", icon: "MessageSquare" }
+            {
+              title: "Request a Quote",
+              shortDescription: "Tell us what you need and get a quick, competitive quote.",
+              description: "Share your requirements with our team. We'll review your needs and provide a competitive, no-obligation quote — fast and hassle-free.",
+              ctaText: "GET A QUOTE",
+              ctaUrl: "/contact-us/",
+              image: "/images/trinity/process-1.jpg",
+              icon: "FileText"
+            },
+            {
+              title: "Consultation",
+              shortDescription: "We understand your requirements and provide the best solution.",
+              description: "Our expert engineering team assesses your technical specifications, fluid dynamics, and operational requirements to recommend optimal, cost-efficient pump systems.",
+              ctaText: "SCHEDULE CONSULTATION",
+              ctaUrl: "/contact-us/",
+              image: "/images/trinity/process-2.jpg",
+              icon: "MessageSquare"
+            },
+            {
+              title: "Supply & Delivery",
+              shortDescription: "We source, prepare and deliver on time.",
+              description: "Fast-track logistics, certified equipment packaging, and guaranteed on-time site dispatch ensure zero operational downtime for your plant or drilling facility.",
+              ctaText: "TRACK SHIPMENTS",
+              ctaUrl: "/contact-us/",
+              image: "/images/trinity/process-3.jpg",
+              icon: "Truck"
+            },
+            {
+              title: "After-Sales Support",
+              shortDescription: "Ongoing support for maximum uptime.",
+              description: "24/7 technical hotline, rapid OEM spare parts replacement, preventative field diagnostics, and certified technician maintenance for maximum equipment uptime.",
+              ctaText: "GET SUPPORT",
+              ctaUrl: "/contact-us/",
+              image: "/images/trinity/process-4.jpg",
+              icon: "Wrench"
+            }
           ]
         },
         testimonials: {
@@ -553,6 +588,16 @@ export default function HomeEditor({ pageId, data, setData }: { pageId: string, 
                         placeholder="e.g. /services/"
                       />
                     </div>
+                    <div className="space-y-1.5">
+                      <label className={UI.label}>Card link label</label>
+                      <input
+                        type="text"
+                        value={data.services?.ctaLearnMore || ""}
+                        onChange={(e) => updateSection("services", "ctaLearnMore", e.target.value)}
+                        className={UI.input}
+                        placeholder="e.g. Learn more"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1008,13 +1053,35 @@ export default function HomeEditor({ pageId, data, setData }: { pageId: string, 
                       />
                     </div>
                   </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="space-y-1.5">
+                      <label className={UI.label}>Italic Accent Word in Title</label>
+                      <input
+                        type="text"
+                        value={data.process?.titleItalicWord || ""}
+                        onChange={(e) => updateSection("process", "titleItalicWord", e.target.value)}
+                        className={UI.input}
+                        placeholder="e.g. Work"
+                      />
+                    </div>
+                    <div className="space-y-1.5">
+                      <label className={UI.label}>Step Chip Prefix</label>
+                      <input
+                        type="text"
+                        value={data.process?.phaseLabel || ""}
+                        onChange={(e) => updateSection("process", "phaseLabel", e.target.value)}
+                        className={UI.input}
+                        placeholder="e.g. STEP"
+                      />
+                    </div>
+                  </div>
                   <div className="space-y-1.5">
                     <label className={UI.label}>Section Description</label>
                     <textarea
                       value={data.process?.description || ""}
                       onChange={(e) => updateSection("process", "description", e.target.value)}
                       className={UI.input + " h-20"}
-                      placeholder="A simple and transparent process to get you the right solutions..."
+                      placeholder="From initial inquiry to long-term support, our process is designed to be simple, transparent and efficient..."
                     />
                   </div>
                   <ImageField
@@ -1027,22 +1094,24 @@ export default function HomeEditor({ pageId, data, setData }: { pageId: string, 
 
               <div className="space-y-4 pt-4 border-t border-[#f0f0f1]">
                 <h3 className={UI.sectionHeader}>2. Process Steps</h3>
-                <p className="text-[12px] text-[#646970]">Step numbers (01, 02, ...) are generated automatically from the order below.</p>
-                <div className="space-y-4">
+                <p className="text-[12px] text-[#646970]">Step numbers (01, 02, ...) are generated automatically from the order below. Each step has its own showcase card with image, title, detailed description, and CTA button.</p>
+                <div className="space-y-6">
                   {(data.process?.items || []).map((step: any, i: number) => (
-                    <div key={i} className={UI.card + " space-y-4 relative"}>
+                    <div key={i} className={UI.card + " space-y-4 relative border-l-4 border-l-[#2271b1]"}>
                       <div className="flex justify-between items-center pb-2 border-b border-[#f0f0f1]">
-                        <span className="text-[10px] font-bold text-[#646970] uppercase">Step {String(i + 1).padStart(2, "0")}</span>
+                        <span className="text-[11px] font-bold text-[#2271b1] uppercase">Step {String(i + 1).padStart(2, "0")} — {step.title || "Untitled"}</span>
                         <button
                           onClick={() => {
                             const newItems = data.process.items.filter((_: any, idx: number) => idx !== i);
                             updateSection("process", "items", newItems);
                           }}
                           className="text-[#d63638] hover:bg-red-50 p-1.5 rounded"
+                          title="Delete Step"
                         >
                           <Trash2 className="w-4 h-4" />
                         </button>
                       </div>
+
                       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                         <div className="space-y-1.5">
                           <IconSelector
@@ -1070,8 +1139,24 @@ export default function HomeEditor({ pageId, data, setData }: { pageId: string, 
                           />
                         </div>
                       </div>
+
                       <div className="space-y-1.5">
-                        <label className={UI.label}>Step Description</label>
+                        <label className={UI.label}>Timeline Short Summary (Shown on the Left)</label>
+                        <input
+                          type="text"
+                          value={step.shortDescription || ""}
+                          onChange={(e) => {
+                            const newItems = [...data.process.items];
+                            newItems[i] = { ...newItems[i], shortDescription: e.target.value };
+                            updateSection("process", "items", newItems);
+                          }}
+                          className={UI.input}
+                          placeholder="e.g. Tell us what you need and get a quick, competitive quote."
+                        />
+                      </div>
+
+                      <div className="space-y-1.5">
+                        <label className={UI.label}>Showcase Detailed Description (Shown on the Right Card)</label>
                         <textarea
                           value={step.description || ""}
                           onChange={(e) => {
@@ -1080,9 +1165,50 @@ export default function HomeEditor({ pageId, data, setData }: { pageId: string, 
                             updateSection("process", "items", newItems);
                           }}
                           className={UI.input + " h-20"}
-                          placeholder="e.g. Share your requirements with our team."
+                          placeholder="e.g. Share your requirements with our team. We'll review your needs and provide a competitive, no-obligation quote — fast and hassle-free."
                         />
                       </div>
+
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div className="space-y-1.5">
+                          <label className={UI.label}>CTA Button Text</label>
+                          <input
+                            type="text"
+                            value={step.ctaText || ""}
+                            onChange={(e) => {
+                              const newItems = [...data.process.items];
+                              newItems[i] = { ...newItems[i], ctaText: e.target.value };
+                              updateSection("process", "items", newItems);
+                            }}
+                            className={UI.input}
+                            placeholder="e.g. GET A QUOTE"
+                          />
+                        </div>
+                        <div className="space-y-1.5">
+                          <label className={UI.label}>CTA Button URL</label>
+                          <input
+                            type="text"
+                            value={step.ctaUrl || ""}
+                            onChange={(e) => {
+                              const newItems = [...data.process.items];
+                              newItems[i] = { ...newItems[i], ctaUrl: e.target.value };
+                              updateSection("process", "items", newItems);
+                            }}
+                            className={UI.input}
+                            placeholder="e.g. /contact-us/"
+                          />
+                        </div>
+                      </div>
+
+                      <ImageField
+                        label="Step Card Image"
+                        value={step.image || ""}
+                        onChange={(url: string) => {
+                          const newItems = [...data.process.items];
+                          newItems[i] = { ...newItems[i], image: url };
+                          updateSection("process", "items", newItems);
+                        }}
+                      />
                     </div>
                   ))}
                   <button
@@ -1090,29 +1216,21 @@ export default function HomeEditor({ pageId, data, setData }: { pageId: string, 
                       const current = data.process?.items || [];
                       updateSection("process", "items", [
                         ...current,
-                        { title: "", description: "", icon: "ClipboardList" }
+                        {
+                          title: "New Step",
+                          shortDescription: "Short summary for timeline.",
+                          description: "Full description for the showcase card.",
+                          ctaText: "LEARN MORE",
+                          ctaUrl: "/contact-us/",
+                          image: "/images/trinity/process-1.jpg",
+                          icon: "ClipboardList"
+                        }
                       ]);
                     }}
                     className={UI.buttonAdd}
                   >
                     + Add Process Step
                   </button>
-                </div>
-              </div>
-
-              <div className="space-y-4 pt-4 border-t border-[#f0f0f1]">
-                <h3 className={UI.sectionHeader}>3. Step Chip Label</h3>
-                <div className={UI.card + " space-y-4"}>
-                  <div className="space-y-1.5">
-                    <label className={UI.label}>Word shown before the number in the active step chip (e.g. "Step 01 / 04")</label>
-                    <input
-                      type="text"
-                      value={data.process?.phaseLabel || ""}
-                      onChange={(e) => updateSection("process", "phaseLabel", e.target.value)}
-                      className={UI.input + " max-w-xs"}
-                      placeholder="e.g. Step"
-                    />
-                  </div>
                 </div>
               </div>
             </div>

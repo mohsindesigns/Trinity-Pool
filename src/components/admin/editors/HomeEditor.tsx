@@ -347,6 +347,70 @@ export default function HomeEditor({ pageId, data, setData }: { pageId: string, 
                   />
                 </div>
               </div>
+
+              <div className="space-y-4">
+                <h3 className={UI.sectionHeader}>4. Feature Badges (right side of the hero)</h3>
+                <div className="space-y-3">
+                  {(data.hero?.features || []).map((f: any, i: number) => (
+                    <div key={i} className={UI.card + " space-y-3 relative"}>
+                      <div className="flex justify-between items-center pb-2 border-b border-[#f0f0f1]">
+                        <span className="text-[10px] font-bold text-[#646970] uppercase">Badge #{i + 1}</span>
+                        <button
+                          onClick={() => updateSection("hero", "features", (data.hero?.features || []).filter((_: any, idx: number) => idx !== i))}
+                          className="text-[#d63638] hover:bg-red-50 p-1.5 rounded"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </button>
+                      </div>
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <IconSelector
+                          label="Icon"
+                          value={f.icon || ""}
+                          onChange={(val: string) => {
+                            const list = [...(data.hero?.features || [])];
+                            list[i] = { ...list[i], icon: val };
+                            updateSection("hero", "features", list);
+                          }}
+                        />
+                        <div className="space-y-1.5">
+                          <label className={UI.label}>Title</label>
+                          <input
+                            type="text"
+                            value={f.title || ""}
+                            onChange={(e) => {
+                              const list = [...(data.hero?.features || [])];
+                              list[i] = { ...list[i], title: e.target.value };
+                              updateSection("hero", "features", list);
+                            }}
+                            className={UI.input + " font-bold"}
+                            placeholder="e.g. Premium Quality"
+                          />
+                        </div>
+                        <div className="space-y-1.5">
+                          <label className={UI.label}>Subtitle</label>
+                          <input
+                            type="text"
+                            value={f.subtitle || ""}
+                            onChange={(e) => {
+                              const list = [...(data.hero?.features || [])];
+                              list[i] = { ...list[i], subtitle: e.target.value };
+                              updateSection("hero", "features", list);
+                            }}
+                            className={UI.input}
+                            placeholder="e.g. Products"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                  <button
+                    onClick={() => updateSection("hero", "features", [...(data.hero?.features || []), { icon: "ShieldCheck", title: "", subtitle: "" }])}
+                    className={UI.buttonAdd}
+                  >
+                    + Add Feature Badge
+                  </button>
+                </div>
+              </div>
             </div>
           )}
 

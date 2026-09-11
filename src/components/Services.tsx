@@ -27,11 +27,12 @@ export default function ServicesSection() {
   // automatically once there are more than 4 services.
   const pages = useMemo(() => {
     const list = Array.isArray(allServices) ? allServices : [];
-    const chunks: any[][] = [];
-    for (let i = 0; i < list.length; i += CARDS_PER_PAGE) {
-      chunks.push(list.slice(i, i + CARDS_PER_PAGE));
-    }
-    return chunks.length > 0 ? chunks : [[]];
+    if (list.length <= CARDS_PER_PAGE) return [list];
+    // Slide one row (2 cards) at a time; the last page is clamped so it is always a full 2x2.
+    const starts: number[] = [];
+    for (let s = 0; s + CARDS_PER_PAGE < list.length; s += 2) starts.push(s);
+    starts.push(list.length - CARDS_PER_PAGE);
+    return Array.from(new Set(starts)).map((s) => list.slice(s, s + CARDS_PER_PAGE));
   }, [allServices]);
 
   const totalPages = pages.length;
@@ -76,20 +77,20 @@ export default function ServicesSection() {
                 visible with no padding/margin hacks needed. */}
             <div style={{ overflowX: "clip", overflowY: "visible" }}>
               <motion.div
-                className="flex"
+                className="flex items-start"
                 animate={{ x: `-${page * 100}%` }}
                 transition={{ type: "tween", duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
               >
                 {pages.map((group, pIdx) => (
                   <div
                     key={pIdx}
-                    className="w-full flex-shrink-0 grid grid-cols-1 sm:grid-cols-2 gap-x-5 gap-y-7 auto-rows-fr p-6"
+                    className="w-full flex-shrink-0 grid grid-cols-1 sm:grid-cols-2 gap-x-5 gap-y-6 auto-rows-min p-3"
                   >
                     {group.map((svc: any, i: number) => (
                       <Link
                         key={svc.slug || `${pIdx}-${i}`}
                         href={`/${svc.slug}/`}
-                        className="group relative flex flex-col bg-white rounded-2xl p-6 pb-14 border border-border-light will-change-transform shadow-[0_2px_10px_rgba(7,27,28,0.05)] transition-all duration-300 ease-out hover:-translate-y-2 hover:border-transparent hover:shadow-[0_18px_38px_-12px_rgba(200,154,69,0.4)]"
+                        className="group relative flex flex-col min-h-[212px] bg-white rounded-2xl p-6 pb-14 border border-border-light will-change-transform shadow-[0_2px_10px_rgba(7,27,28,0.05)] transition-all duration-300 ease-out hover:-translate-y-2 hover:border-transparent hover:shadow-[0_18px_38px_-12px_rgba(200,154,69,0.4)]"
                       >
                         {/* Top accent bar, sweeps in on hover (scaled, not width-clipped — avoids corner artifacts) */}
                         <span className="absolute top-0 left-0 right-0 h-[3px] rounded-t-2xl bg-gradient-to-r from-gold-light via-gold to-gold-dark scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-500 ease-out" />

@@ -37,11 +37,6 @@ export default function HomeTemplate({ pageData, params }: { pageData?: any, par
 
       <HowWeWork />
       <Testimonials />
-      <CtaBanner />
-      <section id="contact">
-        <QAForm pageData={pageData} />
-      </section>
-
 
       <BlogSection
         title={pageData?.content?.blogSection?.title || blogSection?.title}
@@ -59,7 +54,10 @@ export default function HomeTemplate({ pageData, params }: { pageData?: any, par
         })()}
       />
 
-
+      <CtaBanner />
+      <section id="contact">
+        <QAForm pageData={pageData} />
+      </section>
     </div>
   );
 }

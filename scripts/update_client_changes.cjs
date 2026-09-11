@@ -287,7 +287,7 @@ const navbarLinks = [
    ──────────────────────────────────────────────────────────── */
 const teamMembers = [
   {
-    id: 'olin-brown', name: 'Olin Brown', role: 'CEO & President', image: '', linkedin: '',
+    id: 'olin-brown', name: 'Olin Brown', role: 'CEO & President', image: '/images/trinity/team/olin-brown.jpg', linkedin: '',
     email: 'Olin@trinitypumpsupply.com', badge1: '15+ Years Rod Pump Experience', badge2: 'Majority Owner',
     description: [
       'Olin Brown is the CEO and President of Trinity Pump & Supply, an Odessa, Texas-based oilfield service and supply company serving operators throughout the Permian Basin.',
@@ -298,7 +298,7 @@ const teamMembers = [
     ],
   },
   {
-    id: 'sim', name: 'Sim', role: 'Project Manager', image: '', linkedin: '',
+    id: 'sim', name: 'Sim', role: 'Project Manager', image: '/images/trinity/team/sim.jpg', linkedin: '',
     email: 'Sim@trinitypumpsupply.com', badge1: '15+ Years Experience', badge2: 'Large-Scale Project Management',
     description: [
       'Sim serves as Project Manager for Trinity Pump & Supply, bringing more than 15 years of experience across rod pump operations and oilfield project management.',
@@ -309,7 +309,7 @@ const teamMembers = [
     ],
   },
   {
-    id: 'josh', name: 'Josh', role: 'Shop Manager', image: '', linkedin: '',
+    id: 'josh', name: 'Josh', role: 'Shop Manager', image: '/images/trinity/team/josh.jpg', linkedin: '',
     email: 'Josh@trinitypumpsupply.com', badge1: '12+ Years Oil & Gas Experience', badge2: 'Rod Pump Shop Operations',
     description: [
       'Josh serves as Shop Manager for Trinity Pump & Supply, bringing more than 12 years of experience in the oil and gas industry across warehouse operations, shop management, counter sales, inventory, and customer support.',
@@ -320,7 +320,7 @@ const teamMembers = [
     ],
   },
   {
-    id: 'loren', name: 'Loren', role: 'Accountant', image: '', linkedin: '',
+    id: 'loren', name: 'Loren', role: 'Accountant', image: '/images/trinity/team/loren.jpg', linkedin: '',
     email: 'Loren@trinitypumpsupply.com', badge1: 'BBA in Accounting', badge2: 'Financial Operations',
     description: [
       'Loren serves as Accountant for Trinity Pump & Supply, bringing a strong background in accounting, financial administration, banking, and business operations.',
@@ -331,7 +331,7 @@ const teamMembers = [
     ],
   },
   {
-    id: 'lyndon-kauk', name: 'Lyndon Kauk', role: 'Business Development', image: '', linkedin: '',
+    id: 'lyndon-kauk', name: 'Lyndon Kauk', role: 'Business Development', image: '/images/trinity/team/lyndon-kauk.jpg', linkedin: '',
     email: '', badge1: '20+ Years Oil & Gas Experience', badge2: 'BBA Finance, Texas Tech',
     description: [
       'Lyndon Kauk serves in Business Development for Trinity Pump & Supply, bringing more than 20 years of oil and gas experience with a strong background in sales, customer relations, business development, and company leadership.',

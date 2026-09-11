@@ -15,3 +15,6 @@ Placeholder photography for the homepage. All items below are Creative Commons l
 | blog-pump.jpg | Centrifugal pump | Elsie esq. | BY 2.0 | https://www.flickr.com/photos/61132483@N00/4869331575 |
 | industry-water.jpg, industry-manufacturing.jpg, blog-safety.jpg | (via LoremFlickr — Flickr Creative Commons; exact author not captured, replace before launch) | | CC | https://loremflickr.com |
 | avatar-1.jpg, avatar-2.jpg, avatar-3.jpg | Placeholder portraits | randomuser.me | free placeholder use | https://randomuser.me |
+| service-downhole-rod-pumps.jpg | Oil and Gas | mypubliclands | BY 2.0 | https://www.flickr.com/photos/91981596@N06/33317868280 |
+| service-poly-pipe-fittings.jpg | Industrial Sculpture | Ian Sane | BY 2.0 | https://www.flickr.com/photos/31246066@N04/44576698751 (generic industrial pipe/fittings photo — not polyethylene-specific; replace with real product photography when available) |
+| about-2.jpg | Fábrica química Solvay | Jorge Franganillo | BY 2.0 | https://www.flickr.com/photos/46191841@N00/3129290866 | Used for the homepage About Us full-bleed panel |

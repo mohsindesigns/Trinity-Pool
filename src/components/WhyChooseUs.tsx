@@ -141,13 +141,13 @@ export default function WhyChooseUs() {
               {/* Top-Right Decorative Amber Accent Block */}
               <div
                 className="absolute -top-3 -right-3 sm:-top-4 sm:-right-4 w-28 sm:w-36 h-36 sm:h-44 rounded-2xl pointer-events-none z-0"
-                style={{ background: "#F59E0B" }}
+                style={{ background: "#D99F26" }}
               />
 
               {/* Bottom-Left Decorative Amber Accent Block */}
               <div
                 className="absolute -bottom-3 -left-3 sm:-bottom-4 sm:-left-4 w-28 sm:w-36 h-36 sm:h-44 rounded-2xl pointer-events-none z-0"
-                style={{ background: "#F59E0B" }}
+                style={{ background: "#D99F26" }}
               />
 
               {/* Foreground Image Card */}

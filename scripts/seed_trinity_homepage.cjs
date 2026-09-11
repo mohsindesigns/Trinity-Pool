@@ -36,11 +36,6 @@ const hero = {
   images: [IMG('hero')],
   imageAlt: 'Pump jacks on an oil lease at sunset',
   bgImageAlt: 'Pump jacks on an oil lease at sunset',
-  features: [
-    { icon: 'Flag', title: 'USA-Manufactured', subtitle: 'Pump Parts' },
-    { icon: 'Award', title: '100+ Years', subtitle: 'Combined Experience' },
-    { icon: 'MapPin', title: 'Texas & New Mexico', subtitle: 'Service Area' },
-  ],
 };
 
 const stats = {
@@ -53,12 +48,12 @@ const stats = {
 };
 
 const serviceCatalogue = [
-  { title: 'Downhole Rod Pumps', description: 'Manufacturing, building and repairing downhole sucker rod pumps with USA-made parts.', slug: 'downhole-rod-pumps', icon: 'pump' },
+  { title: 'Downhole Rod Pumps', description: 'Manufacturing, building and repairing downhole sucker rod pumps with USA-made parts.', slug: 'downhole-rod-pumps', icon: 'pump', image: IMG('service-downhole-rod-pumps') },
   { title: 'Burleson HD Rod Rotator', description: 'Heavy-duty rod rotators built to outperform, extending rod and pump life.', slug: 'hd-rod-rotator', icon: 'RefreshCw' },
   { title: 'Downhole Supplies', description: 'Quality downhole components and accessories for longer pump runs.', slug: 'downhole-supplies', icon: 'Wrench' },
   { title: 'General Oilfield Supplies', description: 'Everyday oilfield supplies delivered on time across Texas and New Mexico.', slug: 'general-oilfield-supplies', icon: 'Package' },
   { title: 'Battery & Well head Supplies', description: 'Tank battery and wellhead supplies to keep your lease producing.', slug: 'battery-wellhead-supplies', icon: 'Gauge' },
-  { title: 'Poly Pipe and Fittings', description: 'Poly pipe and fittings for gathering, transfer and lease piping.', slug: 'poly-pipe-and-fittings', icon: 'Droplets' },
+  { title: 'Poly Pipe and Fittings', description: 'Poly pipe and fittings for gathering, transfer and lease piping.', slug: 'poly-pipe-and-fittings', icon: 'Droplets', image: IMG('service-poly-pipe-fittings') },
 ];
 
 const servicesSection = {
@@ -95,7 +90,7 @@ const leadership = {
   photoBadgeSubtitle: 'USA-made parts, longer pump runs',
   photoBadge: 'Quality at All Costs USA-made parts, longer pump runs',
   photoBadgeIcon: 'ShieldCheck',
-  image: IMG('about'),
+  image: IMG('about-2'),
   imageAlt: 'Pump jacks and tank battery on a Texas lease',
   ctaMore: 'Learn More About Us',
   ctaLink: '/about-us/',
@@ -130,10 +125,30 @@ const processSection = {
   image: '',
   phaseLabel: 'Step',
   items: [
-    { step: '01', icon: 'ClipboardList', title: 'Well Evaluation', description: 'We evaluate your well and pumping conditions to recommend the right pump and parts.' },
-    { step: '02', icon: 'Wrench', title: 'Build or Repair', description: 'We manufacture, build and repair downhole sucker rod pumps using USA-made parts.' },
-    { step: '03', icon: 'Truck', title: 'Timely Delivery', description: 'On-time delivery across Texas and New Mexico, with clear communication throughout.' },
-    { step: '04', icon: 'Headphones', title: 'Inspection & Support', description: 'Comprehensive pump inspection and repair services to keep your equipment running longer.' },
+    {
+      step: '01', title: 'Well Evaluation',
+      shortDescription: 'We evaluate your well and pumping conditions on-site.',
+      description: 'We evaluate your well and pumping conditions to recommend the right pump and parts, matched to your duty cycle and fluid characteristics.',
+      ctaText: 'Request Evaluation', ctaUrl: '/contact-us/', image: IMG('process-1'),
+    },
+    {
+      step: '02', title: 'Build or Repair',
+      shortDescription: 'We manufacture, build and repair pumps with USA-made parts.',
+      description: 'We manufacture, build and repair downhole sucker rod pumps using USA-manufactured alloy steel, 316 Stainless and Monel components.',
+      ctaText: 'Get a Quote', ctaUrl: '/downhole-rod-pumps/', image: IMG('process-2'),
+    },
+    {
+      step: '03', title: 'Timely Delivery',
+      shortDescription: 'On-time delivery across Texas and New Mexico.',
+      description: 'On-time delivery across Texas and New Mexico, with clear communication throughout so your lease stays on schedule.',
+      ctaText: 'Track Shipments', ctaUrl: '/contact-us/', image: IMG('process-3'),
+    },
+    {
+      step: '04', title: 'Inspection & Support',
+      shortDescription: 'Ongoing inspection and support for maximum uptime.',
+      description: 'Comprehensive pump inspection, repair services and field support to keep your equipment running longer between pulls.',
+      ctaText: 'Get Support', ctaUrl: '/contact-us/', image: IMG('process-4'),
+    },
   ],
 };
 

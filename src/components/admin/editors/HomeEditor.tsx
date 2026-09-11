@@ -5,7 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   Plus, Trash2, Loader2, Image as ImageIcon,
   LayoutTemplate, Type, Star, Briefcase, Users,
-  List, Mail, BookOpen, ChevronRight, Check, CheckCircle2, ShieldCheck
+  List, Mail, BookOpen, ChevronRight, Check, CheckCircle2, ShieldCheck,
+  ChevronUp, ChevronDown
 } from "lucide-react";
 import dynamic from "next/dynamic";
 import ContentSelector from "@/components/admin/ContentSelector";
@@ -73,7 +74,6 @@ export default function HomeEditor({ pageId, data, setData }: { pageId: string, 
         process: {
           label: "OUR PROCESS",
           title: "How We Work",
-          titleItalicWord: "Work",
           description: "From initial inquiry to long-term support, our process is designed to be simple, transparent and efficient — so you get the right solutions, exactly when you need them.",
           image: "",
           phaseLabel: "STEP",
@@ -129,7 +129,6 @@ export default function HomeEditor({ pageId, data, setData }: { pageId: string, 
           button: "Request a Quote",
           buttonUrl: "/contact-us/",
           phone: "",
-          email: "",
           image: ""
         },
         quote: {
@@ -216,9 +215,9 @@ export default function HomeEditor({ pageId, data, setData }: { pageId: string, 
     { id: "whyChooseUs", label: "6. Why Choose Us",        icon: ShieldCheck },
     { id: "process",     label: "7. How We Work",          icon: List },
     { id: "testimonials", label: "8. Testimonials",        icon: Star },
-    { id: "ctaBanner",   label: "9. CTA Banner",           icon: LayoutTemplate },
-    { id: "contact",     label: "10. Contact & FAQs",      icon: Mail },
-    { id: "blog",        label: "11. Blog Insights",       icon: BookOpen },
+    { id: "blog",        label: "9. Blog Insights",        icon: BookOpen },
+    { id: "ctaBanner",   label: "10. CTA Banner",          icon: LayoutTemplate },
+    { id: "contact",     label: "11. Contact & FAQs",      icon: Mail },
   ];
 
   return (
@@ -380,70 +379,6 @@ export default function HomeEditor({ pageId, data, setData }: { pageId: string, 
                     }}
                     description="High resolution photo with dark contrast for hero background."
                   />
-                </div>
-              </div>
-
-              <div className="space-y-4">
-                <h3 className={UI.sectionHeader}>4. Feature Badges (right side of the hero)</h3>
-                <div className="space-y-3">
-                  {(data.hero?.features || []).map((f: any, i: number) => (
-                    <div key={i} className={UI.card + " space-y-3 relative"}>
-                      <div className="flex justify-between items-center pb-2 border-b border-[#f0f0f1]">
-                        <span className="text-[10px] font-bold text-[#646970] uppercase">Badge #{i + 1}</span>
-                        <button
-                          onClick={() => updateSection("hero", "features", (data.hero?.features || []).filter((_: any, idx: number) => idx !== i))}
-                          className="text-[#d63638] hover:bg-red-50 p-1.5 rounded"
-                        >
-                          <Trash2 className="w-4 h-4" />
-                        </button>
-                      </div>
-                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                        <IconSelector
-                          label="Icon"
-                          value={f.icon || ""}
-                          onChange={(val: string) => {
-                            const list = [...(data.hero?.features || [])];
-                            list[i] = { ...list[i], icon: val };
-                            updateSection("hero", "features", list);
-                          }}
-                        />
-                        <div className="space-y-1.5">
-                          <label className={UI.label}>Title</label>
-                          <input
-                            type="text"
-                            value={f.title || ""}
-                            onChange={(e) => {
-                              const list = [...(data.hero?.features || [])];
-                              list[i] = { ...list[i], title: e.target.value };
-                              updateSection("hero", "features", list);
-                            }}
-                            className={UI.input + " font-bold"}
-                            placeholder="e.g. Premium Quality"
-                          />
-                        </div>
-                        <div className="space-y-1.5">
-                          <label className={UI.label}>Subtitle</label>
-                          <input
-                            type="text"
-                            value={f.subtitle || ""}
-                            onChange={(e) => {
-                              const list = [...(data.hero?.features || [])];
-                              list[i] = { ...list[i], subtitle: e.target.value };
-                              updateSection("hero", "features", list);
-                            }}
-                            className={UI.input}
-                            placeholder="e.g. Products"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                  <button
-                    onClick={() => updateSection("hero", "features", [...(data.hero?.features || []), { icon: "ShieldCheck", title: "", subtitle: "" }])}
-                    className={UI.buttonAdd}
-                  >
-                    + Add Feature Badge
-                  </button>
                 </div>
               </div>
             </div>
@@ -1031,7 +966,7 @@ export default function HomeEditor({ pageId, data, setData }: { pageId: string, 
               <div className="space-y-4">
                 <h3 className={UI.sectionHeader}>1. Section Intro</h3>
                 <div className={UI.card + " space-y-4"}>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <div className="space-y-1.5">
                       <label className={UI.label}>Section Badge</label>
                       <input
@@ -1050,18 +985,6 @@ export default function HomeEditor({ pageId, data, setData }: { pageId: string, 
                         onChange={(e) => updateSection("process", "title", e.target.value)}
                         className={UI.input + " font-bold"}
                         placeholder="e.g. How We Work"
-                      />
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div className="space-y-1.5">
-                      <label className={UI.label}>Italic Accent Word in Title</label>
-                      <input
-                        type="text"
-                        value={data.process?.titleItalicWord || ""}
-                        onChange={(e) => updateSection("process", "titleItalicWord", e.target.value)}
-                        className={UI.input}
-                        placeholder="e.g. Work"
                       />
                     </div>
                     <div className="space-y-1.5">
@@ -1100,31 +1023,54 @@ export default function HomeEditor({ pageId, data, setData }: { pageId: string, 
                     <div key={i} className={UI.card + " space-y-4 relative border-l-4 border-l-[#2271b1]"}>
                       <div className="flex justify-between items-center pb-2 border-b border-[#f0f0f1]">
                         <span className="text-[11px] font-bold text-[#2271b1] uppercase">Step {String(i + 1).padStart(2, "0")} — {step.title || "Untitled"}</span>
-                        <button
-                          onClick={() => {
-                            const newItems = data.process.items.filter((_: any, idx: number) => idx !== i);
-                            updateSection("process", "items", newItems);
-                          }}
-                          className="text-[#d63638] hover:bg-red-50 p-1.5 rounded"
-                          title="Delete Step"
-                        >
-                          <Trash2 className="w-4 h-4" />
-                        </button>
-                      </div>
-
-                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                        <div className="space-y-1.5">
-                          <IconSelector
-                            label="Icon"
-                            value={step.icon || ""}
-                            onChange={(val: string) => {
+                        <div className="flex items-center gap-1">
+                          <button
+                            type="button"
+                            disabled={i === 0}
+                            onClick={() => {
+                              if (i === 0) return;
                               const newItems = [...data.process.items];
-                              newItems[i] = { ...newItems[i], icon: val };
+                              const temp = newItems[i];
+                              newItems[i] = newItems[i - 1];
+                              newItems[i - 1] = temp;
                               updateSection("process", "items", newItems);
                             }}
-                          />
+                            className={`p-1 rounded ${i === 0 ? "text-gray-300 cursor-not-allowed" : "text-gray-600 hover:bg-gray-100"}`}
+                            title="Move Up"
+                          >
+                            <ChevronUp className="w-4 h-4" />
+                          </button>
+                          <button
+                            type="button"
+                            disabled={i === (data.process.items?.length || 1) - 1}
+                            onClick={() => {
+                              if (i >= (data.process.items?.length || 1) - 1) return;
+                              const newItems = [...data.process.items];
+                              const temp = newItems[i];
+                              newItems[i] = newItems[i + 1];
+                              newItems[i + 1] = temp;
+                              updateSection("process", "items", newItems);
+                            }}
+                            className={`p-1 rounded ${i === (data.process.items?.length || 1) - 1 ? "text-gray-300 cursor-not-allowed" : "text-gray-600 hover:bg-gray-100"}`}
+                            title="Move Down"
+                          >
+                            <ChevronDown className="w-4 h-4" />
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              const newItems = data.process.items.filter((_: any, idx: number) => idx !== i);
+                              updateSection("process", "items", newItems);
+                            }}
+                            className="text-[#d63638] hover:bg-red-50 p-1 rounded ml-1"
+                            title="Delete Step"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </button>
                         </div>
-                        <div className="sm:col-span-2 space-y-1.5">
+                      </div>
+
+                      <div className="space-y-1.5">
                           <label className={UI.label}>Step Title</label>
                           <input
                             type="text"
@@ -1137,7 +1083,6 @@ export default function HomeEditor({ pageId, data, setData }: { pageId: string, 
                             className={UI.input + " font-bold"}
                             placeholder="e.g. Request a Quote"
                           />
-                        </div>
                       </div>
 
                       <div className="space-y-1.5">
@@ -1222,8 +1167,7 @@ export default function HomeEditor({ pageId, data, setData }: { pageId: string, 
                           description: "Full description for the showcase card.",
                           ctaText: "LEARN MORE",
                           ctaUrl: "/contact-us/",
-                          image: "/images/trinity/process-1.jpg",
-                          icon: "ClipboardList"
+                          image: "/images/trinity/process-1.jpg"
                         }
                       ]);
                     }}
@@ -1306,27 +1250,15 @@ export default function HomeEditor({ pageId, data, setData }: { pageId: string, 
                       placeholder="e.g. GET IN TOUCH"
                     />
                   </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div className="space-y-1.5">
-                      <label className={UI.label}>Phone (shown beside the button)</label>
-                      <input
-                        type="text"
-                        value={data.ctaBanner?.phone || ""}
-                        onChange={(e) => updateSection("ctaBanner", "phone", e.target.value)}
-                        className={UI.input}
-                        placeholder="e.g. +92 300 123 4567"
-                      />
-                    </div>
-                    <div className="space-y-1.5">
-                      <label className={UI.label}>Email (shown beside the button)</label>
-                      <input
-                        type="text"
-                        value={data.ctaBanner?.email || ""}
-                        onChange={(e) => updateSection("ctaBanner", "email", e.target.value)}
-                        className={UI.input}
-                        placeholder="e.g. info@company.com"
-                      />
-                    </div>
+                  <div className="space-y-1.5">
+                    <label className={UI.label}>Phone (shown beside the button)</label>
+                    <input
+                      type="text"
+                      value={data.ctaBanner?.phone || ""}
+                      onChange={(e) => updateSection("ctaBanner", "phone", e.target.value)}
+                      className={UI.input}
+                      placeholder="e.g. +92 300 123 4567"
+                    />
                   </div>
                   <ImageField
                     label="Background Image (optional, shown faintly behind the banner)"

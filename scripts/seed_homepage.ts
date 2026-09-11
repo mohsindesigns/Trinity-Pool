@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 dotenv.config({ path: '../.env.local' });
-import connectToDatabase from '../src/lib/mongodb.ts';
-import SiteContent from '../src/models/Content.ts';
+import connectToDatabase from '../src/lib/mongodb';
+import SiteContent from '../src/models/Content';
 
 const homepageData = {
   hero: {

@@ -407,18 +407,47 @@ export const useContent = () => {
             const p = getSafe(completeData, 'process', {});
             const label = p.label || "OUR PROCESS";
             const title = p.title || "How We Work";
-            const description = p.description || "A simple and transparent 4-step process to get you the right industrial solutions, exactly when you need them.";
-            const phaseLabel = p.phaseLabel || "Phase";
-            const calloutText = p.calloutText !== undefined ? p.calloutText : "Need tailored engineering guidance or immediate pump availability?";
-            const ctaText = p.ctaText !== undefined ? p.ctaText : "Speak with a technical specialist";
-            const ctaLink = p.ctaLink || "/contact-us";
+            const description = p.description || "From initial inquiry to long-term support, our process is designed to be simple, transparent and efficient — so you get the right solutions, exactly when you need them.";
+            const phaseLabel = p.phaseLabel || "STEP";
             const items = (Array.isArray(p.items) && p.items.length > 0)
                 ? p.items
                 : [
-                    { step: "01", title: "Request a Quote", description: "Submit your operational specifications, pump requirements, or fluid handling needs to our specialists.", icon: "FileText" },
-                    { step: "02", title: "Technical Consultation", description: "Our engineers evaluate equipment sizing, pressure thresholds, and duty cycle to recommend the optimal solution.", icon: "MessageSquare" },
-                    { step: "03", title: "Precision Supply & Delivery", description: "Pumps, components, and replacement parts are inspected, packaged, and dispatched with rapid on-site delivery.", icon: "Truck" },
-                    { step: "04", title: "After-Sales & Field Support", description: "Ongoing maintenance, troubleshooting, and 24/7 technical assistance to ensure continuous operational uptime.", icon: "Wrench" }
+                    {
+                        title: "Request a Quote",
+                        shortDescription: "Tell us what you need and get a quick, competitive quote.",
+                        description: "Share your requirements with our team. We'll review your needs and provide a competitive, no-obligation quote — fast and hassle-free.",
+                        ctaText: "GET A QUOTE",
+                        ctaUrl: "/contact-us/",
+                        image: "/images/trinity/process-1.jpg",
+                        icon: "FileText"
+                    },
+                    {
+                        title: "Consultation",
+                        shortDescription: "We understand your requirements and provide the best solution.",
+                        description: "Our expert engineering team assesses your technical specifications, fluid dynamics, and operational requirements to recommend optimal, cost-efficient pump systems.",
+                        ctaText: "SCHEDULE CONSULTATION",
+                        ctaUrl: "/contact-us/",
+                        image: "/images/trinity/process-2.jpg",
+                        icon: "MessageSquare"
+                    },
+                    {
+                        title: "Supply & Delivery",
+                        shortDescription: "We source, prepare and deliver on time.",
+                        description: "Fast-track logistics, certified equipment packaging, and guaranteed on-time site dispatch ensure zero operational downtime for your plant or drilling facility.",
+                        ctaText: "TRACK SHIPMENTS",
+                        ctaUrl: "/contact-us/",
+                        image: "/images/trinity/process-3.jpg",
+                        icon: "Truck"
+                    },
+                    {
+                        title: "After-Sales Support",
+                        shortDescription: "Ongoing support for maximum uptime.",
+                        description: "24/7 technical hotline, rapid OEM spare parts replacement, preventative field diagnostics, and certified technician maintenance for maximum equipment uptime.",
+                        ctaText: "GET SUPPORT",
+                        ctaUrl: "/contact-us/",
+                        image: "/images/trinity/process-4.jpg",
+                        icon: "Wrench"
+                    }
                 ];
             return {
                 ...p,
@@ -426,9 +455,6 @@ export const useContent = () => {
                 title,
                 description,
                 phaseLabel,
-                calloutText,
-                ctaText,
-                ctaLink,
                 items
             };
         })(),
@@ -530,13 +556,14 @@ export const useContent = () => {
         })(),
         ctaBanner: (() => {
             const cb = getSafe(completeData, 'ctaBanner', {});
+            const { email, ...restCb } = cb;
             return {
-                ...cb,
-                tagline: cb.tagline || "",
-                title: cb.title || "",
-                description: cb.description || "",
-                button: cb.button || "",
-                buttonUrl: cb.buttonUrl || cb.btnUrl || "/contact-us/"
+                ...restCb,
+                tagline: restCb.tagline || "",
+                title: restCb.title || "",
+                description: restCb.description || "",
+                button: restCb.button || "",
+                buttonUrl: restCb.buttonUrl || restCb.btnUrl || "/contact-us/"
             };
         })(),
         footer: {
@@ -618,51 +645,6 @@ export const useContent = () => {
                 { image: "", title: "Water & Wastewater",       subtitle: "Treatment & Management",     cta: "Learn More", ctaLink: "#" },
                 { image: "", title: "Mining & Resources",       subtitle: "Extraction & Processing",    cta: "Learn More", ctaLink: "#" },
                 { image: "", title: "Industrial Manufacturing", subtitle: "General Manufacturing",      cta: "Learn More", ctaLink: "#" },
-            ]
-        }),
-        process: getSafe(completeData, 'process', {
-            label: "OUR PROCESS",
-            title: "How We Work",
-            titleItalicWord: "Work",
-            description: "From initial inquiry to long-term support, our process is designed to be simple, transparent and efficient — so you get the right solutions, exactly when you need them.",
-            phaseLabel: "STEP",
-            items: [
-                {
-                    title: "Request a Quote",
-                    shortDescription: "Tell us what you need and get a quick, competitive quote.",
-                    description: "Share your requirements with our team. We'll review your needs and provide a competitive, no-obligation quote — fast and hassle-free.",
-                    ctaText: "GET A QUOTE",
-                    ctaUrl: "/contact-us/",
-                    image: "/images/trinity/process-1.jpg",
-                    icon: "FileText"
-                },
-                {
-                    title: "Consultation",
-                    shortDescription: "We understand your requirements and provide the best solution.",
-                    description: "Our expert engineering team assesses your technical specifications, fluid dynamics, and operational requirements to recommend optimal, cost-efficient pump systems.",
-                    ctaText: "SCHEDULE CONSULTATION",
-                    ctaUrl: "/contact-us/",
-                    image: "/images/trinity/process-2.jpg",
-                    icon: "MessageSquare"
-                },
-                {
-                    title: "Supply & Delivery",
-                    shortDescription: "We source, prepare and deliver on time.",
-                    description: "Fast-track logistics, certified equipment packaging, and guaranteed on-time site dispatch ensure zero operational downtime for your plant or drilling facility.",
-                    ctaText: "TRACK SHIPMENTS",
-                    ctaUrl: "/contact-us/",
-                    image: "/images/trinity/process-3.jpg",
-                    icon: "Truck"
-                },
-                {
-                    title: "After-Sales Support",
-                    shortDescription: "Ongoing support for maximum uptime.",
-                    description: "24/7 technical hotline, rapid OEM spare parts replacement, preventative field diagnostics, and certified technician maintenance for maximum equipment uptime.",
-                    ctaText: "GET SUPPORT",
-                    ctaUrl: "/contact-us/",
-                    image: "/images/trinity/process-4.jpg",
-                    icon: "Wrench"
-                }
             ]
         }),
     };

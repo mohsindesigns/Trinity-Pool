@@ -29,9 +29,9 @@ export default function StatsBar() {
 
   const defaultStats = [
     { value: "100+", label: "Oil & Lubricant Products", icon: "Droplets" },
-    { value: "50+",  label: "Pump Solutions",           icon: "Gauge"    },
-    { value: "20+",  label: "Years of Experience",      icon: "Award"    },
-    { value: "500+", label: "Happy Clients",            icon: "Users"    },
+    { value: "50+", label: "Pump Solutions", icon: "Gauge" },
+    { value: "20+", label: "Years of Experience", icon: "Award" },
+    { value: "500+", label: "Happy Clients", icon: "Users" },
   ];
 
   const items = stats?.items && stats.items.length > 0 ? stats.items : defaultStats;

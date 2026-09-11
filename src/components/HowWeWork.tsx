@@ -14,7 +14,6 @@ export default function HowWeWork() {
   const {
     label = "OUR PROCESS",
     title = "How We Work",
-    titleItalicWord = "Work",
     description = "From initial inquiry to long-term support, our process is designed to be simple, transparent and efficient — so you get the right solutions, exactly when you need them.",
     phaseLabel = "STEP",
     items = []
@@ -75,30 +74,6 @@ export default function HowWeWork() {
   const numberOf = (i: number) => String(i + 1).padStart(2, "0");
   const current = steps[active] || steps[0];
 
-  // Helper to highlight the italic word in the title
-  const renderTitle = () => {
-    const rawTitle = stripHtml(title) || "How We Work";
-    const italicWord = stripHtml(titleItalicWord) || "Work";
-
-    if (!italicWord || !rawTitle.toLowerCase().includes(italicWord.toLowerCase())) {
-      return <span>{rawTitle}</span>;
-    }
-
-    const regex = new RegExp(`(${italicWord})`, "i");
-    const parts = rawTitle.split(regex);
-
-    return parts.map((part, index) => {
-      if (part.toLowerCase() === italicWord.toLowerCase()) {
-        return (
-          <span key={index} className="font-serif italic font-normal text-gold-light ml-2">
-            {part}
-          </span>
-        );
-      }
-      return <span key={index}>{part}</span>;
-    });
-  };
-
   return (
     <section
       id="process"
@@ -106,6 +81,17 @@ export default function HowWeWork() {
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
+      {/* Optional CMS section background image */}
+      {process?.image && (
+        <>
+          <div
+            className="absolute inset-0 bg-cover bg-center opacity-[0.16] pointer-events-none"
+            style={{ backgroundImage: `url(${process.image})` }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#080b0f] via-transparent to-[#080b0f] pointer-events-none" />
+        </>
+      )}
+
       {/* Background ambient lighting */}
       <div
         className="absolute top-1/4 left-[-15%] w-[650px] h-[650px] rounded-full pointer-events-none opacity-20 blur-[120px]"
@@ -136,7 +122,7 @@ export default function HowWeWork() {
 
             {/* Main Headline */}
             <h2 className="display-heading text-[36px] sm:text-[44px] md:text-[50px] leading-[1.08] text-white tracking-tight mb-5">
-              {renderTitle()}
+              {stripHtml(title) || "How We Work"}
             </h2>
 
             {/* Subtitle description */}

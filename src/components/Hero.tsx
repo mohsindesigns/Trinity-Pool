@@ -6,7 +6,6 @@ import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { useContent } from "../hooks/useContent";
 import { stripHtml } from "../lib/utils";
-import { Icon } from "../config/icons";
 
 export default function HeroSection() {
   const { hero, globalMetadata } = useContent();
@@ -29,13 +28,6 @@ export default function HeroSection() {
 
   const primaryUrl = hero?.ctaBookUrl || hero?.bookingUrl || hero?.ctaUrl1 || globalMetadata?.bookingUrl || "/contact-us";
   const secondaryUrl = hero?.ctaServicesUrl || hero?.ctaUrl2 || "/#services";
-
-  // Feature badges on the right (Home editor → Hero → Feature Badges). Accepts legacy hero.stats {value,label,icon}.
-  const features: { icon?: string; title: string; subtitle?: string }[] = (
-    Array.isArray(hero?.features) && hero.features.length > 0
-      ? hero.features
-      : Array.isArray(hero?.stats) ? hero.stats.map((s: any) => ({ icon: s.icon, title: s.value, subtitle: s.label })) : []
-  ).filter((f: any) => f && (f.title || f.subtitle));
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -102,98 +94,76 @@ export default function HeroSection() {
       {/* ── Main Content ───────────────────────────────── */}
       <div className="relative z-10 site-container pt-32 pb-16 md:pt-40 md:pb-24 w-full">
 
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            className="max-w-[560px] flex flex-col items-start"
-          >
-            {/* Label */}
-            <motion.div variants={itemVariants} className="flex items-center gap-3 mb-4">
-              <span className="w-5 h-[1px] bg-gold flex-shrink-0" />
-              <p className="section-label">{cleanLabel}</p>
-            </motion.div>
-
-            {/* Headline */}
-            <motion.h1
-              variants={itemVariants}
-              className="display-heading text-[28px] min-[400px]:text-[34px] md:text-[44px] leading-[1.12] mb-5 tracking-tight"
-            >
-              <span className="block text-white">{cleanTitle1}</span>
-              <span className="block text-gold">{cleanTitle2}</span>
-            </motion.h1>
-
-            {/* Description */}
-            <motion.p
-              variants={itemVariants}
-              className="text-white/65 text-[13.5px] md:text-[14.5px] leading-[1.75] max-w-[440px] mb-8"
-            >
-              {cleanDescription}
-            </motion.p>
-
-            {/* CTA Buttons */}
-            <motion.div
-              variants={itemVariants}
-              className="flex flex-col sm:flex-row items-start gap-3"
-            >
-              {primaryUrl.startsWith("http") ? (
-                <a
-                  href={primaryUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-gold w-full sm:w-auto justify-center text-center px-7"
-                >
-                  {ctaBook} <ArrowRight size={14} className="ml-1" />
-                </a>
-              ) : (
-                <Link
-                  href={primaryUrl}
-                  className="btn-gold w-full sm:w-auto justify-center text-center px-7"
-                >
-                  {ctaBook} <ArrowRight size={14} className="ml-1" />
-                </Link>
-              )}
-              {secondaryUrl.startsWith("http") ? (
-                <a
-                  href={secondaryUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-outline-white w-full sm:w-auto justify-center text-center px-7"
-                >
-                  {ctaServices} <ArrowRight size={14} className="ml-1" />
-                </a>
-              ) : (
-                <Link
-                  href={secondaryUrl}
-                  className="btn-outline-white w-full sm:w-auto justify-center text-center px-7"
-                >
-                  {ctaServices} <ArrowRight size={14} className="ml-1" />
-                </Link>
-              )}
-            </motion.div>
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="max-w-[560px] flex flex-col items-start"
+        >
+          {/* Label */}
+          <motion.div variants={itemVariants} className="flex items-center gap-3 mb-4">
+            <span className="w-5 h-[1px] bg-gold flex-shrink-0" />
+            <p className="section-label">{cleanLabel}</p>
           </motion.div>
 
-          {/* ── Feature badges (right column, desktop) ── */}
-          {features.length > 0 && (
-            <motion.ul
-              initial={{ opacity: 0, x: 24 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.7, delay: 0.5, ease: "easeOut" }}
-              className="hidden lg:flex absolute right-0 top-1/2 -translate-y-1/2 flex-col gap-7 pr-2"
-            >
-              {features.map((f, i) => (
-                <li key={i} className="flex items-center gap-4">
-                  <span className="h-12 w-12 rounded-full border border-gold/60 bg-dark/40 backdrop-blur-sm text-gold flex items-center justify-center flex-shrink-0 shadow-[0_0_24px_rgba(200,154,69,0.25)]">
-                    <Icon name={f.icon || "ShieldCheck"} className="h-5 w-5" strokeWidth={1.8} />
-                  </span>
-                  <span className="leading-tight">
-                    {f.title && <span className="block text-white text-[14px] font-bold">{stripHtml(f.title)}</span>}
-                    {f.subtitle && <span className="block text-white/60 text-[12.5px] mt-0.5">{stripHtml(f.subtitle)}</span>}
-                  </span>
-                </li>
-              ))}
-            </motion.ul>
-          )}
+          {/* Headline */}
+          <motion.h1
+            variants={itemVariants}
+            className="display-heading text-[28px] min-[400px]:text-[34px] md:text-[44px] leading-[1.12] mb-5 tracking-tight"
+          >
+            <span className="block text-white">{cleanTitle1}</span>
+            <span className="block text-gold">{cleanTitle2}</span>
+          </motion.h1>
+
+          {/* Description */}
+          <motion.p
+            variants={itemVariants}
+            className="text-white/65 text-[13.5px] md:text-[14.5px] leading-[1.75] max-w-[440px] mb-8"
+          >
+            {cleanDescription}
+          </motion.p>
+
+          {/* CTA Buttons */}
+          <motion.div
+            variants={itemVariants}
+            className="flex flex-col sm:flex-row items-start gap-3"
+          >
+            {primaryUrl.startsWith("http") ? (
+              <a
+                href={primaryUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-gold w-full sm:w-auto justify-center text-center px-7"
+              >
+                {ctaBook} <ArrowRight size={14} className="ml-1" />
+              </a>
+            ) : (
+              <Link
+                href={primaryUrl}
+                className="btn-gold w-full sm:w-auto justify-center text-center px-7"
+              >
+                {ctaBook} <ArrowRight size={14} className="ml-1" />
+              </Link>
+            )}
+            {secondaryUrl.startsWith("http") ? (
+              <a
+                href={secondaryUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-outline-white w-full sm:w-auto justify-center text-center px-7"
+              >
+                {ctaServices} <ArrowRight size={14} className="ml-1" />
+              </a>
+            ) : (
+              <Link
+                href={secondaryUrl}
+                className="btn-outline-white w-full sm:w-auto justify-center text-center px-7"
+              >
+                {ctaServices} <ArrowRight size={14} className="ml-1" />
+              </Link>
+            )}
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

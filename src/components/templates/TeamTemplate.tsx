@@ -138,25 +138,23 @@ export default function TeamTemplate({ pageData, params }: { pageData?: any, par
   if (!isClient) return null;
 
   return (
-    <main className="bg-white">
-      <section ref={sectionRef} className="relative py-14 md:py-18 lg:py-20 overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none bg-[#f8fafc]">
-          <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: `linear-gradient(to right, #0f172a 1px, transparent 1px), linear-gradient(to bottom, #0f172a 1px, transparent 1px)`, backgroundSize: '100px 100px' }} />
-        </div>
+    <main className="bg-white" ref={sectionRef}>
+      {/* ── Dark Hero: Badge / Headline / Description ── */}
+      <section className="relative bg-dark pt-[140px] pb-16 sm:pb-20 overflow-hidden border-b border-white/10">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[90vw] sm:w-[800px] h-[300px] sm:h-[400px] bg-gradient-to-b from-gold/10 to-transparent opacity-80 blur-[80px] pointer-events-none" />
         <div className="max-w-7xl mx-auto px-3 sm:px-6 md:px-8 relative z-30">
-          <div className="max-w-3xl mx-auto text-center mb-16 sm:mb-24 md:mb-32 leadership-reveal relative z-20">
+          <div className="max-w-3xl mx-auto text-center leadership-reveal relative z-20">
             <div className="flex items-center justify-center gap-2 sm:gap-3 mb-6">
               <div className="w-6 sm:w-8 h-[2px] bg-gradient-to-r from-gold/40 to-gold" />
-              <span className="text-[10px] sm:text-xs font-semibold tracking-[0.2em] uppercase text-gold-dark">{teamData?.section?.badge || "Our Leadership"}</span>
+              <span className="text-[10px] sm:text-xs font-semibold tracking-[0.2em] uppercase text-gold">{teamData?.section?.badge || "Our Leadership"}</span>
               <div className="w-6 sm:w-8 h-[2px] bg-gradient-to-r from-gold to-gold/40" />
             </div>
-            <h1 className="text-3xl min-[350px]:text-4xl sm:text-5xl lg:text-6xl font-light text-slate-900 mb-4 leading-tight">
+            <h1 className="text-3xl min-[350px]:text-4xl sm:text-5xl lg:text-6xl font-light text-white mb-4 leading-tight">
               {teamData?.section?.headlinePrefix || teamData?.section?.headlineHighlight || teamData?.section?.headlineSuffix ? (
                 <>
                   {teamData.section.headlinePrefix} <br />
                   {teamData.section.headlineHighlight && (
-                    <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-gold-dark to-slate-900">
+                    <span className="font-bold text-gold">
                       {teamData.section.headlineHighlight}
                     </span>
                   )}
@@ -165,16 +163,25 @@ export default function TeamTemplate({ pageData, params }: { pageData?: any, par
               ) : (
                 <>
                   {teamData?.section?.headline?.split('with')[0]} <br />
-                  <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-gold-dark to-slate-900">
+                  <span className="font-bold text-gold">
                     {teamData?.section?.headline?.split('with')[1]}
                   </span>
                 </>
               )}
             </h1>
-            <div className="text-slate-500 text-[13px] min-[350px]:text-sm sm:text-lg font-light max-w-2xl mx-auto px-4 leading-relaxed">
+            <div className="text-white/65 text-[13px] min-[350px]:text-sm sm:text-lg font-light max-w-2xl mx-auto px-4 leading-relaxed">
               <RichTextRenderer content={teamData?.section?.description} />
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* ── Light: Team Member List ── */}
+      <section className="relative py-14 md:py-18 lg:py-20 overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none bg-[#f8fafc]">
+          <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: `linear-gradient(to right, #0f172a 1px, transparent 1px), linear-gradient(to bottom, #0f172a 1px, transparent 1px)`, backgroundSize: '100px 100px' }} />
+        </div>
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 md:px-8 relative z-30">
           {teamData?.members?.map((member: any, index: number) => {
             const alignRight = index % 2 !== 0;
             return (

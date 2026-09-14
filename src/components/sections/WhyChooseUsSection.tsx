@@ -57,41 +57,41 @@ export default function WhyChooseUsSection() {
   const stats = rawStats;
 
   return (
-    <section className="bg-dark border-b border-border-dark py-16 md:py-24 relative overflow-hidden">
-      {/* Decorative gradient glow */}
-      <div className="absolute top-1/4 right-0 w-[300px] h-[300px] bg-gold/[0.03] rounded-full blur-[100px] pointer-events-none" />
-      
+    <section className="bg-white border-b border-border-light py-16 md:py-24 relative overflow-hidden">
+      {/* Decorative ambient glow — same recipe as the homepage's light sections */}
+      <div className="absolute top-1/4 right-0 w-[300px] h-[300px] bg-gold/[0.06] rounded-full blur-[100px] pointer-events-none" />
+
       <div className="site-container relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          
+
           {/* Left Column: Heading & Stats */}
           <div className="lg:col-span-5 flex flex-col justify-between h-full">
             <div>
-              <p className="section-label text-gold mb-4">{badge}</p>
-              <h2 className="display-heading text-[28px] min-[400px]:text-[34px] md:text-[44px] text-white leading-tight mb-6">
+              <p className="section-label text-gold-dark mb-4">{badge}</p>
+              <h2 className="display-heading text-[28px] min-[400px]:text-[34px] md:text-[44px] text-dark leading-tight mb-6">
                 {headline}
               </h2>
-              <div 
-                className="text-white/70 text-[14px] md:text-[15px] leading-relaxed mb-8 [&_p]:text-white/70 [&_p]:mb-3 [&_p:last-child]:mb-0 font-light"
+              <div
+                className="text-dark/60 text-[14px] md:text-[15px] leading-relaxed mb-8 [&_p]:text-dark/60 [&_p]:mb-3 [&_p:last-child]:mb-0 font-light"
                 dangerouslySetInnerHTML={{ __html: description }}
               />
             </div>
-            
+
             {/* Stats list */}
-            <div className="grid grid-cols-3 gap-4 pt-6 border-t border-white/10">
+            <div className="grid grid-cols-3 gap-4 pt-6 border-t border-border-light">
               {stats.map((stat: any, idx: number) => (
                 <div key={idx}>
-                  <p className="text-[24px] sm:text-[30px] font-bold text-gold leading-none mb-1 font-mono">
+                  <p className="text-[24px] sm:text-[30px] font-bold text-gold-dark leading-none mb-1 font-mono">
                     {stat.value}{stat.suffix}
                   </p>
-                  <p className="text-white/40 text-[10px] sm:text-[11px] font-bold tracking-wider uppercase font-mono">
+                  <p className="text-dark/40 text-[10px] sm:text-[11px] font-bold tracking-wider uppercase font-mono">
                     {stat.label}
                   </p>
                 </div>
               ))}
             </div>
           </div>
-          
+
           {/* Right Column: Features grid */}
           <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
             {features.map((feature: any, idx: number) => {
@@ -103,17 +103,17 @@ export default function WhyChooseUsSection() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.1 }}
-                  className="bg-white/[0.02] border border-white/5 p-6 rounded-xl hover:border-gold/30 hover:bg-white/[0.04] transition-all duration-300 group flex flex-col justify-between"
+                  className="bg-card-bg border border-border-light/80 p-6 rounded-xl hover:border-gold-dark/40 hover:bg-white transition-all duration-300 group flex flex-col justify-between shadow-sm hover:shadow-lg"
                 >
                   <div>
-                    <div className="w-10 h-10 bg-gold/10 rounded-lg flex items-center justify-center text-gold mb-4 group-hover:bg-gold group-hover:text-dark transition-all duration-300">
+                    <div className="w-10 h-10 bg-gold-dark/10 rounded-lg flex items-center justify-center text-gold-dark mb-4 group-hover:bg-gold-dark group-hover:text-white transition-all duration-300">
                       <IconComponent size={20} />
                     </div>
-                    <h3 className="text-white font-bold text-[16px] mb-2 group-hover:text-gold transition-colors">
+                    <h3 className="text-dark font-bold text-[16px] mb-2 group-hover:text-gold-dark transition-colors">
                       {feature.title}
                     </h3>
-                    <div 
-                      className="text-white/60 text-[13px] leading-relaxed font-light [&_p]:text-white/60 [&_p]:mb-2 [&_p:last-child]:mb-0"
+                    <div
+                      className="text-dark/60 text-[13px] leading-relaxed font-light [&_p]:text-dark/60 [&_p]:mb-2 [&_p:last-child]:mb-0"
                       dangerouslySetInnerHTML={{ __html: feature.description }}
                     />
                   </div>
@@ -121,7 +121,7 @@ export default function WhyChooseUsSection() {
               );
             })}
           </div>
-          
+
         </div>
       </div>
     </section>

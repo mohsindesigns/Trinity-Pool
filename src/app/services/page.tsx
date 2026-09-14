@@ -5,7 +5,7 @@ import { Metadata } from 'next';
 import { BASE_URL } from '@/lib/constants';
 
 import ServicesHeroSection from '@/components/sections/ServicesHeroSection';
-import StickyServicesSection from '@/components/sections/StickyServicesSection';
+import ServicesIndexGrid from '@/components/sections/ServicesIndexGrid';
 import WhyChooseUsSection from '@/components/sections/WhyChooseUsSection';
 import ContactFaqSection from '@/components/sections/ContactFaqSection';
 import CtaBanner from '@/components/sections/CtaBanner';
@@ -78,8 +78,8 @@ export default async function ServicesPage() {
     <ContentProvider initialData={mergedData}>
       <main>
         <ServicesHeroSection />
+        <ServicesIndexGrid />
         <WhyChooseUsSection />
-        <StickyServicesSection />
         <CtaBanner />
         <ContactFaqSection />
       </main>

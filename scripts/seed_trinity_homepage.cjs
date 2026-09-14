@@ -31,7 +31,7 @@ const hero = {
   badge: 'DOWNHOLE ROD PUMPS & OILFIELD SUPPLIES',
   title1: 'Your Trusted Partner for Downhole Rod Pumps and',
   title2: 'Oilfield Supplies',
-  description: 'Delivering high-quality USA-manufactured pump parts and services across Texas and New Mexico.',
+  description: 'Delivering high-quality USA-built pump parts and services across Texas and New Mexico.',
   ctaBook: 'Call Now',
   ctaBookUrl: PHONE_TEL,
   bookingUrl: PHONE_TEL,
@@ -46,14 +46,14 @@ const hero = {
 const stats = {
   items: [
     { value: '100+', label: 'Years of Combined Experience', icon: 'Award' },
-    { value: 'USA', label: 'Manufactured Pump Parts', icon: 'ShieldCheck' },
+    { value: 'USA', label: 'Built Pump Parts', icon: 'ShieldCheck' },
     { value: 'TX & NM', label: 'Oilfield Coverage', icon: 'Globe' },
     { value: '6', label: 'Product & Service Lines', icon: 'Package' },
   ],
 };
 
 const serviceCatalogue = [
-  { title: 'Downhole Rod Pumps', description: 'Manufacturing, building and repairing downhole sucker rod pumps with USA-made parts.', slug: 'downhole-rod-pumps', icon: 'pump', image: IMG('service-downhole-rod-pumps') },
+  { title: 'Downhole Rod Pumps', description: 'Building and repairing downhole sucker rod pumps with USA-made parts.', slug: 'downhole-rod-pumps', icon: 'pump', image: IMG('service-downhole-rod-pumps') },
   { title: 'Burleson HD Rod Rotator', description: 'Heavy-duty rod rotators built to outperform, extending rod and pump life.', slug: 'hd-rod-rotator', icon: 'RefreshCw' },
   { title: 'Downhole Supplies', description: 'Quality downhole components and accessories for longer pump runs.', slug: 'downhole-supplies', icon: 'Wrench' },
   { title: 'General Oilfield Supplies', description: 'Everyday oilfield supplies delivered on time across Texas and New Mexico.', slug: 'general-oilfield-supplies', icon: 'Package' },
@@ -65,7 +65,7 @@ const servicesSection = {
   label: 'OUR SERVICES',
   badge: 'OUR SERVICES',
   title: 'Downhole Pumps, Rod Rotators & Oilfield Supplies',
-  description: 'From well evaluation to comprehensive pump inspection and repair, we manufacture, build and repair downhole sucker rod pumps and supply everything your lease needs.',
+  description: 'From well evaluation to comprehensive pump inspection and repair, we build and repair downhole sucker rod pumps and supply everything your lease needs.',
   ctaAll: 'View All Services',
   ctaAllUrl: '/services/',
   items: [], // empty = show the whole catalogue above
@@ -90,7 +90,7 @@ const industries = {
 const leadership = {
   label: 'ABOUT US',
   title: 'Your Trusted Partner in Downhole Rod Pumps & Oilfield Supplies',
-  desc1: '<p>At Trinity Pump &amp; Supply, we are dedicated to providing industry-leading solutions for your oilfield operations. With over 100+ years of combined experience, our team specializes in manufacturing, building, and repairing downhole sucker rod pumps. From well evaluation to comprehensive pump inspection and repair services, we offer unparalleled expertise and commitment to quality.</p>',
+  desc1: '<p>At Trinity Pump &amp; Supply, we are dedicated to providing industry-leading solutions for your oilfield operations. With over 100+ years of combined experience, our team specializes in building and repairing downhole sucker rod pumps. From well evaluation to comprehensive pump inspection and repair services, we offer unparalleled expertise and commitment to quality.</p>',
   photoBadgeTitle: 'Quality at All Costs',
   photoBadgeSubtitle: 'USA-made parts, longer pump runs',
   photoBadge: 'Quality at All Costs USA-made parts, longer pump runs',
@@ -101,7 +101,7 @@ const leadership = {
   ctaLink: '/about-us/',
   stats: [
     { value: '100+', label: 'Years Combined Experience' },
-    { value: 'USA', label: 'Manufactured Parts' },
+    { value: 'USA', label: 'Built Parts' },
     { value: 'TX & NM', label: 'Service Area' },
     { value: '6', label: 'Product Lines' },
   ],
@@ -115,7 +115,7 @@ const whyChooseUs = {
   imageAlt: 'Technician working on pump equipment',
   features: [
     { icon: 'Award', title: 'Over 100+ Years of Expertise', description: 'Extensive experience guarantees the highest quality products and solutions tailored to your needs.' },
-    { icon: 'ShieldCheck', title: 'Quality You Can Trust', description: 'We exclusively use USA-manufactured alloy steel, 316 Stainless and Monel for our downhole pump parts.' },
+    { icon: 'ShieldCheck', title: 'Quality You Can Trust', description: 'We exclusively use USA-made alloy steel, 316 Stainless and Monel for our downhole pump parts.' },
     { icon: 'TrendingUp', title: 'Lower Lifting Costs', description: 'Longer-lasting pump parts mean fewer replacements and repairs, lowering your lifting costs.' },
     { icon: 'Truck', title: 'Timely Delivery and Service', description: 'On-time deliveries, and we keep you informed throughout the process.' },
     { icon: 'BadgeCheck', title: 'Honesty and Transparency', description: 'Clear communication and trustworthy business practices.' },
@@ -138,8 +138,8 @@ const processSection = {
     },
     {
       step: '02', title: 'Build or Repair',
-      shortDescription: 'We manufacture, build and repair pumps with USA-made parts.',
-      description: 'We manufacture, build and repair downhole sucker rod pumps using USA-manufactured alloy steel, 316 Stainless and Monel components.',
+      shortDescription: 'We build and repair pumps with USA-made parts.',
+      description: 'We build and repair downhole sucker rod pumps using USA-made alloy steel, 316 Stainless and Monel components.',
       ctaText: 'Get a Quote', ctaUrl: '/downhole-rod-pumps/', image: IMG('process-2'),
     },
     {
@@ -195,8 +195,8 @@ const faq = {
     ctaText: 'Still have a question? Contact us',
   },
   items: [
-    { question: 'What do you manufacture and repair?', answer: 'We manufacture, build and repair downhole sucker rod pumps, and we supply the Burleson HD Rod Rotator, downhole supplies, general oilfield supplies, battery and wellhead supplies, and poly pipe and fittings.' },
-    { question: 'What materials do you use for pump parts?', answer: 'We exclusively use high-quality USA-manufactured alloy steel, 316 Stainless and Monel for our downhole pump parts, designed for longer pump runs.' },
+    { question: 'What do you build and repair?', answer: 'We build and repair downhole sucker rod pumps, and we supply the Burleson HD Rod Rotator, downhole supplies, general oilfield supplies, battery and wellhead supplies, and poly pipe and fittings.' },
+    { question: 'What materials do you use for pump parts?', answer: 'We exclusively use high-quality USA-made alloy steel, 316 Stainless and Monel for our downhole pump parts, designed for longer pump runs.' },
     { question: 'Where do you operate?', answer: `We serve oilfield operators throughout Texas and New Mexico from our shop at ${ADDRESS}.` },
     { question: 'How do you help lower lifting costs?', answer: 'By producing long-lasting pump parts and repairing pumps to last, we reduce how often you have to pull a well, minimizing pulling costs and extending equipment life.' },
     { question: 'How do I get a quote?', answer: `Call ${PHONE}, email ${EMAIL}, or use the form on this page. Tell us about your well and we will respond promptly with pricing and availability.` },
@@ -206,9 +206,9 @@ const faq = {
 const quotePatch = {
   'data.quote.section.badge': 'REQUEST A FREE QUOTE',
   'data.quote.section.headline': 'Request a Free Quote',
-  'data.quote.section.description': 'We offer high-quality USA-manufactured pump parts and comprehensive oilfield solutions to keep your operations running smoothly. Choose us for honesty, reliability, and products that stand the test of time.',
+  'data.quote.section.description': 'We offer high-quality USA-built pump parts and comprehensive oilfield solutions to keep your operations running smoothly. Choose us for honesty, reliability, and products that stand the test of time.',
   'data.quote.formBtnSubmit': 'Request Quote',
-  'data.quote.trustHipa': 'High-Quality USA-Manufactured Parts',
+  'data.quote.trustHipa': 'High-Quality USA-Built Parts',
   'data.quote.trustResponse': 'Serving Texas & New Mexico',
   'data.quote.formClinicPortal': 'DIRECT LINE',
   'data.quote.formClinicPortalSub': `Call our Odessa office at ${PHONE}`,
@@ -224,7 +224,7 @@ const posts = [
     excerpt: "It's not just what you pay for a pump, but how many times you pay it. Here's how part quality drives pulling costs.",
     featuredImage: IMG('about'),
     publishedAt: new Date('2025-05-12T09:00:00Z'),
-    content: '<p>In the oilfield, the price of a pump part is only the first cost. Every time a well has to be pulled, you pay again in rig time, lost production and labor.</p><h2>Material matters</h2><p>USA-manufactured alloy steel, 316 Stainless and Monel components resist wear and corrosion far longer than budget alternatives, which means longer pump runs between pulls.</p><h2>What that means for your lease</h2><ul><li>Fewer pulling jobs per year.</li><li>Less downtime and deferred production.</li><li>Lower pump-related lifting cost per barrel.</li></ul><p>That is the philosophy behind every pump we build or repair at Trinity Pump &amp; Supply.</p>',
+    content: '<p>In the oilfield, the price of a pump part is only the first cost. Every time a well has to be pulled, you pay again in rig time, lost production and labor.</p><h2>Material matters</h2><p>USA-made alloy steel, 316 Stainless and Monel components resist wear and corrosion far longer than budget alternatives, which means longer pump runs between pulls.</p><h2>What that means for your lease</h2><ul><li>Fewer pulling jobs per year.</li><li>Less downtime and deferred production.</li><li>Lower pump-related lifting cost per barrel.</li></ul><p>That is the philosophy behind every pump we build or repair at Trinity Pump &amp; Supply.</p>',
   },
   {
     slug: 'how-a-rod-rotator-extends-sucker-rod-life',
@@ -269,7 +269,7 @@ const footerPatch = {
   'data.footer.company.logo': '',
   'data.footer.company.name': 'TRINITY PUMP & SUPPLY',
   'data.footer.company.tagline': '',
-  'data.footer.company.description': 'Delivering high-quality USA-manufactured pump parts and services across Texas and New Mexico.',
+  'data.footer.company.description': 'Delivering high-quality USA-built pump parts and services across Texas and New Mexico.',
   'data.footer.services.title': 'Our Services',
   'data.footer.services.selectedServices': serviceCatalogue.map((s) => s.slug),
   'data.footer.services.materials': { title: 'Quick Links', items: [

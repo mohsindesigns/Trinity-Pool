@@ -27,7 +27,7 @@ const serviceCatalogue = [
   {
     title: 'Rod Pumps', slug: 'rod-pumps', category: 'artificial-lift', icon: 'Settings',
     image: IMG('service-downhole-rod-pumps'),
-    description: 'Manufacturing, building and repairing downhole rod pumps with USA-made parts, bore sizes 1-1/16" to 3-3/4".',
+    description: 'Building and repairing downhole rod pumps with USA-made parts, bore sizes 1-1/16" to 3-3/4".',
   },
   {
     title: "TAC's", slug: 'tacs', category: 'artificial-lift', icon: 'Anchor',
@@ -99,7 +99,7 @@ const pageContent = {
   'rod-pumps': {
     tag: 'Rod Pumps', icon: 'Settings', image: IMG('service-downhole-rod-pumps'),
     subheadline: 'Precision Engineering for Maximum Pump Life',
-    description: 'Our downhole rod pumps are built to last, with bore sizes ranging from 1-1/16" to 3-3/4". Whether you need a new pump or a repair, we use only the highest quality materials and proven engineering techniques to ensure long-lasting, reliable performance. Each pump we manufacture or repair is designed to minimize downtime and reduce lifting costs.',
+    description: 'Our downhole rod pumps are built to last, with bore sizes ranging from 1-1/16" to 3-3/4". Whether you need a new pump or a repair, we use only the highest quality materials and proven engineering techniques to ensure long-lasting, reliable performance. Each pump we build or repair is designed to minimize downtime and reduce lifting costs.',
     offerings: ['New downhole rod pump construction', 'Pump repair and reconditioning', 'Pump design customized to your well conditions', 'Longer pump run life to reduce pulling costs'],
     benefits: [
       { title: 'Customized Pump Design', description: 'Engineered specifically for your well depth, fluid gravity, and production volume.' },
@@ -107,7 +107,7 @@ const pageContent = {
       { title: 'Lower Lifting Costs', description: 'Longer pump runs minimize pulling unit frequency and equipment downtime.' },
       { title: 'Precision Reconditioning', description: 'Thorough teardown, inspection, re-barreling, and testing before reinstallation.' },
     ],
-    imageAlt: 'Rod Pumps - Precision USA-Manufactured Parts',
+    imageAlt: 'Rod Pumps - Precision USA-Built Parts',
   },
   'tacs': {
     tag: "TAC's", icon: 'Anchor', image: IMG('industry-oil-gas'),
@@ -177,7 +177,7 @@ const pageContent = {
   'hd-plunger': {
     tag: 'HD Plunger', icon: 'Gauge', image: IMG('process-1'),
     subheadline: 'Heavy-Duty Plungers Built for Extended Run Life',
-    description: 'Our HD plungers are manufactured to tight tolerances for reliable sealing and long service life, even in abrasive or corrosive well conditions. Built with premium materials and precision fit, they help reduce slippage and keep your pump running efficiently between pulls.',
+    description: 'Our HD plungers are built to tight tolerances for reliable sealing and long service life, even in abrasive or corrosive well conditions. Built with premium materials and precision fit, they help reduce slippage and keep your pump running efficiently between pulls.',
     offerings: ['HD plungers in multiple sizes and fits', 'Premium wear-resistant coatings available', 'Precision machining for consistent sealing', 'Fast turnaround on repair and replacement'],
     benefits: [
       { title: 'Precision Fit & Sealing', description: 'Tight tolerances reduce fluid slippage for consistent pump efficiency.' },

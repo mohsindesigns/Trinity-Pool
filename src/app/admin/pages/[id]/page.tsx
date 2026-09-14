@@ -32,6 +32,7 @@ const EDITOR_TEMPLATES = [
   { id: 'contact', label: 'Contact Center', icon: Phone },
   { id: 'service-area', label: 'Service Area', icon: Globe },
   { id: 'blog', label: 'Blog Index', icon: BookOpen },
+  { id: 'artificial-lift-landing', label: 'Artificial Lift Landing', icon: LayoutTemplate },
 ];
 
 export default function DynamicPageEditor({ params }: { params: Promise<{ id: string }> }) {
@@ -208,19 +209,29 @@ export default function DynamicPageEditor({ params }: { params: Promise<{ id: st
               >
                 SEO Settings
               </button>
-              <button
-                onClick={() => setActiveTab('faqs')}
-                className={`px-3 py-2 text-[12px] font-semibold border-r border-[#c3c4c7] transition-all ${activeTab === 'faqs' ? "bg-white text-[#1d2327]" : "text-[#2271b1] hover:text-[#135e96]"
-                  }`}
-              >
-                Page FAQs
-              </button>
+              {page?.template !== 'service-detail' && (
+                <button
+                  onClick={() => setActiveTab('faqs')}
+                  className={`px-3 py-2 text-[12px] font-semibold border-r border-[#c3c4c7] transition-all ${activeTab === 'faqs' ? "bg-white text-[#1d2327]" : "text-[#2271b1] hover:text-[#135e96]"
+                    }`}
+                >
+                  Page FAQs
+                </button>
+              )}
             </div>
 
             <div className="p-0 overflow-x-auto">
               {activeTab === 'content' ? (
                 <div className="p-4 sm:p-5">
-                  {TemplateEditors[page.template] ? (
+                  {page.template === 'service-detail' ? (
+                    <div className="p-10 text-center space-y-3">
+                      <p className="text-[#1d2327] text-[14px] font-semibold">This page's content is managed on the Services screen, not here.</p>
+                      <p className="text-[#646970] text-[13px]">Content and FAQs both live there now, so edits stay in sync with the live site. This screen still works for its Title, Slug, Status and SEO.</p>
+                      <Link href="/admin/services" className="inline-flex items-center gap-1 text-[#2271b1] hover:underline text-[13px] font-semibold">
+                        Go to Services <ArrowUpRight className="w-3.5 h-3.5" />
+                      </Link>
+                    </div>
+                  ) : TemplateEditors[page.template] ? (
                     (() => {
                       const Editor = TemplateEditors[page.template];
                       return <Editor pageId={id} data={content} setData={setContent} />;

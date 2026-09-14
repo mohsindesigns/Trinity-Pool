@@ -238,7 +238,13 @@ const DEFAULT_SERVICE_FIELDS = {
       answer: "There is no fixed count. We plan your visits based on response. No medical referral is required to book a session."
     }
   ],
-  faqSchemaMarkup: ""
+  faqSchemaMarkup: "",
+
+  // Supplier logo strip & photo gallery (both optional, hidden on the live
+  // page when empty)
+  supplierLogos: [],
+  supplierLogosLabel: "Proud Suppliers Of",
+  galleryImages: []
 };
 
 export default function ServicesAdminPage() {
@@ -358,12 +364,18 @@ export default function ServicesAdminPage() {
     setForm({
       ...DEFAULT_SERVICE_FIELDS,
       ...service,
-      // Ensure arrays fall back gracefully
-      benefits: (service.benefits && service.benefits.length > 0) ? service.benefits : DEFAULT_SERVICE_FIELDS.benefits,
-      whoProfiles: (service.whoProfiles && service.whoProfiles.length > 0) ? service.whoProfiles : DEFAULT_SERVICE_FIELDS.whoProfiles,
-      sessionSteps: (service.sessionSteps && service.sessionSteps.length > 0) ? service.sessionSteps : (service.process || DEFAULT_SERVICE_FIELDS.sessionSteps),
+      // Only fall back to the starter defaults when a field has NEVER been
+      // set (a genuinely new/legacy service) -- an existing but
+      // intentionally empty array (e.g. a short page with no Why-Us or
+      // stepper section) must stay empty, or simply opening and saving
+      // that page here would silently reintroduce the starter content.
+      benefits: service.benefits !== undefined ? service.benefits : DEFAULT_SERVICE_FIELDS.benefits,
+      whoProfiles: service.whoProfiles !== undefined ? service.whoProfiles : DEFAULT_SERVICE_FIELDS.whoProfiles,
+      sessionSteps: service.sessionSteps !== undefined ? service.sessionSteps : (service.process || DEFAULT_SERVICE_FIELDS.sessionSteps),
       protocolDurations: (service.protocolDurations && service.protocolDurations.length > 0) ? service.protocolDurations : DEFAULT_SERVICE_FIELDS.protocolDurations,
-      faq: (service.faq && service.faq.length > 0) ? service.faq : (service.faqs || DEFAULT_SERVICE_FIELDS.faq)
+      faq: service.faq !== undefined ? service.faq : (service.faqs || DEFAULT_SERVICE_FIELDS.faq),
+      supplierLogos: service.supplierLogos !== undefined ? service.supplierLogos : DEFAULT_SERVICE_FIELDS.supplierLogos,
+      galleryImages: service.galleryImages !== undefined ? service.galleryImages : DEFAULT_SERVICE_FIELDS.galleryImages
     });
     setSeo(service.seo || {});
     setIsEditing(originalIdx);
@@ -576,7 +588,7 @@ export default function ServicesAdminPage() {
                           </div>
                           <div className="space-y-1">
                             <label className="text-[12px] font-bold text-[#646970]">Primary Booking URL (Leave blank for default portal)</label>
-                            <input type="text" value={form.bookingCtaUrl || ""} onChange={(e) => setForm({ ...form, bookingCtaUrl: e.target.value })} className="w-full border border-[#8c8f94] px-3 py-1.5 text-[14px] rounded-[3px]" placeholder="https://www.styleseat.com/m/v/410muscletherapy" />
+                            <input type="text" value={form.bookingCtaUrl || ""} onChange={(e) => setForm({ ...form, bookingCtaUrl: e.target.value })} className="w-full border border-[#8c8f94] px-3 py-1.5 text-[14px] rounded-[3px]" placeholder="/contact-us/" />
                           </div>
                         </div>
                         <div className="grid grid-cols-2 gap-4">
@@ -743,6 +755,126 @@ export default function ServicesAdminPage() {
                         <div className="space-y-1">
                           <label className="text-[13px] font-bold">Security / Guarantee Text</label>
                           <input type="text" value={form.overviewHipaaText || ""} onChange={(e) => setForm({ ...form, overviewHipaaText: e.target.value })} className="w-full border border-[#8c8f94] px-3 py-1.5 text-[14px] rounded-[3px]" placeholder="100% Satisfaction Guaranteed & Certified" />
+                        </div>
+                      </div>
+
+                      {/* Photo Gallery */}
+                      <div className="border-t border-[#c3c4c7] pt-6 space-y-4">
+                        <div className="flex justify-between items-center">
+                          <div>
+                            <h3 className="text-[14px] font-bold text-[#1d2327]">Photo Gallery</h3>
+                            <p className="text-[12px] text-[#646970]">Extra real photos shown below the benefit cards. Leave empty to hide this row entirely.</p>
+                          </div>
+                          <button type="button" onClick={() => setForm({ ...form, galleryImages: [...(form.galleryImages || []), { src: "", alt: "" }] })} className="text-[#2271b1] text-xs font-bold underline">+ Add Photo</button>
+                        </div>
+                        <div className="space-y-4">
+                          {(form.galleryImages || []).map((img: any, i: number) => (
+                            <div key={i} className="bg-[#f6f7f7] border border-[#c3c4c7] p-4 rounded-sm space-y-3">
+                              <div className="flex justify-between items-center border-b border-[#c3c4c7] pb-1">
+                                <span className="text-[11px] font-mono font-bold text-[#2271b1]">PHOTO #{i + 1}</span>
+                                <button type="button" onClick={() => {
+                                  const ni = form.galleryImages.filter((_: any, idx: number) => idx !== i);
+                                  setForm({ ...form, galleryImages: ni });
+                                }} className="text-[#d63638] text-xs">Remove</button>
+                              </div>
+                              <ImageField
+                                label="Photo"
+                                value={img.src || ""}
+                                onChange={(url) => {
+                                  const ni = [...(form.galleryImages || [])];
+                                  ni[i] = { ...ni[i], src: url };
+                                  setForm({ ...form, galleryImages: ni });
+                                }}
+                              />
+                              <input
+                                type="text"
+                                value={img.alt || ""}
+                                onChange={(e) => {
+                                  const ni = [...(form.galleryImages || [])];
+                                  ni[i] = { ...ni[i], alt: e.target.value };
+                                  setForm({ ...form, galleryImages: ni });
+                                }}
+                                className="w-full border border-[#8c8f94] px-3 py-1.5 text-xs"
+                                placeholder="Photo description (for accessibility & SEO)"
+                              />
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Supplier Logos */}
+                      <div className="border-t border-[#c3c4c7] pt-6 space-y-4">
+                        <div className="flex justify-between items-center">
+                          <div>
+                            <h3 className="text-[14px] font-bold text-[#1d2327]">Supplier / Manufacturer Logos</h3>
+                            <p className="text-[12px] text-[#646970]">For pages that proudly supply a third-party brand (e.g. TRC Sucker Rods, Percheron, Iron Bear). Leave empty to hide this row entirely.</p>
+                          </div>
+                          <button type="button" onClick={() => setForm({ ...form, supplierLogos: [...(form.supplierLogos || []), { name: "", logoUrl: "", url: "" }] })} className="text-[#2271b1] text-xs font-bold underline">+ Add Logo</button>
+                        </div>
+                        {(form.supplierLogos || []).length > 0 && (
+                          <div className="space-y-1">
+                            <label className="text-[13px] font-bold">Row Label</label>
+                            <input type="text" value={form.supplierLogosLabel || ""} onChange={(e) => setForm({ ...form, supplierLogosLabel: e.target.value })} className="w-full border border-[#8c8f94] px-3 py-1.5 text-[14px] rounded-[3px]" placeholder="e.g. Proud Suppliers Of / Built In-House By" />
+                          </div>
+                        )}
+                        <div className="space-y-4">
+                          {(form.supplierLogos || []).map((logo: any, i: number) => (
+                            <div key={i} className="bg-[#f6f7f7] border border-[#c3c4c7] p-4 rounded-sm space-y-3">
+                              <div className="flex justify-between items-center border-b border-[#c3c4c7] pb-1">
+                                <span className="text-[11px] font-mono font-bold text-[#2271b1]">LOGO #{i + 1}</span>
+                                <button type="button" onClick={() => {
+                                  const nl = form.supplierLogos.filter((_: any, idx: number) => idx !== i);
+                                  setForm({ ...form, supplierLogos: nl });
+                                }} className="text-[#d63638] text-xs">Remove</button>
+                              </div>
+                              <input
+                                type="text"
+                                value={logo.name || ""}
+                                onChange={(e) => {
+                                  const nl = [...(form.supplierLogos || [])];
+                                  nl[i] = { ...nl[i], name: e.target.value };
+                                  setForm({ ...form, supplierLogos: nl });
+                                }}
+                                className="w-full border border-[#8c8f94] px-3 py-1 text-xs font-bold"
+                                placeholder="Supplier name (e.g. Iron Bear Manufacturing) -- shown as a text badge until a logo is uploaded"
+                              />
+                              <ImageField
+                                label="Logo Image (optional -- shows a text badge with the name above until set)"
+                                value={logo.logoUrl || ""}
+                                onChange={(url) => {
+                                  const nl = [...(form.supplierLogos || [])];
+                                  nl[i] = { ...nl[i], logoUrl: url };
+                                  setForm({ ...form, supplierLogos: nl });
+                                }}
+                              />
+                              <div className="space-y-1">
+                                <label className="text-[11px] font-bold uppercase tracking-wider text-[#646970]">Logo Chip Background</label>
+                                <select
+                                  value={logo.logoBg || "dark"}
+                                  onChange={(e) => {
+                                    const nl = [...(form.supplierLogos || [])];
+                                    nl[i] = { ...nl[i], logoBg: e.target.value };
+                                    setForm({ ...form, supplierLogos: nl });
+                                  }}
+                                  className="w-full border border-[#8c8f94] px-3 py-1.5 text-xs rounded-[3px] bg-white"
+                                >
+                                  <option value="dark">Dark chip (for white/light logo artwork)</option>
+                                  <option value="light">Light chip (for black/dark logo artwork)</option>
+                                </select>
+                              </div>
+                              <input
+                                type="text"
+                                value={logo.url || ""}
+                                onChange={(e) => {
+                                  const nl = [...(form.supplierLogos || [])];
+                                  nl[i] = { ...nl[i], url: e.target.value };
+                                  setForm({ ...form, supplierLogos: nl });
+                                }}
+                                className="w-full border border-[#8c8f94] px-3 py-1.5 text-xs"
+                                placeholder="Supplier's website URL (optional -- makes the logo clickable)"
+                              />
+                            </div>
+                          ))}
                         </div>
                       </div>
                     </div>

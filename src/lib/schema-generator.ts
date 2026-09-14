@@ -61,7 +61,7 @@ export function getHomepageSchemas(servicesList?: Array<{ name: string }>, faqs?
         },
         "datePublished": "2025-02-07T15:28:30+00:00",
         "dateModified": "2026-07-24T16:08:21+00:00",
-        "description": "Trinity Pump & Supply delivers high-quality USA-manufactured downhole rod pumps, artificial lift equipment and oilfield supplies across Texas and New Mexico.",
+        "description": "Trinity Pump & Supply delivers high-quality USA-built downhole rod pumps, artificial lift equipment and oilfield supplies across Texas and New Mexico.",
         "breadcrumb": {
           "@id": `${BASE_URL}/#breadcrumb`
         },
@@ -146,7 +146,7 @@ export function getHomepageSchemas(servicesList?: Array<{ name: string }>, faqs?
       "@type": "Place",
       "name": "Permian Basin, Texas & New Mexico"
     },
-    "description": "Trinity Pump & Supply manufactures, builds and repairs downhole rod pumps, and supplies artificial lift equipment, pipe, valves, fittings and general oilfield supplies across Texas and New Mexico.",
+    "description": "Trinity Pump & Supply builds and repairs downhole rod pumps, and supplies artificial lift equipment, pipe, valves, fittings and general oilfield supplies across Texas and New Mexico.",
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
       "name": "Oilfield Equipment & Supplies",
@@ -172,7 +172,7 @@ export function getHomepageSchemas(servicesList?: Array<{ name: string }>, faqs?
         "closes": "18:00"
       }
     ],
-    "description": "Trinity Pump & Supply, based in Odessa, Texas, specializes in USA-manufactured downhole rod pumps, HD rod rotators, artificial lift supplies and general oilfield supplies for operators across the Permian Basin."
+    "description": "Trinity Pump & Supply, based in Odessa, Texas, specializes in USA-built downhole rod pumps, HD rod rotators, artificial lift supplies and general oilfield supplies for operators across the Permian Basin."
   };
 
   let faqSchema: any = null;

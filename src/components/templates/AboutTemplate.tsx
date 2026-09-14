@@ -57,22 +57,31 @@ const imageMap: Record<string, any> = {};
 
 // ==================== STAT COUNTER COMPONENT ====================
 const StatCounter = ({ value, label, suffix = "", delay = 0, iconName, description }: {
-  value: number;
+  value: number | string;
   label: string;
   suffix?: string;
   delay?: number;
   iconName: string;
   description?: string
 }) => {
+  // Stats content on this site is a mix of true counts (100) and
+  // descriptive labels ("USA", "TX & NM", "100+") -- only animate the
+  // count-up for a value that is purely numeric; anything else (letters,
+  // a "+", an "&") is displayed as-is. Doing arithmetic on a non-numeric
+  // string here previously produced NaN for every descriptive stat.
+  const numericValue = typeof value === 'number'
+    ? value
+    : (typeof value === 'string' && /^\d+$/.test(value.trim()) ? parseInt(value.trim(), 10) : null);
+
   const [count, setCount] = useState(0);
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-20px" });
 
   useEffect(() => {
-    if (inView) {
+    if (inView && numericValue !== null) {
       let start = 0;
       const duration = 2000;
-      const targetValue = value || 0;
+      const targetValue = numericValue;
       const increment = targetValue / (duration / 16);
 
       const timer = setInterval(() => {
@@ -87,7 +96,9 @@ const StatCounter = ({ value, label, suffix = "", delay = 0, iconName, descripti
 
       return () => clearInterval(timer);
     }
-  }, [inView, value]);
+  }, [inView, numericValue]);
+
+  const displayValue = numericValue !== null ? count : value;
 
   return (
     <div
@@ -106,7 +117,7 @@ const StatCounter = ({ value, label, suffix = "", delay = 0, iconName, descripti
       <div className="relative">
         <div className="flex items-baseline justify-center sm:justify-start gap-0.5 sm:gap-1 mb-2 sm:mb-3">
           <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground tracking-tight">
-            {count}
+            {displayValue}
           </span>
           <span className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-primary">
             {suffix}
@@ -705,7 +716,7 @@ const ServiceCard = ({ service, index }: { service: any; index: number }) => {
         <div className="flex flex-col h-full">
           <div className="relative aspect-[4/5] rounded-[2.5rem] overflow-hidden bg-gradient-to-br from-slate-100 to-slate-200 shadow-lg transition-all duration-700 group-hover:shadow-2xl">
             <img
-              src={service.overviewImage}
+              src={serviceImage}
               alt={service.title}
               className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
             />

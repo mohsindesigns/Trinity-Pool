@@ -53,7 +53,7 @@ export default function TermsPage() {
                 Welcome to Trinity Pump & Supply. By accessing or using our website, booking services, or purchasing products, you agree to be bound by these Terms and Conditions.
               </p>
               <p className="text-muted-foreground leading-relaxed">
-                Trinity Pump & Supply provides <span className="text-primary font-medium">oilfield equipment manufacturing, repair, and artificial lift supply services</span> (primary business) and <span className="text-primary font-medium">general oilfield supplies</span> (secondary business). These Terms apply to all our client sessions, consultations, and products.
+                Trinity Pump & Supply provides <span className="text-primary font-medium">oilfield equipment building, repair, and artificial lift supply services</span> (primary business) and <span className="text-primary font-medium">general oilfield supplies</span> (secondary business). These Terms apply to all our client sessions, consultations, and products.
               </p>
             </div>
 

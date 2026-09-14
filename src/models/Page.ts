@@ -15,10 +15,11 @@ const PageSchema = new mongoose.Schema({
       'faq', 
       'contact', 
       'gallery', 
-      'services', 
+      'services',
       'service-detail',
-      'service-area'
-    ] 
+      'service-area',
+      'artificial-lift-landing'
+    ]
   },
   status: { type: String, enum: ['draft', 'published'], default: 'published' },
   seo: {

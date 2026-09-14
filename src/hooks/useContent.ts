@@ -644,7 +644,7 @@ export const useContent = () => {
                 { image: "", title: "Petrochemical",            subtitle: "Refining & Chemicals",       cta: "Learn More", ctaLink: "#" },
                 { image: "", title: "Water & Wastewater",       subtitle: "Treatment & Management",     cta: "Learn More", ctaLink: "#" },
                 { image: "", title: "Mining & Resources",       subtitle: "Extraction & Processing",    cta: "Learn More", ctaLink: "#" },
-                { image: "", title: "Industrial Manufacturing", subtitle: "General Manufacturing",      cta: "Learn More", ctaLink: "#" },
+                { image: "", title: "Industrial Fabrication", subtitle: "General Fabrication",      cta: "Learn More", ctaLink: "#" },
             ]
         }),
     };

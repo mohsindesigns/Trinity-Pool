@@ -123,7 +123,13 @@ const Navbar = () => {
                   : services;
                 return (
                   <li key={linkIdx} className="static">
-                    <button
+                    {/* Clickable link to the category's landing page (e.g. /artificial-lift/),
+                       with hover still opening the preview dropdown below — previously this
+                       was a plain <button> that only ever opened the dropdown and never
+                       navigated anywhere, so link.href was silently unused. */}
+                    <Link
+                      href={linkHref}
+                      onClick={handleLinkClick}
                       onMouseEnter={() => {
                         if (timeoutRef.current) clearTimeout(timeoutRef.current);
                         setActiveMegaMenu(`mega-${linkIdx}`);
@@ -146,7 +152,7 @@ const Navbar = () => {
                           <ChevronDown size={14} className="opacity-70 ml-0.5" />
                         </motion.span>
                       )}
-                    </button>
+                    </Link>
 
                     <AnimatePresence>
                       {activeMegaMenu === `mega-${linkIdx}` && (
@@ -192,11 +198,11 @@ const Navbar = () => {
                           <div className="mt-4 pt-3.5 border-t border-border-dark/80 flex items-center justify-between text-xs px-1">
                             <span className="text-white/40 font-light">Explore our full range of pump & oilfield supply services</span>
                             <Link
-                              href="/services/"
+                              href={linkHref}
                               onClick={handleLinkClick}
                               className="nav-link text-gold hover:text-gold-light font-bold flex items-center gap-1.5 transition-colors uppercase tracking-wider text-[11px]"
                             >
-                              All Services Index <ArrowRight size={13} />
+                              {link.megaCategory === 'artificial-lift' ? 'View All Artificial Lift Products' : 'All Services Index'} <ArrowRight size={13} />
                             </Link>
                           </div>
                         </motion.div>

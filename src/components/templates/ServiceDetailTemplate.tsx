@@ -13,6 +13,8 @@ import {
 } from 'lucide-react';
 import { useContent } from "../../hooks/useContent";
 import ContactFaqSection from '../QAForm';
+import SupplierLogos from './SupplierLogos';
+import ServiceGallery from './ServiceGallery';
 
 /** Convert markdown links [Label](url) and HTML links to styled clickable anchors */
 function formatRichText(content: string | undefined | null, isDark: boolean = false): string {
@@ -72,7 +74,14 @@ export default function ServiceDetailTemplate({ pageData, params: syncParams }: 
     ...(pageData || {})
   };
 
-  const service = { ...(serviceFromHook || {}), ...(pageDataInner || {}) };
+  // pageDataInner spreads pageData's own top-level keys (slug, title,
+  // featuredImage, seo, ...) but pageData.content itself stays nested —
+  // it never flattens onto pageDataInner. Every per-service field this
+  // template reads (heroDescription, benefits, whoProfiles, sessionSteps,
+  // supplierLogos, galleryImages, etc.) lives in pageData.content, so it
+  // must be spread explicitly here or it silently falls back to the
+  // hardcoded defaults below regardless of what's actually saved.
+  const service = { ...(serviceFromHook || {}), ...(pageDataInner || {}), ...(pageData?.content || {}) };
 
   if (!service || (!service.slug && !service.title && !service.id)) {
     return (
@@ -95,7 +104,7 @@ export default function ServiceDetailTemplate({ pageData, params: syncParams }: 
     heroSectionLabel: service.heroSectionLabel || serviceDetailPage.heroSectionLabel || "OILFIELD SERVICE OVERVIEW",
 
     // Single distinct Hero Description
-    heroDescription: service.heroDescription || service.heroSubtitle || service.heroDescriptionSuffix || service.subheadline || service.description || serviceDetailPage.heroDescription || "USA-manufactured equipment and dependable supply, built to keep your lease producing.",
+    heroDescription: service.heroDescription || service.heroSubtitle || service.heroDescriptionSuffix || service.subheadline || service.description || serviceDetailPage.heroDescription || "USA-built equipment and dependable supply, ready to keep your lease producing.",
 
     // Specs Strip
     specDurationValue: service.specDurationValue || serviceDetailPage.specDurationValue || "USA-Made Parts",
@@ -112,7 +121,7 @@ export default function ServiceDetailTemplate({ pageData, params: syncParams }: 
     statsItem1Val: service.statsItem1Val || serviceDetailPage.statsItem1Val || "100+",
     statsItem1Label: service.statsItem1Label || serviceDetailPage.statsItem1Label || "Years Combined Experience",
     statsItem2Val: service.statsItem2Val || serviceDetailPage.statsItem2Val || "USA",
-    statsItem2Label: service.statsItem2Label || serviceDetailPage.statsItem2Label || "Manufactured Parts",
+    statsItem2Label: service.statsItem2Label || serviceDetailPage.statsItem2Label || "Built Parts",
     statsItem3Val: service.statsItem3Val || serviceDetailPage.statsItem3Val || "TX & NM",
     statsItem3Label: service.statsItem3Label || serviceDetailPage.statsItem3Label || "Oilfield Coverage",
     statsItem4Val: service.statsItem4Val || serviceDetailPage.statsItem4Val || "24/7",
@@ -128,11 +137,11 @@ export default function ServiceDetailTemplate({ pageData, params: syncParams }: 
     tailoredSub: service.tailoredSub ?? serviceDetailPage.tailoredSub ?? "Built for the Permian Basin",
 
     // Single distinct Overview Clinical Narrative
-    overviewDescription: service.overviewDescription || service.overviewIntroSuffix || service.description || serviceDetailPage.overviewDescription || "We manufacture, build and supply oilfield equipment using USA-made materials, matched to your well conditions to lower lifting costs and extend run life.",
+    overviewDescription: service.overviewDescription || service.overviewIntroSuffix || service.description || serviceDetailPage.overviewDescription || "We build and supply oilfield equipment using USA-made materials, matched to your well conditions to lower lifting costs and extend run life.",
 
     overviewCtaText: service.overviewCtaText || serviceDetailPage.overviewCtaText || "REQUEST A QUOTE",
     overviewCtaUrl: service.overviewCtaUrl || service.bookingCtaUrl || globalBooking,
-    overviewHipaaText: service.overviewHipaaText || serviceDetailPage.overviewHipaaText || "USA-Manufactured & Field-Tested",
+    overviewHipaaText: service.overviewHipaaText || serviceDetailPage.overviewHipaaText || "USA-Built & Field-Tested",
 
     // Candidates / Why Choose Us Section
     candidateSectionLabel: service.candidateSectionLabel || serviceDetailPage.candidateSectionLabel || "WHY OPERATORS CHOOSE TRINITY",
@@ -148,7 +157,7 @@ export default function ServiceDetailTemplate({ pageData, params: syncParams }: 
         suitability: "FIELD-TESTED"
       },
       {
-        label: "USA-Manufactured Parts",
+        label: "USA-Built Parts",
         desc: "Alloy steel, 316 Stainless and Monel components built to hold up under demanding Permian Basin conditions.",
         suitability: "USA-MADE"
       },
@@ -182,6 +191,11 @@ export default function ServiceDetailTemplate({ pageData, params: syncParams }: 
     benefitsTitle: service.benefitsTitle || serviceDetailPage.benefitsTitle || "Key Benefits",
     benefitCardDesc: service.benefitCardDesc || serviceDetailPage.benefitCardDesc || "Built to lower costs and keep your well running longer between pulls.",
 
+    // Optional supplier logo strip & photo gallery (both hidden when empty)
+    supplierLogos: service.supplierLogos || serviceDetailPage.supplierLogos || [],
+    supplierLogosLabel: service.supplierLogosLabel || serviceDetailPage.supplierLogosLabel || "Proud Suppliers Of",
+    galleryImages: service.galleryImages || serviceDetailPage.galleryImages || [],
+
     // Dynamic Step Sequence
     sessionSteps: service.sessionSteps || (service.process && service.process.length > 0 ? service.process.map((step: any, idx: number) => ({
       num: String(idx + 1).padStart(2, '0'),
@@ -196,7 +210,7 @@ export default function ServiceDetailTemplate({ pageData, params: syncParams }: 
         {
           num: "02",
           title: "Build or Repair",
-          desc: "We manufacture, build and repair equipment using USA-manufactured alloy steel, 316 Stainless and Monel components."
+          desc: "We build and repair equipment using USA-made alloy steel, 316 Stainless and Monel components."
         },
         {
           num: "03",
@@ -220,7 +234,7 @@ export default function ServiceDetailTemplate({ pageData, params: syncParams }: 
   // Format benefits array
   const benefits = (service.benefits && service.benefits.length > 0) ? service.benefits : [
     {
-      title: "USA-Manufactured Materials",
+      title: "USA-Made Materials",
       description: "Alloy steel, 316 Stainless and Monel components built for durability and corrosion resistance."
     },
     {
@@ -473,6 +487,12 @@ export default function ServiceDetailTemplate({ pageData, params: syncParams }: 
                       );
                     })}
                   </div>
+
+                  {/* Optional Photo Gallery */}
+                  <ServiceGallery images={pg.galleryImages} />
+
+                  {/* Optional Supplier Logo Strip */}
+                  <SupplierLogos logos={pg.supplierLogos} label={pg.supplierLogosLabel} />
                 </div>
 
                 {/* Bottom Action Footer */}
@@ -499,7 +519,10 @@ export default function ServiceDetailTemplate({ pageData, params: syncParams }: 
 
         {/* ════════════════════════════════════════════════════════
            4. WHY US & TARGET CANDIDATES (Editorial Grid)
+           Hidden entirely when no whoProfiles are supplied — short pages
+           skip this section rather than showing the generic fallback.
            ════════════════════════════════════════════════════════ */}
+        {pg.whoProfiles.length > 0 && (
         <section className="py-20 md:py-28 bg-brand-bg-light border-b border-border-light relative">
           <div className="site-container">
             {/* Centered Editorial Header */}
@@ -561,15 +584,19 @@ export default function ServiceDetailTemplate({ pageData, params: syncParams }: 
             </div>
           </div>
         </section>
+        )}
 
         {/* ════════════════════════════════════════════════════════
            5. SESSION PROTOCOL (Dark Luxury Connected Stepper Stage)
+           The header + step grid are hidden when no sessionSteps are
+           supplied, but the Request-a-Quote banner below always shows.
            ════════════════════════════════════════════════════════ */}
         <section className="py-24 md:py-32 bg-dark text-white relative border-b border-white/10 overflow-hidden">
           {/* Ambient Gold Glow Orbs */}
           <div className="absolute top-1/2 left-1/3 -translate-y-1/2 w-[500px] h-[500px] bg-gold/[0.04] rounded-full blur-[160px] pointer-events-none" />
 
           <div className="site-container relative z-10">
+            {pg.sessionSteps.length > 0 && (
             <div className="max-w-3xl mb-16 md:mb-20 text-left">
               <div className="flex items-center gap-3 mb-4">
                 <span className="w-8 h-[1px] bg-gold" />
@@ -588,8 +615,10 @@ export default function ServiceDetailTemplate({ pageData, params: syncParams }: 
                 />
               )}
             </div>
+            )}
 
             {/* Dynamic Step Connected Cards */}
+            {pg.sessionSteps.length > 0 && (
             <div className={stepperGridClass}>
               {pg.sessionSteps.map((step: any, idx: number) => (
                 <div
@@ -623,8 +652,10 @@ export default function ServiceDetailTemplate({ pageData, params: syncParams }: 
                 </div>
               ))}
             </div>
+            )}
 
-            {/* Bottom Action Conversion Banner */}
+            {/* Bottom Action Conversion Banner — always visible, per the site-wide
+               "Request a Quote CTA everywhere" rule, regardless of sessionSteps. */}
             <div className="stepper-banner-cta mt-16 p-8 md:p-10 rounded-xl bg-gradient-to-r from-gold/20 via-dark to-dark flex flex-col sm:flex-row items-center justify-between gap-6 shadow-2xl text-left border border-white/10">
               <div className="max-w-xl">
                 {pg.protocolBannerBadge && (

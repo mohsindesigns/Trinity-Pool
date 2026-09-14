@@ -42,9 +42,9 @@ export default function GalleryTemplate({ pageData }: { pageData?: any }) {
   const label = stripHtml(galleryPage.header?.badge || galleryPage.label || "OUR PORTFOLIO");
   const titleLine1 = stripHtml(galleryPage.header?.titlePrefix || galleryPage.titleLine1 || "Real Results,");
   const titleLine2 = stripHtml(galleryPage.header?.titleHighlight || galleryPage.titleLine2 || "Real Stories");
-  const description = stripHtml(galleryPage.header?.description || galleryPage.description || "Browse our recovery gallery and see how targeted muscle therapy helps active adults and athletes perform better and live pain-free.");
-  const ctaBook = galleryPage.header?.ctaBook || galleryPage.ctaBook || "BOOK RECOVERY SESSION";
-  const bookingUrl = globalMetadata?.bookingUrl || "https://www.styleseat.com/m/v/410muscletherapy";
+  const description = stripHtml(galleryPage.header?.description || galleryPage.description || "Browse real photos from our shop and the field, and see the equipment we build and supply for Permian Basin operators.");
+  const ctaBook = galleryPage.header?.ctaBook || galleryPage.ctaBook || "REQUEST A QUOTE";
+  const bookingUrl = globalMetadata?.bookingUrl || "/contact-us/";
 
   // Helper to resolve dynamic or asset image source
   const resolveImage = (imgSrc: any) => {

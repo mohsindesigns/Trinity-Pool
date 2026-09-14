@@ -201,7 +201,7 @@ export default function StickyServicesSection() {
                     </Link>
 
                     <a
-                      href={service.bookingCtaUrl || globalMetadata?.bookingUrl || "https://www.styleseat.com/m/v/410muscletherapy"}
+                      href={service.bookingCtaUrl || globalMetadata?.bookingUrl || "/contact-us/"}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="btn-outline-white inline-flex items-center justify-center py-2 px-3.5 sm:px-4 text-[10.5px] sm:text-[11px] font-bold uppercase tracking-wider rounded-lg whitespace-nowrap flex-shrink-0 group/book hover:border-gold hover:text-gold transition-all duration-200"

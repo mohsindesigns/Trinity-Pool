@@ -174,7 +174,7 @@ export default function HomeEditor({ pageId, data, setData }: { pageId: string, 
             { image: "", title: "Petrochemical",            subtitle: "Refining & Chemicals",       cta: "Learn More", ctaLink: "#" },
             { image: "", title: "Water & Wastewater",       subtitle: "Treatment & Management",     cta: "Learn More", ctaLink: "#" },
             { image: "", title: "Mining & Resources",       subtitle: "Extraction & Processing",    cta: "Learn More", ctaLink: "#" },
-            { image: "", title: "Industrial Manufacturing", subtitle: "General Manufacturing",      cta: "Learn More", ctaLink: "#" },
+            { image: "", title: "Industrial Fabrication", subtitle: "General Fabrication",      cta: "Learn More", ctaLink: "#" },
           ]
         }
       });
@@ -1417,7 +1417,7 @@ export default function HomeEditor({ pageId, data, setData }: { pageId: string, 
                         value={data.quote?.trustHipa || ""}
                         onChange={(e) => updateSection("quote", "trustHipa", e.target.value)}
                         className={UI.input}
-                        placeholder="e.g. USA-Manufactured Parts"
+                        placeholder="e.g. USA-Built Parts"
                       />
                     </div>
                     <div className="space-y-1.5">

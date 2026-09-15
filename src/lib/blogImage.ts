@@ -20,7 +20,7 @@ export function normalizeBlogImage(url?: string | null): string {
   // Legacy WordPress wp-content path: convert to /uploads/blog/<filename>
   if (trimmed.includes('wp-content/uploads')) {
     try {
-      const parsed = new URL(trimmed.startsWith('http') ? trimmed : `https://410-muscletherapy.com${trimmed.startsWith('/') ? '' : '/'}${trimmed}`);
+      const parsed = new URL(trimmed.startsWith('http') ? trimmed : `https://trinitypumpsupply.com${trimmed.startsWith('/') ? '' : '/'}${trimmed}`);
       const pathname = parsed.pathname;
       const filename = pathname.substring(pathname.lastIndexOf('/') + 1);
       if (filename) {

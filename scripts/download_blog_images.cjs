@@ -6,7 +6,7 @@ const http = require('http');
 require('dotenv').config({ path: path.resolve(__dirname, '../.env.local') });
 
 const uri = process.env.MONGODB_URI;
-const dbName = process.env.MONGODB_DB || '410_muscle_therapy';
+const dbName = process.env.MONGODB_DB || 'trinity_pump_supply';
 const blogUploadsDir = path.resolve(__dirname, '../public/uploads/blog');
 
 // Ensure the directory exists
@@ -117,7 +117,7 @@ async function run() {
         while ((match = imgRegex.exec(post.content)) !== null) {
           const imgUrl = match[1];
           // Check if it's a remote URL from WordPress or elsewhere
-          if (imgUrl.startsWith('http') && (imgUrl.includes('410-muscletherapy.com') || imgUrl.includes('wp-content'))) {
+          if (imgUrl.startsWith('http') && (imgUrl.includes('trinitypumpsupply.com') || imgUrl.includes('wp-content'))) {
             imageUrls.push(imgUrl);
           }
         }

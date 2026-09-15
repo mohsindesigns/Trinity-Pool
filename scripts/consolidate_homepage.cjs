@@ -25,9 +25,9 @@ async function consolidate() {
       status: 'published',
       isTrashed: false,
       seo: {
-        metaTitle: '410 Muscle Therapy | Performance Recovery & Sports Massage in Maryland',
+        metaTitle: 'Trinity Pump & Supply | Performance Recovery & Sports Massage in Maryland',
         metaDescription: 'Specialized sports massage, corrective movement therapy, and fascial stretch therapy in Timonium, Maryland.',
-        canonicalUrl: 'https://410-muscletherapy.com/'
+        canonicalUrl: 'https://trinitypumpsupply.com/'
       },
       content: completeData,
       createdAt: new Date(),

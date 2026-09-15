@@ -109,7 +109,7 @@ export async function POST(request: Request) {
     // Construct email HTML
     let html = `
       <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #eee; padding: 20px; border-radius: 10px;">
-        <h2 style="color: #2563eb; border-bottom: 2px solid #2563eb; padding-bottom: 10px;">🦅 410 Muscle Therapy - New Submission</h2>
+        <h2 style="color: #2563eb; border-bottom: 2px solid #2563eb; padding-bottom: 10px;">🦅 Trinity Pump & Supply - New Submission</h2>
         <p><strong>Type:</strong> ${type || 'General Inquiry'}</p>
         <p><strong>Name:</strong> ${name}</p>
         <p><strong>Email:</strong> ${email}</p>
@@ -145,14 +145,14 @@ export async function POST(request: Request) {
     html += `
         <p style="font-size: 12px; color: #666; margin-top: 30px; border-top: 1px solid #eee; padding-top: 10px;">
           ⏱️ Submitted: ${new Date().toLocaleString()}<br>
-          ⚡ 410 Muscle Therapy • Performance Recovery
+          ⚡ Trinity Pump & Supply • Performance Recovery
         </p>
       </div>
     `;
 
     // Prepare email content
     const emailContent = `
-NEW SUBMISSION - 410 Muscle Therapy
+NEW SUBMISSION - Trinity Pump & Supply
 ----------------------------------
 Name: ${name}
 Email: ${email}
@@ -174,7 +174,7 @@ Source: Website
 
     // Send email using Resend
     const { data: resendData, error: resendError } = await resend.emails.send({
-      from: '410 Muscle Therapy <onboarding@resend.dev>',
+      from: 'Trinity Pump & Supply <onboarding@resend.dev>',
       to: [receiverEmail],
       subject: subject || `New Lead: ${name}`,
       html: `

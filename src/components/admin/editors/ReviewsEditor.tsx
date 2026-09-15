@@ -20,7 +20,7 @@ export default function ReviewsEditor({ data, setData }: { pageId: string, data:
     if (data && Object.keys(data).length === 0) {
        setData({
          testimonials: {
-           section: { badge: "Social Proof", headline: "What Our Customers Say", description: "Discover why athletes and active adults across Maryland trust 410 Muscle Therapy." },
+           section: { badge: "Social Proof", headline: "What Our Customers Say", description: "Discover why athletes and active adults across Maryland trust Trinity Pump & Supply." },
            testimonials: [],
            stats: { rating: 5.0, count: 500, label: "Google Reviews" }
          }

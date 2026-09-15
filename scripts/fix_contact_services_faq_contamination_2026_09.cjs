@@ -31,7 +31,7 @@ const { MongoClient } = require('mongodb');
 const path = require('path');
 require('dotenv').config({ path: path.resolve(__dirname, '../.env.local'), quiet: true });
 const uri = process.env.MONGODB_URI;
-const dbName = process.env.MONGODB_DB || '410_muscle_therapy';
+const dbName = process.env.MONGODB_DB || 'trinity_pump_supply';
 
 const REAL_PHONE = '830-279-3996';
 const REAL_EMAIL = 'trinitypumpsupply@gmail.com';

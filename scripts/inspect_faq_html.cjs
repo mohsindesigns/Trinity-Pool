@@ -12,7 +12,7 @@ async function inspectPostFaqHtml() {
     'are-you-searching-for-the-best-massage-therapy-near-me',
     'where-to-get-a-foot-massage-near-me-for-pain-relief-and-recovery',
     'best-massage-services-in-maryland',
-    'how-410-muscle-therapy-helps-with-true-relief',
+    'how-trinity-pump-supply-helps-with-true-relief',
     'what-is-russian-massage'
   ];
 

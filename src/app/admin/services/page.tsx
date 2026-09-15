@@ -148,7 +148,7 @@ const DEFAULT_SERVICE_FIELDS = {
   ],
 
   // 4. Candidates & Why Us
-  candidateSectionLabel: "WHY 410 MUSCLE THERAPY FEELS DIFFERENT",
+  candidateSectionLabel: "WHY TRINITY PUMP & SUPPLY FEELS DIFFERENT",
   candidateTitle1: "Targeted Care.",
   candidateTitle2: "Built Around You.",
   candidateDescription: "Movement work shaped around what your body can comfortably do. The goal is useful progress, not a rushed routine or generic adjustment.",
@@ -556,7 +556,7 @@ export default function ServicesAdminPage() {
                           value={form.heroDescription || ""}
                           onChange={(e) => setForm({ ...form, heroDescription: e.target.value })}
                           className="w-full border border-[#8c8f94] px-3 py-2 text-[14px] rounded-[3px] h-24"
-                          placeholder="e.g. Tight hips, aching shoulders, back pain, or sciatica can keep returning. Corrective movement therapy sessions in Maryland at [410 Muscle Therapy](https://410-muscletherapy.com/) look beyond the sore spot..."
+                          placeholder="e.g. Tight hips, aching shoulders, back pain, or sciatica can keep returning. Corrective movement therapy sessions in Maryland at [Trinity Pump & Supply](https://trinitypumpsupply.com/) look beyond the sore spot..."
                         />
                         <p className="text-[11px] text-[#646970]">You can use markdown links like <code>[Link Text](https://url.com)</code> to insert clickable links.</p>
                       </div>
@@ -735,7 +735,7 @@ export default function ServicesAdminPage() {
                                     setForm({ ...form, benefits: nb });
                                   }}
                                   className="w-full border border-[#8c8f94] px-3 py-1.5 text-xs h-20"
-                                  placeholder="Description with optional markdown link (e.g. When the hips stay stiff... For added work, [Maryland stretch therapy](https://410-muscletherapy.com/maryland-stretch-therapy/) may also support...)"
+                                  placeholder="Description with optional markdown link (e.g. When the hips stay stiff... For added work, [Maryland stretch therapy](https://trinitypumpsupply.com/maryland-stretch-therapy/) may also support...)"
                                 />
                               </div>
                             </div>
@@ -886,7 +886,7 @@ export default function ServicesAdminPage() {
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div className="space-y-1">
                           <label className="text-[13px] font-bold">Section Label / Badge</label>
-                          <input type="text" value={form.candidateSectionLabel || ""} onChange={(e) => setForm({ ...form, candidateSectionLabel: e.target.value })} className="w-full border border-[#8c8f94] px-3 py-1.5 text-[14px] rounded-[3px]" placeholder="e.g. WHY 410 MUSCLE THERAPY FEELS DIFFERENT" />
+                          <input type="text" value={form.candidateSectionLabel || ""} onChange={(e) => setForm({ ...form, candidateSectionLabel: e.target.value })} className="w-full border border-[#8c8f94] px-3 py-1.5 text-[14px] rounded-[3px]" placeholder="e.g. WHY TRINITY PUMP & SUPPLY FEELS DIFFERENT" />
                         </div>
                         <div className="space-y-1">
                           <label className="text-[13px] font-bold">Profile / Advantage Badge Prefix</label>
@@ -911,7 +911,7 @@ export default function ServicesAdminPage() {
                           value={form.candidateDescription || ""}
                           onChange={(e) => setForm({ ...form, candidateDescription: e.target.value })}
                           className="w-full border border-[#8c8f94] px-3 py-2 text-[14px] rounded-[3px] h-20"
-                          placeholder="e.g. At 410 Muscle Therapy, our corrective movement therapy in Maryland is designed for people who want more than a feel-good hour..."
+                          placeholder="e.g. At Trinity Pump & Supply, our corrective movement therapy in Maryland is designed for people who want more than a feel-good hour..."
                         />
                       </div>
 
@@ -960,7 +960,7 @@ export default function ServicesAdminPage() {
                                       setForm({ ...form, whoProfiles: np });
                                     }}
                                     className="w-full border border-[#8c8f94] px-2.5 py-1.5 text-xs h-20"
-                                    placeholder="Description with optional links (e.g. Eight years of professional experience... and [deep tissue massage Maryland](https://410-muscletherapy.com/deep-tissue-massage-maryland/) may help...)"
+                                    placeholder="Description with optional links (e.g. Eight years of professional experience... and [deep tissue massage Maryland](https://trinitypumpsupply.com/deep-tissue-massage-maryland/) may help...)"
                                   />
                                 </div>
                                 <div className="space-y-1">
@@ -1084,7 +1084,7 @@ export default function ServicesAdminPage() {
                                     setForm({ ...form, sessionSteps: ns });
                                   }}
                                   className="w-full border border-[#8c8f94] px-2.5 py-1.5 text-xs h-20"
-                                  placeholder="Step description with optional markdown links (e.g. Hands-on work focuses on tight areas... [myofascial release therapy Maryland](https://410-muscletherapy.com/myofascial-release-maryland/) may also support...)"
+                                  placeholder="Step description with optional markdown links (e.g. Hands-on work focuses on tight areas... [myofascial release therapy Maryland](https://trinitypumpsupply.com/myofascial-release-maryland/) may also support...)"
                                 />
                               </div>
                             </div>

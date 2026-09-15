@@ -4,7 +4,7 @@ import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import * as LucideIcons from 'lucide-react';
-import decksImg from '@/assets/outdoor-sitting-desk.png';
+const decksImg = "/images/trinity/hero.jpg";
 
 interface CardData {
   title?: string;

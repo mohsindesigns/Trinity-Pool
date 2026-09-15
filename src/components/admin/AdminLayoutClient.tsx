@@ -48,7 +48,7 @@ export default function AdminLayoutClient({
     pathname?.startsWith("/admin/reset-password");
 
   useEffect(() => {
-    document.title = "410 Dashboard Mohsin Design";
+    document.title = "Trinity Pump & Supply Dashboard Mohsin Design";
 
     if (!isPublicPath && !user) {
       // Background re-fetch if initialUser was not passed on client navigation
@@ -90,7 +90,7 @@ export default function AdminLayoutClient({
           </button>
           <Link href="/admin" className="hover:bg-[#2c3338] px-4 h-full flex items-center gap-2">
             <Shield className="w-4.5 h-4.5 text-[#72aee6]" />
-            <span className="font-bold text-[#f0f0f1]">410 Muscle Therapy</span>
+            <span className="font-bold text-[#f0f0f1]">Trinity Pump & Supply</span>
           </Link>
           <Link
             href="/"

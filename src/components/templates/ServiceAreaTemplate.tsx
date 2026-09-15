@@ -147,13 +147,13 @@ export default function ServiceAreaTemplate({ pageData }: { pageData?: any }) {
     headline: "Our Coverage Area",
     title: "Serving Greater Maryland",
     description: "Centrally located in Timonium, Maryland, providing elite sports recovery, fascial stretch therapy, and clinical bodywork across Baltimore and surrounding counties.",
-    iframeUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d98687.20815410942!2d-76.6908587!3d39.4357022!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c80e1b69829983%3A0xd65352c8bdfc7857!2sTimonium%2C%20MD!5e0!3m2!1sen!2sus!4v1700000000000",
+    iframeUrl: "https://www.google.com/maps?q=4608+Gist+Ave,+Odessa,+TX+79764&output=embed",
     bullet1Title: "Primary Coverage Area",
     bullet1Text: "Timonium, Baltimore County, Howard County & surrounding Maryland communities.",
     bullet2Title: "Clinic Hours",
     bullet2Text: "Sun - Sat: 8:00 AM - 7:00 PM (By Appointment)",
     bullet3Title: "Direct Contact Hotline",
-    bullet3Text: "(410) 555-0199"
+    bullet3Text: "830-279-3996"
   };
 
   const materialsData = content.materials || {
@@ -210,12 +210,12 @@ export default function ServiceAreaTemplate({ pageData }: { pageData?: any }) {
 
   const pageUrlDisplay = (() => {
     const slug = pageData?.slug?.toString().trim();
-    if (!slug) return "https://410-muscletherapy.com";
+    if (!slug) return "https://trinitypumpsupply.com";
 
     const normalizedSlug = slug.replace(/^\/+|\/+$/g, "");
     if (/^https?:\/\//i.test(normalizedSlug)) return normalizedSlug;
 
-    return `https://410-muscletherapy.com/${normalizedSlug}`;
+    return `https://trinitypumpsupply.com/${normalizedSlug}`;
   })();
 
   return (

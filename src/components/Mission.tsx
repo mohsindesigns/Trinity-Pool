@@ -1,7 +1,7 @@
 import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import teamImage from "@/assets/team-image.jpg";
+const teamImage = "/images/trinity/hero.jpg";
 import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -22,7 +22,7 @@ const Mission = () => {
       <div className="grid-editorial items-center">
         <div className="md:col-span-5 order-2 md:order-1">
           <div className="mission-image overflow-hidden aspect-[3/4] relative">
-            <Image src={teamImage} alt="410 Muscle Therapy team at work" className="object-cover" fill quality={100} />
+            <Image src={teamImage} alt="Trinity Pump & Supply team at work" className="object-cover" fill quality={100} />
             <div className="absolute inset-0 bg-gradient-to-t from-primary/50 to-transparent" />
             <div className="absolute bottom-6 left-6 right-6 bg-primary/90 backdrop-blur-sm p-5 border border-primary-foreground/10">
               <div className="grid grid-cols-3 gap-4">
@@ -41,8 +41,8 @@ const Mission = () => {
           <div className="accent-line mb-6 mission-copy" />
           <h2 className="heading-lg text-foreground mb-8 mission-headline">Performance Beyond<br />Limits.</h2>
           <div className="space-y-6">
-            <p className="body-lg text-foreground/90 mission-copy">410 Muscle Therapy was founded to provide elite clinical bodywork, mobility restoration, and injury prevention designed for peak athletic longevity.</p>
-            <p className="body-sm text-muted-foreground mission-copy">Based in Timonium, Maryland, 410 Muscle Therapy delivers targeted manual therapy, fascial stretch, and biomechanical recovery to athletes and active adults across Maryland.</p>
+            <p className="body-lg text-foreground/90 mission-copy">Trinity Pump & Supply was founded to provide elite clinical bodywork, mobility restoration, and injury prevention designed for peak athletic longevity.</p>
+            <p className="body-sm text-muted-foreground mission-copy">Based in Timonium, Maryland, Trinity Pump & Supply delivers targeted manual therapy, fascial stretch, and biomechanical recovery to athletes and active adults across Maryland.</p>
             <p className="body-sm text-muted-foreground mission-copy italic border-l-2 border-primary/30 pl-4">"We don't just treat symptoms. We optimize human movement, restore tissue glide, and empower athletes to perform at their absolute best."</p>
           </div>
         </div>

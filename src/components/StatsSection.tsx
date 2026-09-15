@@ -13,7 +13,7 @@ export default function StatsSection() {
     titleLine1 = "Proven Results.",
     titleLine2 = "Professional",
     titleItalicWord = "Standards.",
-    description = "At 410 Muscle Therapy, we believe that true recovery is built on specialized bodywork and precision movement science.",
+    description = "At Trinity Pump & Supply, we believe that true recovery is built on specialized bodywork and precision movement science.",
     image = "/uploads/blog/2_massage-service.jpg",
     imageAlt = "Clinical sports massage session"
   } = stats || {};

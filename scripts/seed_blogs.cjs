@@ -4,7 +4,7 @@ const path = require('path');
 require('dotenv').config({ path: path.resolve(__dirname, '../.env.local') });
 
 const uri = process.env.MONGODB_URI;
-const dbName = process.env.MONGODB_DB || '410_muscle_therapy';
+const dbName = process.env.MONGODB_DB || 'trinity_pump_supply';
 const blogsPath = path.resolve(__dirname, '../seedblogs.json');
 
 function cleanContent(rawContent) {
@@ -126,7 +126,7 @@ async function run() {
       }
       const userResult = await db.collection('users').insertOne({
         username: 'admin',
-        email: 'info@410muscletherapy.com',
+        email: 'info@trinitypumpsupply.com',
         password: '$2a$10$U27fV3Ld/P3z9r04r535feMef2wR1z6N3aV1Y42v.R7v2h.aP8rF2', // password: admin
         role: roleDoc._id,
         status: 'active',
@@ -219,7 +219,7 @@ async function run() {
           metaTitle: title,
           metaDescription: excerpt,
           focusKeyword: '',
-          canonicalUrl: `https://410-muscletherapy.com/blog/${slug}`,
+          canonicalUrl: `https://trinitypumpsupply.com/blog/${slug}`,
           metaRobotsIndex: 'index',
           metaRobotsFollow: 'follow',
           ogTitle: title,

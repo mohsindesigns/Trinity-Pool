@@ -114,8 +114,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title: seo.twitterTitle || seo.ogTitle || seo.metaTitle || page.title,
       description: seo.twitterDescription || seo.ogDescription || seo.metaDescription,
       images: [getAbsoluteUrl(seo.twitterImage || seo.ogImage || seo.featuredImage) || `${BASE_URL}/logo.png`],
-      site: "@410MuscleTherapy",
-      creator: "@410MuscleTherapy",
+      site: "@trinitypumpsupply",
+      creator: "@trinitypumpsupply",
     },
   };
 }

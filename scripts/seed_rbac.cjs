@@ -4,7 +4,7 @@ const path = require('path');
 require('dotenv').config({ path: path.resolve(__dirname, '../.env.local') });
 
 const MONGODB_URI = process.env.MONGODB_URI;
-const dbName = '410_muscle_therapy';
+const dbName = 'trinity_pump_supply';
 
 if (!MONGODB_URI) {
     console.error("MONGODB_URI not found");

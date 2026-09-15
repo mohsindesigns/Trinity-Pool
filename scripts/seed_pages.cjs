@@ -3,7 +3,7 @@ const path = require('path');
 require('dotenv').config({ path: path.resolve(__dirname, '../.env.local') });
 
 const uri = process.env.MONGODB_URI;
-const dbName = '410_muscle_therapy';
+const dbName = 'trinity_pump_supply';
 
 async function seedPages() {
     if (!uri) {
@@ -25,8 +25,8 @@ async function seedPages() {
                 template: 'home',
                 status: 'published',
                 metadata: {
-                    title: '410 Muscle Therapy | Home',
-                    description: 'Welcome to 410 Muscle Therapy - Your Home Improvement Experts.'
+                    title: 'Trinity Pump & Supply | Home',
+                    description: 'Welcome to Trinity Pump & Supply - Your Home Improvement Experts.'
                 },
                 createdAt: new Date(),
                 updatedAt: new Date()
@@ -37,7 +37,7 @@ async function seedPages() {
                 template: 'about',
                 status: 'published',
                 metadata: {
-                    title: 'About 410 Muscle Therapy',
+                    title: 'About Trinity Pump & Supply',
                     description: 'Learn about our history, mission, and commitment to excellence.'
                 },
                 createdAt: new Date(),
@@ -49,7 +49,7 @@ async function seedPages() {
                 template: 'services',
                 status: 'published',
                 metadata: {
-                    title: 'Our Services | 410 Muscle Therapy',
+                    title: 'Our Services | Trinity Pump & Supply',
                     description: 'Explore our wide range of home improvement services.'
                 },
                 createdAt: new Date(),
@@ -61,8 +61,8 @@ async function seedPages() {
                 template: 'team',
                 status: 'published',
                 metadata: {
-                    title: 'Our Team | 410 Muscle Therapy',
-                    description: 'Meet the professionals behind 410 Muscle Therapy.'
+                    title: 'Our Team | Trinity Pump & Supply',
+                    description: 'Meet the professionals behind Trinity Pump & Supply.'
                 },
                 createdAt: new Date(),
                 updatedAt: new Date()
@@ -73,8 +73,8 @@ async function seedPages() {
                 template: 'careers',
                 status: 'published',
                 metadata: {
-                    title: 'Careers | 410 Muscle Therapy',
-                    description: 'Explore career opportunities with 410 Muscle Therapy.'
+                    title: 'Careers | Trinity Pump & Supply',
+                    description: 'Explore career opportunities with Trinity Pump & Supply.'
                 },
                 createdAt: new Date(),
                 updatedAt: new Date()
@@ -85,7 +85,7 @@ async function seedPages() {
                 template: 'reviews',
                 status: 'published',
                 metadata: {
-                    title: 'Reviews | 410 Muscle Therapy',
+                    title: 'Reviews | Trinity Pump & Supply',
                     description: 'Read what our customers have to say about us.'
                 },
                 createdAt: new Date(),
@@ -97,7 +97,7 @@ async function seedPages() {
                 template: 'faq',
                 status: 'published',
                 metadata: {
-                    title: 'FAQ | 410 Muscle Therapy',
+                    title: 'FAQ | Trinity Pump & Supply',
                     description: 'Find answers to common questions about our services.'
                 },
                 createdAt: new Date(),
@@ -109,7 +109,7 @@ async function seedPages() {
                 template: 'gallery',
                 status: 'published',
                 metadata: {
-                    title: 'Portfolio | 410 Muscle Therapy',
+                    title: 'Portfolio | Trinity Pump & Supply',
                     description: 'View our completed projects and quality workmanship.'
                 },
                 createdAt: new Date(),
@@ -121,7 +121,7 @@ async function seedPages() {
                 template: 'contact',
                 status: 'published',
                 metadata: {
-                    title: 'Contact | 410 Muscle Therapy',
+                    title: 'Contact | Trinity Pump & Supply',
                     description: 'Get in touch with us for a free estimate.'
                 },
                 createdAt: new Date(),

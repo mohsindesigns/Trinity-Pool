@@ -10,23 +10,8 @@ function stripHtml(html: string): string {
   return html.replace(/<[^>]*>/g, "").replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&nbsp;/g, " ").trim();
 }
 
-// Use available images to populate the gallery
-import img1 from '../../../public/images/service-massage.webp';
-import img2 from '../../../public/images/testimonial-1.webp';
-import img3 from '../../../public/images/testimonial-2.webp';
-import img4 from '../../../public/images/testimonial-3.webp';
-import img5 from '../../../public/images/testimonial-4.webp';
-import img6 from '../../../public/images/testimonial-5.webp';
-import img7 from '../../../public/images/testimonial-6.webp';
-import img8 from '../../../public/images/blog-1.webp';
-import img9 from '../../../public/images/blog-2.webp';
-import img10 from '../../../public/images/blog-3.webp';
-import img11 from '../../../public/images/hero-bg.webp';
-import img12 from '../../../public/images/theraphist.jpeg';
-
-const galleryImages = [
-  img1, img11, img3, img8, img5, img12, img7, img9, img6, img2, img10, img4
-];
+// Fallback used only if the dashboard's real portfolio list is ever empty.
+const FALLBACK_IMAGE = '/images/trinity/hero.jpg';
 
 export default function GalleryTemplate({ pageData }: { pageData?: any }) {
   const { galleryPage: globalGalleryPage, globalMetadata, portfolio: globalPortfolio, images } = useContent();
@@ -48,11 +33,11 @@ export default function GalleryTemplate({ pageData }: { pageData?: any }) {
 
   // Helper to resolve dynamic or asset image source
   const resolveImage = (imgSrc: any) => {
-    if (!imgSrc) return img1;
+    if (!imgSrc) return FALLBACK_IMAGE;
     if (typeof imgSrc === 'string' && (imgSrc.startsWith("http") || imgSrc.startsWith("/") || imgSrc.startsWith("blob:"))) {
       return imgSrc;
     }
-    return assetMap[imgSrc] || imgSrc || img1;
+    return assetMap[imgSrc] || imgSrc || FALLBACK_IMAGE;
   };
 
   return (
@@ -111,24 +96,9 @@ export default function GalleryTemplate({ pageData }: { pageData?: any }) {
                 );
               })
             ) : (
-              // STATIC DEFAULT 12 IMAGES (FALLBACK)
-              galleryImages.map((src, idx) => (
-                <div key={idx} className="relative aspect-[4/3] w-full overflow-hidden group rounded-lg shadow-xl border border-border-dark/60 bg-dark-3">
-                  <Image 
-                    src={src} 
-                    alt={`Muscle Therapy Gallery Image ${idx + 1}`} 
-                    fill
-                    className="object-cover transition-all duration-700 group-hover:scale-105 filter contrast-[1.02]"
-                    placeholder="blur"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-dark/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <div className="absolute top-0 left-0 w-5 h-5 m-3 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                    <div className="absolute top-0 left-0 w-full h-[2px] bg-gold" />
-                    <div className="absolute top-0 left-0 h-full w-[2px] bg-gold" />
-                  </div>
-                </div>
-              ))
+              <div className="col-span-full text-center py-16 text-white/40 text-sm">
+                No gallery photos yet — add some from the dashboard.
+              </div>
             )}
           </div>
           

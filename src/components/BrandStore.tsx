@@ -14,7 +14,7 @@ export default function BrandStore() {
     const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
     const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
 
-    const storeUrl = "https://410-muscletherapy.com/";
+    const storeUrl = "https://trinitypumpsupply.com/";
 
     return (
         <section

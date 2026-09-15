@@ -31,7 +31,7 @@ async function cleanAllLegacyContent() {
       answer: "<p>For active athletes and those managing chronic pain, sessions every 2 to 4 weeks provide optimal results. We customize your maintenance schedule based on your activity level and physical goals.</p>"
     },
     {
-      question: "Where is 410 Muscle Therapy located?",
+      question: "Where is Trinity Pump & Supply located?",
       answer: "<p>We are conveniently located at 1301 York Rd., 8th Floor, Ste 48, Timonium, MD 21093.</p>"
     }
   ];
@@ -41,9 +41,9 @@ async function cleanAllLegacyContent() {
     {
       $set: {
         title: "Frequently Asked Questions",
-        'seo.metaTitle': "Frequently Asked Questions | 410 Muscle Therapy",
+        'seo.metaTitle': "Frequently Asked Questions | Trinity Pump & Supply",
         'seo.metaDescription': "Find answers to common questions regarding sports massage, deep tissue therapy, fascial stretch, cupping, and clinical recovery in Timonium, MD.",
-        'seo.canonicalUrl': "https://410-muscletherapy.com/faq/",
+        'seo.canonicalUrl': "https://trinitypumpsupply.com/faq/",
         content: {
           label: "FAQ",
           titleLine1: "Frequently Asked",
@@ -60,15 +60,15 @@ async function cleanAllLegacyContent() {
     { slug: 'about' },
     {
       $set: {
-        title: "About 410 Muscle Therapy",
-        'seo.metaTitle': "About 410 Muscle Therapy | Performance Bodywork Maryland",
-        'seo.metaDescription': "Learn about 410 Muscle Therapy's mission to empower athletes and active individuals through specialized clinical bodywork, mobility, and recovery in Timonium, MD.",
-        'seo.canonicalUrl': "https://410-muscletherapy.com/about/",
+        title: "About Trinity Pump & Supply",
+        'seo.metaTitle': "About Trinity Pump & Supply | Performance Bodywork Maryland",
+        'seo.metaDescription': "Learn about Trinity Pump & Supply's mission to empower athletes and active individuals through specialized clinical bodywork, mobility, and recovery in Timonium, MD.",
+        'seo.canonicalUrl': "https://trinitypumpsupply.com/about/",
         'content.label': "Our Story",
         'content.titleLine1': "Specialized Recovery",
         'content.titleLine2': "Bodywork.",
-        'content.description': "Founded on the principles of biomechanics, therapeutic precision, and athletic performance, 410 Muscle Therapy provides clinical bodywork, fascial decompression, and customized recovery therapy.",
-        'content.story': "At 410 Muscle Therapy in Timonium, Maryland, we combine deep tissue manipulation, myofascial release, and joint decompression to restore full range of motion and eliminate chronic pain.",
+        'content.description': "Founded on the principles of biomechanics, therapeutic precision, and athletic performance, Trinity Pump & Supply provides clinical bodywork, fascial decompression, and customized recovery therapy.",
+        'content.story': "At Trinity Pump & Supply in Timonium, Maryland, we combine deep tissue manipulation, myofascial release, and joint decompression to restore full range of motion and eliminate chronic pain.",
         'content.mission': "To empower athletes and active adults to move without restriction, recover faster, and maintain peak physical longevity."
       }
     }
@@ -80,10 +80,10 @@ async function cleanAllLegacyContent() {
     {
       $set: {
         title: "Contact Us",
-        'seo.metaTitle': "Contact Performance Recovery Specialists | 410 Muscle Therapy",
-        'seo.metaDescription': "Contact 410 Muscle Therapy for specialized sports massage, mobility restoration, and clinical bodywork in Timonium, MD. Book your session today.",
-        'seo.canonicalUrl': "https://410-muscletherapy.com/contact-us/",
-        'content.phone': "(410) 555-1234",
+        'seo.metaTitle': "Contact Performance Recovery Specialists | Trinity Pump & Supply",
+        'seo.metaDescription': "Contact Trinity Pump & Supply for specialized sports massage, mobility restoration, and clinical bodywork in Timonium, MD. Book your session today.",
+        'seo.canonicalUrl': "https://trinitypumpsupply.com/contact-us/",
+        'content.phone': "830-279-3996",
         'content.email': "antoine.lyles@yahoo.com",
         'content.address': "1301 York Rd., 8th Floor, Ste 48, Timonium, MD 21093"
       }
@@ -96,9 +96,9 @@ async function cleanAllLegacyContent() {
     {
       $set: {
         title: "Clinical Bodywork Gallery",
-        'seo.metaTitle': "Clinical Bodywork & Recovery Gallery | 410 Muscle Therapy",
+        'seo.metaTitle': "Clinical Bodywork & Recovery Gallery | Trinity Pump & Supply",
         'seo.metaDescription': "Explore our clinical gallery featuring performance bodywork sessions, mobility restoration, and recovery treatments in Maryland.",
-        'seo.canonicalUrl': "https://410-muscletherapy.com/gallery/"
+        'seo.canonicalUrl': "https://trinitypumpsupply.com/gallery/"
       }
     }
   );

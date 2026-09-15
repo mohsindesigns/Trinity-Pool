@@ -376,7 +376,7 @@ export default function ServicesPageEditor() {
   ];
 
   const gridSection = data.services?.gridSection || {
-    badge: "410 Muscle Therapy",
+    badge: "Trinity Pump & Supply",
     headline: "World Class <span class='text-primary'>Capabilities</span>",
     description: "Every session is customized to your body mechanics. Our clinical specialists bring elite standards to every treatment across Maryland."
   };
@@ -724,7 +724,7 @@ export default function ServicesPageEditor() {
                     value={gridSection.badge || ""}
                     onChange={(e) => updateGridSection("badge", e.target.value)}
                     className="w-full bg-slate-50 border border-slate-200 rounded-2xl px-6 py-4 text-slate-900 font-bold focus:ring-2 focus:ring-primary/20 outline-none transition-all shadow-inner"
-                    placeholder="e.g. 410 Muscle Therapy"
+                    placeholder="e.g. Trinity Pump & Supply"
                   />
                 </div>
 

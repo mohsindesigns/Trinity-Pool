@@ -19,7 +19,7 @@ async function inspectBlogLinks() {
 
   const linkRegex = /href=["']([^"']+)["']/gi;
   const linkReport = [];
-  const domain = "https://410-muscletherapy.com";
+  const domain = "https://trinitypumpsupply.com";
 
   for (const post of posts) {
     const content = post.content || "";
@@ -37,8 +37,8 @@ async function inspectBlogLinks() {
       // Ignore mailto, tel, external google, youtube, styleseat, etc.
       if (href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('#')) continue;
       
-      const isInternal = href.startsWith('https://410-muscletherapy.com') || 
-                         href.startsWith('http://410-muscletherapy.com') || 
+      const isInternal = href.startsWith('https://trinitypumpsupply.com') || 
+                         href.startsWith('http://trinitypumpsupply.com') || 
                          href.startsWith('/') ||
                          href.includes('eaglerevolution') ||
                          href.includes('muscletherapy');
@@ -47,8 +47,8 @@ async function inspectBlogLinks() {
 
       // Extract path
       let cleanPath = href
-        .replace(/^https?:\/\/410-muscletherapy\.com/i, '')
-        .replace(/^https?:\/\/www\.410-muscletherapy\.com/i, '')
+        .replace(/^https?:\/\/trinitypumpsupply\.com/i, '')
+        .replace(/^https?:\/\/www\.trinitypumpsupply\.com/i, '')
         .replace(/^\/+|\/+$/g, '');
 
       // Check if it's an old category-based blog link (e.g. health-wellness/some-post-slug)
@@ -58,7 +58,7 @@ async function inspectBlogLinks() {
 
       if (href.includes('eaglerevolution')) {
         reason = "Legacy Eagle URL";
-        suggestedHref = href.replace(/eaglerevolution\.com/gi, '410-muscletherapy.com');
+        suggestedHref = href.replace(/eaglerevolution\.com/gi, 'trinitypumpsupply.com');
       } else if (parts.length === 2 && (parts[0] === 'health-wellness' || parts[0] === 'uncategorized' || parts[0] === 'blog-posts' || parts[0] === 'category')) {
         const potentialSlug = parts[1];
         if (postSlugs.has(potentialSlug)) {

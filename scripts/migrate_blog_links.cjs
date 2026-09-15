@@ -15,7 +15,7 @@ async function migrateBlogLinks() {
   const pageSlugs = new Set(pages.map(p => p.slug));
   const serviceSlugs = new Set(services.map(s => s.slug));
 
-  const domain = "https://410-muscletherapy.com";
+  const domain = "https://trinitypumpsupply.com";
   let updatedPostsCount = 0;
   let totalLinksReplaced = 0;
 
@@ -30,8 +30,8 @@ async function migrateBlogLinks() {
         return fullMatch;
       }
 
-      const isInternal = href.startsWith('https://410-muscletherapy.com') ||
-                         href.startsWith('http://410-muscletherapy.com') ||
+      const isInternal = href.startsWith('https://trinitypumpsupply.com') ||
+                         href.startsWith('http://trinitypumpsupply.com') ||
                          href.startsWith('/') ||
                          href.includes('eaglerevolution') ||
                          href.includes('muscletherapy');
@@ -39,8 +39,8 @@ async function migrateBlogLinks() {
       if (!isInternal) return fullMatch;
 
       let cleanPath = href
-        .replace(/^https?:\/\/410-muscletherapy\.com/i, '')
-        .replace(/^https?:\/\/www\.410-muscletherapy\.com/i, '')
+        .replace(/^https?:\/\/trinitypumpsupply\.com/i, '')
+        .replace(/^https?:\/\/www\.trinitypumpsupply\.com/i, '')
         .replace(/^\/+|\/+$/g, '');
 
       const parts = cleanPath.split('/');

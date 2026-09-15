@@ -9,16 +9,16 @@ const { services: all10Services } = require('./seed_all_10_services.cjs');
 
 const masterCompleteData = {
   settings: {
-    siteTitle: "410 Muscle Therapy | Performance Recovery Specialist",
-    siteTemplate: "%s | 410 Muscle Therapy",
+    siteTitle: "Trinity Pump & Supply | Performance Recovery Specialist",
+    siteTemplate: "%s | Trinity Pump & Supply",
     siteDescription: "Specialized performance bodywork, mobility restoration, and injury prevention designed for athletes and active adults in Maryland since 2020.",
     favicon: "/logo.png"
   },
   company: {
-    name: "410 Muscle Therapy",
+    name: "Trinity Pump & Supply",
     tagline: "Performance Recovery Specialist",
-    email: "info@410muscletherapy.com",
-    phone: "(410) 555-0199",
+    email: "info@trinitypumpsupply.com",
+    phone: "830-279-3996",
     address: "Maryland, USA",
     hours: "Sun–Sat: 8:00 AM – 7:00 PM"
   },
@@ -26,7 +26,7 @@ const masterCompleteData = {
     logoText1: "MUSCLE",
     logoText2: "THERAPY",
     bookBtn: "BOOK SESSION",
-    logoAlt: "410 Muscle Therapy Logo",
+    logoAlt: "Trinity Pump & Supply Logo",
     links: [
       { label: "Home", href: "/" },
       { label: "Services", href: "/services" },
@@ -51,7 +51,7 @@ const masterCompleteData = {
     titleLine1: "Proven Results.",
     titleLine2: "Professional",
     titleItalicWord: "Standards.",
-    description: "At 410 Muscle Therapy, we believe that true recovery is built on specialized bodywork and precision movement science. Since our founding in 2020, we have dedicated ourselves to helping competitive athletes and active individuals overcome chronic pain, restore joint mobility, and achieve peak physical performance.",
+    description: "At Trinity Pump & Supply, we believe that true recovery is built on specialized bodywork and precision movement science. Since our founding in 2020, we have dedicated ourselves to helping competitive athletes and active individuals overcome chronic pain, restore joint mobility, and achieve peak physical performance.",
     image: "/images/blog-3.webp",
     imageAlt: "Clinical sports massage session",
     items: [
@@ -83,7 +83,7 @@ const masterCompleteData = {
     image: "/images/theraphist.jpeg",
     imageAlt: "Antoine Lyles — Performance Recovery Specialist",
     ctaMore: "LEARN MORE ABOUT ANTOINE",
-    ctaLink: "https://www.styleseat.com/m/v/410muscletherapy",
+    ctaLink: "https://www.styleseat.com/m/v/trinitypumpsupply",
     signatureName: "Antoine Lyles",
     signatureTitle: "Performance Recovery Specialist"
   },
@@ -200,7 +200,7 @@ const masterCompleteData = {
     title: "Ready to Feel Your Best?",
     description: "Book your appointment today and start your journey to a pain-free, stronger you.",
     button: "BOOK APPOINTMENT",
-    buttonUrl: "https://www.styleseat.com/m/v/410muscletherapy"
+    buttonUrl: "https://www.styleseat.com/m/v/trinitypumpsupply"
   },
   quote: {
     section: { badge: "GET IN TOUCH", headline: "Have Questions? Let's Connect." },
@@ -251,18 +251,18 @@ const masterCompleteData = {
   },
   footer: {
     company: {
-      name: "410 Muscle Therapy",
+      name: "Trinity Pump & Supply",
       tagline: "Performance Recovery Specialist",
       description: "Specialized performance bodywork, mobility restoration, and injury prevention designed for athletes and active adults since 2020."
     },
     contact: {
-      email: "info@410muscletherapy.com",
-      phone: "(410) 555-0199",
+      email: "info@trinitypumpsupply.com",
+      phone: "830-279-3996",
       address: "Maryland, USA",
       hours: "Sun–Sat: 8:00 AM – 7:00 PM"
     },
     bottom: {
-      copyright: "© 2026 410 Muscle Therapy",
+      copyright: "© 2026 Trinity Pump & Supply",
       rights: "All Rights Reserved."
     }
   }
@@ -304,16 +304,16 @@ async function seedMaster() {
       template: "home",
       status: "published",
       seo: {
-        metaTitle: "410 Muscle Therapy | Performance Recovery Specialist",
+        metaTitle: "Trinity Pump & Supply | Performance Recovery Specialist",
         metaDescription: "Elite performance recovery bodywork, mobility restoration, and injury prevention for athletes & active adults in Maryland.",
-        canonicalUrl: "https://410-muscletherapy.com/",
+        canonicalUrl: "https://trinitypumpsupply.com/",
         metaRobotsIndex: "index",
         metaRobotsFollow: "follow",
-        ogTitle: "410 Muscle Therapy | Performance Recovery Specialist",
+        ogTitle: "Trinity Pump & Supply | Performance Recovery Specialist",
         ogDescription: "Elite performance recovery bodywork, mobility restoration, and injury prevention for athletes & active adults in Maryland.",
         ogImage: "/images/hero-bg.webp",
         twitterCard: "summary_large_image",
-        twitterTitle: "410 Muscle Therapy | Performance Recovery Specialist",
+        twitterTitle: "Trinity Pump & Supply | Performance Recovery Specialist",
         twitterDescription: "Elite performance recovery bodywork, mobility restoration, and injury prevention for athletes & active adults in Maryland.",
         twitterImage: "/images/hero-bg.webp",
         featuredImage: "/images/hero-bg.webp"
@@ -345,7 +345,7 @@ async function seedMaster() {
           metaTitle: service.title,
           metaDescription: service.description,
           focusKeyword: service.title,
-          canonicalUrl: `https://410-muscletherapy.com/${service.slug}/`,
+          canonicalUrl: `https://trinitypumpsupply.com/${service.slug}/`,
           metaRobotsIndex: 'index',
           metaRobotsFollow: 'follow',
           ogTitle: service.title,

@@ -75,7 +75,7 @@ const DEFAULT_SERVICE_DETAIL = {
   ],
 
   // 4. Candidates & Why Us
-  candidateSectionLabel: "WHY 410 MUSCLE THERAPY FEELS DIFFERENT",
+  candidateSectionLabel: "WHY TRINITY PUMP & SUPPLY FEELS DIFFERENT",
   candidateTitle1: "Targeted Care.",
   candidateTitle2: "Built Around You.",
   candidateDescription: "Movement work shaped around what your body can comfortably do. The goal is useful progress, not a rushed routine or generic adjustment.",
@@ -230,7 +230,7 @@ export default function ServiceDetailEditor({ pageId, data, setData }: { pageId:
                       value={data.heroDescription || data.heroSubtitle || data.heroDescriptionSuffix || ""} 
                       onChange={(e) => updateField("heroDescription", e.target.value)} 
                       className={UI.input + " h-24 resize-y"} 
-                      placeholder="e.g. Tight hips, aching shoulders, back pain, or sciatica can keep returning. Corrective movement therapy sessions in Maryland at [410 Muscle Therapy](https://410-muscletherapy.com/) look beyond the sore spot..."
+                      placeholder="e.g. Tight hips, aching shoulders, back pain, or sciatica can keep returning. Corrective movement therapy sessions in Maryland at [Trinity Pump & Supply](https://trinitypumpsupply.com/) look beyond the sore spot..."
                     />
                   </div>
 
@@ -468,7 +468,7 @@ export default function ServiceDetailEditor({ pageId, data, setData }: { pageId:
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-1.5">
                       <label className={UI.label}>Section Label</label>
-                      <input type="text" value={data.candidateSectionLabel || ""} onChange={(e) => updateField("candidateSectionLabel", e.target.value)} className={UI.input} placeholder="e.g., WHY 410 MUSCLE THERAPY FEELS DIFFERENT" />
+                      <input type="text" value={data.candidateSectionLabel || ""} onChange={(e) => updateField("candidateSectionLabel", e.target.value)} className={UI.input} placeholder="e.g., WHY TRINITY PUMP & SUPPLY FEELS DIFFERENT" />
                     </div>
                     <div className="space-y-1.5">
                       <label className={UI.label}>Badge Prefix</label>
@@ -493,7 +493,7 @@ export default function ServiceDetailEditor({ pageId, data, setData }: { pageId:
                       value={data.candidateDescription || ""}
                       onChange={(e) => updateField("candidateDescription", e.target.value)}
                       className={UI.input + " h-20"}
-                      placeholder="e.g. At 410 Muscle Therapy, our corrective movement therapy in Maryland is designed for people who want more than a feel-good hour..."
+                      placeholder="e.g. At Trinity Pump & Supply, our corrective movement therapy in Maryland is designed for people who want more than a feel-good hour..."
                     />
                   </div>
 

@@ -11,13 +11,13 @@ async function cleanMediaAndSubmissions() {
     const json = JSON.stringify(m);
     if (/eagle/i.test(json)) {
       const cleanedJson = json
-        .replace(/https?:\/\/eaglerevolution\.com\/?/gi, 'https://410-muscletherapy.com/')
-        .replace(/https?:\/\/www\.eaglerevolution\.com\/?/gi, 'https://410-muscletherapy.com/')
-        .replace(/eaglerevolution\.com/gi, '410-muscletherapy.com')
-        .replace(/eagle_revolutionllc/gi, '410muscletherapy')
-        .replace(/eagle-revolution/gi, '410-muscletherapy')
-        .replace(/Eagle Revolution/gi, '410 Muscle Therapy')
-        .replace(/eagle/gi, '410');
+        .replace(/https?:\/\/eaglerevolution\.com\/?/gi, 'https://trinitypumpsupply.com/')
+        .replace(/https?:\/\/www\.eaglerevolution\.com\/?/gi, 'https://trinitypumpsupply.com/')
+        .replace(/eaglerevolution\.com/gi, 'trinitypumpsupply.com')
+        .replace(/eagle_revolutionllc/gi, 'trinitypumpsupply')
+        .replace(/eagle-revolution/gi, 'trinitypumpsupply')
+        .replace(/Eagle Revolution/gi, 'Trinity Pump & Supply')
+        .replace(/eagle/gi, 'trinity');
       const updatedObj = JSON.parse(cleanedJson);
       delete updatedObj._id;
       await db.collection('media').updateOne({ _id: m._id }, { $set: updatedObj });
@@ -29,9 +29,9 @@ async function cleanMediaAndSubmissions() {
     const json = JSON.stringify(s);
     if (/eagle/i.test(json)) {
       const cleanedJson = json
-        .replace(/https?:\/\/eaglerevolution\.com\/?/gi, 'https://410-muscletherapy.com/')
-        .replace(/eaglerevolution\.com/gi, '410-muscletherapy.com')
-        .replace(/eagle/gi, '410');
+        .replace(/https?:\/\/eaglerevolution\.com\/?/gi, 'https://trinitypumpsupply.com/')
+        .replace(/eaglerevolution\.com/gi, 'trinitypumpsupply.com')
+        .replace(/eagle/gi, 'trinity');
       const updatedObj = JSON.parse(cleanedJson);
       delete updatedObj._id;
       await db.collection('submissions').updateOne({ _id: s._id }, { $set: updatedObj });

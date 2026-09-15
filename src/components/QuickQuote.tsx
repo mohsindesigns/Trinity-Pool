@@ -64,7 +64,7 @@ const SMSConsentCheckbox = ({ checked, onChange }: { checked: boolean; onChange:
                     htmlFor="smsConsentQuick"
                     className="flex-1 text-[11px] text-muted-foreground leading-relaxed cursor-pointer"
                 >
-                    I agree to receive informational SMS text messages from 410 Muscle Therapy related to my request, including appointment scheduling and service updates, at the number I provided. Message frequency varies. Msg & data rates may apply. Reply STOP to opt out, HELP for help. Consent is not a condition of purchase. Please see{' '}
+                    I agree to receive informational SMS text messages from Trinity Pump & Supply related to my request, including appointment scheduling and service updates, at the number I provided. Message frequency varies. Msg & data rates may apply. Reply STOP to opt out, HELP for help. Consent is not a condition of purchase. Please see{' '}
                     <Link href="/privacy" className="text-primary hover:underline transition-colors">Privacy Policy</Link>
                     {' '}and{' '}
                     <Link href="/terms" className="text-primary hover:underline transition-colors">Terms and Conditions</Link>.
@@ -128,7 +128,7 @@ const QuickQuote = () => {
         setIsSubmitting(true);
 
         const emailContent = `
-🔨 NEW QUICK QUOTE REQUEST - 410 Muscle Therapy
+🔨 NEW QUICK QUOTE REQUEST - Trinity Pump & Supply
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -147,7 +147,7 @@ ${formData.message}
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ⏱️ Submitted: ${new Date().toLocaleString()}
 🌐 Source: Quick Quote Widget
-⚡ 410 Muscle Therapy • Performance Bodywork
+⚡ Trinity Pump & Supply • Performance Bodywork
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     `;
 

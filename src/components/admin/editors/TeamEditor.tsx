@@ -28,7 +28,7 @@ export default function TeamEditor({ pageId, data, setData }: { pageId: string, 
     if (data && Object.keys(data).length === 0) {
        setData({
          team: {
-           section: { badge: "Our Leadership", headline: "Expert hands with Visionary minds", description: "Meet the dedicated professionals leading the charge at 410 Muscle Therapy." },
+           section: { badge: "Our Leadership", headline: "Expert hands with Visionary minds", description: "Meet the dedicated professionals leading the charge at Trinity Pump & Supply." },
            members: []
          }
        });
@@ -101,7 +101,7 @@ export default function TeamEditor({ pageId, data, setData }: { pageId: string, 
       <div className="space-y-6">
         <div className="mb-6">
            <h2 className={UI.sectionHeader}>{activeTabTitle}</h2>
-           <p className="text-[12px] text-[#646970] -mt-2">Manage the leadership and specialists representing 410 Muscle Therapy.</p>
+           <p className="text-[12px] text-[#646970] -mt-2">Manage the leadership and specialists representing Trinity Pump & Supply.</p>
         </div>
 
         <AnimatePresence mode="wait">

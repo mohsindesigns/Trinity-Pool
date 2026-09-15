@@ -19,10 +19,10 @@ async function sanitizeAllPagesInDb() {
         .replace(/roofing|shingle|siding|patio cover|patio|gutter/gi, 'massage therapy')
         .replace(/roof|door/gi, 'recovery session')
         .replace(/contractor|builder/gi, 'specialist')
-        .replace(/eaglerevolution\.com/gi, '410-muscletherapy.com')
-        .replace(/eagle-revolution/gi, '410-muscletherapy')
-        .replace(/eagle revolution/gi, '410 Muscle Therapy')
-        .replace(/eagle/gi, '410');
+        .replace(/eaglerevolution\.com/gi, 'trinitypumpsupply.com')
+        .replace(/eagle-revolution/gi, 'trinitypumpsupply')
+        .replace(/eagle revolution/gi, 'Trinity Pump & Supply')
+        .replace(/eagle/gi, 'trinity');
 
       const updatedObj = JSON.parse(cleanedJson);
       delete updatedObj._id;

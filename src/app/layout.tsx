@@ -85,8 +85,8 @@ export async function generateMetadata(): Promise<Metadata> {
       title: settings.siteTitle,
       description: settings.siteDescription,
       images: [settings.favicon || `${BASE_URL}/logo.png`],
-      creator: "@410MuscleTherapy",
-      site: "@410MuscleTherapy",
+      creator: "@trinitypumpsupply",
+      site: "@trinitypumpsupply",
     },
 
     other: {

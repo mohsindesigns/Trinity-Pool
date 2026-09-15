@@ -223,7 +223,7 @@ export default function SettingsEditor() {
   useEffect(() => {
     fetch("/api/content").then((res) => res.json()).then((json) => {
         const d = { ...json };
-        if (!d.settings) d.settings = { siteTitle: "410 Muscle Therapy", siteTemplate: "%s | 410 Muscle Therapy", favicon: "/logo.png" };
+        if (!d.settings) d.settings = { siteTitle: "Trinity Pump & Supply", siteTemplate: "%s | Trinity Pump & Supply", favicon: "/logo.png" };
         if (!d.navbar) d.navbar = { companyLinks: [], ctaText: "Book Now", ctaLink: "/contact-us/", logo: "/logo.png" };
         setData(d);
       });

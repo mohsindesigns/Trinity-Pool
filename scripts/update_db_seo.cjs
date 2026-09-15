@@ -10,8 +10,8 @@ async function updateDbSeo() {
     { slug: 'contact-us' },
     {
       $set: {
-        'seo.metaTitle': 'Contact Performance Recovery Specialists | 410 Muscle Therapy',
-        'seo.metaDescription': 'Contact 410 Muscle Therapy for specialized sports massage, mobility restoration, and clinical bodywork in Timonium, MD. Book your session today.'
+        'seo.metaTitle': 'Contact Performance Recovery Specialists | Trinity Pump & Supply',
+        'seo.metaDescription': 'Contact Trinity Pump & Supply for specialized sports massage, mobility restoration, and clinical bodywork in Timonium, MD. Book your session today.'
       }
     }
   );
@@ -21,7 +21,7 @@ async function updateDbSeo() {
     {
       $set: {
         title: 'Recovery & Clinical Gallery',
-        'seo.metaTitle': 'Clinical Bodywork & Recovery Gallery | 410 Muscle Therapy',
+        'seo.metaTitle': 'Clinical Bodywork & Recovery Gallery | Trinity Pump & Supply',
         'seo.metaDescription': 'Explore our clinical gallery featuring performance bodywork sessions, mobility restoration, and recovery treatments in Maryland.'
       }
     }
@@ -32,8 +32,8 @@ async function updateDbSeo() {
     {
       $set: {
         title: 'Client Reviews & Testimonials',
-        'seo.metaTitle': 'Client Reviews & Testimonials | 410 Muscle Therapy',
-        'seo.metaDescription': 'Read reviews and recovery testimonials from athletes and active adults who trust 410 Muscle Therapy for sports massage, fascial stretch, and pain relief in Maryland.'
+        'seo.metaTitle': 'Client Reviews & Testimonials | Trinity Pump & Supply',
+        'seo.metaDescription': 'Read reviews and recovery testimonials from athletes and active adults who trust Trinity Pump & Supply for sports massage, fascial stretch, and pain relief in Maryland.'
       }
     }
   );
@@ -42,8 +42,8 @@ async function updateDbSeo() {
     { slug: 'faq' },
     {
       $set: {
-        'seo.metaTitle': 'Frequently Asked Questions | 410 Muscle Therapy',
-        'seo.metaDescription': 'Get answers to common questions about sports massage, fascial stretch therapy, cupping, appointments, and clinical recovery services from 410 Muscle Therapy.'
+        'seo.metaTitle': 'Frequently Asked Questions | Trinity Pump & Supply',
+        'seo.metaDescription': 'Get answers to common questions about sports massage, fascial stretch therapy, cupping, appointments, and clinical recovery services from Trinity Pump & Supply.'
       }
     }
   );

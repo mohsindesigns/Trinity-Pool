@@ -22,7 +22,7 @@ export default function CareersEditor({ pageId, data, setData }: { pageId: strin
     if (data && Object.keys(data).length === 0) {
        setData({
          careers: {
-           section: { badge: "Join 410 Muscle Therapy", headline: "Expert hands with Visionary minds", description: "Build your future with a team that values precision, integrity, and craftsmanship." },
+           section: { badge: "Join Trinity Pump & Supply", headline: "Expert hands with Visionary minds", description: "Build your future with a team that values precision, integrity, and craftsmanship." },
            roles: [
              { label: "Licensed Massage Therapist", value: "licensed-massage-therapist" },
              { label: "Fascial Stretch Specialist", value: "fascial-stretch-specialist" },

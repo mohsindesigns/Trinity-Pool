@@ -8,7 +8,7 @@ const itemsToSeed = [
     pageSlugs: ['home', '/', ''],
     serviceSlug: null,
     metaTitle: 'Performance Recovery Specialist Timonium | Targeted Relief!',
-    metaDescription: 'Find a movement and recovery expert in Timonium for deep knots, back stiffness, sciatica, and sports recovery. Call 410 Muscle Therapy today for lasting relief.',
+    metaDescription: 'Find a movement and recovery expert in Timonium for deep knots, back stiffness, sciatica, and sports recovery. Call Trinity Pump & Supply today for lasting relief.',
     focusKeyword: 'Performance Recovery Specialist Timonium'
   },
   {
@@ -16,7 +16,7 @@ const itemsToSeed = [
     pageSlugs: ['corrective-movement-maryland', 'corrective-movement-therapy-maryland'],
     serviceSlug: 'corrective-movement-maryland',
     metaTitle: 'Corrective Movement Therapy Maryland | Timonium Pain Relief',
-    metaDescription: 'Find lasting relief with corrective movement therapy in Maryland for chronic pain, stiffness, sciatica, and poor movement at 410 Muscle Therapy in Timonium.',
+    metaDescription: 'Find lasting relief with corrective movement therapy in Maryland for chronic pain, stiffness, sciatica, and poor movement at Trinity Pump & Supply in Timonium.',
     focusKeyword: 'Corrective Movement Therapy Maryland'
   },
   {
@@ -24,15 +24,15 @@ const itemsToSeed = [
     pageSlugs: ['infrared-therapy-in-maryland', 'infrared-therapy-maryland'],
     serviceSlug: 'infrared-therapy-in-maryland',
     metaTitle: 'Infrared Therapy Maryland | Muscle Pain Relief in Timonium!',
-    metaDescription: 'Choose infrared therapy in Maryland for targeted pain relief, easier movement, and muscle recovery at 410 Muscle Therapy in Timonium. Book your therapy today.',
+    metaDescription: 'Choose infrared therapy in Maryland for targeted pain relief, easier movement, and muscle recovery at Trinity Pump & Supply in Timonium. Book your therapy today.',
     focusKeyword: 'Infrared Therapy Maryland'
   },
   {
     name: 'Maryland Sports Massage Therapist',
     pageSlugs: ['maryland-sports-massage-therapist', 'maryland-sports-massage'],
     serviceSlug: 'maryland-sports-massage-therapist',
-    metaTitle: 'Maryland Sports Massage Therapist | 410 Muscle Therapy Care',
-    metaDescription: 'Ease stubborn knots, muscle soreness, and restricted movement with Maryland sports massage in Timonium. Get focused relief at 410 Muscle Therapy today.',
+    metaTitle: 'Maryland Sports Massage Therapist | Trinity Pump & Supply Care',
+    metaDescription: 'Ease stubborn knots, muscle soreness, and restricted movement with Maryland sports massage in Timonium. Get focused relief at Trinity Pump & Supply today.',
     focusKeyword: 'Maryland Sports Massage Therapist'
   },
   {
@@ -47,8 +47,8 @@ const itemsToSeed = [
     name: 'Acupressure Massage',
     pageSlugs: ['acupressure-maryland', 'acupressure-massage-maryland'],
     serviceSlug: 'acupressure-maryland',
-    metaTitle: 'Acupressure Massage Maryland | 410 Muscle Therapy Timonium!',
-    metaDescription: 'Choose acupressure in Maryland for focused relief from muscle knots, tight fascia, stiffness, and sore movement at 410 Muscle Therapy in Timonium. Book today!',
+    metaTitle: 'Acupressure Massage Maryland | Trinity Pump & Supply Timonium!',
+    metaDescription: 'Choose acupressure in Maryland for focused relief from muscle knots, tight fascia, stiffness, and sore movement at Trinity Pump & Supply in Timonium. Book today!',
     focusKeyword: 'Acupressure Massage Maryland'
   },
   {
@@ -56,7 +56,7 @@ const itemsToSeed = [
     pageSlugs: ['cupping-therapy-maryland', 'maryland-cupping-therapy'],
     serviceSlug: 'cupping-therapy-maryland',
     metaTitle: 'Cupping Therapy Maryland | Targeted Pain Relief in Timonium',
-    metaDescription: 'Start cupping therapy in Maryland for stubborn muscle pain, tight fascia, and limited motion. Get focused relief at 410 Muscle Therapy in Timonium. Book today.',
+    metaDescription: 'Start cupping therapy in Maryland for stubborn muscle pain, tight fascia, and limited motion. Get focused relief at Trinity Pump & Supply in Timonium. Book today.',
     focusKeyword: 'Cupping Therapy Maryland'
   },
   {
@@ -64,7 +64,7 @@ const itemsToSeed = [
     pageSlugs: ['maryland-stretch-therapy', 'maryland-fascial-stretch-therapy'],
     serviceSlug: 'maryland-stretch-therapy',
     metaTitle: 'Maryland Fascial Stretch Therapy | Timonium Pain & Mobility',
-    metaDescription: 'Choose assisted stretch therapy Maryland locals trust for tight hips, stiff joints, and limited movement. Call 410 Muscle Therapy in Timonium, and book today.',
+    metaDescription: 'Choose assisted stretch therapy Maryland locals trust for tight hips, stiff joints, and limited movement. Call Trinity Pump & Supply in Timonium, and book today.',
     focusKeyword: 'Maryland Fascial Stretch Therapy'
   },
   {
@@ -72,7 +72,7 @@ const itemsToSeed = [
     pageSlugs: ['hot-stone-massage-maryland'],
     serviceSlug: 'hot-stone-massage-maryland',
     metaTitle: 'Hot Stone Massage Maryland | Muscle Pain Relief in Timonium',
-    metaDescription: 'Get targeted hot stone massage in Maryland for tight muscles, stiff joints, and deep tension at 410 Muscle Therapy in Timonium. Book your session online today.',
+    metaDescription: 'Get targeted hot stone massage in Maryland for tight muscles, stiff joints, and deep tension at Trinity Pump & Supply in Timonium. Book your session online today.',
     focusKeyword: 'Hot Stone Massage Maryland'
   },
   {
@@ -80,15 +80,15 @@ const itemsToSeed = [
     pageSlugs: ['myofascial-release-maryland', 'myofascial-release-therapy-maryland'],
     serviceSlug: 'myofascial-release-maryland',
     metaTitle: 'Myofascial Release Therapy Maryland | Timonium Pain Relief!',
-    metaDescription: 'Choose myofascial release Maryland for tight fascia, muscle knots, stiffness, and limited motion. Call 410 Muscle Therapy in Timonium today to book your visit.',
+    metaDescription: 'Choose myofascial release Maryland for tight fascia, muscle knots, stiffness, and limited motion. Call Trinity Pump & Supply in Timonium today to book your visit.',
     focusKeyword: 'Myofascial Release Therapy Maryland'
   },
   {
     name: 'Deep Tissue Massage',
     pageSlugs: ['deep-tissue-massage-maryland', 'maryland-deep-tissue-massage'],
     serviceSlug: 'deep-tissue-massage-maryland',
-    metaTitle: 'Deep Tissue Massage Maryland | 410 Muscle Therapy Timonium!',
-    metaDescription: 'Get targeted deep tissue massage in Maryland for stubborn knots, back pain, and tight muscles at 410 Muscle Therapy in Timonium. Call now to book your relief!',
+    metaTitle: 'Deep Tissue Massage Maryland | Trinity Pump & Supply Timonium!',
+    metaDescription: 'Get targeted deep tissue massage in Maryland for stubborn knots, back pain, and tight muscles at Trinity Pump & Supply in Timonium. Call now to book your relief!',
     focusKeyword: 'Deep Tissue Massage Maryland'
   }
 ];

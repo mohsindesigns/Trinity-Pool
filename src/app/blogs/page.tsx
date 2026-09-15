@@ -39,14 +39,14 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     title: {
-      absolute: seo.metaTitle || pageDoc?.title || "Our Blogs | 410 Muscle Therapy"
+      absolute: seo.metaTitle || pageDoc?.title || "Our Blogs | Trinity Pump & Supply"
     },
     description: seo.metaDescription || blogData?.hero?.description || "Explore our latest articles, insights, and clinical recovery tips.",
     alternates: {
       canonical: canonicalUrl,
     },
     openGraph: {
-      title: seo.ogTitle || seo.metaTitle || pageDoc?.title || "Our Blogs | 410 Muscle Therapy",
+      title: seo.ogTitle || seo.metaTitle || pageDoc?.title || "Our Blogs | Trinity Pump & Supply",
       description: seo.ogDescription || seo.metaDescription || blogData?.hero?.description || "Explore our latest articles, insights, and clinical recovery tips.",
       url: pageUrl,
       type: 'website',
@@ -58,11 +58,11 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     twitter: {
       card: 'summary_large_image',
-      title: seo.twitterTitle || seo.ogTitle || seo.metaTitle || "Our Blogs | 410 Muscle Therapy",
+      title: seo.twitterTitle || seo.ogTitle || seo.metaTitle || "Our Blogs | Trinity Pump & Supply",
       description: seo.twitterDescription || seo.ogDescription || seo.metaDescription || "Explore our latest articles, insights, and clinical recovery tips.",
       images: [seo.featuredImage || seo.twitterImage || seo.ogImage || `${BASE_URL}/logo.png`].filter(Boolean) as string[],
-      site: "@410MuscleTherapy",
-      creator: "@410MuscleTherapy",
+      site: "@trinitypumpsupply",
+      creator: "@trinitypumpsupply",
     },
     robots: getRobotsMetadata(settings, seo)
   };
@@ -108,7 +108,7 @@ export default async function BlogsIndexPage() {
   };
 
   const schema = generateSchema({
-    title: seo.metaTitle || pageDoc?.title || "Our Blogs | 410 Muscle Therapy",
+    title: seo.metaTitle || pageDoc?.title || "Our Blogs | Trinity Pump & Supply",
     description: seo.metaDescription || description || "Explore our latest articles, insights, and clinical recovery tips.",
     slug: "blogs",
     type: "CollectionPage",

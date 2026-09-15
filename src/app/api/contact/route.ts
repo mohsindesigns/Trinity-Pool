@@ -56,7 +56,7 @@ export async function POST(request: Request) {
         const resend = new Resend(resendKey);
 
         await resend.emails.send({
-          from: 'Contact Form <noreply@410-muscletherapy.com>',
+          from: 'Contact Form <noreply@trinitypumpsupply.com>',
           to: receiverEmail,
           subject: `New Contact Form Submission from ${name}`,
           html: `
@@ -69,7 +69,7 @@ export async function POST(request: Request) {
                 ${service ? `<tr><td style="padding: 8px 0; color: #888;">Service:</td><td style="padding: 8px 0;">${service}</td></tr>` : ''}
               </table>
               ${message ? `<div style="margin-top: 16px; padding: 12px; background: #f9f9f9; border-radius: 6px;"><p style="color: #888; margin: 0 0 4px;">Message:</p><p style="margin: 0; color: #333;">${message}</p></div>` : ''}
-              <p style="margin-top: 20px; font-size: 12px; color: #aaa;">Sent from 410 Muscle Therapy website contact form</p>
+              <p style="margin-top: 20px; font-size: 12px; color: #aaa;">Sent from Trinity Pump & Supply website contact form</p>
             </div>
           `,
         });

@@ -5,7 +5,7 @@ require(path.resolve('./node_modules/dotenv')).config({ path: '.env.local' });
 
 async function deepAudit() {
   console.log('========================================');
-  console.log('    DEEP BRAND AUDIT FOR EAGLE / 410    ');
+  console.log('    DEEP BRAND AUDIT FOR TRINITY PUMP & SUPPLY    ');
   console.log('========================================\n');
 
   // 1. Audit MongoDB

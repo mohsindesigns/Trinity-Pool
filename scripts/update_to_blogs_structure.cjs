@@ -14,8 +14,8 @@ async function updateToBlogsStructure() {
       { 
         $set: { 
           slug: 'blogs', 
-          'seo.canonicalUrl': 'https://410-muscletherapy.com/blogs/',
-          'seo.metaTitle': blogPage.seo?.metaTitle || 'Our Blogs | 410 Muscle Therapy',
+          'seo.canonicalUrl': 'https://trinitypumpsupply.com/blogs/',
+          'seo.metaTitle': blogPage.seo?.metaTitle || 'Our Blogs | Trinity Pump & Supply',
           'seo.metaDescription': blogPage.seo?.metaDescription || 'Explore our latest articles, insights, and clinical recovery tips.'
         } 
       }
@@ -29,7 +29,7 @@ async function updateToBlogsStructure() {
     let rawStr = JSON.stringify(siteContentDoc.data);
     const updatedStr = rawStr
       .replace(/["']\/blog\/?["']/g, '"/blogs/"')
-      .replace(/["']https:\/\/410-muscletherapy\.com\/blog\/?["']/g, '"https://410-muscletherapy.com/blogs/"');
+      .replace(/["']https:\/\/trinitypumpsupply\.com\/blog\/?["']/g, '"https://trinitypumpsupply.com/blogs/"');
     
     if (rawStr !== updatedStr) {
       const updatedData = JSON.parse(updatedStr);
@@ -53,12 +53,12 @@ async function updateToBlogsStructure() {
     let contentChanged = false;
 
     // Replace /blog/{slug}/ with /blogs/{slug}/
-    const linkRegex = /href=(["'])(https?:\/\/410-muscletherapy\.com)?\/blog\/([^"']+)\/?\1/gi;
+    const linkRegex = /href=(["'])(https?:\/\/trinitypumpsupply\.com)?\/blog\/([^"']+)\/?\1/gi;
     const newContent = content.replace(linkRegex, (match, quote, domain, slug) => {
       contentChanged = true;
       updatedLinks++;
       const cleanSlug = slug.replace(/^\/+|\/+$/g, '');
-      return `href=${quote}https://410-muscletherapy.com/blogs/${cleanSlug}/${quote}`;
+      return `href=${quote}https://trinitypumpsupply.com/blogs/${cleanSlug}/${quote}`;
     });
 
     if (contentChanged) {

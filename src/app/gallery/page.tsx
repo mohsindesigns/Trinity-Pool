@@ -51,7 +51,7 @@ export async function generateMetadata(): Promise<Metadata> {
       title: seo.ogTitle || seo.metaTitle || metaTitle,
       description: seo.ogDescription || metaDescription,
       url: pageUrl,
-      siteName: "410 Muscle Therapy",
+      siteName: "Trinity Pump & Supply",
       type: "website",
       images: seo.featuredImage ? [{ url: seo.featuredImage }] : [],
     },

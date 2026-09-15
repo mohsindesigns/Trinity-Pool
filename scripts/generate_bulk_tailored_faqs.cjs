@@ -239,11 +239,11 @@ async function generateBulkTailoredFaqs() {
           answer: "For active pain relief or athletic recovery, weekly sessions produce the quickest results. For mobility maintenance, every 2 to 4 weeks is ideal."
         },
         {
-          question: "How is 410 Muscle Therapy different from a standard day spa?",
+          question: "How is Trinity Pump & Supply different from a standard day spa?",
           answer: "We specialize in clinical, biomechanical bodywork and functional recovery tailored to active adults, athletes, and individuals managing chronic pain."
         },
         {
-          question: "How can I book an appointment at 410 Muscle Therapy?",
+          question: "How can I book an appointment at Trinity Pump & Supply?",
           answer: "You can book easily online 24/7 through our StyleSeat booking portal or reach out to our Timonium, MD clinic directly."
         }
       ];

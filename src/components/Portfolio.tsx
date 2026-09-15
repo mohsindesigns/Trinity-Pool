@@ -175,7 +175,7 @@ const MarqueeItem = ({ project }: { project: Project }) => {
                       Architect
                     </span>
                     <p className="text-white/90 text-[8px] sm:text-[10px] font-light truncate max-w-[80px] sm:max-w-none">
-                      {project.architect || "410 Muscle Therapy"}
+                      {project.architect || "Trinity Pump & Supply"}
                     </p>
                   </div>
 

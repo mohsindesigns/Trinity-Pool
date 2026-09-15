@@ -5,16 +5,16 @@ function deepReplace(obj) {
   if (obj === null || obj === undefined) return obj;
   if (typeof obj === 'string') {
     return obj
-      .replace(/https?:\/\/eaglerevolution\.com\/?/gi, 'https://410-muscletherapy.com/')
-      .replace(/https?:\/\/www\.eaglerevolution\.com\/?/gi, 'https://410-muscletherapy.com/')
-      .replace(/eaglerevolution\.com/gi, '410-muscletherapy.com')
-      .replace(/eagle_revolutionllc/gi, '410muscletherapy')
-      .replace(/eagle-revolution\/people\/?/gi, '410muscletherapy')
-      .replace(/eagle-revolution/gi, '410-muscletherapy')
-      .replace(/THE EAGLE EDGE/gi, 'THE 410 ADVANTAGE')
-      .replace(/Eagle Edge/gi, '410 Advantage')
-      .replace(/Eagle Revolution/gi, '410 Muscle Therapy')
-      .replace(/eaglerevolution/gi, '410muscletherapy')
+      .replace(/https?:\/\/eaglerevolution\.com\/?/gi, 'https://trinitypumpsupply.com/')
+      .replace(/https?:\/\/www\.eaglerevolution\.com\/?/gi, 'https://trinitypumpsupply.com/')
+      .replace(/eaglerevolution\.com/gi, 'trinitypumpsupply.com')
+      .replace(/eagle_revolutionllc/gi, 'trinitypumpsupply')
+      .replace(/eagle-revolution\/people\/?/gi, 'trinitypumpsupply')
+      .replace(/eagle-revolution/gi, 'trinitypumpsupply')
+      .replace(/THE EAGLE EDGE/gi, 'THE TRINITY ADVANTAGE')
+      .replace(/Eagle Edge/gi, 'Trinity Advantage')
+      .replace(/Eagle Revolution/gi, 'Trinity Pump & Supply')
+      .replace(/eaglerevolution/gi, 'trinitypumpsupply')
       .replace(/eagle-logo\.png/gi, 'logo.png')
       .replace(/eaglelogo\.png/gi, 'logo.png');
   }

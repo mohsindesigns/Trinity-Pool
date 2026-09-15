@@ -294,14 +294,14 @@ async function seedExactHomepageContent() {
         label: "PERFORMANCE RECOVERY SPECIALIST TIMONIUM",
         title1: "Recover Faster.",
         title2: "Perform Higher.",
-        description: "Pain should not control how you train, work, sleep, or move. Your performance recovery specialist Timonium at 410 Muscle Therapy identifies stubborn muscle knots and tight fascia. We check movement limits, then use focused hands-on care to address muscular causes. You can move confidently again."
+        description: "Pain should not control how you train, work, sleep, or move. Your performance recovery specialist Timonium at Trinity Pump & Supply identifies stubborn muscle knots and tight fascia. We check movement limits, then use focused hands-on care to address muscular causes. You can move confidently again."
       },
       leadership: {
         ...(existing.leadership || {}),
         label: "The Specialist",
         title: "Meet Your Performance Recovery Specialist Timonium",
         tagline: "Local Trust Earned Through Skilled Hands-On Care",
-        desc1: "<p>At 410 Muscle Therapy, every session is informed by eight years of experience. Our 5.0 Google rating reflects our attentive service and ability to provide therapy uniquely shaped around the needs of our clients. Our 100% satisfaction guarantee gives our clients confidence before their first visit and ensures our therapists are held accountable to provide the best therapy possible to all our Timonium clients.</p>",
+        desc1: "<p>At Trinity Pump & Supply, every session is informed by eight years of experience. Our 5.0 Google rating reflects our attentive service and ability to provide therapy uniquely shaped around the needs of our clients. Our 100% satisfaction guarantee gives our clients confidence before their first visit and ensures our therapists are held accountable to provide the best therapy possible to all our Timonium clients.</p>",
         desc2: "<p>Clients come to us from Timonium, Lutherville, Cockeysville, Towson, Hunt Valley, and from many of the surrounding Baltimore County communities. As your performance recovery specialist Timonium, we understand the strains and stresses from working and driving along the York Road corridor. We provide focused, individualized movement and recovery therapy with no corporate routine.</p>"
       },
       services: {
@@ -377,7 +377,7 @@ async function seedExactHomepageContent() {
         title: "Move Better Without Waiting Longer",
         description: "Call 443-473-2322 or book your performance recovery specialist Timonium visit at 1301 York Rd today.",
         button: "BOOK APPOINTMENT NOW",
-        buttonUrl: "https://www.styleseat.com/m/v/410muscletherapy"
+        buttonUrl: "https://www.styleseat.com/m/v/trinitypumpsupply"
       },
       faq: {
         section: {

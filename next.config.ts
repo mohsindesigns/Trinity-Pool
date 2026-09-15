@@ -18,7 +18,7 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
-        hostname: '410-muscletherapy.com',
+        hostname: 'trinitypumpsupply.com',
         port: '',
         pathname: '/**',
       },

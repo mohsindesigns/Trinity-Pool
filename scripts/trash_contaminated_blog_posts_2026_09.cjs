@@ -2,7 +2,7 @@
  * The single largest issue found in the final "everything dynamic,
  * everything complete" audit: 75 of the site's 81 blog posts are leftover
  * content from an unrelated massage-therapy business (matching the CMS's
- * original "410_muscle_therapy" template lineage) -- all still `status:
+ * original "trinity_pump_supply" template lineage) -- all still `status:
  * 'published'`, `isTrashed: false`. Confirmed these are individually
  * live, publicly reachable blog posts (deep tissue massage, cupping
  * therapy, sports massage certification, etc.) AND get pulled into
@@ -24,7 +24,7 @@ const { MongoClient } = require('mongodb');
 const path = require('path');
 require('dotenv').config({ path: path.resolve(__dirname, '../.env.local'), quiet: true });
 const uri = process.env.MONGODB_URI;
-const dbName = process.env.MONGODB_DB || '410_muscle_therapy';
+const dbName = process.env.MONGODB_DB || 'trinity_pump_supply';
 
 async function main() {
   if (!uri) throw new Error('MONGODB_URI missing in .env.local');

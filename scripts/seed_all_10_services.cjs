@@ -19,12 +19,12 @@ const services = [
     status: "published",
     backLink: "Back to All Services",
     heroSectionLabel: "CLINICAL RECOVERY PROTOCOL",
-    heroDescription: "Tight hips, aching shoulders, back pain, or sciatica can keep returning. Corrective movement therapy sessions in Maryland at [410 Muscle Therapy](/) look beyond the sore spot. We watch how you move. We identify tight patterns and help you build better habits for easier movement.",
+    heroDescription: "Tight hips, aching shoulders, back pain, or sciatica can keep returning. Corrective movement therapy sessions in Maryland at [Trinity Pump & Supply](/) look beyond the sore spot. We watch how you move. We identify tight patterns and help you build better habits for easier movement.",
     specDurationValue: "60 / 90 Mins",
     specIntensityValue: "Targeted Deep",
     specFocusValue: "Movement Analysis",
     bookingCta: "Book Appointment Now",
-    bookingCtaUrl: "https://www.styleseat.com/m/v/410muscletherapy",
+    bookingCtaUrl: "https://www.styleseat.com/m/v/trinitypumpsupply",
     heroCtaSecondary: "SEE HOW IT HELPS",
     heroCtaSecondaryUrl: "#overview",
     statsItem1Val: "8 Yrs",
@@ -45,7 +45,7 @@ const services = [
     overviewDescription: "<p>Corrective movement therapy in Maryland starts with a question: What keeps making this area work too hard? We look at mobility, stability, posture, soft-tissue restrictions, and movement habits. Then we pair bodywork with guided exercises that help your body share the load more comfortably.</p>",
     description: "Corrective movement therapy in Maryland starts with a question: What keeps making this area work too hard? We look at mobility, stability, posture, soft-tissue restrictions, and movement habits. Then we pair bodywork with guided exercises that help your body share the load more comfortably.",
     overviewCtaText: "BOOK YOUR SESSION NOW",
-    overviewCtaUrl: "https://www.styleseat.com/m/v/410muscletherapy",
+    overviewCtaUrl: "https://www.styleseat.com/m/v/trinitypumpsupply",
     overviewHipaaText: "100% Satisfaction Guaranteed & Certified",
     benefits: [
       {
@@ -69,10 +69,10 @@ const services = [
         description: "In corrective movement sessions, posture is not treated as one perfect pose. Bodies move throughout the day. We look for compensation patterns and practice balance, coordination, and joint control. This can support easier standing, walking, training, and daily tasks."
       }
     ],
-    candidateSectionLabel: "WHY 410 MUSCLE THERAPY FEELS DIFFERENT",
+    candidateSectionLabel: "WHY TRINITY PUMP & SUPPLY FEELS DIFFERENT",
     candidateTitle1: "Targeted Care.",
     candidateTitle2: "Built Around You.",
-    candidateDescription: "At 410 Muscle Therapy, our corrective movement therapy in Maryland is designed for people who want more than a feel-good hour. You get one-on-one care and clear explanations. Movement work is shaped around what your body can comfortably do. The goal is useful progress, not a rushed routine or generic adjustment.",
+    candidateDescription: "At Trinity Pump & Supply, our corrective movement therapy in Maryland is designed for people who want more than a feel-good hour. You get one-on-one care and clear explanations. Movement work is shaped around what your body can comfortably do. The goal is useful progress, not a rushed routine or generic adjustment.",
     profileBadgePrefix: "ADVANTAGE",
     candidateSuitability: "CLINICAL STANDARD",
     whoProfiles: [
@@ -130,7 +130,7 @@ const services = [
     protocolBannerTitleSuffix: "Corrective Movement Therapy?",
     protocolBannerDescription: "Call 443-473-2322 or book your session at 1301 York Rd., 8th Floor, Suite 48, Timonium, MD, today and start moving with more confidence.",
     protocolBannerCta: "BOOK YOUR APPOINTMENT",
-    protocolBannerCtaUrl: "https://www.styleseat.com/m/v/410muscletherapy",
+    protocolBannerCtaUrl: "https://www.styleseat.com/m/v/trinitypumpsupply",
     faqBadge: "FAQ",
     faqTitle: "Frequently Asked Questions",
     faqDescription: "Everything you need to know about your session and our clinical approach.",
@@ -153,17 +153,17 @@ const services = [
       },
       {
         question: "How many sessions will I need, and do I need a referral?",
-        answer: "There is no fixed session count. Long-term stiffness, training load, pain history, and daily habits all matter. We retest your movement and plan the next visit based on how your body responds. You can contact 410 Muscle Therapy to discuss booking. New weakness, major trauma, or worsening nerve symptoms need medical care first."
+        answer: "There is no fixed session count. Long-term stiffness, training load, pain history, and daily habits all matter. We retest your movement and plan the next visit based on how your body responds. You can contact Trinity Pump & Supply to discuss booking. New weakness, major trauma, or worsening nerve symptoms need medical care first."
       }
     ],
     seo: {
-      metaTitle: "Corrective Movement Therapy Maryland | 410 Muscle Therapy",
+      metaTitle: "Corrective Movement Therapy Maryland | Trinity Pump & Supply",
       metaDescription: "Eliminate recurring pain and move with confidence. Corrective movement therapy sessions in Timonium, MD targeting mobility, posture, and muscle imbalances.",
       focusKeyword: "corrective movement therapy maryland",
-      canonicalUrl: "https://410-muscletherapy.com/corrective-movement-therapy-maryland/",
+      canonicalUrl: "https://trinitypumpsupply.com/corrective-movement-therapy-maryland/",
       metaRobotsIndex: "index",
       metaRobotsFollow: "follow",
-      ogTitle: "Corrective Movement Therapy Maryland | 410 Muscle Therapy",
+      ogTitle: "Corrective Movement Therapy Maryland | Trinity Pump & Supply",
       ogDescription: "Eliminate recurring pain and move with confidence. Corrective movement therapy sessions in Timonium, MD targeting mobility, posture, and muscle imbalances."
     }
   },
@@ -180,12 +180,12 @@ const services = [
     status: "published",
     backLink: "Back to All Services",
     heroSectionLabel: "CLINICAL RECOVERY PROTOCOL",
-    heroDescription: "Pain that keeps returning can come with tight muscles, stubborn knots, or restricted movement. A Maryland sports massage therapist at [410 Muscle Therapy](/) uses focused hands-on work to address problem areas, ease soreness, and help your body move more comfortably again.",
+    heroDescription: "Pain that keeps returning can come with tight muscles, stubborn knots, or restricted movement. A Maryland sports massage therapist at [Trinity Pump & Supply](/) uses focused hands-on work to address problem areas, ease soreness, and help your body move more comfortably again.",
     specDurationValue: "60 / 90 Mins",
     specIntensityValue: "Firm Targeted",
     specFocusValue: "Athletic Recovery",
     bookingCta: "Book Appointment Now",
-    bookingCtaUrl: "https://www.styleseat.com/m/v/410muscletherapy",
+    bookingCtaUrl: "https://www.styleseat.com/m/v/trinitypumpsupply",
     heroCtaSecondary: "SEE HOW IT HELPS",
     heroCtaSecondaryUrl: "#overview",
     statsItem1Val: "8 Yrs",
@@ -206,7 +206,7 @@ const services = [
     overviewDescription: "<p>Sports massage uses focused pressure, compression, friction, and movement to work overloaded soft tissue instead of only calming the surface. Your Maryland sports massage therapist checks muscle tension, trigger points, and restricted areas, then targets tissues that may be limiting comfortable movement.</p>",
     description: "Sports massage uses focused pressure, compression, friction, and movement to work overloaded soft tissue instead of only calming the surface. Your Maryland sports massage therapist checks muscle tension, trigger points, and restricted areas, then targets tissues that may be limiting comfortable movement.",
     overviewCtaText: "BOOK YOUR SESSION NOW",
-    overviewCtaUrl: "https://www.styleseat.com/m/v/410muscletherapy",
+    overviewCtaUrl: "https://www.styleseat.com/m/v/trinitypumpsupply",
     overviewHipaaText: "100% Satisfaction Guaranteed & Certified",
     benefits: [
       {
@@ -230,10 +230,10 @@ const services = [
         description: "Lifting, desk work, and repeated overhead movement can overload the upper traps, chest, neck, and shoulder muscles. Sports injury massage targets tense soft tissue around these patterns, helping the neck and shoulders move with less restriction."
       }
     ],
-    candidateSectionLabel: "WHY ACTIVE CLIENTS CHOOSE 410 MUSCLE THERAPY",
+    candidateSectionLabel: "WHY ACTIVE CLIENTS CHOOSE TRINITY PUMP & SUPPLY",
     candidateTitle1: "Targeted Care.",
     candidateTitle2: "Built For Athletes.",
-    candidateDescription: "A general relaxation massage may feel good, but recurring pain often needs more specific work. At 410 Muscle Therapy, your Maryland sports massage therapist follows your symptoms, movement limits, and tissue response. We build each session around what is bothering you instead of repeating the same routine every visit.",
+    candidateDescription: "A general relaxation massage may feel good, but recurring pain often needs more specific work. At Trinity Pump & Supply, your Maryland sports massage therapist follows your symptoms, movement limits, and tissue response. We build each session around what is bothering you instead of repeating the same routine every visit.",
     profileBadgePrefix: "ADVANTAGE",
     candidateSuitability: "CLINICAL STANDARD",
     whoProfiles: [
@@ -291,7 +291,7 @@ const services = [
     protocolBannerTitleSuffix: "Sports Massage?",
     protocolBannerDescription: "Call 443-473-2322 or book your appointment today at our Timonium location at 1301 York Rd for focused, personalized sports massage care.",
     protocolBannerCta: "BOOK YOUR APPOINTMENT",
-    protocolBannerCtaUrl: "https://www.styleseat.com/m/v/410muscletherapy",
+    protocolBannerCtaUrl: "https://www.styleseat.com/m/v/trinitypumpsupply",
     faqBadge: "FAQ",
     faqTitle: "Frequently Asked Questions",
     faqDescription: "Everything you need to know about your session and our clinical approach.",
@@ -302,7 +302,7 @@ const services = [
       },
       {
         question: "How is sports massage different from a spa massage?",
-        answer: "A spa massage usually centers on general relaxation. Maryland sports massage has a clearer session goal, using your symptoms, activity, and movement limits to guide the session. At 410 Muscle Therapy, we target relevant muscles and soft tissue instead of following the same routine for every client we see."
+        answer: "A spa massage usually centers on general relaxation. Maryland sports massage has a clearer session goal, using your symptoms, activity, and movement limits to guide the session. At Trinity Pump & Supply, we target relevant muscles and soft tissue instead of following the same routine for every client we see."
       },
       {
         question: "How often should I book a sports massage?",
@@ -318,13 +318,13 @@ const services = [
       }
     ],
     seo: {
-      metaTitle: "Maryland Sports Massage Therapist | 410 Muscle Therapy",
+      metaTitle: "Maryland Sports Massage Therapist | Trinity Pump & Supply",
       metaDescription: "Recover faster and perform at your highest level with specialized sports massage therapy in Timonium, MD designed for athletes and active adults.",
       focusKeyword: "maryland sports massage therapist",
-      canonicalUrl: "https://410-muscletherapy.com/maryland-sports-massage-therapist/",
+      canonicalUrl: "https://trinitypumpsupply.com/maryland-sports-massage-therapist/",
       metaRobotsIndex: "index",
       metaRobotsFollow: "follow",
-      ogTitle: "Maryland Sports Massage Therapist | 410 Muscle Therapy",
+      ogTitle: "Maryland Sports Massage Therapist | Trinity Pump & Supply",
       ogDescription: "Recover faster and perform at your highest level with specialized sports massage therapy in Timonium, MD designed for athletes and active adults."
     }
   },
@@ -341,12 +341,12 @@ const services = [
     status: "published",
     backLink: "Back to All Services",
     heroSectionLabel: "CLINICAL RECOVERY PROTOCOL",
-    heroDescription: "Muscle pain, stiff joints, and sciatica can make work, training, sleep, and daily tasks harder. At [410 Muscle Therapy](/), we provide infrared therapy in Maryland to help calm sore areas and loosen tight tissue. Hands-on care can then target muscle tension linked with your discomfort.",
+    heroDescription: "Muscle pain, stiff joints, and sciatica can make work, training, sleep, and daily tasks harder. At [Trinity Pump & Supply](/), we provide infrared therapy in Maryland to help calm sore areas and loosen tight tissue. Hands-on care can then target muscle tension linked with your discomfort.",
     specDurationValue: "45 / 60 Mins",
     specIntensityValue: "Soothing Heat",
     specFocusValue: "Cellular Recovery",
     bookingCta: "Book Appointment Now",
-    bookingCtaUrl: "https://www.styleseat.com/m/v/410muscletherapy",
+    bookingCtaUrl: "https://www.styleseat.com/m/v/trinitypumpsupply",
     heroCtaSecondary: "SEE HOW IT HELPS",
     heroCtaSecondaryUrl: "#overview",
     statsItem1Val: "8 Yrs",
@@ -367,7 +367,7 @@ const services = [
     overviewDescription: "<p>Red and near-infrared light may support natural processes in the body linked with pain relief and recovery. At our Timonium muscle therapy studio, we use this approach as one tool before bodywork. It can help sore, tight areas feel easier to work on during treatment.</p>",
     description: "Red and near-infrared light may support natural processes in the body linked with pain relief and recovery. At our Timonium muscle therapy studio, we use this approach as one tool before bodywork. It can help sore, tight areas feel easier to work on during treatment.",
     overviewCtaText: "BOOK YOUR SESSION NOW",
-    overviewCtaUrl: "https://www.styleseat.com/m/v/410muscletherapy",
+    overviewCtaUrl: "https://www.styleseat.com/m/v/trinitypumpsupply",
     overviewHipaaText: "100% Satisfaction Guaranteed & Certified",
     benefits: [
       {
@@ -391,10 +391,10 @@ const services = [
         description: "Restricted fascia can make muscles and surrounding tissue feel tight. Infrared support may help prepare these areas before hands-on work, while [myofascial release therapy Maryland](/myofascial-release-therapy-maryland/) focuses more directly on fascial restrictions. The goal is more natural movement with less tension."
       }
     ],
-    candidateSectionLabel: "WHY CLIENTS CHOOSE 410 MUSCLE THERAPY",
+    candidateSectionLabel: "WHY CLIENTS CHOOSE TRINITY PUMP & SUPPLY",
     candidateTitle1: "Targeted Heat.",
     candidateTitle2: "Clinical Relief.",
-    candidateDescription: "You are not booking the same routine every client gets. We start with your pain, stiff areas, daily limits, and goals. At 410 Muscle Therapy, each visit is built around what your body needs that day, with clear feedback, focused care, and a plan you can understand and use.",
+    candidateDescription: "You are not booking the same routine every client gets. We start with your pain, stiff areas, daily limits, and goals. At Trinity Pump & Supply, each visit is built around what your body needs that day, with clear feedback, focused care, and a plan you can understand and use.",
     profileBadgePrefix: "ADVANTAGE",
     candidateSuitability: "CLINICAL STANDARD",
     whoProfiles: [
@@ -452,7 +452,7 @@ const services = [
     protocolBannerTitleSuffix: "Infrared Therapy?",
     protocolBannerDescription: "Call 443-473-2322 or book your infrared therapy and focused pain-relief session at 1301 York Rd in Timonium today.",
     protocolBannerCta: "BOOK YOUR APPOINTMENT",
-    protocolBannerCtaUrl: "https://www.styleseat.com/m/v/410muscletherapy",
+    protocolBannerCtaUrl: "https://www.styleseat.com/m/v/trinitypumpsupply",
     faqBadge: "FAQ",
     faqTitle: "Frequently Asked Questions",
     faqDescription: "Everything you need to know about your session and our clinical approach.",
@@ -463,7 +463,7 @@ const services = [
       },
       {
         question: "How is infrared therapy different from a spa massage?",
-        answer: "The main difference is the goal. A spa massage usually centers on general relaxation. At 410 Muscle Therapy, we start with your pain pattern, movement limits, and muscle tension. Infrared support may be paired with targeted bodywork, giving each session a specific purpose instead of a generic relaxation routine."
+        answer: "The main difference is the goal. A spa massage usually centers on general relaxation. At Trinity Pump & Supply, we start with your pain pattern, movement limits, and muscle tension. Infrared support may be paired with targeted bodywork, giving each session a specific purpose instead of a generic relaxation routine."
       },
       {
         question: "How often should I book infrared therapy sessions?",
@@ -479,13 +479,13 @@ const services = [
       }
     ],
     seo: {
-      metaTitle: "Infrared Therapy Maryland | 410 Muscle Therapy",
+      metaTitle: "Infrared Therapy Maryland | Trinity Pump & Supply",
       metaDescription: "Soothe deep muscle pain, accelerate tissue recovery, and reduce chronic inflammation with specialized infrared therapy in Timonium, MD.",
       focusKeyword: "infrared therapy maryland",
-      canonicalUrl: "https://410-muscletherapy.com/infrared-therapy-maryland/",
+      canonicalUrl: "https://trinitypumpsupply.com/infrared-therapy-maryland/",
       metaRobotsIndex: "index",
       metaRobotsFollow: "follow",
-      ogTitle: "Infrared Therapy Maryland | 410 Muscle Therapy",
+      ogTitle: "Infrared Therapy Maryland | Trinity Pump & Supply",
       ogDescription: "Soothe deep muscle pain, accelerate tissue recovery, and reduce chronic inflammation with specialized infrared therapy in Timonium, MD."
     }
   },
@@ -502,12 +502,12 @@ const services = [
     status: "published",
     backLink: "Back to All Services",
     heroSectionLabel: "CLINICAL RECOVERY PROTOCOL",
-    heroDescription: "If your hips lock up after sitting, your back tightens when you stand, or sciatica keeps interrupting your day, your body may need more than basic stretching. At [410 Muscle Therapy](/), Maryland fascial stretch therapy targets stubborn tension and restricted movement through guided stretching, supported movement, and focused hands-on techniques.",
+    heroDescription: "If your hips lock up after sitting, your back tightens when you stand, or sciatica keeps interrupting your day, your body may need more than basic stretching. At [Trinity Pump & Supply](/), Maryland fascial stretch therapy targets stubborn tension and restricted movement through guided stretching, supported movement, and focused hands-on techniques.",
     specDurationValue: "60 / 90 Mins",
     specIntensityValue: "Assisted Dynamic",
     specFocusValue: "Full Body Mobility",
     bookingCta: "Book Appointment Now",
-    bookingCtaUrl: "https://www.styleseat.com/m/v/410muscletherapy",
+    bookingCtaUrl: "https://www.styleseat.com/m/v/trinitypumpsupply",
     heroCtaSecondary: "SEE HOW IT HELPS",
     heroCtaSecondaryUrl: "#overview",
     statsItem1Val: "8 Yrs",
@@ -528,7 +528,7 @@ const services = [
     overviewDescription: "<p>Fascia is connective tissue that supports muscles and nearby structures. When tissue stays guarded, movement can feel restricted. Maryland fascial stretch therapy combines supported positions, guided movement, and focused hands-on techniques, similar to principles used in myofascial release therapy Maryland, to improve mobility without forcing your body through sharp pain.</p>",
     description: "Fascia is connective tissue that supports muscles and nearby structures. When tissue stays guarded, movement can feel restricted. Maryland fascial stretch therapy combines supported positions, guided movement, and focused hands-on techniques, similar to principles used in myofascial release therapy Maryland, to improve mobility without forcing your body through sharp pain.",
     overviewCtaText: "BOOK YOUR SESSION NOW",
-    overviewCtaUrl: "https://www.styleseat.com/m/v/410muscletherapy",
+    overviewCtaUrl: "https://www.styleseat.com/m/v/trinitypumpsupply",
     overviewHipaaText: "100% Satisfaction Guaranteed & Certified",
     benefits: [
       {
@@ -555,7 +555,7 @@ const services = [
     candidateSectionLabel: "WHY TIMONIUM CHOOSES TARGETED MUSCLE CARE",
     candidateTitle1: "Targeted Movement.",
     candidateTitle2: "Built Around Mobility.",
-    candidateDescription: "You are not booking a generic stretch routine or spa hour. At 410 Muscle Therapy, Maryland fascial stretch therapy looks beyond the sore spot to the muscle tension and movement limitations around it. We watch how your body moves, listen to your concerns, and shape each session around what you need most.",
+    candidateDescription: "You are not booking a generic stretch routine or spa hour. At Trinity Pump & Supply, Maryland fascial stretch therapy looks beyond the sore spot to the muscle tension and movement limitations around it. We watch how your body moves, listen to your concerns, and shape each session around what you need most.",
     profileBadgePrefix: "ADVANTAGE",
     candidateSuitability: "CLINICAL STANDARD",
     whoProfiles: [
@@ -583,7 +583,7 @@ const services = [
     protocolSectionLabel: "SESSION WORKFLOW PROTOCOL",
     protocolTitle1: "What Happens During Your",
     protocolTitle2: "Targeted Stretch Session.",
-    protocolDescription: "Your visit should feel personal from the first question to the final movement check. Maryland fascial stretch therapy at 410 Muscle Therapy follows a clear path: understand your symptoms, watch how you move, work within your comfort level, and then recheck what changed before you leave.",
+    protocolDescription: "Your visit should feel personal from the first question to the final movement check. Maryland fascial stretch therapy at Trinity Pump & Supply follows a clear path: understand your symptoms, watch how you move, work within your comfort level, and then recheck what changed before you leave.",
     protocolPhasePrefix: "STEP",
     protocolDurations: ["15 MIN", "30 MIN", "30 MIN", "15 MIN"],
     sessionSteps: [
@@ -613,7 +613,7 @@ const services = [
     protocolBannerTitleSuffix: "Fascial Stretch Therapy?",
     protocolBannerDescription: "Call 443-473-2322 or book your session at 1301 York Rd., 8th Floor, Suite 48, Timonium, MD, and start moving with greater comfort.",
     protocolBannerCta: "BOOK YOUR APPOINTMENT",
-    protocolBannerCtaUrl: "https://www.styleseat.com/m/v/410muscletherapy",
+    protocolBannerCtaUrl: "https://www.styleseat.com/m/v/trinitypumpsupply",
     faqBadge: "FAQ",
     faqTitle: "Frequently Asked Questions",
     faqDescription: "Everything you need to know about your session and our clinical approach.",
@@ -632,7 +632,7 @@ const services = [
       },
       {
         question: "What does fascial stretch therapy cost, and is it covered by insurance?",
-        answer: "Pricing can vary by session length and the services included, so current rates should be confirmed before booking. Insurance coverage also depends on your plan, provider type, and benefits. Ask 410 Muscle Therapy about current payment options, then check with your insurer if you plan to request reimbursement for bodywork."
+        answer: "Pricing can vary by session length and the services included, so current rates should be confirmed before booking. Insurance coverage also depends on your plan, provider type, and benefits. Ask Trinity Pump & Supply about current payment options, then check with your insurer if you plan to request reimbursement for bodywork."
       },
       {
         question: "What does a fascial stretch session feel like, and what should I wear?",
@@ -640,13 +640,13 @@ const services = [
       }
     ],
     seo: {
-      metaTitle: "Maryland Fascial Stretch Therapy | 410 Muscle Therapy",
+      metaTitle: "Maryland Fascial Stretch Therapy | Trinity Pump & Supply",
       metaDescription: "Unlock joint mobility, lengthen tight fascia, and eliminate chronic muscle stiffness with practitioner-assisted fascial stretch therapy in Timonium, MD.",
       focusKeyword: "maryland fascial stretch therapy",
-      canonicalUrl: "https://410-muscletherapy.com/maryland-fascial-stretch-therapy/",
+      canonicalUrl: "https://trinitypumpsupply.com/maryland-fascial-stretch-therapy/",
       metaRobotsIndex: "index",
       metaRobotsFollow: "follow",
-      ogTitle: "Maryland Fascial Stretch Therapy | 410 Muscle Therapy",
+      ogTitle: "Maryland Fascial Stretch Therapy | Trinity Pump & Supply",
       ogDescription: "Unlock joint mobility, lengthen tight fascia, and eliminate chronic muscle stiffness with practitioner-assisted fascial stretch therapy in Timonium, MD."
     }
   },
@@ -663,12 +663,12 @@ const services = [
     status: "published",
     backLink: "Back to All Services",
     heroSectionLabel: "CLINICAL RECOVERY PROTOCOL",
-    heroDescription: "If tight muscles, stiff joints, or sciatica keep returning, a spa massage may not be enough. At [410 Muscle Therapy](/), our Maryland hot towel massage service pairs warmth with focused muscle work to ease guarding, target tension, and support easier movement.",
+    heroDescription: "If tight muscles, stiff joints, or sciatica keep returning, a spa massage may not be enough. At [Trinity Pump & Supply](/), our Maryland hot towel massage service pairs warmth with focused muscle work to ease guarding, target tension, and support easier movement.",
     specDurationValue: "60 / 90 Mins",
     specIntensityValue: "Targeted Warmth",
     specFocusValue: "Fascial Relaxation",
     bookingCta: "Book Appointment Now",
-    bookingCtaUrl: "https://www.styleseat.com/m/v/410muscletherapy",
+    bookingCtaUrl: "https://www.styleseat.com/m/v/trinitypumpsupply",
     heroCtaSecondary: "SEE HOW IT HELPS",
     heroCtaSecondaryUrl: "#overview",
     statsItem1Val: "8 Yrs",
@@ -689,7 +689,7 @@ const services = [
     overviewDescription: "<p>Therapeutic hot towel massage in Maryland uses warm, moist towels before focused bodywork. Gentle heat can temporarily ease stiffness and help tense tissue feel more comfortable. Then skilled pressure addresses muscle bands, soft tissue restrictions, and movement patterns linked with recurring discomfort.</p>",
     description: "Therapeutic hot towel massage in Maryland uses warm, moist towels before focused bodywork. Gentle heat can temporarily ease stiffness and help tense tissue feel more comfortable. Then skilled pressure addresses muscle bands, soft tissue restrictions, and movement patterns linked with recurring discomfort.",
     overviewCtaText: "BOOK YOUR SESSION NOW",
-    overviewCtaUrl: "https://www.styleseat.com/m/v/410muscletherapy",
+    overviewCtaUrl: "https://www.styleseat.com/m/v/trinitypumpsupply",
     overviewHipaaText: "100% Satisfaction Guaranteed & Certified",
     benefits: [
       {
@@ -713,10 +713,10 @@ const services = [
         description: "Desk work, long drives, lifting, running, and gym sessions can repeatedly overload muscles and surrounding tissue. Warmth helps tired areas relax, while [myofascial release therapy Maryland](/myofascial-release-therapy-maryland/) can address stubborn soft tissue restrictions that may contribute to tightness and limited movement."
       }
     ],
-    candidateSectionLabel: "WHY TIMONIUM TRUSTS 410 MUSCLE THERAPY",
+    candidateSectionLabel: "WHY TIMONIUM TRUSTS TRINITY PUMP & SUPPLY",
     candidateTitle1: "Targeted Warmth.",
     candidateTitle2: "Built Around Comfort.",
-    candidateDescription: "Pain relief should feel personal, not rushed. At 410 Muscle Therapy, we pay attention to where you hurt, how you move, and what keeps tightening again. Clients throughout Timonium, Lutherville, Cockeysville, Towson, Hunt Valley, and Baltimore County choose focused care built around real goals, not a one-size-fits-all spa routine.",
+    candidateDescription: "Pain relief should feel personal, not rushed. At Trinity Pump & Supply, we pay attention to where you hurt, how you move, and what keeps tightening again. Clients throughout Timonium, Lutherville, Cockeysville, Towson, Hunt Valley, and Baltimore County choose focused care built around real goals, not a one-size-fits-all spa routine.",
     profileBadgePrefix: "ADVANTAGE",
     candidateSuitability: "CLINICAL STANDARD",
     whoProfiles: [
@@ -774,14 +774,14 @@ const services = [
     protocolBannerTitleSuffix: "Hot Towel Massage?",
     protocolBannerDescription: "Book your hot towel massage in Maryland today. Call 443-473-2322 or visit us at 1301 York Rd., 8th Floor, Ste 48, Timonium, MD 21093.",
     protocolBannerCta: "BOOK YOUR APPOINTMENT",
-    protocolBannerCtaUrl: "https://www.styleseat.com/m/v/410muscletherapy",
+    protocolBannerCtaUrl: "https://www.styleseat.com/m/v/trinitypumpsupply",
     faqBadge: "FAQ",
     faqTitle: "Frequently Asked Questions",
     faqDescription: "Everything you need to know about your session and our clinical approach.",
     faq: [
       {
         question: "What does a hot towel massage actually do for tight muscles?",
-        answer: "Warm towels add gentle superficial heat before focused massage. That warmth may temporarily ease stiffness and help tense muscles feel more comfortable. The towel is not a cure by itself. At 410 Muscle Therapy, we use it to prepare tight areas for slower, more specific hands-on work and pressure."
+        answer: "Warm towels add gentle superficial heat before focused massage. That warmth may temporarily ease stiffness and help tense muscles feel more comfortable. The towel is not a cure by itself. At Trinity Pump & Supply, we use it to prepare tight areas for slower, more specific hands-on work and pressure."
       },
       {
         question: "Is hot towel massage better than hot stone massage for muscle tension?",
@@ -801,13 +801,13 @@ const services = [
       }
     ],
     seo: {
-      metaTitle: "Hot Towel Massage Maryland | 410 Muscle Therapy",
+      metaTitle: "Hot Towel Massage Maryland | Trinity Pump & Supply",
       metaDescription: "Melt away chronic tension and muscle guarding with therapeutic hot towel massage therapy in Timonium, MD combining moist heat and deep soft-tissue release.",
       focusKeyword: "hot towel massage maryland",
-      canonicalUrl: "https://410-muscletherapy.com/hot-towel-massage-maryland/",
+      canonicalUrl: "https://trinitypumpsupply.com/hot-towel-massage-maryland/",
       metaRobotsIndex: "index",
       metaRobotsFollow: "follow",
-      ogTitle: "Hot Towel Massage Maryland | 410 Muscle Therapy",
+      ogTitle: "Hot Towel Massage Maryland | Trinity Pump & Supply",
       ogDescription: "Melt away chronic tension and muscle guarding with therapeutic hot towel massage therapy in Timonium, MD combining moist heat and deep soft-tissue release."
     }
   },
@@ -824,12 +824,12 @@ const services = [
     status: "published",
     backLink: "Back to All Services",
     heroSectionLabel: "CLINICAL RECOVERY PROTOCOL",
-    heroDescription: "When tight fascia, deep muscle knots, and stubborn stiffness keep coming back, simple relaxation may not be enough. At [410 Muscle Therapy](/), we provide myofascial release therapy in Maryland to target restricted tissue, ease muscle tension, and help you move with greater comfort and ease.",
+    heroDescription: "When tight fascia, deep muscle knots, and stubborn stiffness keep coming back, simple relaxation may not be enough. At [Trinity Pump & Supply](/), we provide myofascial release therapy in Maryland to target restricted tissue, ease muscle tension, and help you move with greater comfort and ease.",
     specDurationValue: "60 / 90 Mins",
     specIntensityValue: "Sustained Release",
     specFocusValue: "Fascial Unwinding",
     bookingCta: "Book Appointment Now",
-    bookingCtaUrl: "https://www.styleseat.com/m/v/410muscletherapy",
+    bookingCtaUrl: "https://www.styleseat.com/m/v/trinitypumpsupply",
     heroCtaSecondary: "SEE HOW IT HELPS",
     heroCtaSecondaryUrl: "#overview",
     statsItem1Val: "8 Yrs",
@@ -850,7 +850,7 @@ const services = [
     overviewDescription: "<p>Fascia is connective tissue that surrounds and supports your muscles and other structures. When certain areas become tight, sensitive, or restricted, movement may feel stiff or uncomfortable. Our myofascial release therapy approach uses slow, focused pressure to address restricted tissue and tender areas.</p>",
     description: "Fascia is connective tissue that surrounds and supports your muscles and other structures. When certain areas become tight, sensitive, or restricted, movement may feel stiff or uncomfortable. Our myofascial release therapy approach uses slow, focused pressure to address restricted tissue and tender areas.",
     overviewCtaText: "BOOK YOUR SESSION NOW",
-    overviewCtaUrl: "https://www.styleseat.com/m/v/410muscletherapy",
+    overviewCtaUrl: "https://www.styleseat.com/m/v/trinitypumpsupply",
     overviewHipaaText: "100% Satisfaction Guaranteed & Certified",
     benefits: [
       {
@@ -874,10 +874,10 @@ const services = [
         description: "Hard workouts and repeated movement can leave muscles sore, tight, or restricted. Myofascial release sessions focus on areas that feel bound or tender, helping you move more freely, recover more comfortably, and return to training with less stiffness."
       }
     ],
-    candidateSectionLabel: "WHY TIMONIUM CHOOSES 410 MUSCLE THERAPY",
+    candidateSectionLabel: "WHY TIMONIUM CHOOSES TRINITY PUMP & SUPPLY",
     candidateTitle1: "Targeted Precision.",
     candidateTitle2: "Focused On Relief.",
-    candidateDescription: "You are not looking for a quick massage that feels good for only one evening. You want focused work with a clear purpose. At 410 Muscle Therapy, each session is shaped around your pain pattern, movement limitations, pressure comfort, and personal goals, with attentive care from an experienced local muscle specialist.",
+    candidateDescription: "You are not looking for a quick massage that feels good for only one evening. You want focused work with a clear purpose. At Trinity Pump & Supply, each session is shaped around your pain pattern, movement limitations, pressure comfort, and personal goals, with attentive care from an experienced local muscle specialist.",
     profileBadgePrefix: "ADVANTAGE",
     candidateSuitability: "CLINICAL STANDARD",
     whoProfiles: [
@@ -933,9 +933,9 @@ const services = [
     protocolBannerBadge: "START MOVING WITH LESS PAIN",
     protocolBannerTitlePrefix: "Ready to experience",
     protocolBannerTitleSuffix: "Myofascial Release?",
-    protocolBannerDescription: "Call 443-473-2322 today to book your visit at 410 Muscle Therapy, located at 1301 York Rd in Timonium.",
+    protocolBannerDescription: "Call 443-473-2322 today to book your visit at Trinity Pump & Supply, located at 1301 York Rd in Timonium.",
     protocolBannerCta: "BOOK YOUR APPOINTMENT",
-    protocolBannerCtaUrl: "https://www.styleseat.com/m/v/410muscletherapy",
+    protocolBannerCtaUrl: "https://www.styleseat.com/m/v/trinitypumpsupply",
     faqBadge: "FAQ",
     faqTitle: "Frequently Asked Questions",
     faqDescription: "Everything you need to know about your session and our clinical approach.",
@@ -962,13 +962,13 @@ const services = [
       }
     ],
     seo: {
-      metaTitle: "Myofascial Release Therapy Maryland | 410 Muscle Therapy",
+      metaTitle: "Myofascial Release Therapy Maryland | Trinity Pump & Supply",
       metaDescription: "Release stuck connective tissue, eliminate chronic muscle knots, and restore full range of motion with clinical myofascial release in Timonium, MD.",
       focusKeyword: "myofascial release therapy maryland",
-      canonicalUrl: "https://410-muscletherapy.com/myofascial-release-therapy-maryland/",
+      canonicalUrl: "https://trinitypumpsupply.com/myofascial-release-therapy-maryland/",
       metaRobotsIndex: "index",
       metaRobotsFollow: "follow",
-      ogTitle: "Myofascial Release Therapy Maryland | 410 Muscle Therapy",
+      ogTitle: "Myofascial Release Therapy Maryland | Trinity Pump & Supply",
       ogDescription: "Release stuck connective tissue, eliminate chronic muscle knots, and restore full range of motion with clinical myofascial release in Timonium, MD."
     }
   },
@@ -985,12 +985,12 @@ const services = [
     status: "published",
     backLink: "Back to All Services",
     heroSectionLabel: "CLINICAL RECOVERY PROTOCOL",
-    heroDescription: "When pain keeps returning, a light spa massage may not be enough. At [410 Muscle Therapy](/), acupressure massage Maryland care uses focused pressure to address tight muscles, tender points, fascial restriction, and strain patterns that may limit comfortable movement each day.",
+    heroDescription: "When pain keeps returning, a light spa massage may not be enough. At [Trinity Pump & Supply](/), acupressure massage Maryland care uses focused pressure to address tight muscles, tender points, fascial restriction, and strain patterns that may limit comfortable movement each day.",
     specDurationValue: "60 / 90 Mins",
     specIntensityValue: "Firm Sustained",
     specFocusValue: "Acupoint Mapping",
     bookingCta: "Book Appointment Now",
-    bookingCtaUrl: "https://www.styleseat.com/m/v/410muscletherapy",
+    bookingCtaUrl: "https://www.styleseat.com/m/v/trinitypumpsupply",
     heroCtaSecondary: "SEE HOW IT HELPS",
     heroCtaSecondaryUrl: "#overview",
     statsItem1Val: "8 Yrs",
@@ -1011,7 +1011,7 @@ const services = [
     overviewDescription: "<p>Acupressure uses steady pressure on specific points while bodywork checks the muscles around them. Our acupressure massage Maryland sessions blend this focused approach with pressure point therapy Maryland methods. This approach may help ease muscle guarding, tenderness, and restricted movement rather than focusing only on short-lived relaxation.</p>",
     description: "Acupressure uses steady pressure on specific points while bodywork checks the muscles around them. Our acupressure massage Maryland sessions blend this focused approach with pressure point therapy Maryland methods. This approach may help ease muscle guarding, tenderness, and restricted movement rather than focusing only on short-lived relaxation.",
     overviewCtaText: "BOOK YOUR SESSION NOW",
-    overviewCtaUrl: "https://www.styleseat.com/m/v/410muscletherapy",
+    overviewCtaUrl: "https://www.styleseat.com/m/v/trinitypumpsupply",
     overviewHipaaText: "100% Satisfaction Guaranteed & Certified",
     benefits: [
       {
@@ -1035,10 +1035,10 @@ const services = [
         description: "Tight jaw, neck, and shoulder muscles can contribute to some headache patterns. Careful pressure may help relax those tissues and reduce tension. Persistent, severe, sudden, or unusual headaches should always be checked by a medical professional."
       }
     ],
-    candidateSectionLabel: "WHY TIMONIUM CHOOSES 410 MUSCLE THERAPY",
+    candidateSectionLabel: "WHY TIMONIUM CHOOSES TRINITY PUMP & SUPPLY",
     candidateTitle1: "Targeted Pressure.",
     candidateTitle2: "Customized Points.",
-    candidateDescription: "At 410 Muscle Therapy, your session is built around the areas of muscular tension, tenderness, and restricted movement you are experiencing. Our acupressure massage Maryland service is backed by eight years of professional hands-on experience, with a strong focus on personalized care, clear communication, and practical treatment goals.",
+    candidateDescription: "At Trinity Pump & Supply, your session is built around the areas of muscular tension, tenderness, and restricted movement you are experiencing. Our acupressure massage Maryland service is backed by eight years of professional hands-on experience, with a strong focus on personalized care, clear communication, and practical treatment goals.",
     profileBadgePrefix: "ADVANTAGE",
     candidateSuitability: "CLINICAL STANDARD",
     whoProfiles: [
@@ -1054,7 +1054,7 @@ const services = [
       },
       {
         label: "Customer Satisfaction Focus",
-        desc: "Customer satisfaction is a priority at 410 Muscle Therapy. We focus on your experience, communication, and individual needs throughout each session. If the pressure feels wrong, an area needs more attention, or your goals change during the visit, speak up so we can adjust.",
+        desc: "Customer satisfaction is a priority at Trinity Pump & Supply. We focus on your experience, communication, and individual needs throughout each session. If the pressure feels wrong, an area needs more attention, or your goals change during the visit, speak up so we can adjust.",
         suitability: "100% GUARANTEED"
       },
       {
@@ -1096,7 +1096,7 @@ const services = [
     protocolBannerTitleSuffix: "Acupressure Massage?",
     protocolBannerDescription: "Call 443-473-2322 or book your session at 1301 York Rd, 8th Floor, Suite 48, Timonium, MD 21093.",
     protocolBannerCta: "BOOK YOUR APPOINTMENT",
-    protocolBannerCtaUrl: "https://www.styleseat.com/m/v/410muscletherapy",
+    protocolBannerCtaUrl: "https://www.styleseat.com/m/v/trinitypumpsupply",
     faqBadge: "FAQ",
     faqTitle: "Frequently Asked Questions",
     faqDescription: "Everything you need to know about your session and our clinical approach.",
@@ -1123,13 +1123,13 @@ const services = [
       }
     ],
     seo: {
-      metaTitle: "Acupressure Massage Maryland | 410 Muscle Therapy",
+      metaTitle: "Acupressure Massage Maryland | Trinity Pump & Supply",
       metaDescription: "Relieve muscle tension, improve vital circulation, and balance your body with specialized acupressure massage therapy in Timonium, MD.",
       focusKeyword: "acupressure massage maryland",
-      canonicalUrl: "https://410-muscletherapy.com/acupressure-massage-maryland/",
+      canonicalUrl: "https://trinitypumpsupply.com/acupressure-massage-maryland/",
       metaRobotsIndex: "index",
       metaRobotsFollow: "follow",
-      ogTitle: "Acupressure Massage Maryland | 410 Muscle Therapy",
+      ogTitle: "Acupressure Massage Maryland | Trinity Pump & Supply",
       ogDescription: "Relieve muscle tension, improve vital circulation, and balance your body with specialized acupressure massage therapy in Timonium, MD."
     }
   },
@@ -1146,12 +1146,12 @@ const services = [
     status: "published",
     backLink: "Back to All Services",
     heroSectionLabel: "CLINICAL RECOVERY PROTOCOL",
-    heroDescription: "Pain that keeps returning can be linked to tight muscles, restricted fascia, or repeated physical strain. At [410 Muscle Therapy](/), cupping therapy in Maryland uses focused suction and hands-on assessment to target stubborn soft tissue so you can move more freely and comfortably.",
+    heroDescription: "Pain that keeps returning can be linked to tight muscles, restricted fascia, or repeated physical strain. At [Trinity Pump & Supply](/), cupping therapy in Maryland uses focused suction and hands-on assessment to target stubborn soft tissue so you can move more freely and comfortably.",
     specDurationValue: "45 / 60 Mins",
     specIntensityValue: "Dynamic Decompression",
     specFocusValue: "Myofascial Lift",
     bookingCta: "Book Appointment Now",
-    bookingCtaUrl: "https://www.styleseat.com/m/v/410muscletherapy",
+    bookingCtaUrl: "https://www.styleseat.com/m/v/trinitypumpsupply",
     heroCtaSecondary: "SEE HOW IT HELPS",
     heroCtaSecondaryUrl: "#overview",
     statsItem1Val: "8 Yrs",
@@ -1172,7 +1172,7 @@ const services = [
     overviewDescription: "<p>Unlike massage pressure that pushes into the tissue, cupping therapy uses suction to gently lift the skin and soft tissue underneath. This creates a different effect on tense areas. Research suggests dry cupping may help reduce musculoskeletal pain and improve soft tissue flexibility.</p>",
     description: "Unlike massage pressure that pushes into the tissue, cupping therapy uses suction to gently lift the skin and soft tissue underneath. This creates a different effect on tense areas. Research suggests dry cupping may help reduce musculoskeletal pain and improve soft tissue flexibility.",
     overviewCtaText: "BOOK YOUR SESSION NOW",
-    overviewCtaUrl: "https://www.styleseat.com/m/v/410muscletherapy",
+    overviewCtaUrl: "https://www.styleseat.com/m/v/trinitypumpsupply",
     overviewHipaaText: "100% Satisfaction Guaranteed & Certified",
     benefits: [
       {
@@ -1199,7 +1199,7 @@ const services = [
     candidateSectionLabel: "WHY TIMONIUM CHOOSES FOCUSED MUSCLE CARE",
     candidateTitle1: "Targeted Suction.",
     candidateTitle2: "Decompression Science.",
-    candidateDescription: "At 410 Muscle Therapy, cupping therapy in Maryland is not treated like a generic spa add-on. Your session is shaped around your pain pattern, movement limits, daily habits, and physical demands. You benefit from eight years of professional experience, a 5.0-star Google rating, focused muscle care, and our 100% Customer Satisfaction Guarantee.",
+    candidateDescription: "At Trinity Pump & Supply, cupping therapy in Maryland is not treated like a generic spa add-on. Your session is shaped around your pain pattern, movement limits, daily habits, and physical demands. You benefit from eight years of professional experience, a 5.0-star Google rating, focused muscle care, and our 100% Customer Satisfaction Guarantee.",
     profileBadgePrefix: "ADVANTAGE",
     candidateSuitability: "CLINICAL STANDARD",
     whoProfiles: [
@@ -1210,7 +1210,7 @@ const services = [
       },
       {
         label: "Five-Star Trust",
-        desc: "A 5.0-star Google rating reflects the level of care clients expect when they visit 410 Muscle Therapy. We listen carefully, explain what we are doing, check your comfort, and adjust the session as needed. You remain involved throughout your treatment.",
+        desc: "A 5.0-star Google rating reflects the level of care clients expect when they visit Trinity Pump & Supply. We listen carefully, explain what we are doing, check your comfort, and adjust the session as needed. You remain involved throughout your treatment.",
         suitability: "5.0 ★ RATED"
       },
       {
@@ -1257,7 +1257,7 @@ const services = [
     protocolBannerTitleSuffix: "Cupping Therapy?",
     protocolBannerDescription: "Call 443-473-2322 or book your focused cupping session at 1301 York Rd in Timonium today.",
     protocolBannerCta: "BOOK YOUR APPOINTMENT",
-    protocolBannerCtaUrl: "https://www.styleseat.com/m/v/410muscletherapy",
+    protocolBannerCtaUrl: "https://www.styleseat.com/m/v/trinitypumpsupply",
     faqBadge: "FAQ",
     faqTitle: "Frequently Asked Questions",
     faqDescription: "Everything you need to know about your session and our clinical approach.",
@@ -1284,13 +1284,13 @@ const services = [
       }
     ],
     seo: {
-      metaTitle: "Cupping Therapy Maryland | 410 Muscle Therapy",
+      metaTitle: "Cupping Therapy Maryland | Trinity Pump & Supply",
       metaDescription: "Experience negative pressure myofascial decompression and accelerated muscle recovery with clinical cupping therapy in Timonium, MD.",
       focusKeyword: "cupping therapy maryland",
-      canonicalUrl: "https://410-muscletherapy.com/cupping-therapy-maryland/",
+      canonicalUrl: "https://trinitypumpsupply.com/cupping-therapy-maryland/",
       metaRobotsIndex: "index",
       metaRobotsFollow: "follow",
-      ogTitle: "Cupping Therapy Maryland | 410 Muscle Therapy",
+      ogTitle: "Cupping Therapy Maryland | Trinity Pump & Supply",
       ogDescription: "Experience negative pressure myofascial decompression and accelerated muscle recovery with clinical cupping therapy in Timonium, MD."
     }
   },
@@ -1307,12 +1307,12 @@ const services = [
     status: "published",
     backLink: "Back to All Services",
     heroSectionLabel: "CLINICAL RECOVERY PROTOCOL",
-    heroDescription: "Pain that keeps returning often comes with tight muscles, guarded movement, and irritated soft tissue. At [410 Muscle Therapy](/), hot stone massage in Maryland pairs heat with skilled hands-on work. We target tense areas, listen closely, and help movement feel easier again.",
+    heroDescription: "Pain that keeps returning often comes with tight muscles, guarded movement, and irritated soft tissue. At [Trinity Pump & Supply](/), hot stone massage in Maryland pairs heat with skilled hands-on work. We target tense areas, listen closely, and help movement feel easier again.",
     specDurationValue: "60 / 90 Mins",
     specIntensityValue: "Heated Basalt",
     specFocusValue: "Deep Muscle Meltdown",
     bookingCta: "Book Appointment Now",
-    bookingCtaUrl: "https://www.styleseat.com/m/v/410muscletherapy",
+    bookingCtaUrl: "https://www.styleseat.com/m/v/trinitypumpsupply",
     heroCtaSecondary: "SEE HOW IT HELPS",
     heroCtaSecondaryUrl: "#overview",
     statsItem1Val: "8 Yrs",
@@ -1333,7 +1333,7 @@ const services = [
     overviewDescription: "<p>Hot stone therapy in Maryland uses warmed basalt stones during massage. Heat can make tight areas feel more comfortable and may support flexibility. That gives us a calmer starting point for focused hands-on work around deep muscle knots, tender spots, and guarded movement.</p>",
     description: "Hot stone therapy in Maryland uses warmed basalt stones during massage. Heat can make tight areas feel more comfortable and may support flexibility. That gives us a calmer starting point for focused hands-on work around deep muscle knots, tender spots, and guarded movement.",
     overviewCtaText: "BOOK YOUR SESSION NOW",
-    overviewCtaUrl: "https://www.styleseat.com/m/v/410muscletherapy",
+    overviewCtaUrl: "https://www.styleseat.com/m/v/trinitypumpsupply",
     overviewHipaaText: "100% Satisfaction Guaranteed & Certified",
     benefits: [
       {
@@ -1357,7 +1357,7 @@ const services = [
         description: "Hard training can leave quads, hamstrings, calves, and shoulders sore or tight. Heat and massage may help improve short-term comfort and flexibility after exercise. For more targeted recovery, a [Maryland sports massage therapist](/maryland-sports-massage-therapist/) can address specific areas based on your training needs."
       }
     ],
-    candidateSectionLabel: "WHY TIMONIUM CHOOSES 410 MUSCLE THERAPY",
+    candidateSectionLabel: "WHY TIMONIUM CHOOSES TRINITY PUMP & SUPPLY",
     candidateTitle1: "Heated Basalt.",
     candidateTitle2: "Therapeutic Relief.",
     candidateDescription: "You're not booking a standard spa hour. If you're comparing therapeutic hot stone massage options in Maryland, sessions here focus on where you feel tight and how you move. We match pressure to your comfort. Clients come to Timonium from Towson, Lutherville, Cockeysville, and other communities throughout Baltimore County.",
@@ -1418,7 +1418,7 @@ const services = [
     protocolBannerTitleSuffix: "Hot Stone Massage?",
     protocolBannerDescription: "Call 443-473-2322 or book your hot stone massage in Maryland today. We're located at 1301 York Rd., 8th Floor, Suite 48, Timonium, MD 21093.",
     protocolBannerCta: "BOOK YOUR APPOINTMENT",
-    protocolBannerCtaUrl: "https://www.styleseat.com/m/v/410muscletherapy",
+    protocolBannerCtaUrl: "https://www.styleseat.com/m/v/trinitypumpsupply",
     faqBadge: "FAQ",
     faqTitle: "Frequently Asked Questions",
     faqDescription: "Everything you need to know about your session and our clinical approach.",
@@ -1433,7 +1433,7 @@ const services = [
       },
       {
         question: "Hot stone massage vs. deep tissue massage: which should I choose?",
-        answer: "Choose hot stones when you want warmth to help you settle into pressure. Choose [deep tissue massage Maryland](/deep-tissue-massage-maryland/) when your main goal is firmer, slower work on stubborn areas. Neither approach is automatically better. At 410 Muscle Therapy, we match the method to your comfort, pain pattern, activity level, and goals that day."
+        answer: "Choose hot stones when you want warmth to help you settle into pressure. Choose [deep tissue massage Maryland](/deep-tissue-massage-maryland/) when your main goal is firmer, slower work on stubborn areas. Neither approach is automatically better. At Trinity Pump & Supply, we match the method to your comfort, pain pattern, activity level, and goals that day."
       },
       {
         question: "Does hot stone massage hurt, and how hot should the stones feel?",
@@ -1445,13 +1445,13 @@ const services = [
       }
     ],
     seo: {
-      metaTitle: "Hot Stone Massage Maryland | 410 Muscle Therapy",
+      metaTitle: "Hot Stone Massage Maryland | Trinity Pump & Supply",
       metaDescription: "Soothe deep tension and restore physical balance with therapeutic heated basalt stone massage therapy in Timonium, MD.",
       focusKeyword: "hot stone massage maryland",
-      canonicalUrl: "https://410-muscletherapy.com/hot-stone-massage-maryland/",
+      canonicalUrl: "https://trinitypumpsupply.com/hot-stone-massage-maryland/",
       metaRobotsIndex: "index",
       metaRobotsFollow: "follow",
-      ogTitle: "Hot Stone Massage Maryland | 410 Muscle Therapy",
+      ogTitle: "Hot Stone Massage Maryland | Trinity Pump & Supply",
       ogDescription: "Soothe deep tension and restore physical balance with therapeutic heated basalt stone massage therapy in Timonium, MD."
     }
   },
@@ -1468,12 +1468,12 @@ const services = [
     status: "published",
     backLink: "Back to All Services",
     heroSectionLabel: "CLINICAL RECOVERY PROTOCOL",
-    heroDescription: "When pain keeps coming back, it can wear on you. Work feels harder, sleep becomes uncomfortable, and training can start to feel like a chore. At [410 Muscle Therapy](/), our deep tissue massage in Maryland focuses on tight muscles, stubborn trigger points, and restricted tissue so you can move with less discomfort.",
+    heroDescription: "When pain keeps coming back, it can wear on you. Work feels harder, sleep becomes uncomfortable, and training can start to feel like a chore. At [Trinity Pump & Supply](/), our deep tissue massage in Maryland focuses on tight muscles, stubborn trigger points, and restricted tissue so you can move with less discomfort.",
     specDurationValue: "60 / 90 Mins",
     specIntensityValue: "Firm Targeted",
     specFocusValue: "Deep Trigger Points",
     bookingCta: "Book Appointment Now",
-    bookingCtaUrl: "https://www.styleseat.com/m/v/410muscletherapy",
+    bookingCtaUrl: "https://www.styleseat.com/m/v/trinitypumpsupply",
     heroCtaSecondary: "SEE HOW IT HELPS",
     heroCtaSecondaryUrl: "#overview",
     statsItem1Val: "8 Yrs",
@@ -1494,7 +1494,7 @@ const services = [
     overviewDescription: "<p>Deep tissue massage uses slow, focused, and specific techniques. We use controlled pressure to work into deeper layers of muscle and connective tissue where tension tends to persist. Our deep tissue massage sessions in Maryland focus on the areas that feel tight, sore, stiff, or difficult to move.</p>",
     description: "Deep tissue massage uses slow, focused, and specific techniques. We use controlled pressure to work into deeper layers of muscle and connective tissue where tension tends to persist. Our deep tissue massage sessions in Maryland focus on the areas that feel tight, sore, stiff, or difficult to move.",
     overviewCtaText: "BOOK YOUR SESSION NOW",
-    overviewCtaUrl: "https://www.styleseat.com/m/v/410muscletherapy",
+    overviewCtaUrl: "https://www.styleseat.com/m/v/trinitypumpsupply",
     overviewHipaaText: "100% Satisfaction Guaranteed & Certified",
     benefits: [
       {
@@ -1521,7 +1521,7 @@ const services = [
     candidateSectionLabel: "WHY TIMONIUM CLIENTS CHOOSE TARGETED CARE",
     candidateTitle1: "Targeted Depth.",
     candidateTitle2: "Trigger Release.",
-    candidateDescription: "At 410 Muscle Therapy, deep tissue massage is not a routine we repeat on everyone. We start by listening to what has been bothering you, assess the surrounding areas, and adjust the session as we go. With eight years of hands-on experience, a 5.0 Google rating, and a satisfaction guarantee, our goal is to keep your care focused on your individual needs.",
+    candidateDescription: "At Trinity Pump & Supply, deep tissue massage is not a routine we repeat on everyone. We start by listening to what has been bothering you, assess the surrounding areas, and adjust the session as we go. With eight years of hands-on experience, a 5.0 Google rating, and a satisfaction guarantee, our goal is to keep your care focused on your individual needs.",
     profileBadgePrefix: "ADVANTAGE",
     candidateSuitability: "CLINICAL STANDARD",
     whoProfiles: [
@@ -1579,7 +1579,7 @@ const services = [
     protocolBannerTitleSuffix: "Deep Tissue Massage?",
     protocolBannerDescription: "Call 443-473-2322 or visit us at 1301 York Rd., 8th Floor, Suite 48, Timonium, Maryland to book a deep tissue massage session focused on your needs.",
     protocolBannerCta: "BOOK YOUR APPOINTMENT",
-    protocolBannerCtaUrl: "https://www.styleseat.com/m/v/410muscletherapy",
+    protocolBannerCtaUrl: "https://www.styleseat.com/m/v/trinitypumpsupply",
     faqBadge: "FAQ",
     faqTitle: "Frequently Asked Questions",
     faqDescription: "Everything you need to know about your session and our clinical approach.",
@@ -1606,13 +1606,13 @@ const services = [
       }
     ],
     seo: {
-      metaTitle: "Deep Tissue Massage Maryland | 410 Muscle Therapy",
+      metaTitle: "Deep Tissue Massage Maryland | Trinity Pump & Supply",
       metaDescription: "Eliminate deep muscle knots, relieve chronic stiffness, and restore natural movement with targeted deep tissue massage in Timonium, MD.",
       focusKeyword: "deep tissue massage maryland",
-      canonicalUrl: "https://410-muscletherapy.com/deep-tissue-massage-maryland/",
+      canonicalUrl: "https://trinitypumpsupply.com/deep-tissue-massage-maryland/",
       metaRobotsIndex: "index",
       metaRobotsFollow: "follow",
-      ogTitle: "Deep Tissue Massage Maryland | 410 Muscle Therapy",
+      ogTitle: "Deep Tissue Massage Maryland | Trinity Pump & Supply",
       ogDescription: "Eliminate deep muscle knots, relieve chronic stiffness, and restore natural movement with targeted deep tissue massage in Timonium, MD."
     }
   }
@@ -1670,7 +1670,7 @@ async function seedAll() {
           metaTitle: service.seo?.metaTitle || service.title,
           metaDescription: service.seo?.metaDescription || service.description,
           focusKeyword: service.seo?.focusKeyword || '',
-          canonicalUrl: service.seo?.canonicalUrl || `https://410-muscletherapy.com/${service.slug}/`,
+          canonicalUrl: service.seo?.canonicalUrl || `https://trinitypumpsupply.com/${service.slug}/`,
           metaRobotsIndex: 'index',
           metaRobotsFollow: 'follow',
           ogTitle: service.seo?.ogTitle || service.title,

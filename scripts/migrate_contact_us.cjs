@@ -3,7 +3,7 @@ const path = require('path');
 require('dotenv').config({ path: path.resolve(__dirname, '../.env.local') });
 
 const uri = process.env.MONGODB_URI;
-const dbName = '410_muscle_therapy';
+const dbName = 'trinity_pump_supply';
 
 function cleanEmailsAndLinks(obj) {
   if (!obj) return obj;
@@ -19,7 +19,7 @@ function cleanEmailsAndLinks(obj) {
         // Sanitize within HTML tag (href and inner text)
         val = val.replace(/href="mailto:[^"]*"/gi, 'href="mailto:antoine.lyles@yahoo.com"');
         val = val.replace(/mailto:[a-zA-Z0-9.\s@_#-]+/gi, 'mailto:antoine.lyles@yahoo.com');
-        val = val.replace(/>[a-zA-Z0-9.\s@_#-]+@410MuscleTherapy\.com</gi, '>antoine.lyles@yahoo.com<');
+        val = val.replace(/>[a-zA-Z0-9.\s@_#-]+@trinitypumpsupply\.com</gi, '>antoine.lyles@yahoo.com<');
         val = val.replace(/>banderson@[^<]*</gi, '>antoine.lyles@yahoo.com<');
       } else {
         // Plain string fallback

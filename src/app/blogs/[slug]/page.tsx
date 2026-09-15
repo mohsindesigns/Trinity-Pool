@@ -49,14 +49,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     SiteContent.findOne({ key: "complete_data" }).lean() as any
   ]);
 
-  if (!post) return { title: "Article Not Found | 410 Muscle Therapy" };
+  if (!post) return { title: "Article Not Found | Trinity Pump & Supply" };
 
   const settings = contentDoc?.data?.settings;
-  const pageTitle = post.seo?.metaTitle || `${post.title} | 410 Muscle Therapy`;
+  const pageTitle = post.seo?.metaTitle || `${post.title} | Trinity Pump & Supply`;
   const pageDesc =
     post.seo?.metaDescription ||
     post.excerpt ||
-    `${post.title} - Specialized recovery insights, deep tissue protocols, and clinical tips from 410 Muscle Therapy.`;
+    `${post.title} - Specialized recovery insights, deep tissue protocols, and clinical tips from Trinity Pump & Supply.`;
   const pageImage = normalizeBlogImage(post.seo?.ogImage || post.featuredImage) || `${BASE_URL}/logo.png`;
   let canonicalUrl = post.seo?.canonicalUrl || `${BASE_URL}/blogs/${post.slug}/`;
   if (canonicalUrl.includes('/blog/')) {
@@ -99,8 +99,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: post.seo?.ogTitle || pageTitle,
       description: post.seo?.ogDescription || pageDesc,
       images: [pageImage],
-      site: "@410MuscleTherapy",
-      creator: "@410MuscleTherapy"
+      site: "@trinitypumpsupply",
+      creator: "@trinitypumpsupply"
     }
   };
 }
@@ -288,7 +288,7 @@ export default async function BlogPostPage({ params }: Props) {
         "@type": "WebPage",
         "@id": url,
         "url": url,
-        "name": `${post.title} | 410 Muscle Therapy`,
+        "name": `${post.title} | Trinity Pump & Supply`,
         "isPartOf": { "@id": `${BASE_URL}/#website` },
         "primaryImageOfPage": { "@id": `${url}#primaryimage` },
         "datePublished": publishDate,
@@ -339,7 +339,7 @@ export default async function BlogPostPage({ params }: Props) {
         "wordCount": wordCount,
         "publisher": {
           "@type": "Organization",
-          "name": "410 Muscle Therapy",
+          "name": "Trinity Pump & Supply",
           "url": BASE_URL,
           "logo": {
             "@type": "ImageObject",

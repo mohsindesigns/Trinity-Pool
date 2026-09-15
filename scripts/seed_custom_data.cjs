@@ -3,18 +3,18 @@ const path = require('path');
 require('dotenv').config({ path: path.resolve(__dirname, '../.env.local') });
 
 const uri = process.env.MONGODB_URI;
-const dbName = '410_muscle_therapy';
+const dbName = 'trinity_pump_supply';
 
 const data = {
   "globalSite": {
     "metadata": {
-      "title": "Performance Recovery Specialist | 410 Muscle Therapy",
+      "title": "Performance Recovery Specialist | Trinity Pump & Supply",
       "description": "Elite performance recovery bodywork, mobility restoration, and injury prevention for athletes & active adults. Est. 2020. #bodywork #performancerecovery",
-      "bookingUrl": "https://www.styleseat.com/m/v/410muscletherapy",
+      "bookingUrl": "https://www.styleseat.com/m/v/trinitypumpsupply",
       "established": "2020"
     },
     "branding": {
-      "name": "410 Muscle Therapy",
+      "name": "Trinity Pump & Supply",
       "tagline": "Performance Recovery Specialist",
       "hashtag": "#bodywork #performancerecovery",
       "logoText1": "MUSCLE",
@@ -28,16 +28,16 @@ const data = {
     }
   },
   "globalMetadata": {
-    "title": "Performance Recovery Specialist | 410 Muscle Therapy",
+    "title": "Performance Recovery Specialist | Trinity Pump & Supply",
     "description": "Elite performance recovery bodywork, mobility restoration, and injury prevention for athletes & active adults. Est. 2020. #bodywork #performancerecovery",
-    "bookingUrl": "https://www.styleseat.com/m/v/410muscletherapy",
+    "bookingUrl": "https://www.styleseat.com/m/v/trinitypumpsupply",
     "giftCardUrl": "https://app.squareup.com/gift/V4MA1Q75Q5VJ5/order"
   },
   "navbar": {
     "logoText1": "MUSCLE",
     "logoText2": "THERAPY",
     "bookBtn": "BUY GIFT CARD",
-    "logoAlt": "410 Muscle Therapy Logo",
+    "logoAlt": "Trinity Pump & Supply Logo",
     "links": [
       {
         "label": "Home",
@@ -58,7 +58,7 @@ const data = {
       },
       {
         "label": "Book Appointment",
-        "href": "https://www.styleseat.com/m/v/410muscletherapy"
+        "href": "https://www.styleseat.com/m/v/trinitypumpsupply"
       }
     ]
   },
@@ -78,7 +78,7 @@ const data = {
     "titleLine1": "Proven Results.",
     "titleLine2": "Professional",
     "titleItalicWord": "Standards.",
-    "description": "At 410 Muscle Therapy, we believe that true recovery is built on specialized bodywork and precision movement science. Since our founding in 2020, we have dedicated ourselves to helping competitive athletes and active individuals overcome chronic pain, restore joint mobility, and achieve peak physical performance. Our targeted manual therapies address the root causes of muscular imbalances, ensuring long-term health and accelerated recovery times so you can return to what you love with confidence.",
+    "description": "At Trinity Pump & Supply, we believe that true recovery is built on specialized bodywork and precision movement science. Since our founding in 2020, we have dedicated ourselves to helping competitive athletes and active individuals overcome chronic pain, restore joint mobility, and achieve peak physical performance. Our targeted manual therapies address the root causes of muscular imbalances, ensuring long-term health and accelerated recovery times so you can return to what you love with confidence.",
     "image": "/images/blog-3.webp",
     "imageAlt": "Clinical sports massage session",
     "items": [
@@ -237,7 +237,7 @@ const data = {
     ]
   },
   "whyChooseUs": {
-    "label": "WHY CHOOSE 410 MUSCLE THERAPY",
+    "label": "WHY CHOOSE TRINITY PUMP & SUPPLY",
     "titleLine1": "Engineered For Peak",
     "titleLine2": "Human",
     "titleItalicWord": "Performance.",
@@ -285,7 +285,7 @@ const data = {
     "tagline": "Performance Recovery Specialist",
     "image": "/images/theraphist.jpeg",
     "imageAlt": "Antoine Lyles — Performance Recovery Specialist",
-    "desc1": "Since founding 410 Muscle Therapy in 2020, Antoine Lyles has evolved the practice beyond standard therapy into a premier sports recovery destination. Specializing in performance bodywork, structural mobility restoration, targeted myofascial release, and injury prevention, he helps athletes and active adults eliminate pain, recover faster, and perform at their highest potential. #bodywork #performancerecovery",
+    "desc1": "Since founding Trinity Pump & Supply in 2020, Antoine Lyles has evolved the practice beyond standard therapy into a premier sports recovery destination. Specializing in performance bodywork, structural mobility restoration, targeted myofascial release, and injury prevention, he helps athletes and active adults eliminate pain, recover faster, and perform at their highest potential. #bodywork #performancerecovery",
     "desc2": "Antoine’s approach combines hands-on soft tissue manipulation with functional biomechanics to restore fluid movement patterns. By working closely with each individual, he designs custom recovery protocols that target tight muscle groups, relieve joint pressure, and optimize neural pathways. His passion for performance science ensures that whether you are a professional athlete or simply seeking relief from daily tension, you receive elite-level care tailored to your unique physical demands.",
     "certBadgeLabel": "Certified Specialist",
     "certBadgeSub": "Advanced Performance Recovery & Movement Science",
@@ -680,8 +680,8 @@ const data = {
   },
   "contactPage": {
     "metadata": {
-      "title": "Contact | 410 Muscle Therapy",
-      "description": "Contact 410 Muscle Therapy for consultation and booking."
+      "title": "Contact | Trinity Pump & Supply",
+      "description": "Contact Trinity Pump & Supply for consultation and booking."
     },
     "label": "Book A Session",
     "titleLine1": "Get in",
@@ -715,7 +715,7 @@ const data = {
     "ctaReadMore": "Read More"
   },
   "footer": {
-    "logoAlt": "410 Muscle Therapy Logo",
+    "logoAlt": "Trinity Pump & Supply Logo",
     "insuranceLabel": "We Accept Most Insurance Plans",
     "brandDescription": "Elite performance recovery bodywork, mobility optimization, and injury prevention for athletes and active adults since 2020. #bodywork #performancerecovery",
     "quickLinksLabel": "Quick Links",

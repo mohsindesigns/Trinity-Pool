@@ -9,7 +9,7 @@ try {
 }
 
 const MONGODB_URI = process.env.MONGODB_URI || "";
-const MONGODB_DB = process.env.MONGODB_DB || "410_muscle_therapy";
+const MONGODB_DB = process.env.MONGODB_DB || "trinity_pump_supply";
 
 if (!MONGODB_URI) {
   throw new Error('Please define the MONGODB_URI environment variable inside .env.local');

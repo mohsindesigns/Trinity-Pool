@@ -3,7 +3,7 @@ const path = require('path');
 require('dotenv').config({ path: path.resolve(__dirname, '../.env.local') });
 
 const uri = process.env.MONGODB_URI;
-const dbName = process.env.MONGODB_DB || '410_muscle_therapy';
+const dbName = process.env.MONGODB_DB || 'trinity_pump_supply';
 
 const blogItems = [
   {

@@ -13,6 +13,7 @@ import Page from '@/models/Page';
 import Image from 'next/image';
 import { getRobotsMetadata } from "@/lib/seo";
 import { normalizeBlogImage } from '@/lib/blogImage';
+import { mergePageContent } from '@/lib/deepMerge';
 
 export async function generateMetadata(): Promise<Metadata> {
   await connectToDatabase();
@@ -83,10 +84,7 @@ export default async function BlogsIndexPage() {
   ]);
 
   const globalBlogsPage = content?.data?.blogsPage || content?.data?.blogPage || {};
-  const blogsPage = {
-    ...globalBlogsPage,
-    ...(pageDoc?.content || {})
-  };
+  const blogsPage = mergePageContent(globalBlogsPage, pageDoc?.content || {});
 
   const label = blogsPage.label || blogsPage.header?.badge || "Recovery Insights";
   const titleLine1 = blogsPage.titleLine1 || blogsPage.header?.titlePrefix || "Our";

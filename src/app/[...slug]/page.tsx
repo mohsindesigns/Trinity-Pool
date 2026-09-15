@@ -24,6 +24,7 @@ function getAbsoluteUrl(path: string | undefined) {
 }
 
 import { getRobotsMetadata } from "@/lib/seo";
+import { mergePageContent } from '@/lib/deepMerge';
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const resolvedParams = await params;
@@ -320,11 +321,7 @@ export default async function DynamicPage({ params }: PageProps) {
   const mergedPageData = {
     ...(page.data || {}),
     ...page,
-    content: {
-      ...globalData,
-      ...(page.data || {}),
-      ...(page.content || {})
-    }
+    content: mergePageContent(mergePageContent(globalData, page.data || {}), page.content || {})
   };
 
   return (

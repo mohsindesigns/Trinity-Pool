@@ -8,6 +8,7 @@ import { BASE_URL } from "@/lib/constants";
 
 
 import { getRobotsMetadata } from "@/lib/seo";
+import { mergePageContent } from '@/lib/deepMerge';
 
 export async function generateMetadata(): Promise<Metadata> {
   await connectToDatabase();
@@ -114,10 +115,7 @@ export default async function GalleryPage() {
         templateName="gallery"
         pageData={{
           ...(page || { title: "Project Gallery", template: "gallery", slug: "gallery" }),
-          content: {
-            ...globalData,
-            ...(page?.content || {})
-          }
+          content: mergePageContent(globalData, page?.content || {})
         }}
         params={Promise.resolve({ slug: ["gallery"] })}
       />

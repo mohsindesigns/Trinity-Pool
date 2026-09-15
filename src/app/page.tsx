@@ -10,6 +10,7 @@ import { TemplateWrapper } from "@/components/templates/TemplateRegistry";
 import ServiceDetailTemplate from "@/components/templates/ServiceDetailTemplate";
 import { BASE_URL } from "@/lib/constants";
 import { getRobotsMetadata } from "@/lib/seo";
+import { mergePageContent } from "@/lib/deepMerge";
 
 export async function generateMetadata(): Promise<Metadata> {
   await connectToDatabase();
@@ -219,11 +220,8 @@ export default async function HomePage() {
             templateName={page.template} 
             pageData={{
               ...page,
-              content: {
-                ...(content?.data || {}),
-                ...(page.content || {})
-              }
-            }} 
+              content: mergePageContent(content?.data || {}, page.content || {})
+            }}
             params={Promise.resolve({ slug: ['/'] })} 
           />
         </>
@@ -254,7 +252,7 @@ export default async function HomePage() {
   return (
     <>
       {schemaScripts}
-      <HomeTemplate pageData={{ ...(homePage || {}), content: { ...(content?.data || {}), ...(homePage?.content || {}) } }} />
+      <HomeTemplate pageData={{ ...(homePage || {}), content: mergePageContent(content?.data || {}, homePage?.content || {}) }} />
     </>
   );
 }

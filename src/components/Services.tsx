@@ -28,9 +28,11 @@ export default function ServicesSection() {
     ctaAllUrl,
     ctaLearnMore,
     items = [], // curated in the Home editor; falls back to all published services
+    services: allServices = [],
   } = servicesContent || {};
 
-  const list: any[] = Array.isArray(items) ? items : [];
+  const curated: any[] = Array.isArray(items) ? items : [];
+  const list: any[] = curated.length > 0 ? curated : (Array.isArray(allServices) ? allServices : []);
   const learnMore = stripHtml(ctaLearnMore || "") || "Learn more";
   const onMove = useSpotlight();
 

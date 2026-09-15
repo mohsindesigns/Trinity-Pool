@@ -55,6 +55,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 import { ContentProvider } from '@/context/ContentContext';
+import { mergePageContent } from '@/lib/deepMerge';
 
 export default async function ServicesPage() {
   await connectToDatabase();
@@ -65,14 +66,7 @@ export default async function ServicesPage() {
 
   const globalData = content?.data ? JSON.parse(JSON.stringify(content.data)) : {};
   const pageContent = pageDoc?.content ? JSON.parse(JSON.stringify(pageDoc.content)) : {};
-  const mergedData = {
-    ...globalData,
-    ...pageContent,
-    whyChooseUs: {
-      ...(globalData.whyChooseUs || {}),
-      ...(pageContent.whyChooseUs || {})
-    }
-  };
+  const mergedData = mergePageContent(globalData, pageContent);
 
   return (
     <ContentProvider initialData={mergedData}>

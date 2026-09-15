@@ -24,7 +24,7 @@ function DynamicIcon({ name }: { name?: string }) {
   return <Icon size={26} strokeWidth={1.6} />;
 }
 
-export default function StatsBar() {
+export default function StatsBar({ overrideItems }: { overrideItems?: any[] } = {}) {
   const { stats } = useContent();
 
   const defaultStats = [
@@ -34,7 +34,12 @@ export default function StatsBar() {
     { value: "500+", label: "Happy Clients", icon: "Users" },
   ];
 
-  const items = stats?.items && stats.items.length > 0 ? stats.items : defaultStats;
+  // overrideItems lets a specific page (e.g. About Us) show its own independent
+  // stats instead of the shared sitewide ones, with zero risk of either page's
+  // content leaking into the other.
+  const items = (overrideItems && overrideItems.length > 0)
+    ? overrideItems
+    : (stats?.items && stats.items.length > 0 ? stats.items : defaultStats);
   const statsItems = items; // renders every stat added in the editor (wraps to a new row beyond 4)
 
   const containerVariants = {

@@ -6,8 +6,13 @@ import { motion } from "framer-motion";
 import { useContent } from "../hooks/useContent";
 import { stripHtml } from "../lib/utils";
 
-export default function CtaBanner() {
-  const { ctaBanner } = useContent();
+export default function CtaBanner({ overrideData }: { overrideData?: any } = {}) {
+  const { ctaBanner: globalCtaBanner } = useContent();
+
+  // overrideData lets a specific page (e.g. About Us) show its own independent
+  // CTA banner instead of the shared sitewide one, with zero risk of either
+  // page's content leaking into the other.
+  const ctaBanner = overrideData || globalCtaBanner;
 
   const {
     label,

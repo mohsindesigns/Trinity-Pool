@@ -36,8 +36,13 @@ const resolveFeatureIcon = (name?: string): LucideIcon => {
   return ShieldCheck;
 };
 
-export default function WhyChooseUs() {
-  const { whyChooseUs } = useContent();
+export default function WhyChooseUs({ overrideData }: { overrideData?: any } = {}) {
+  const { whyChooseUs: globalWhyChooseUs } = useContent();
+
+  // overrideData lets a specific page (e.g. About Us) show its own independent
+  // "Why Choose Us" content instead of the shared sitewide one, with zero risk
+  // of either page's content leaking into the other.
+  const whyChooseUs = overrideData || globalWhyChooseUs;
 
   const badge = whyChooseUs?.badge || whyChooseUs?.section?.badge || "WHY CHOOSE US";
   const title = whyChooseUs?.title || whyChooseUs?.headline || whyChooseUs?.section?.headline || "Why Businesses Trust Us";

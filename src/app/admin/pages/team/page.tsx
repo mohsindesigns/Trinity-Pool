@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Save, Loader2, Type, ChevronRight, Users, Plus, Trash2, Image as ImageIcon, Briefcase, Quote, Star } from "lucide-react";
+import { Save, Loader2, Type, ChevronRight, Users, Plus, Trash2, Image as ImageIcon, Briefcase, Quote, Star, ShieldCheck, Megaphone } from "lucide-react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 const RichTextEditor = dynamic(() => import("@/components/admin/RichTextEditor"), { 
@@ -10,6 +10,8 @@ const RichTextEditor = dynamic(() => import("@/components/admin/RichTextEditor")
   loading: () => <div className="h-40 bg-slate-50 animate-pulse border border-slate-200 rounded-2xl flex items-center justify-center text-slate-400 text-xs">Loading Rich Text Editor...</div>
 });
 import ImageField from "@/components/admin/ImageField";
+
+const ICON_OPTIONS = ["Users", "Award", "MapPin", "Headphones", "ShieldCheck", "Clock", "Truck", "Star", "CheckCircle2", "Zap", "Wrench", "Package"];
 
 export default function TeamPageEditor() {
   const [data, setData] = useState<any>(null);
@@ -73,6 +75,20 @@ export default function TeamPageEditor() {
           [field]: value
         }
       }
+    }));
+  };
+
+  const updateStats = (field: string, value: any) => {
+    setData((prev: any) => ({
+      ...prev,
+      team: { ...prev.team, stats: { ...prev.team?.stats, [field]: value } },
+    }));
+  };
+
+  const updateCtaBanner = (field: string, value: string) => {
+    setData((prev: any) => ({
+      ...prev,
+      team: { ...prev.team, ctaBanner: { ...prev.team?.ctaBanner, [field]: value } },
     }));
   };
 
@@ -194,6 +210,15 @@ export default function TeamPageEditor() {
             </div>
             <h2 className="text-xl font-extrabold text-slate-900 uppercase tracking-tight">Page Header Content</h2>
           </div>
+
+          <ImageField
+            label="Hero Background Image"
+            value={data.team?.section?.image || ""}
+            onChange={(url: string) => updateSection("image", url)}
+            altValue={data.team?.section?.imageAlt || ""}
+            onAltChange={(alt: string) => updateSection("imageAlt", alt)}
+            description="Full-bleed dark hero photo behind the headline."
+          />
 
           <div className="grid grid-cols-1 gap-6">
             <div className="space-y-2">
@@ -387,6 +412,115 @@ export default function TeamPageEditor() {
                 </div>
               </motion.div>
             ))}
+          </div>
+        </section>
+
+        {/* Stats Strip */}
+        <section className="bg-white border border-slate-200 rounded-3xl p-8 space-y-6 shadow-sm">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center">
+                <ShieldCheck className="w-5 h-5 text-primary" />
+              </div>
+              <div>
+                <h2 className="text-xl font-extrabold text-slate-900 uppercase tracking-tight">Stats Strip</h2>
+                <p className="text-xs text-slate-500 font-medium">Independent from the homepage's stats.</p>
+              </div>
+            </div>
+            <button
+              onClick={() => updateStats("items", [...(data.team?.stats?.items || []), { value: "", label: "", icon: "Users" }])}
+              className="flex items-center gap-2 text-sm font-bold text-primary hover:text-primary/80 transition-colors"
+            >
+              <Plus className="w-4 h-4" /> Add Stat
+            </button>
+          </div>
+
+          <div className="space-y-3">
+            {(data.team?.stats?.items || []).map((s: any, idx: number) => (
+              <div key={idx} className="bg-slate-50 border border-slate-200 rounded-2xl p-5 grid grid-cols-1 md:grid-cols-[110px_140px_1fr_auto] gap-3 items-end">
+                <div className="space-y-1">
+                  <label className="text-[11px] uppercase tracking-widest text-slate-400 font-bold">Value</label>
+                  <input
+                    type="text"
+                    value={s.value || ""}
+                    onChange={(e) => { const next = [...data.team.stats.items]; next[idx] = { ...next[idx], value: e.target.value }; updateStats("items", next); }}
+                    className="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-slate-900 font-medium focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                    placeholder="e.g. 5"
+                  />
+                </div>
+                <div className="space-y-1">
+                  <label className="text-[11px] uppercase tracking-widest text-slate-400 font-bold">Icon</label>
+                  <select
+                    value={s.icon || "Users"}
+                    onChange={(e) => { const next = [...data.team.stats.items]; next[idx] = { ...next[idx], icon: e.target.value }; updateStats("items", next); }}
+                    className="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-slate-900 font-medium focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                  >
+                    {ICON_OPTIONS.map((opt) => <option key={opt} value={opt}>{opt}</option>)}
+                  </select>
+                </div>
+                <div className="space-y-1">
+                  <label className="text-[11px] uppercase tracking-widest text-slate-400 font-bold">Label</label>
+                  <input
+                    type="text"
+                    value={s.label || ""}
+                    onChange={(e) => { const next = [...data.team.stats.items]; next[idx] = { ...next[idx], label: e.target.value }; updateStats("items", next); }}
+                    className="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-slate-900 font-medium focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                    placeholder="e.g. Team Members"
+                  />
+                </div>
+                <button
+                  onClick={() => updateStats("items", data.team.stats.items.filter((_: any, i: number) => i !== idx))}
+                  className="p-3 bg-red-50 text-red-500 rounded-xl hover:bg-red-500 hover:text-white transition-all shadow-sm border border-red-100 h-fit"
+                  title="Remove Stat"
+                >
+                  <Trash2 className="w-4 h-4" />
+                </button>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* CTA Banner */}
+        <section className="bg-white border border-slate-200 rounded-3xl p-8 space-y-6 shadow-sm">
+          <div className="flex items-center gap-3 mb-2">
+            <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center">
+              <Megaphone className="w-5 h-5 text-primary" />
+            </div>
+            <div>
+              <h2 className="text-xl font-extrabold text-slate-900 uppercase tracking-tight">CTA Banner</h2>
+              <p className="text-xs text-slate-500 font-medium">Independent from the homepage's CTA banner.</p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <label className="text-xs uppercase tracking-widest text-slate-500 font-extrabold">Badge</label>
+              <input type="text" value={data.team?.ctaBanner?.label || ""} onChange={(e) => updateCtaBanner("label", e.target.value)} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-900 font-medium focus:ring-2 focus:ring-primary/20 outline-none transition-all" placeholder="e.g. WORK WITH US" />
+            </div>
+            <div className="space-y-2">
+              <label className="text-xs uppercase tracking-widest text-slate-500 font-extrabold">Title</label>
+              <input type="text" value={data.team?.ctaBanner?.title || ""} onChange={(e) => updateCtaBanner("title", e.target.value)} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-900 font-medium focus:ring-2 focus:ring-primary/20 outline-none transition-all" />
+            </div>
+          </div>
+
+          <div className="space-y-2">
+            <label className="text-xs uppercase tracking-widest text-slate-500 font-extrabold">Description</label>
+            <textarea rows={2} value={data.team?.ctaBanner?.description || ""} onChange={(e) => updateCtaBanner("description", e.target.value)} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-900 font-medium focus:ring-2 focus:ring-primary/20 outline-none transition-all resize-none" />
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 border-t border-slate-100">
+            <div className="space-y-2">
+              <label className="text-xs uppercase tracking-widest text-slate-500 font-extrabold">Button Text</label>
+              <input type="text" value={data.team?.ctaBanner?.button || ""} onChange={(e) => updateCtaBanner("button", e.target.value)} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-900 font-medium focus:ring-2 focus:ring-primary/20 outline-none transition-all" placeholder="e.g. Contact Us" />
+            </div>
+            <div className="space-y-2">
+              <label className="text-xs uppercase tracking-widest text-slate-500 font-extrabold">Button Link</label>
+              <input type="text" value={data.team?.ctaBanner?.buttonUrl || ""} onChange={(e) => updateCtaBanner("buttonUrl", e.target.value)} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-900 font-medium focus:ring-2 focus:ring-primary/20 outline-none transition-all" placeholder="/contact-us/" />
+            </div>
+            <div className="space-y-2">
+              <label className="text-xs uppercase tracking-widest text-slate-500 font-extrabold">Phone Number</label>
+              <input type="text" value={data.team?.ctaBanner?.phone || ""} onChange={(e) => updateCtaBanner("phone", e.target.value)} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-900 font-medium focus:ring-2 focus:ring-primary/20 outline-none transition-all" placeholder="e.g. 830-279-3996" />
+            </div>
           </div>
         </section>
       </div>

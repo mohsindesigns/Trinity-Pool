@@ -1,7 +1,11 @@
 "use client";
 
 import { useRef, useEffect, useState } from "react";
+import Link from "next/link";
+import dynamic from "next/dynamic";
+import { ArrowRight } from "lucide-react";
 import { useContent } from "../../hooks/useContent";
+import { stripHtml } from "../../lib/utils";
 import RichTextRenderer from "../ui/RichTextRenderer";
 import {
   motion,
@@ -11,7 +15,26 @@ import {
 } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import PageInlineFaqs from "@/components/PageInlineFaqs";
+
+const StatsBar = dynamic(() => import("@/components/StatsBar"));
+const CtaBanner = dynamic(() => import("@/components/CtaBanner"), { ssr: false });
+const QAForm = dynamic(() => import("@/components/QAForm"), { ssr: false });
+
+const DEFAULT_STATS = [
+  { value: "5", label: "Team Members", icon: "Users" },
+  { value: "100+", label: "Years Combined Experience", icon: "Award" },
+  { value: "1", label: "Odessa, TX Shop", icon: "MapPin" },
+  { value: "24/7", label: "On-Call Support", icon: "Headphones" },
+];
+
+const DEFAULT_CTA_BANNER = {
+  label: "WORK WITH US",
+  title: "Want to Talk to the Team Directly?",
+  description: "No call centers — reach out and you'll hear back from the same people who build and repair your equipment.",
+  button: "Contact Us",
+  buttonUrl: "/contact-us/",
+  phone: "830-279-3996",
+};
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -111,7 +134,7 @@ const TeamPortrait = ({ image, title, badge1, badge2, alignRight = false }: any)
 export default function TeamTemplate({ pageData, params }: { pageData?: any, params?: any }) {
   const sectionRef = useRef<any>(null);
   const [isClient, setIsClient] = useState(false);
-  const { team: teamData } = useContent();
+  const { team: teamData, globalMetadata } = useContent();
 
   useEffect(() => {
     setIsClient(true);
@@ -127,51 +150,94 @@ export default function TeamTemplate({ pageData, params }: { pageData?: any, par
 
   if (!isClient) return null;
 
+  const section = teamData?.section || {};
+  const heroBadge = stripHtml(section.badge || "OUR LEADERSHIP");
+  const heroImage = section.image || "/images/trinity/about.jpg";
+  const heroImageAlt = section.imageAlt || "Trinity Pump & Supply";
+  const bookingUrl = globalMetadata?.bookingUrl || "/contact-us/";
+  const hasCustomHeadline = section.headlinePrefix || section.headlineHighlight || section.headlineSuffix;
+
+  // Stats and CTA get their own independent content here (never the shared
+  // homepage useContent() data), so editing this page can never change what
+  // shows on the homepage or vice versa.
+  const statsItems = Array.isArray(teamData?.stats?.items) && teamData.stats.items.length > 0 ? teamData.stats.items : DEFAULT_STATS;
+  const ctaBannerData = teamData?.ctaBanner && Object.keys(teamData.ctaBanner).length > 0 ? teamData.ctaBanner : DEFAULT_CTA_BANNER;
+
   return (
     <main className="bg-white" ref={sectionRef}>
       {/* ── Dark Hero: Badge / Headline / Description ── */}
-      <section className="relative bg-dark pt-[140px] pb-16 sm:pb-20 overflow-hidden border-b border-white/10">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[90vw] sm:w-[800px] h-[300px] sm:h-[400px] bg-gradient-to-b from-gold/10 to-transparent opacity-80 blur-[80px] pointer-events-none" />
-        <div className="max-w-7xl mx-auto px-3 sm:px-6 md:px-8 relative z-30">
-          <div className="max-w-3xl mx-auto text-center leadership-reveal relative z-20">
-            <div className="flex items-center justify-center gap-2 sm:gap-3 mb-6">
-              <div className="w-6 sm:w-8 h-[2px] bg-gradient-to-r from-gold/40 to-gold" />
-              <span className="text-[10px] sm:text-xs font-semibold tracking-[0.2em] uppercase text-gold">{teamData?.section?.badge || "Our Leadership"}</span>
-              <div className="w-6 sm:w-8 h-[2px] bg-gradient-to-r from-gold to-gold/40" />
+      <section className="relative bg-dark min-h-[55vh] flex items-center pt-[130px] pb-14 border-b border-border-dark overflow-hidden">
+        <div className="absolute inset-0 z-0 pointer-events-none opacity-40">
+          <img
+            src={heroImage}
+            alt={heroImageAlt}
+            className="w-full h-full object-cover object-center filter contrast-105 saturate-110"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-dark via-dark/85 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-dark/60 via-transparent to-dark" />
+        </div>
+        <div className="absolute top-1/2 left-1/3 -translate-y-1/2 w-[450px] h-[450px] bg-gold/[0.07] rounded-full blur-[140px] pointer-events-none z-0" />
+
+        <div className="site-container relative z-10 w-full">
+          <div className="mb-6 flex flex-wrap items-center gap-3">
+            <nav
+              aria-label="Breadcrumb"
+              className="flex items-center gap-2 text-[11.5px] sm:text-[12px] font-mono tracking-wider text-white/60 bg-dark/50 backdrop-blur-md border border-white/10 rounded-full px-4 py-2 shadow-lg"
+            >
+              <Link href="/" className="hover:text-gold transition-colors text-white/80">
+                Home
+              </Link>
+              <span className="text-gold/50">/</span>
+              <span className="text-gold font-medium">Team</span>
+            </nav>
+          </div>
+
+          <div className="max-w-3xl text-left leadership-reveal relative z-20">
+            <div className="flex items-center gap-3 mb-4">
+              <span className="w-6 h-[1px] bg-gold flex-shrink-0" />
+              <p className="section-label text-gold">{heroBadge}</p>
             </div>
-            <h1 className="text-3xl min-[350px]:text-4xl sm:text-5xl lg:text-6xl font-light text-white mb-4 leading-tight">
-              {teamData?.section?.headlinePrefix || teamData?.section?.headlineHighlight || teamData?.section?.headlineSuffix ? (
+            <h1 className="font-display font-medium text-[38px] min-[400px]:text-[48px] md:text-[62px] lg:text-[68px] text-white leading-[1.08] mb-6 tracking-tight">
+              {hasCustomHeadline ? (
                 <>
-                  {teamData.section.headlinePrefix} <br />
-                  {teamData.section.headlineHighlight && (
-                    <span className="font-bold text-gold">
-                      {teamData.section.headlineHighlight}
-                    </span>
+                  {section.headlinePrefix}{' '}
+                  {section.headlineHighlight && (
+                    <span className="text-gold italic font-light">{section.headlineHighlight}</span>
                   )}
-                  {teamData.section.headlineSuffix ? ` ${teamData.section.headlineSuffix}` : ""}
+                  {section.headlineSuffix ? ` ${section.headlineSuffix}` : ""}
                 </>
               ) : (
                 <>
-                  {teamData?.section?.headline?.split('with')[0]} <br />
-                  <span className="font-bold text-gold">
-                    {teamData?.section?.headline?.split('with')[1]}
-                  </span>
+                  Built by <span className="text-gold italic font-light">Real People.</span>
                 </>
               )}
             </h1>
-            <div className="text-white/65 text-[13px] min-[350px]:text-sm sm:text-lg font-light max-w-2xl mx-auto px-4 leading-relaxed">
-              <RichTextRenderer content={teamData?.section?.description} />
+            <div className="text-white/80 md:text-white/70 text-[15px] md:text-[17px] leading-[1.8] max-w-[560px] mb-9 font-light">
+              <RichTextRenderer content={section.description} />
+            </div>
+
+            <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+              <a href={bookingUrl} className="btn-gold w-full sm:w-auto justify-center text-center px-8 py-4">
+                Request a Quote <ArrowRight size={14} className="ml-1" />
+              </a>
+              <Link href="/about-us/" className="btn-outline-white w-full sm:w-auto justify-center text-center px-8 py-4">
+                Our Story <ArrowRight size={14} className="ml-1" />
+              </Link>
             </div>
           </div>
         </div>
       </section>
+
+      {/* ── STATS — reuses the homepage's component for visual consistency,
+           with this page's own independent content. ── */}
+      <StatsBar overrideItems={statsItems} />
 
       {/* ── Light: Team Member List ── */}
       <section className="relative py-14 md:py-18 lg:py-20 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none bg-[#f8fafc]">
           <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: `linear-gradient(to right, #0f172a 1px, transparent 1px), linear-gradient(to bottom, #0f172a 1px, transparent 1px)`, backgroundSize: '100px 100px' }} />
         </div>
-        <div className="max-w-7xl mx-auto px-3 sm:px-6 md:px-8 relative z-30">
+        <div className="site-container relative z-30">
           {teamData?.members?.map((member: any, index: number) => {
             const alignRight = index % 2 !== 0;
             return (
@@ -225,6 +291,14 @@ export default function TeamTemplate({ pageData, params }: { pageData?: any, par
         </div>
       </section>
 
+      {/* ── CTA — reuses the homepage's component for visual consistency,
+           with this page's own independent content. ── */}
+      <div className="-mt-10 md:-mt-16 relative">
+        <CtaBanner overrideData={ctaBannerData} />
+      </div>
+
+      {/* ── CONTACT FORM + FAQ — shared sitewide, same as every other page. ── */}
+      <QAForm pageData={pageData} />
     </main>
   );
 }

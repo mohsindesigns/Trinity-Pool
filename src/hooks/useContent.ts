@@ -335,12 +335,16 @@ export const useContent = () => {
                 dash,
                 items,
                 results,
-                // Back-compat for editor
+                // Preserve every real field the admin editor saves (badge, headline,
+                // description, image, ...) and only add the legacy aliases some old
+                // code expects on top — never replace the raw section wholesale, or
+                // fields like `description` silently vanish on the live page.
                 section: {
+                    ...(t.section || {}),
                     badge: label,
                     headlinePrefix: title1,
                     headlineHighlight: title2,
-                    headlineSuffix: "",
+                    headlineSuffix: t.section?.headlineSuffix || "",
                     featured: t.section?.featured || "Google Review"
                 }
             };
@@ -586,18 +590,10 @@ export const useContent = () => {
             success: { title: "", description: "" },
             labels: { name: "", email: "", role: "", summary: "" }
         }),
-        aboutPage: {
-            ...(completeData?.aboutPage || {}),
-            // Root-level overrides for dynamic pages
-            ...(completeData?.hero ? { hero: completeData.hero } : {}),
-            ...(completeData?.mission ? { mission: completeData.mission } : {}),
-            ...(completeData?.story ? { story: completeData.story } : {}),
-            ...(completeData?.values ? { values: completeData.values } : {}),
-            ...(completeData?.capabilities ? { capabilities: completeData.capabilities } : {}),
-            ...(completeData?.stats ? { stats: completeData.stats } : {}),
-            ...(completeData?.ctaBanner ? { ctaBanner: completeData.ctaBanner } : {}),
-            ...(completeData?.recognition ? { recognition: completeData.recognition } : {}),
-        },
+        // aboutPage is the About page's OWN independent content — it must never
+        // fall back onto the homepage's root-level hero/stats/ctaBanner/etc, or
+        // editing one page would silently leak into and overwrite the other.
+        aboutPage: getSafe(completeData, 'aboutPage', {}),
         images: getSafe(completeData, 'images', {}),
         loader: getSafe(completeData, 'loader', { company: { name: "", tagline: "" }, phases: { simpleDark: 200, logoText: 400, ready: 100 } }),
         quickQuote: getSafe(completeData, 'quickQuote', {

@@ -312,7 +312,7 @@ export default function ServicesAdminPage() {
   const handleQuickEditSave = (e: React.FormEvent) => {
     e.preventDefault();
     const newServices = [...services];
-    const idx = services.findIndex(s => s.id === quickEditing.id);
+    const idx = services.findIndex(s => s.slug === quickEditing.slug);
     if (idx !== -1) {
       newServices[idx] = { ...newServices[idx], ...quickEditing };
       saveToDb(newServices);
@@ -360,7 +360,7 @@ export default function ServicesAdminPage() {
   };
 
   const handleEdit = (service: any) => {
-    const originalIdx = services.findIndex(orig => orig.id === service.id);
+    const originalIdx = services.findIndex(orig => orig.slug === service.slug);
     setForm({
       ...DEFAULT_SERVICE_FIELDS,
       ...service,
@@ -384,7 +384,7 @@ export default function ServicesAdminPage() {
 
   const toggleStatus = (service: any) => {
     const newServices = [...services];
-    const originalIdx = services.findIndex(orig => orig.id === service.id);
+    const originalIdx = services.findIndex(orig => orig.slug === service.slug);
     if (originalIdx === -1) return;
     const s = newServices[originalIdx];
     newServices[originalIdx] = { ...s, status: s.status === 'published' ? 'draft' : 'published' };
@@ -410,14 +410,14 @@ export default function ServicesAdminPage() {
     let newServices = [...services];
     if (action === 'delete') {
       if (!confirm(`Permanently delete ${selectedIds.length} services?`)) return;
-      newServices = services.filter(s => !selectedIds.includes(s.id));
+      newServices = services.filter(s => !selectedIds.includes(s.slug));
     } else if (action === 'trash') {
-      newServices = services.map(s => selectedIds.includes(s.id) ? { ...s, isTrashed: true, trashedAt: new Date().toISOString() } : s);
+      newServices = services.map(s => selectedIds.includes(s.slug) ? { ...s, isTrashed: true, trashedAt: new Date().toISOString() } : s);
     } else if (action === 'restore') {
-      newServices = services.map(s => selectedIds.includes(s.id) ? { ...s, isTrashed: false, trashedAt: null } : s);
+      newServices = services.map(s => selectedIds.includes(s.slug) ? { ...s, isTrashed: false, trashedAt: null } : s);
     } else if (action === 'publish' || action === 'draft') {
       const newStatus = action === 'publish' ? 'published' : 'draft';
-      newServices = services.map(s => selectedIds.includes(s.id) ? { ...s, status: newStatus } : s);
+      newServices = services.map(s => selectedIds.includes(s.slug) ? { ...s, status: newStatus } : s);
     } else {
       return;
     }
@@ -1329,8 +1329,8 @@ export default function ServicesAdminPage() {
                       <td className="py-4 px-3 align-top">
                         <input
                           type="checkbox"
-                          checked={selectedIds.includes(service.id)}
-                          onChange={() => setSelectedIds(prev => prev.includes(service.id) ? prev.filter(i => i !== service.id) : [...prev, service.id])}
+                          checked={selectedIds.includes(service.slug)}
+                          onChange={() => setSelectedIds(prev => prev.includes(service.slug) ? prev.filter(i => i !== service.slug) : [...prev, service.slug])}
                           className="w-4 h-4 border-[#8c8f94] rounded-[3px]"
                         />
                       </td>
@@ -1358,16 +1358,16 @@ export default function ServicesAdminPage() {
                                 <>
                                   <button onClick={() => {
                                     const ns = [...services];
-                                    const sidx = ns.findIndex(orig => orig.id === service.id);
+                                    const sidx = ns.findIndex(orig => orig.slug === service.slug);
                                     if (sidx !== -1) { ns[sidx] = { ...ns[sidx], isTrashed: false, trashedAt: null }; saveToDb(ns); }
                                   }} className="text-[#2271b1] hover:underline text-[12px]">Restore</button>
                                   <span className="text-[#a7aaad]">|</span>
-                                  <button onClick={() => { if (confirm("Permanently delete this service?")) saveToDb(services.filter(orig => orig.id !== service.id)); }} className="text-[#d63638] hover:underline text-[12px]">Delete Permanently</button>
+                                  <button onClick={() => { if (confirm("Permanently delete this service?")) saveToDb(services.filter(orig => orig.slug !== service.slug)); }} className="text-[#d63638] hover:underline text-[12px]">Delete Permanently</button>
                                 </>
                               ) : (
                                 <button onClick={() => {
                                   const ns = [...services];
-                                  const sidx = ns.findIndex(orig => orig.id === service.id);
+                                  const sidx = ns.findIndex(orig => orig.slug === service.slug);
                                   if (sidx !== -1) { ns[sidx] = { ...ns[sidx], isTrashed: true, trashedAt: new Date().toISOString() }; saveToDb(ns); }
                                 }} className="text-[#d63638] hover:underline text-[12px]">Trash</button>
                               )}

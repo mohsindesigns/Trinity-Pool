@@ -190,30 +190,41 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* ALL headings default to BLACK */
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
+  /* ALL headings default to BLACK -- except inside <nav>, which always sets
+     its own text colors explicitly for a dark background; this rule would
+     otherwise win over the navbar's own white/gold classes and render its
+     text invisible until hover pulled in a differently-specified color. */
+  h1:not(nav *),
+  h2:not(nav *),
+  h3:not(nav *),
+  h4:not(nav *),
+  h5:not(nav *),
+  h6:not(nav *) {
     @apply text-foreground;
     font-family: var(--font-heading);
     letter-spacing: -0.03em;
     line-height: 1.05;
   }
 
-  /* Paragraphs default to BLACK */
-  p {
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+  }
+
+  /* Paragraphs default to BLACK -- same navbar exclusion as headings above. */
+  p:not(nav *) {
     @apply text-foreground;
   }
 
-  /* Links default to BLACK, hover to BLUE (excluding buttons/styled links and navbar links) */
-  a:not([class*="bg-"]):not([class*="btn"]):not([class*="button"]):not(.nav-link) {
+  /* Links default to BLACK, hover to BLUE (excluding buttons/styled links and
+     anything inside <nav> -- the navbar always sets its own link colors for
+     its dark background, and this base rule would otherwise win). */
+  a:not(nav *):not([class*="bg-"]):not([class*="btn"]):not([class*="button"]):not(.nav-link) {
     @apply text-foreground transition-colors duration-300;
   }
 
-  a:not([class*="bg-"]):not([class*="btn"]):not([class*="button"]):not(.nav-link):hover {
+  a:not(nav *):not([class*="bg-"]):not([class*="btn"]):not([class*="button"]):not(.nav-link):hover {
     @apply text-primary;
   }
 }

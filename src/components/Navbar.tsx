@@ -139,7 +139,7 @@ const Navbar = () => {
                           if (!isHoveringMegaMenu) setActiveMegaMenu(null);
                         }, 150);
                       }}
-                      className={`flex items-center gap-1 text-[13.5px] font-medium transition-colors duration-200 cursor-pointer
+                      className={`nav-link flex items-center gap-1 text-[13.5px] font-medium transition-colors duration-200 cursor-pointer
                         ${activeMegaMenu === `mega-${linkIdx}` || active
                           ? 'text-gold'
                           : 'text-white/75 hover:text-white'
@@ -217,7 +217,7 @@ const Navbar = () => {
                 return (
                   <li key={linkIdx} className="relative group">
                     <button
-                      className={`flex items-center gap-1 text-[13.5px] font-medium transition-colors duration-200 cursor-pointer
+                      className={`nav-link flex items-center gap-1 text-[13.5px] font-medium transition-colors duration-200 cursor-pointer
                         ${active ? 'text-gold' : 'text-white/75 hover:text-white'}`}
                     >
                       {link.icon && <Icon name={link.icon} className="h-4 w-4" />}

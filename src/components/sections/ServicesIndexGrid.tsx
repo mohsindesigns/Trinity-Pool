@@ -18,7 +18,7 @@ function useSpotlight() {
   }, []);
 }
 
-function ServiceCard({ svc, index, spotlight, learnMore, onMove }: { svc: any; index: number; spotlight: boolean; learnMore: string; onMove: any }) {
+function ServiceCard({ svc, index, spotlight, spanClass, learnMore, onMove }: { svc: any; index: number; spotlight: boolean; spanClass: string; learnMore: string; onMove: any }) {
   const number = String(index + 1).padStart(2, "0");
   const hasImage = spotlight && !!svc.image;
 
@@ -28,7 +28,7 @@ function ServiceCard({ svc, index, spotlight, learnMore, onMove }: { svc: any; i
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
       transition={{ duration: 0.5, delay: Math.min(index, 6) * 0.06, ease: [0.22, 1, 0.36, 1] }}
-      className={spotlight ? "md:col-span-2" : ""}
+      className={spanClass}
     >
       <Link
         href={`/${svc.slug}/`}
@@ -189,9 +189,25 @@ export default function ServicesIndexGrid() {
               <h2 className="display-heading text-[24px] md:text-[30px] text-dark leading-tight">{group.label}</h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-              {group.items.map((svc: any, i: number) => (
-                <ServiceCard key={svc.slug || i} svc={svc} index={i} spotlight={i === 0} learnMore={learnMore} onMove={onMove} />
-              ))}
+              {group.items.map((svc: any, i: number) => {
+                const total = group.items.length;
+                const featured = i === 0;
+                // Stretch the last card to fill whatever's left in its row instead of
+                // leaving it stranded alone next to empty column tracks.
+                const isLast = i === total - 1 && !featured;
+                const spotlight = featured || isLast;
+                const lgSpan = isLast ? 3 - (total % 3 || 3) + (total % 3 === 0 ? 3 : 0) : 1;
+                const mdSpan = isLast && (total - 1) % 2 === 1 ? 2 : 1;
+                const spanClass = [
+                  featured ? "md:col-span-2 lg:col-span-2" : "",
+                  isLast && mdSpan === 2 ? "md:col-span-2" : "",
+                  isLast && lgSpan === 2 ? "lg:col-span-2" : "",
+                  isLast && lgSpan === 3 ? "lg:col-span-3" : "",
+                ].join(" ");
+                return (
+                  <ServiceCard key={svc.slug || i} svc={svc} index={i} spotlight={spotlight} spanClass={spanClass} learnMore={learnMore} onMove={onMove} />
+                );
+              })}
             </div>
           </div>
         ))}

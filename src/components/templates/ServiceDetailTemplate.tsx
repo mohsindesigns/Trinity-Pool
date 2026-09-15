@@ -83,6 +83,19 @@ export default function ServiceDetailTemplate({ pageData, params: syncParams }: 
   // hardcoded defaults below regardless of what's actually saved.
   const service = { ...(serviceFromHook || {}), ...(pageDataInner || {}), ...(pageData?.content || {}) };
 
+  // pageData.content (spread above) also carries the *global* sitewide faq/faqs list
+  // under these same key names, which always wins the spread and silently clobbers the
+  // real per-service FAQ already resolved onto pageDataInner (by the [...slug] route,
+  // from the catalogue item's own .faq) and serviceFromHook — restore whichever of those
+  // actually has real data, so every service page shows its own FAQ instead of the same
+  // sitewide fallback.
+  const realFaq = [pageDataInner?.faq, serviceFromHook?.faq, pageDataInner?.faqs, serviceFromHook?.faqs]
+    .find((f: any) => Array.isArray(f) && f.length > 0);
+  if (realFaq) {
+    service.faq = realFaq;
+    service.faqs = realFaq;
+  }
+
   if (!service || (!service.slug && !service.title && !service.id)) {
     return (
       <main className="bg-dark min-h-screen pt-[140px] flex items-center justify-center">
@@ -291,24 +304,32 @@ export default function ServiceDetailTemplate({ pageData, params: syncParams }: 
           <div className="absolute top-1/2 left-1/3 -translate-y-1/2 w-[450px] h-[450px] bg-gold/[0.07] rounded-full blur-[140px] pointer-events-none z-0" />
 
           <div className="site-container relative z-10 w-full text-left">
-            {/* Breadcrumbs & Navigation */}
-            <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
-              <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-[11.5px] sm:text-[12px] font-mono tracking-wider text-white/50">
-                <Link href="/" className="hover:text-gold transition-colors text-white/70">
+            {/* Breadcrumbs & Navigation — backed by a translucent blurred chip so
+               both stay legible over any hero photo, regardless of how bright
+               or busy that specific image is (the raw dark gradient behind the
+               hero fades to transparent toward the right edge, which left
+               "Back to All Services" unreadable over lighter photos). */}
+            <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
+              <nav
+                aria-label="Breadcrumb"
+                className="flex items-center gap-2 text-[11.5px] sm:text-[12px] font-mono tracking-wider text-white/60 bg-dark/50 backdrop-blur-md border border-white/10 rounded-full px-4 py-2 shadow-lg"
+              >
+                <Link href="/" className="hover:text-gold transition-colors text-white/80">
                   Home
                 </Link>
                 <span className="text-gold/50">/</span>
-                <span className="text-gold font-medium truncate max-w-[280px] sm:max-w-none">
+                <span className="text-gold font-medium truncate max-w-[200px] sm:max-w-none">
                   {serviceName}
                 </span>
               </nav>
 
               <Link
                 href="/services/"
-                className="hidden sm:inline-flex items-center gap-2 text-white/60 hover:text-gold text-[11px] font-bold tracking-[0.2em] uppercase transition-colors"
+                className="inline-flex items-center gap-2 text-white/80 hover:text-gold text-[11px] font-bold tracking-[0.2em] uppercase transition-colors bg-dark/50 backdrop-blur-md border border-white/10 rounded-full pl-3.5 pr-4 py-2 shadow-lg hover:border-gold/40"
               >
-                <ArrowLeft size={13} className="text-gold" />
-                {pg.backLink}
+                <ArrowLeft size={13} className="text-gold flex-shrink-0" />
+                <span className="hidden sm:inline">{pg.backLink}</span>
+                <span className="sm:hidden">Back</span>
               </Link>
             </div>
 
@@ -379,9 +400,13 @@ export default function ServiceDetailTemplate({ pageData, params: syncParams }: 
           <div className="site-container">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
               {statsList.map((stat: any, idx: number) => (
-                <div key={idx} className="p-5 rounded-lg bg-white/[0.03] border border-white/10 hover:border-gold/40 shadow-xl transition-all duration-300 group text-center">
-                  <span className="text-gold font-serif text-[26px] md:text-[32px] font-bold block leading-none mb-1 group-hover:scale-105 transition-transform">{stat.value}</span>
-                  <span className="text-white/60 text-[10.5px] font-mono uppercase tracking-widest">{stat.label}</span>
+                <div key={idx} className="relative p-5 md:p-6 rounded-2xl bg-gradient-to-b from-white/[0.05] to-white/[0.01] border border-white/10 hover:border-gold/40 shadow-xl hover:-translate-y-0.5 transition-all duration-300 group text-center overflow-hidden">
+                  <span className="pointer-events-none absolute -right-2 -top-3 select-none text-[52px] leading-none font-black text-white/[0.03] group-hover:text-gold/[0.08] transition-colors duration-500">
+                    {String(idx + 1).padStart(2, '0')}
+                  </span>
+                  <span className="relative text-gold font-serif text-[26px] md:text-[32px] font-bold block leading-none mb-1.5 group-hover:scale-105 transition-transform">{stat.value}</span>
+                  <span className="relative text-white/60 text-[10.5px] font-mono uppercase tracking-widest">{stat.label}</span>
+                  <span className="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2 w-8 h-[2px] bg-gradient-to-r from-transparent via-gold to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
               ))}
             </div>
@@ -467,19 +492,21 @@ export default function ServiceDetailTemplate({ pageData, params: syncParams }: 
                       return (
                         <div
                           key={idx}
-                          className="p-5 rounded-lg bg-card-bg border border-border-light/80 hover:border-gold-dark/60 hover:bg-white transition-all duration-300 shadow-sm hover:shadow-xl flex items-start gap-4 group relative overflow-hidden"
+                          className="p-6 rounded-2xl bg-white border border-border-light/80 hover:border-gold-dark/50 transition-all duration-300 shadow-[0_1px_2px_rgba(7,27,28,0.04),0_12px_30px_-18px_rgba(7,27,28,0.16)] hover:shadow-[0_28px_56px_-24px_rgba(200,154,69,0.35)] hover:-translate-y-0.5 flex items-start gap-5 group relative overflow-hidden"
                         >
-                          <div className="h-[2px] w-full bg-gradient-to-r from-gold-dark/60 via-gold-dark to-transparent opacity-0 group-hover:opacity-100 transition-opacity absolute top-0 left-0" />
-
-                          <div className="w-10 h-10 rounded-md bg-gold-dark/15 border border-gold-dark/30 flex items-center justify-center text-gold-dark font-serif font-bold text-[18px] flex-shrink-0 group-hover:bg-gold-dark group-hover:text-white transition-colors">
+                          <span className="pointer-events-none absolute right-4 top-1 select-none text-[56px] leading-none font-black text-[rgba(7,27,28,0.035)] group-hover:text-[rgba(200,154,69,0.14)] transition-colors duration-500">
                             {String(idx + 1).padStart(2, '0')}
+                          </span>
+
+                          <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-gold-light via-gold to-gold-dark text-white shadow-[0_12px_24px_-8px_rgba(200,154,69,0.55)] flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-105 group-hover:-rotate-3">
+                            <span className="font-serif font-bold text-[16px]">{String(idx + 1).padStart(2, '0')}</span>
                           </div>
-                          <div className="flex-1">
-                            <h3 className="text-dark font-bold text-[17px] mb-1 group-hover:text-gold-dark transition-colors">
+                          <div className="flex-1 relative">
+                            <h3 className="text-dark font-bold text-[17px] mb-1.5 group-hover:text-gold-dark transition-colors">
                               {sh(benefitTitle)}
                             </h3>
                             <div
-                              className="text-dark/65 text-[13.5px] font-light leading-relaxed"
+                              className="text-dark/60 text-[13.5px] font-light leading-relaxed"
                               dangerouslySetInnerHTML={{ __html: formatRichText(benefitDesc, false) }}
                             />
                           </div>
@@ -553,13 +580,16 @@ export default function ServiceDetailTemplate({ pageData, params: syncParams }: 
               {pg.whoProfiles.map((profile: any, idx: number) => (
                 <div
                   key={idx}
-                  className="candidate-card-clean p-8 rounded-xl bg-white transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.08)] flex flex-col justify-between group relative overflow-hidden"
+                  className="candidate-card-clean p-8 rounded-2xl bg-white transition-all duration-300 shadow-[0_1px_2px_rgba(7,27,28,0.04),0_12px_30px_-18px_rgba(7,27,28,0.16)] hover:shadow-[0_28px_56px_-24px_rgba(200,154,69,0.35)] hover:-translate-y-0.5 flex flex-col justify-between group relative overflow-hidden"
                 >
+                  <span className="pointer-events-none absolute right-5 top-2 select-none text-[64px] leading-none font-black text-[rgba(7,27,28,0.035)] group-hover:text-[rgba(200,154,69,0.14)] transition-colors duration-500">
+                    {String(idx + 1).padStart(2, '0')}
+                  </span>
                   <div>
                     <div className="flex items-center justify-between mb-6 border-b border-border-light/70 pb-4 relative z-10">
-                      <span className="text-gold-dark font-serif font-bold text-[28px] leading-none">
-                        {String(idx + 1).padStart(2, '0')}
-                      </span>
+                      <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-gold-light via-gold to-gold-dark text-white shadow-[0_12px_24px_-8px_rgba(200,154,69,0.55)] flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-105 group-hover:-rotate-3">
+                        <span className="font-serif font-bold text-[15px]">{String(idx + 1).padStart(2, '0')}</span>
+                      </div>
                       <span className="px-3 py-1 rounded-full bg-gold-dark/10 text-gold-dark text-[10.5px] font-mono font-bold tracking-widest uppercase">
                         {pg.profileBadgePrefix} {String(idx + 1).padStart(2, '0')}
                       </span>
@@ -591,7 +621,7 @@ export default function ServiceDetailTemplate({ pageData, params: syncParams }: 
            The header + step grid are hidden when no sessionSteps are
            supplied, but the Request-a-Quote banner below always shows.
            ════════════════════════════════════════════════════════ */}
-        <section className="py-24 md:py-32 bg-dark text-white relative border-b border-white/10 overflow-hidden">
+        <section className={`${pg.sessionSteps.length > 0 ? 'py-24 md:py-32' : 'py-14 md:py-20'} bg-dark text-white relative border-b border-white/10 overflow-hidden`}>
           {/* Ambient Gold Glow Orbs */}
           <div className="absolute top-1/2 left-1/3 -translate-y-1/2 w-[500px] h-[500px] bg-gold/[0.04] rounded-full blur-[160px] pointer-events-none" />
 
@@ -656,7 +686,7 @@ export default function ServiceDetailTemplate({ pageData, params: syncParams }: 
 
             {/* Bottom Action Conversion Banner — always visible, per the site-wide
                "Request a Quote CTA everywhere" rule, regardless of sessionSteps. */}
-            <div className="stepper-banner-cta mt-16 p-8 md:p-10 rounded-xl bg-gradient-to-r from-gold/20 via-dark to-dark flex flex-col sm:flex-row items-center justify-between gap-6 shadow-2xl text-left border border-white/10">
+            <div className={`stepper-banner-cta ${pg.sessionSteps.length > 0 ? 'mt-16' : ''} p-8 md:p-10 rounded-2xl bg-gradient-to-r from-gold/20 via-dark to-dark flex flex-col sm:flex-row items-center justify-between gap-6 shadow-2xl text-left border border-white/10`}>
               <div className="max-w-xl">
                 {pg.protocolBannerBadge && (
                   <span className="text-gold font-mono text-[10.5px] font-bold tracking-widest uppercase block mb-1">

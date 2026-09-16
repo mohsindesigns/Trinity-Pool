@@ -1,35 +1,37 @@
-# 410 Muscle Therapy
+# Trinity Pump & Supply
 
-> Specialized performance recovery bodywork, mobility restoration, and injury prevention clinic based in Timonium, Maryland. Offering clinical orthopedic massage, fascial stretch therapy, myofascial release, cupping therapy, trigger point therapy, and customized athletic recovery protocols for athletes and active adults across Maryland since 2020.
+> Downhole rod pump manufacturing, rebuilds, teardowns, and artificial lift equipment specialist based in Odessa, Texas. Providing precision sucker rod pumps, pump tracking, tubing anchor catchers (TACs), gas separators, and 24/7 Permian Basin field delivery with 100% USA-manufactured pump parts.
 
-410 Muscle Therapy helps athletes, fitness enthusiasts, and active adults recover faster, eliminate pain, and restore natural movement biomechanics. All sessions combine advanced orthopedic assessment, targeted manual muscle therapy, and tailored recovery techniques designed around individual mobility goals.
+Trinity Pump & Supply helps oil and gas operators throughout the Permian, Delaware, and Midland Basins maximize run time and reduce lifting costs. With over 100 years of combined pump shop expertise, our Odessa technicians custom-build API-specification rod pumps, conduct rigorous failure teardowns, track run history, and provide around-the-clock wellsite service.
 
 ## Core Navigation & Pages
 
-- [Home](https://410-muscletherapy.com/): Clinic overview, recovery approach, and primary services
-- [Services Index](https://410-muscletherapy.com/services/): Complete catalog of specialized bodywork and clinical muscle therapies
-- [Project & Case Gallery](https://410-muscletherapy.com/gallery/): Client recovery journeys, bodywork sessions, and mobility results
-- [Blog & Journal](https://410-muscletherapy.com/blog/): Recovery insights, sports massage science, and mobility guides
-- [Contact Us](https://410-muscletherapy.com/contact-us/): Appointment inquiries, session booking, and clinic location
+- [Home](https://trinitypumpsupply.com/): Company overview, 100% USA parts promise, and Odessa pump shop capabilities
+- [About Us](https://trinitypumpsupply.com/about-us/): Combined 100+ years Permian Basin heritage, quality standards, and craftsmanship
+- [Services](https://trinitypumpsupply.com/services/): Complete catalog of downhole pump repair, rebuild, and field support services
+- [Projects & Equipment](https://trinitypumpsupply.com/projects/): Downhole pump installations, sucker rod assemblies, and field equipment
+- [Blogs & Technical Guides](https://trinitypumpsupply.com/blogs/): Downhole pump failure analysis, rod rotator maintenance, and artificial lift insights
+- [Contact Us](https://trinitypumpsupply.com/contact-us/): 24/7 shop dispatch, pump quotes, and Odessa, TX facility location
 
-## Specialized Clinical Services
+## Specialized Downhole Pump Services
 
-- [Corrective Movement Therapy](https://410-muscletherapy.com/corrective-movement-therapy-maryland/): Functional movement restoration and neuromuscular re-education
-- [Sports Massage Therapy](https://410-muscletherapy.com/maryland-sports-massage-therapist/): Pre-event and post-event athletic bodywork
-- [Infrared Therapy](https://410-muscletherapy.com/infrared-therapy-maryland/): Cellular repair, deep heat circulation, and tissue relaxation
-- [Fascial Stretch Therapy](https://410-muscletherapy.com/maryland-fascial-stretch-therapy/): Table-based assisted stretching to decompress joints and lengthen fascia
-- [Hot Towel Massage](https://410-muscletherapy.com/hot-towel-massage-maryland/): Soothing thermal therapy to soften dense muscle tension
-- [Myofascial Release Therapy](https://410-muscletherapy.com/myofascial-release-therapy-maryland/): Sustained pressure to dissolve chronic fascial restrictions
-- [Acupressure Massage](https://410-muscletherapy.com/acupressure-massage-maryland/): Targeted trigger point stimulation for nervous system relief
-- [Cupping Therapy](https://410-muscletherapy.com/cupping-therapy-maryland/): Decompressive negative pressure to accelerate lymphatic drainage
-- [Hot Stone Massage](https://410-muscletherapy.com/hot-stone-massage-maryland/): Heated basalt stones for deep neuromuscular release
-- [Deep Tissue Massage](https://410-muscletherapy.com/deep-tissue-massage-maryland/): Focused structural pressure targeting chronic muscular pain
+- [Downhole Rod Pump Repair & Rebuild](https://trinitypumpsupply.com/services/): Full teardown, ultrasonic barrel inspection, precision plunger refits, and API tolerance testing
+- [Pump Teardown & Root Cause Failure Analysis](https://trinitypumpsupply.com/services/): Detailed metallurgical, gas, and sand-cut wear diagnostics with digital inspection reporting
+- [Digital Pump Tracking & Inventory Management](https://trinitypumpsupply.com/services/): Serialized downhole tracking to monitor run life, well history, and maintenance cycles
+- [Tubing Anchor Catcher (TAC) Inspection & Sales](https://trinitypumpsupply.com/services/): Premium Tech-Tac TACs and anchors to prevent tubing stretch and rod wear
+- [Downhole Gas Separators & Sand Control](https://trinitypumpsupply.com/services/): High-efficiency downhole separation solutions to prevent gas lock and particulate abrasion
+- [Rod Rotators & Accessories](https://trinitypumpsupply.com/services/): Mechanical rod rotators that evenly distribute sucker rod wear and extend string life
+- [24/7 Field Delivery & Wellsite Hot Shot](https://trinitypumpsupply.com/services/): Rapid equipment delivery directly to Permian Basin wellheads, minimizing downtime
 
-## Service Areas
+## Primary Service Areas
 
-- [Maryland (Statewide)](https://410-muscletherapy.com/services/)
-- [Baltimore County, MD](https://410-muscletherapy.com/services/)
-- [Timonium, MD](https://410-muscletherapy.com/services/)
-- [Towson, MD](https://410-muscletherapy.com/services/)
-- [Lutherville, MD](https://410-muscletherapy.com/services/)
-- [Cockeysville, MD](https://410-muscletherapy.com/services/)
+- [Permian Basin (Full Basin Coverage)](https://trinitypumpsupply.com/service-area/)
+- [Midland Basin, TX](https://trinitypumpsupply.com/service-area/)
+- [Delaware Basin (TX & NM)](https://trinitypumpsupply.com/service-area/)
+- [Odessa, TX (Headquarters & Pump Shop)](https://trinitypumpsupply.com/service-area/)
+- [Midland, TX](https://trinitypumpsupply.com/service-area/)
+- [Pecos, TX](https://trinitypumpsupply.com/service-area/)
+- [Andrews, TX](https://trinitypumpsupply.com/service-area/)
+- [Crane, TX](https://trinitypumpsupply.com/service-area/)
+- [Monahans, TX](https://trinitypumpsupply.com/service-area/)
+- [Big Spring, TX](https://trinitypumpsupply.com/service-area/)

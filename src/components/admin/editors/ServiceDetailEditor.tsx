@@ -22,8 +22,8 @@ const DEFAULT_SERVICE_DETAIL = {
   // 1. Hero
   title: "New Service",
   backLink: "Back to All Services",
-  heroSectionLabel: "CLINICAL RECOVERY PROTOCOL",
-  heroDescription: "Targeted manual therapy engineered to eliminate chronic pain, unlock joint mobility, and accelerate athletic recovery.",
+  heroSectionLabel: "OILFIELD PUMP & SUPPLY SOLUTIONS",
+  heroDescription: "Precision pump engineering built to maximize uptime, extend equipment life, and keep your Permian Basin production running strong.",
   specDurationValue: "60 / 90 Mins",
   specIntensityValue: "Targeted Deep",
   specFocusValue: "Trigger Mapping",
@@ -31,7 +31,7 @@ const DEFAULT_SERVICE_DETAIL = {
   bookingCtaUrl: "",
   heroCtaSecondary: "SEE HOW IT HELPS",
   heroCtaSecondaryUrl: "#overview",
-  image: "/images/service-massage.webp",
+  image: "/images/hero-bg.jpg",
 
   // 2. Stats
   statsItem1Val: "8 Yrs",
@@ -98,29 +98,29 @@ const DEFAULT_SERVICE_DETAIL = {
       suitability: "100% GUARANTEED"
     },
     {
-      label: "York Road Convenience",
-      desc: "At 1301 York Rd., Timonium, MD, we serve Towson, Lutherville, Cockeysville, and Baltimore County with dedicated one-on-one care.",
-      suitability: "TIMONIUM, MD"
+      label: "Permian Basin Facility",
+      desc: "Centrally located at 4608 Gist Ave in Odessa, TX, serving Midland, Delaware Basin, and Permian operators with dedicated pump support.",
+      suitability: "ODESSA, TX"
     }
   ],
 
   // 5. Treatment Protocol (Stepper)
-  protocolSectionLabel: "SESSION WORKFLOW PROTOCOL",
-  protocolTitle1: "What Your Session",
+  protocolSectionLabel: "SHOP SERVICE PROTOCOL",
+  protocolTitle1: "What Your Service",
   protocolTitle2: "Looks Like.",
-  protocolDescription: "Your visit follows a clear path: listen, observe, release, practice, and retest so you always know what we are working on and why.",
+  protocolDescription: "Every pump follows a strict shop protocol: teardown, clean, inspect, assemble, and pressure test so you know it's ready downhole.",
   protocolPhasePrefix: "STEP",
-  protocolDurations: ["15 MIN", "30 MIN", "30 MIN", "15 MIN"],
+  protocolDurations: ["TEARDOWN", "INSPECTION", "ASSEMBLY", "TESTING"],
   sessionSteps: [
     {
       num: "01",
-      title: "Talk And Screen",
-      desc: "We discuss what hurts and when it shows up. Your movement assessment in Timonium includes standing, walking, reaching, or squatting."
+      title: "Teardown & Diagnostics",
+      desc: "Complete disassembly of barrel and plunger components to assess wear, corrosion, and downhole failure causes."
     },
     {
       num: "02",
-      title: "Release Restricted Tissue",
-      desc: "Hands-on work focuses on tight areas, deep muscle knots, and stuck fascia matched to your comfortable pressure level."
+      title: "Precision Cleaning & Honing",
+      desc: "Ultrasonic cleaning and barrel honing to ensure microscopic clearances match strict API specifications."
     },
     {
       num: "03",
@@ -210,7 +210,7 @@ export default function ServiceDetailEditor({ pageId, data, setData }: { pageId:
                 <div className="space-y-4">
                   <div className="space-y-1.5">
                     <label className={UI.label}>Service Name (Title)</label>
-                    <input type="text" value={data.title || ""} onChange={(e) => updateField("title", e.target.value)} className={UI.inputLarge} placeholder="e.g., Corrective Movement Therapy Maryland" />
+                    <input type="text" value={data.title || ""} onChange={(e) => updateField("title", e.target.value)} className={UI.inputLarge} placeholder="e.g., Rod Pump Repair Odessa TX" />
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -220,7 +220,7 @@ export default function ServiceDetailEditor({ pageId, data, setData }: { pageId:
                     </div>
                     <div className="space-y-1.5">
                       <label className={UI.label}>Hero Category Label</label>
-                      <input type="text" value={data.heroSectionLabel || ""} onChange={(e) => updateField("heroSectionLabel", e.target.value)} className={UI.input} placeholder="e.g., CLINICAL RECOVERY PROTOCOL" />
+                      <input type="text" value={data.heroSectionLabel || ""} onChange={(e) => updateField("heroSectionLabel", e.target.value)} className={UI.input} placeholder="e.g., OILFIELD PUMP & SUPPLY SOLUTIONS" />
                     </div>
                   </div>
 
@@ -230,7 +230,7 @@ export default function ServiceDetailEditor({ pageId, data, setData }: { pageId:
                       value={data.heroDescription || data.heroSubtitle || data.heroDescriptionSuffix || ""} 
                       onChange={(e) => updateField("heroDescription", e.target.value)} 
                       className={UI.input + " h-24 resize-y"} 
-                      placeholder="e.g. Tight hips, aching shoulders, back pain, or sciatica can keep returning. Corrective movement therapy sessions in Maryland at [Trinity Pump & Supply](https://trinitypumpsupply.com/) look beyond the sore spot..."
+                      placeholder="e.g. Keeping your rod pumps running in the Permian Basin requires precision. At [Trinity Pump & Supply](https://trinitypumpsupply.com/) we engineer solutions built for your well conditions..."
                     />
                   </div>
 
@@ -493,7 +493,7 @@ export default function ServiceDetailEditor({ pageId, data, setData }: { pageId:
                       value={data.candidateDescription || ""}
                       onChange={(e) => updateField("candidateDescription", e.target.value)}
                       className={UI.input + " h-20"}
-                      placeholder="e.g. At Trinity Pump & Supply, our corrective movement therapy in Maryland is designed for people who want more than a feel-good hour..."
+                      placeholder="e.g. At Trinity Pump & Supply, our pump repair and supply services in Odessa, TX are designed for operators who need reliable uptime and precise engineering..."
                     />
                   </div>
 
@@ -672,7 +672,7 @@ export default function ServiceDetailEditor({ pageId, data, setData }: { pageId:
                         value={data.protocolBannerDescription || ""}
                         onChange={(e) => updateField("protocolBannerDescription", e.target.value)}
                         className={UI.input + " h-16"}
-                        placeholder="e.g. Call 443-473-2322 or book your session at 1301 York Rd., 8th Floor, Suite 48, Timonium, MD, today and start moving with more confidence."
+                        placeholder="e.g. Call (830) 279-3996 or contact our shop at 4608 Gist Ave, Odessa, TX today for rapid wellsite dispatch."
                       />
                     </div>
 

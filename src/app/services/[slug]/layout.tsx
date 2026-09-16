@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const seo = service.seo || {};
   const title = seo.metaTitle || seo.title || service.title || "Service | Trinity Pump & Supply";
-  const description = seo.metaDescription || seo.description || service.description || "Specialized performance bodywork and mobility restoration in Maryland.";
+  const description = seo.metaDescription || seo.description || service.description || "Specialized downhole rod pump manufacturing, inspection, and field repair services across the Permian Basin.";
 
   return {
     title,

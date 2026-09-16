@@ -26,22 +26,22 @@ export default function WhyChooseUsSection() {
   const rawDescription = whyChooseUs?.section?.description || whyChooseUs?.description || "";
   const description = cleanTextOrFallback(
     rawDescription,
-    "We blend clinical orthopedic massage with modern recovery science to get you back to your best self."
+    "We combine proven oilfield expertise with precision pump engineering to keep your production running at peak efficiency."
   );
   
   const rawFeatures = Array.isArray(whyChooseUs?.features) && whyChooseUs.features.length > 0
     ? whyChooseUs.features
     : [
-        { title: "Clinical Expertise", description: "Specialized in soft-tissue dysfunction and chronic pain patterns.", icon: "Shield" },
-        { title: "Personalized Approach", description: "Every session is custom-tailored to your specific athletic goals.", icon: "Zap" },
-        { title: "Recovery Focused", description: "Designed to accelerate muscle repair and restore range of motion.", icon: "Flame" }
+        { title: "Industry Expertise", description: "Specialized in oilfield pump systems, artificial lift, and downhole equipment.", icon: "Shield" },
+        { title: "Custom Solutions", description: "Every job is engineered around your well conditions and production goals.", icon: "Zap" },
+        { title: "Uptime Focused", description: "Designed to minimize downtime and maximize production efficiency in the Permian Basin.", icon: "Flame" }
       ];
 
   const features = rawFeatures.map((f: any, idx: number) => ({
     title: f.title || f.name || `Advantage ${idx + 1}`,
     description: cleanTextOrFallback(
       f.description || f.desc || "",
-      "Specialized therapeutic care tailored to your exact athletic recovery needs."
+      "Specialized oilfield solutions tailored to your exact well and production requirements."
     ),
     icon: f.icon || "Shield"
   }));
@@ -49,7 +49,7 @@ export default function WhyChooseUsSection() {
   const rawStats = Array.isArray(whyChooseUs?.stats) && whyChooseUs.stats.length > 0
     ? whyChooseUs.stats
     : [
-        { value: "500", suffix: "+", label: "Athletes Treated" },
+        { value: "500", suffix: "+", label: "Pumps Serviced" },
         { value: "5", suffix: "/5", label: "Client Rating" },
         { value: "100", suffix: "%", label: "Satisfaction Guarantee" }
       ];

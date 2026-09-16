@@ -718,7 +718,7 @@ export default function PageInlineFaqs({
                       <RichTextRenderer content={subtitle || section?.description} />
                     )
                   ) : (
-                    <p>Answers to common questions about our clinical bodywork, sports massage, and recovery services in Maryland.</p>
+                    <p>Answers to common questions about our downhole rod pump repair, manufacturing, and oilfield services in the Permian Basin.</p>
                   )}
                 </div>
                 <div className="w-16 h-0.5 bg-gradient-to-r from-gold-dark to-gold-dark/60 mx-auto mt-6 rounded-full" />

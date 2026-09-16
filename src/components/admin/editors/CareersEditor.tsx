@@ -24,7 +24,7 @@ export default function CareersEditor({ pageId, data, setData }: { pageId: strin
          careers: {
            section: { badge: "Join Trinity Pump & Supply", headline: "Expert hands with Visionary minds", description: "Build your future with a team that values precision, integrity, and craftsmanship." },
            roles: [
-             { label: "Licensed Massage Therapist", value: "licensed-massage-therapist" },
+             { label: "Field Service Technician", value: "field-service-technician" },
              { label: "Fascial Stretch Specialist", value: "fascial-stretch-specialist" },
              { label: "Performance Recovery Coach", value: "performance-recovery-coach" }
            ],

@@ -6,20 +6,20 @@ import { ArrowRight, Home, Compass, BookOpen, PhoneCall } from "lucide-react";
 export default function NotFound() {
   const quickLinks = [
     {
-      title: "Clinical Services",
-      desc: "Deep tissue, mobility & performance bodywork",
+      title: "Our Services",
+      desc: "Pump repair, artificial lift & oilfield supply solutions",
       href: "/services/",
       icon: Compass,
     },
     {
-      title: "Recovery Journal",
-      desc: "Expert therapy tips & clinical insights",
+      title: "Industry Insights",
+      desc: "Oilfield tips, pump engineering & Permian Basin news",
       href: "/blogs/",
       icon: BookOpen,
     },
     {
       title: "Contact & Location",
-      desc: "Find our clinic & connect with our therapists",
+      desc: "Find our shop & connect with our team in Odessa, TX",
       href: "/#contact",
       icon: PhoneCall,
     },
@@ -54,10 +54,10 @@ export default function NotFound() {
 
         {/* Title & Description */}
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight mt-2 mb-4 font-heading">
-          Lost Your Way to Recovery?
+          Lost Your Way?
         </h2>
         <p className="text-white/60 text-base sm:text-lg max-w-xl mx-auto mb-10 leading-relaxed font-light">
-          The page or therapy session you are looking for doesn't exist, has been moved, or is temporarily unavailable. Let's get you back on track.
+        The page you are looking for doesn't exist, has been moved, or is temporarily unavailable. Let's get you back on track.
         </p>
 
         {/* Action Buttons */}

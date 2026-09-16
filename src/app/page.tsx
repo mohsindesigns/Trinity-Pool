@@ -142,7 +142,7 @@ export async function generateMetadata(): Promise<Metadata> {
           url: seo.ogImage || seo.featuredImage || settings?.favicon || `${BASE_URL}/logo.png`,
           width: 1200,
           height: 630,
-          alt: "Trinity Pump & Supply – Performance Recovery & Clinical Bodywork Maryland",
+          alt: "Trinity Pump & Supply – Downhole Rod Pumps & Permian Basin Oilfield Equipment",
           type: "image/png",
         },
       ],

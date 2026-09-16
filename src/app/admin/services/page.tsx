@@ -96,8 +96,8 @@ function IconSelector({ value, onChange }: { value: string, onChange: (v: string
 const DEFAULT_SERVICE_FIELDS = {
   // 1. Hero
   backLink: "Back to All Services",
-  heroSectionLabel: "CLINICAL RECOVERY PROTOCOL",
-  heroDescription: "Targeted manual therapy engineered to eliminate chronic pain, unlock joint mobility, and accelerate athletic recovery.",
+  heroSectionLabel: "OILFIELD PUMP & SUPPLY SOLUTIONS",
+  heroDescription: "Precision pump engineering built to maximize uptime, extend equipment life, and keep your Permian Basin production running strong.",
   specDurationValue: "60 / 90 Mins",
   specIntensityValue: "Targeted Deep",
   specFocusValue: "Trigger Mapping",
@@ -108,7 +108,7 @@ const DEFAULT_SERVICE_FIELDS = {
 
   // 2. Stats
   statsItem1Val: "8 Yrs",
-  statsItem1Label: "Clinical Experience",
+  statsItem1Label: "Years of Experience",
   statsItem2Val: "5.0 ★",
   statsItem2Label: "Google Reviews",
   statsItem3Val: "100%",
@@ -153,7 +153,7 @@ const DEFAULT_SERVICE_FIELDS = {
   candidateTitle2: "Built Around You.",
   candidateDescription: "Movement work shaped around what your body can comfortably do. The goal is useful progress, not a rushed routine or generic adjustment.",
   profileBadgePrefix: "ADVANTAGE",
-  candidateSuitability: "CLINICAL STANDARD",
+  candidateSuitability: "INDUSTRY STANDARD",
   whoProfiles: [
     {
       label: "Eight Years Of Experience",
@@ -162,7 +162,7 @@ const DEFAULT_SERVICE_FIELDS = {
     },
     {
       label: "Five-Star Reputation",
-      desc: "A 5.0 Google rating gives you added confidence before you book. Clients praise our targeted muscle work and lasting relief.",
+      desc: "A 5.0 Google rating gives you added confidence before you call. Clients praise our precise pump work and lasting results.",
       suitability: "5.0 ★ RATED"
     },
     {
@@ -171,29 +171,29 @@ const DEFAULT_SERVICE_FIELDS = {
       suitability: "100% GUARANTEED"
     },
     {
-      label: "York Road Convenience",
-      desc: "At 1301 York Rd., Timonium, MD, we serve Towson, Lutherville, Cockeysville, and Baltimore County with dedicated one-on-one care.",
-      suitability: "TIMONIUM, MD"
+      label: "Permian Basin Facility",
+      desc: "Centrally located at 4608 Gist Ave in Odessa, TX, serving Midland, Delaware Basin, and Permian operators with dedicated pump support.",
+      suitability: "ODESSA, TX"
     }
   ],
 
   // 5. Treatment Protocol (Stepper)
-  protocolSectionLabel: "SESSION WORKFLOW PROTOCOL",
-  protocolTitle1: "What Your Session",
+  protocolSectionLabel: "SHOP SERVICE PROTOCOL",
+  protocolTitle1: "What Your Service",
   protocolTitle2: "Looks Like.",
-  protocolDescription: "Your visit follows a clear path: listen, observe, release, practice, and retest so you always know what we are working on and why.",
+  protocolDescription: "Every pump follows a strict shop protocol: teardown, clean, inspect, assemble, and pressure test so you know it's ready downhole.",
   protocolPhasePrefix: "STEP",
-  protocolDurations: ["15 MIN", "30 MIN", "30 MIN", "15 MIN"],
+  protocolDurations: ["TEARDOWN", "INSPECTION", "ASSEMBLY", "TESTING"],
   sessionSteps: [
     {
       num: "01",
-      title: "Talk And Screen",
-      desc: "We discuss what hurts and when it shows up. Your movement assessment in Timonium includes standing, walking, reaching, or squatting."
+      title: "Teardown & Diagnostics",
+      desc: "Complete disassembly of barrel and plunger components to assess wear, corrosion, and downhole failure causes."
     },
     {
       num: "02",
-      title: "Release Restricted Tissue",
-      desc: "Hands-on work focuses on tight areas, deep muscle knots, and stuck fascia matched to your comfortable pressure level."
+      title: "Precision Cleaning & Honing",
+      desc: "Ultrasonic cleaning and barrel honing to ensure microscopic clearances match strict API specifications."
     },
     {
       num: "03",
@@ -215,27 +215,27 @@ const DEFAULT_SERVICE_FIELDS = {
   // 6. FAQs
   faqBadge: "FAQ",
   faqTitle: "Frequently Asked Questions",
-  faqDescription: "Everything you need to know about your session and our clinical approach.",
+  faqDescription: "Everything you need to know about our services and oilfield expertise.",
   faq: [
     {
-      question: "What is corrective movement therapy, and who is it for?",
-      answer: "Corrective movement therapy looks at how you move through simple tasks and mobility drills. It suits active adults with stiffness or inefficient movement habits."
+      question: "What types of pumps does Trinity Pump & Supply service?",
+      answer: "We service rod pumps, progressive cavity pumps, and other artificial lift systems used across the Permian Basin. Contact us with your equipment specs for a fast quote."
     },
     {
-      question: "How is corrective movement therapy different from physical therapy?",
-      answer: "Physical therapy is licensed medical healthcare for diagnosed injuries and rehabilitation. Corrective movement focuses on soft tissue feel, movement mechanics, and safe exercise cues."
+      question: "Do you supply OEM or aftermarket pump components?",
+      answer: "We carry both OEM and high-quality aftermarket parts. Our team recommends the best option based on your well conditions and budget requirements."
     },
     {
-      question: "Can corrective movement therapy help recurring back pain or sciatica?",
-      answer: "Research supports guided movement for chronic non-specific discomfort. We keep movement comfortable and refer to medical providers when red flags appear."
+      question: "How quickly can Trinity Pump & Supply turn around a repair?",
+      answer: "Turnaround times depend on part availability and scope of work. We prioritize emergency repairs and keep common components in stock to minimize your downtime."
     },
     {
-      question: "What happens at the first session, and what should I wear?",
-      answer: "We discuss symptoms, evaluate movement, apply targeted hands-on work, and practice drills. Wear comfortable clothing that lets you bend and move freely."
+      question: "Where is Trinity Pump & Supply located and what areas do you serve?",
+      answer: "We are located at 4608 Gist Ave in Odessa, TX, serving operators throughout Midland, the Delaware Basin, and the wider Permian Basin region."
     },
     {
-      question: "How many sessions will I need, and do I need a referral?",
-      answer: "There is no fixed count. We plan your visits based on response. No medical referral is required to book a session."
+      question: "Do I need an appointment or can I walk in for parts?",
+      answer: "Walk-ins are welcome for supply purchases. For repair and service work, we recommend calling ahead so our shop team can prepare for your equipment."
     }
   ],
   faqSchemaMarkup: "",
@@ -489,7 +489,7 @@ export default function ServicesAdminPage() {
                   value={form.title}
                   onChange={(e) => setForm({ ...form, title: e.target.value })}
                   className="w-full border border-[#8c8f94] px-3 py-2 text-[18px] font-medium rounded-[3px] focus:border-[#2271b1] outline-none mb-4"
-                  placeholder="Enter service title here (e.g., Corrective Movement Therapy Maryland)"
+                  placeholder="Enter service title here (e.g., Rod Pump Repair Odessa TX)"
                 />
 
                 {/* WP-Style Tabs for Service Editor (1:1 with Frontend Layout) */}
@@ -498,7 +498,7 @@ export default function ServicesAdminPage() {
                     {[
                       { id: "hero", label: "1. Hero Banner" },
                       { id: "stats", label: "2. Highlight Stats" },
-                      { id: "overview", label: "3. Clinical Overview & Focus Areas" },
+                      { id: "overview", label: "3. Service Overview & Focus Areas" },
                       { id: "candidates", label: "4. Why Us & Candidates" },
                       { id: "stepper", label: "5. Treatment Protocol" },
                       { id: "faq", label: "6. FAQs & Support" },
@@ -527,11 +527,11 @@ export default function ServicesAdminPage() {
                       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                         <div className="space-y-1">
                           <label className="text-[13px] font-bold">Permalink Slug</label>
-                          <input type="text" value={form.slug || ""} onChange={(e) => setForm({ ...form, slug: e.target.value })} className="w-full border border-[#8c8f94] px-3 py-1.5 text-[14px] rounded-[3px]" placeholder="e.g. corrective-movement-therapy-maryland" />
+                          <input type="text" value={form.slug || ""} onChange={(e) => setForm({ ...form, slug: e.target.value })} className="w-full border border-[#8c8f94] px-3 py-1.5 text-[14px] rounded-[3px]" placeholder="e.g. rod-pump-repair-odessa-tx" />
                         </div>
                         <div className="space-y-1">
                           <label className="text-[13px] font-bold">Category Tag</label>
-                          <input type="text" value={form.tag || ""} onChange={(e) => setForm({ ...form, tag: e.target.value })} className="w-full border border-[#8c8f94] px-3 py-1.5 text-[14px] rounded-[3px]" placeholder="e.g. Movement Therapy" />
+                          <input type="text" value={form.tag || ""} onChange={(e) => setForm({ ...form, tag: e.target.value })} className="w-full border border-[#8c8f94] px-3 py-1.5 text-[14px] rounded-[3px]" placeholder="e.g. Pump Repair" />
                         </div>
                         <div className="space-y-1">
                           <label className="text-[13px] font-bold">Menu Icon</label>
@@ -546,7 +546,7 @@ export default function ServicesAdminPage() {
                         </div>
                         <div className="space-y-1">
                           <label className="text-[13px] font-bold">Hero Section Label / Badge</label>
-                          <input type="text" value={form.heroSectionLabel || ""} onChange={(e) => setForm({ ...form, heroSectionLabel: e.target.value })} className="w-full border border-[#8c8f94] px-3 py-1.5 text-[14px] rounded-[3px]" placeholder="e.g. CLINICAL RECOVERY PROTOCOL" />
+                          <input type="text" value={form.heroSectionLabel || ""} onChange={(e) => setForm({ ...form, heroSectionLabel: e.target.value })} className="w-full border border-[#8c8f94] px-3 py-1.5 text-[14px] rounded-[3px]" placeholder="e.g. OILFIELD PUMP & SUPPLY SOLUTIONS" />
                         </div>
                       </div>
 
@@ -556,7 +556,7 @@ export default function ServicesAdminPage() {
                           value={form.heroDescription || ""}
                           onChange={(e) => setForm({ ...form, heroDescription: e.target.value })}
                           className="w-full border border-[#8c8f94] px-3 py-2 text-[14px] rounded-[3px] h-24"
-                          placeholder="e.g. Tight hips, aching shoulders, back pain, or sciatica can keep returning. Corrective movement therapy sessions in Maryland at [Trinity Pump & Supply](https://trinitypumpsupply.com/) look beyond the sore spot..."
+                          placeholder="e.g. Keeping your rod pumps running in the Permian Basin requires precision. At [Trinity Pump & Supply](https://trinitypumpsupply.com/) we engineer solutions built around your well conditions..."
                         />
                         <p className="text-[11px] text-[#646970]">You can use markdown links like <code>[Link Text](https://url.com)</code> to insert clickable links.</p>
                       </div>
@@ -691,7 +691,7 @@ export default function ServicesAdminPage() {
                         <QuillEditor
                           content={form.overviewDescription || form.description || ""}
                           onChange={(v) => setForm({ ...form, overviewDescription: v, description: v })}
-                          placeholder="e.g. Corrective movement therapy in Maryland starts with a question: What keeps making this area work too hard?..."
+                          placeholder="e.g. Rod pump reliability in the Permian Basin starts with the right parts and the right expertise. At Trinity Pump & Supply we look at every component..."
                         />
                       </div>
 
@@ -911,7 +911,7 @@ export default function ServicesAdminPage() {
                           value={form.candidateDescription || ""}
                           onChange={(e) => setForm({ ...form, candidateDescription: e.target.value })}
                           className="w-full border border-[#8c8f94] px-3 py-2 text-[14px] rounded-[3px] h-20"
-                          placeholder="e.g. At Trinity Pump & Supply, our corrective movement therapy in Maryland is designed for people who want more than a feel-good hour..."
+                          placeholder="e.g. At Trinity Pump & Supply, our pump repair and supply services in Odessa, TX are built for operators who demand reliable uptime and precise engineering..."
                         />
                       </div>
 
@@ -960,7 +960,7 @@ export default function ServicesAdminPage() {
                                       setForm({ ...form, whoProfiles: np });
                                     }}
                                     className="w-full border border-[#8c8f94] px-2.5 py-1.5 text-xs h-20"
-                                    placeholder="Description with optional links (e.g. Eight years of professional experience... and [deep tissue massage Maryland](https://trinitypumpsupply.com/deep-tissue-massage-maryland/) may help...)"
+                                    placeholder="Description with optional links (e.g. Eight years of oilfield experience... and [rod pump repair Odessa TX](https://trinitypumpsupply.com/rod-pump-repair/) keeps your production running...)"
                                   />
                                 </div>
                                 <div className="space-y-1">
@@ -1016,7 +1016,7 @@ export default function ServicesAdminPage() {
                           value={form.protocolDescription || ""}
                           onChange={(e) => setForm({ ...form, protocolDescription: e.target.value })}
                           className="w-full border border-[#8c8f94] px-3 py-2 text-[14px] rounded-[3px] h-20"
-                          placeholder="e.g. Your corrective movement therapy visit follows a clear path: listen, observe, release, practice, and retest..."
+                          placeholder="e.g. Every pump service follows a clear protocol: teardown, inspection, precision cleaning, reassembly, and pressure testing before delivery..."
                         />
                       </div>
 
@@ -1118,7 +1118,7 @@ export default function ServicesAdminPage() {
                             value={form.protocolBannerDescription || ""}
                             onChange={(e) => setForm({ ...form, protocolBannerDescription: e.target.value })}
                             className="w-full border border-[#8c8f94] px-3 py-1.5 text-[14px] rounded-[3px] h-16"
-                            placeholder="e.g. Call 443-473-2322 or book your session at 1301 York Rd., 8th Floor, Suite 48, Timonium, MD, today and start moving with more confidence."
+                            placeholder="e.g. Call (830) 279-3996 or contact our shop at 4608 Gist Ave, Odessa, TX today for rapid wellsite dispatch."
                           />
                         </div>
 
@@ -1187,7 +1187,7 @@ export default function ServicesAdminPage() {
                             <input
                               value={item.question || ""}
                               onChange={(e) => { const nf = [...form.faq]; nf[i] = { ...nf[i], question: e.target.value }; setForm({ ...form, faq: nf }); }}
-                              placeholder="Enter Question (e.g. What is corrective movement therapy, and who is it for?)"
+                              placeholder="Enter Question (e.g. What types of pumps does Trinity Pump & Supply service?)"
                               className="w-full border border-[#8c8f94] px-3 py-1.5 text-xs font-bold"
                             />
                             <QuillEditor

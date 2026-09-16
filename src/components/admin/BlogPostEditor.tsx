@@ -316,7 +316,7 @@ export default function BlogPostEditor({ id, initialData }: BlogPostEditorProps)
                                 newFaq[idx].question = e.target.value;
                                 setPost({ ...post, faq: newFaq });
                               }}
-                              placeholder="e.g. What are the benefits of sports massage?"
+                              placeholder="e.g. What are the best practices for rod pump maintenance?"
                               className="w-full border border-[#c3c4c7] px-4 py-2.5 text-sm outline-none focus:border-[#2271b1] bg-white rounded shadow-sm"
                             />
                           </div>

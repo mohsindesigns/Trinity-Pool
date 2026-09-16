@@ -4,12 +4,12 @@
  */
 export function normalizeBlogImage(url?: string | null): string {
   if (!url || typeof url !== 'string') {
-    return '/images/service-massage.webp';
+    return '/images/hero-bg.jpg';
   }
 
   const trimmed = url.trim();
   if (!trimmed) {
-    return '/images/service-massage.webp';
+    return '/images/hero-bg.jpg';
   }
 
   // Already a Cloudinary URL

@@ -24,14 +24,14 @@ export default function ContactEditor({ pageId, data, setData }: { pageId: strin
     if (data && Object.keys(data).length === 0) {
        setData({
          contactPage: {
-           header: { badge: "Contact Us", headline: "Expert hands with Visionary minds", description: "Get in touch with Maryland's leading clinical performance and sports massage specialists." },
+           header: { badge: "Contact Us", headline: "Talk to Our Team About Your Well", description: "Get in touch with Odessa's leading downhole rod pump and artificial lift specialists." },
            formFields: [
              { name: "name", label: "Full Name", type: "text", required: true, icon: "User" },
              { name: "email", label: "Email Address", type: "email", required: true, icon: "Mail" },
              { name: "phone", label: "Phone Number", type: "tel", required: false, icon: "Phone" },
              { name: "message", label: "Your Message", type: "textarea", required: true, icon: "MessageSquare" }
            ],
-           info: { address: "St. Louis, MO", phone: "314-XXX-XXXX", email: "antoine.lyles@yahoo.com", hours: "Mon-Fri: 8am-6pm" },
+           info: { address: "4608 Gist Ave, Odessa, TX 79764", phone: "(830) 279-3996", email: "service@trinitypumpsupply.com", hours: "Mon-Fri: 7am-5pm (24/7 Hot Shot Field Dispatch)" },
            social: { facebook: "#", instagram: "#", linkedin: "#" }
          }
        });

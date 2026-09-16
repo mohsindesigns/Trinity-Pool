@@ -215,7 +215,7 @@ export default function StickyServicesSection() {
                 {/* Image Area (Clickable) */}
                 <Link href={`/${service.slug || service.id}/`} className="relative h-[180px] sm:h-[220px] lg:h-auto lg:w-[42%] overflow-hidden bg-black/60 block group/img flex-shrink-0">
                   <Image
-                    src={service.image || "/images/service-massage.webp"}
+                    src={service.image || "/images/hero-bg.jpg"}
                     alt={service.name}
                     fill
                     sizes="(max-width: 1024px) 100vw, 42vw"

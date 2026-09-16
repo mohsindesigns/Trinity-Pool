@@ -26,7 +26,7 @@ export default function FAQEditor({ pageId, data, setData }: { pageId: string, d
            section: { headline: "Frequently Asked Questions", description: "Find answers to common questions about our services and process." },
            categories: [
              { id: "all", label: "All Questions" },
-             { id: "sports-massage", label: "Sports Massage" },
+             { id: "pump-repair", label: "Pump Repair" },
              { id: "fascial-stretch", label: "Fascial Stretch" },
              { id: "cupping-recovery", label: "Cupping & Recovery" }
            ],

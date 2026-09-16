@@ -39,11 +39,11 @@ const Mission = () => {
 
         <div className="md:col-span-6 md:col-start-7 order-1 md:order-2">
           <div className="accent-line mb-6 mission-copy" />
-          <h2 className="heading-lg text-foreground mb-8 mission-headline">Performance Beyond<br />Limits.</h2>
+          <h2 className="heading-lg text-foreground mb-8 mission-headline">Engineered for the<br />Permian Basin.</h2>
           <div className="space-y-6">
-            <p className="body-lg text-foreground/90 mission-copy">Trinity Pump & Supply was founded to provide elite clinical bodywork, mobility restoration, and injury prevention designed for peak athletic longevity.</p>
-            <p className="body-sm text-muted-foreground mission-copy">Based in Timonium, Maryland, Trinity Pump & Supply delivers targeted manual therapy, fascial stretch, and biomechanical recovery to athletes and active adults across Maryland.</p>
-            <p className="body-sm text-muted-foreground mission-copy italic border-l-2 border-primary/30 pl-4">"We don't just treat symptoms. We optimize human movement, restore tissue glide, and empower athletes to perform at their absolute best."</p>
+            <p className="body-lg text-foreground/90 mission-copy">Trinity Pump & Supply was founded to provide oil and gas operators with premium downhole sucker rod pumps, precision manufacturing, and responsive artificial lift solutions designed for maximum run life.</p>
+            <p className="body-sm text-muted-foreground mission-copy">Based in Odessa, Texas, Trinity Pump & Supply delivers 100% USA-built pump parts, complete shop teardowns, and 24/7 hot-shot wellsite delivery across the Permian and Delaware Basins.</p>
+            <p className="body-sm text-muted-foreground mission-copy italic border-l-2 border-primary/30 pl-4">"We don't cut corners on downhole equipment. We build pumps right the first time, track every assembly, and keep your wells producing."</p>
           </div>
         </div>
       </div>

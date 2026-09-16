@@ -42,7 +42,7 @@ export default function ServicesEditor({ pageId, data, setData }: { pageId: stri
             description: "<p>We blend clinical orthopedic massage with modern recovery science to get you back to your best self.</p>" 
           },
           features: [
-            { title: "Clinical Expertise", description: "<p>Specialized in soft-tissue dysfunction and chronic pain patterns.</p>", icon: "Shield" },
+            { title: "Industry Expertise", description: "<p>Specialized in oilfield pump systems, artificial lift, and downhole equipment.</p>", icon: "Shield" },
             { title: "Personalized Approach", description: "<p>Every session is custom-tailored to your specific athletic goals.</p>", icon: "Zap" },
             { title: "Recovery Focused", description: "<p>Designed to accelerate muscle repair and restore range of motion.</p>", icon: "Flame" }
           ],

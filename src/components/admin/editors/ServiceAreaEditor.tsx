@@ -27,7 +27,7 @@ interface Region {
 
 // Icon library items with live icon rendering
 const AVAILABLE_ICONS = [
-  { name: "Activity", label: "Sports Massage", icon: Home },
+  { name: "Activity", label: "Pump Service", icon: Home },
   { name: "Heart", label: "Fascial Stretch", icon: Building2 },
   { name: "Building", label: "Property / Office", icon: Building },
   { name: "Droplets", label: "Recovery / Cupping", icon: Droplets },
@@ -60,94 +60,95 @@ export default function ServiceAreaEditor({ pageId, data, setData }: { pageId: s
         setData({
           ...data,
           hero: data.hero || {
-            headline: data.hero?.headline || "Our Service Areas",
-            description: data.hero?.description || "Proudly serving Timonium, Baltimore County, and surrounding Maryland communities with elite sports massage, mobility restoration, and clinical muscle therapy.",
+            headline: data.hero?.headline || "Permian Basin Service Areas",
+            description: data.hero?.description || "Proudly serving Odessa, Midland, and oilfield operators across the Permian & Delaware Basins with 24/7 downhole rod pump delivery, repair, and field support.",
             image: data.hero?.image || "/images/service-area-hero.jpg"
           },
           stats: data.stats || [
-            { value: "6+", label: "Years of Specialized Practice" },
-            { value: "1,500+", label: "Athletes & Clients Restored" },
-            { value: "100%", label: "Customized Recovery Plans" }
+            { value: "100+", label: "Years Combined Pump Experience" },
+            { value: "24/7", label: "On-Call Hot Shot Field Delivery" },
+            { value: "100%", label: "USA Built Downhole Pump Parts" }
           ],
           process: data.process || data.processSteps || [
-            { title: "Functional Assessment", description: "We evaluate your movement biomechanics, range of motion, muscle imbalances, and pain triggers." },
-            { title: "Targeted Protocol", description: "Receive a personalized manual therapy strategy integrating myofascial release, deep tissue, and stretching." },
-            { title: "Clinical Bodywork", description: "Expert hands-on therapeutic treatment designed to release dense restrictions and restore tissue glide." },
-            { title: "Movement Re-Education", description: "Post-treatment corrective mobility drills to maintain long-term alignment and injury resilience." }
+            { title: "Pump Teardown & Inspection", description: "Complete disassembly and micrometric inspection of the barrel, plunger, balls, and seats." },
+            { title: "Precision Rebuild & Assembly", description: "Assembling API-certified downhole rod pumps using premium 100% USA-manufactured components." },
+            { title: "Quality Testing & Tracking", description: "Pressure testing and serialized logging in our pump tracking system to record full run history." },
+            { title: "24/7 Wellsite Delivery", description: "Hot-shot delivery directly to your Permian Basin wellsite location, ready to run downhole." }
           ],
           processSection: data.processSection || {
-            headline: "Our Recovery Blueprint",
-            title: "Our 4-Step Clinical Recovery Process"
+            headline: "Our Shop Process",
+            title: "4-Step Downhole Pump Service Lifecycle"
           },
           regions: data.regions || [
             {
-              name: "Baltimore County",
-              cities: ["Timonium", "Towson", "Lutherville", "Cockeysville", "Hunt Valley", "Pikesville", "Owings Mills", "White Marsh", "Catonsville"],
-              zipcodes: ["21093", "21204", "21094", "21030", "21031", "21208", "21117", "21236", "21228"]
+              name: "Midland Basin",
+              cities: ["Odessa", "Midland", "Andrews", "Crane", "Big Spring", "Stanton", "Garden City"],
+              zipcodes: ["79764", "79761", "79701", "79705", "79714", "79731", "79720"]
             },
             {
-              name: "Howard County",
-              cities: ["Columbia", "Ellicott City", "Clarksville", "Marriottsville", "Fulton"],
-              zipcodes: ["21044", "21042", "21029", "21104", "20759"]
+              name: "Delaware Basin",
+              cities: ["Pecos", "Monahans", "Kermit", "Wink", "Mentone", "Orla", "Jal, NM"],
+              zipcodes: ["79772", "79756", "79745", "79789", "79754", "88252"]
             }
           ],
           regionsSection: data.regionsSection || {
-            title: "Communities We Serve in This Region",
-            description: "Toggle regional counties to view specific community coverage lists."
+            headline: "Field Coverage",
+            title: "Communities & Fields We Serve",
+            description: "Browse coverage across Permian Basin counties, towns, and producing formations."
           },
           map: data.map || {
             headline: "Our Coverage Area",
-            title: "Serving Greater Maryland",
-            description: "Centrally located in Timonium, Maryland, providing elite sports recovery, fascial stretch therapy, and clinical bodywork across Baltimore and surrounding counties.",
+            title: "Serving the Permian & Delaware Basins",
+            description: "Centrally located at 4608 Gist Ave in Odessa, Texas, providing rapid pump hot-shot deliveries and field support across West Texas and Southeast New Mexico.",
             iframeUrl: "https://www.google.com/maps?q=4608+Gist+Ave,+Odessa,+TX+79764&output=embed",
             bullet1Title: "Primary Coverage Area",
-            bullet1Text: "Timonium, Baltimore County, Howard County & surrounding Maryland communities.",
-            bullet2Title: "Clinic Hours",
-            bullet2Text: "Sun - Sat: 8:00 AM - 7:00 PM (By Appointment)",
+            bullet1Text: "Odessa, Midland, Delaware Basin, Midland Basin & surrounding oilfields.",
+            bullet2Title: "Shop & Dispatch Hours",
+            bullet2Text: "Mon - Fri: 7:00 AM - 5:00 PM (24/7 Hot Shot On-Call)",
             bullet3Title: "Direct Contact Hotline",
-            bullet3Text: "830-279-3996"
+            bullet3Text: "(830) 279-3996"
           },
           materials: data.materials || {
-            headline: "Clinical Modalities",
-            title: "Advanced Therapies We Provide",
+            headline: "Equipment & Parts",
+            title: "Downhole Solutions We Supply",
             items: [
-              { title: "Sports Massage", description: "Pre-event and post-event athletic bodywork targeting high-demand muscle groups.", icon: "Activity" },
-              { title: "Fascial Stretch Therapy", description: "Table-based assisted stretching to decompress joints and lengthen fascial nets.", icon: "Heart" },
-              { title: "Cupping Therapy", description: "Decompressive negative pressure to stimulate blood flow and lymphatic drainage.", icon: "Flame" },
-              { title: "Corrective Movement", description: "Functional neuromuscular training to eliminate compensatory movement patterns.", icon: "Target" }
+              { title: "API Rod Pumps", description: "Complete downhole sucker rod pump assemblies engineered for aggressive Permian Basin conditions.", icon: "Activity" },
+              { title: "Tubing Anchor Catchers", description: "Premium Tech-Tac TACs and anchors to eliminate tubing stretch and sucker rod wear.", icon: "Shield" },
+              { title: "Gas Separators", description: "High-efficiency downhole separation tools to prevent gas lock and maximize pump fillage.", icon: "Flame" },
+              { title: "Mechanical Rod Rotators", description: "Evenly rotate sucker rods on every stroke to distribute wear and prolong string life.", icon: "Target" }
             ]
           },
           servicesSection: data.servicesSection || {
             headline: "What We Provide",
-            title: "Specialized Services in Maryland",
+            title: "Specialized Oilfield Services",
             items: [
-              { title: "Sports Massage", description: "Pre-event and post-event athletic bodywork targeting high-demand muscle groups.", buttonText: "Explore Service", buttonHref: "/maryland-sports-massage-therapist/", icon: "Activity" },
-              { title: "Fascial Stretch Therapy", description: "Table-based assisted stretching to decompress joints and lengthen fascial nets.", buttonText: "Explore Service", buttonHref: "/maryland-fascial-stretch-therapy/", icon: "Heart" },
-              { title: "Deep Tissue Massage", description: "Focused structural pressure targeting chronic muscular restrictions.", buttonText: "Explore Service", buttonHref: "/deep-tissue-massage-maryland/", icon: "Target" }
+              { title: "Downhole Pump Rebuilds", description: "Full teardown, barrel honing, and precision plunger fitting for optimal lifting efficiency.", buttonText: "Explore Service", buttonHref: "/services/", icon: "Activity" },
+              { title: "Pump Tracking & Analysis", description: "Serialized tracking of every pump's run time, well history, and failure patterns.", buttonText: "Explore Service", buttonHref: "/services/", icon: "Heart" },
+              { title: "24/7 Field Hot-Shot Delivery", description: "Immediate wellsite delivery across Odessa, Midland, and the entire Permian Basin.", buttonText: "Explore Service", buttonHref: "/services/", icon: "Target" }
             ]
           },
           whyChoose: data.whyChoose || {
             headline: "Why Choose Us",
-            title: "Elite Clinical Performance Standards",
+            title: "Permian Basin Equipment Standards",
             items: [
-              { title: "Licensed & Certified Specialists", description: "Advanced certifications in orthopedic massage, neuromuscular therapy, and assisted stretching.", icon: "Shield" },
-              { title: "Individualized Protocols", description: "Every session is strictly customized to your specific biomechanics, sport, and recovery goals.", icon: "Clock" },
-              { title: "Proven Track Record", description: "Trusted by collegiate athletes, fitness competitors, and active adults across Maryland.", icon: "Award" }
+              { title: "100% USA Made Parts", description: "We refuse cheap imports. Every component is machined in America to exacting API tolerances.", icon: "Shield" },
+              { title: "100+ Years Combined Expertise", description: "Our seasoned pump technicians understand Permian Basin metallurgy, sand, and gas challenges.", icon: "Clock" },
+              { title: "24/7 Field Support", description: "Minimizing downtime with rapid wellhead delivery and dedicated artificial lift service.", icon: "Award" }
             ]
           },
           overview: data.overview || {
-            headline: "Local Overview",
-            title: "Performance Recovery & Clinical Bodywork in This Community",
-            description: "<p>Proudly providing specialized orthopedic bodywork, mobility restoration, and injury prevention to Maryland athletes and active adults.</p>",
-            buttonText: "Schedule Session",
-            buttonHref: "#contact",
+            headline: "Field Overview",
+            title: "Downhole Pump Solutions in This Basin",
+            description: "<p>Proudly providing specialized downhole sucker rod pumps, equipment teardowns, and artificial lift support to Permian Basin operators.</p>",
+            buttonText: "Request a Quote",
+            buttonHref: "/contact-us/",
             image: "/images/service-area-overview.jpg"
           },
           cta: data.cta || {
-            headline: "Ready to Restore Peak Performance?",
-            description: "Whether you need rapid sports recovery, joint decompression, or chronic pain elimination, our expert clinic is ready to help.",
-            buttonText: "Book Your Session",
-            buttonHref: "#contact"
+            headline: "Ready to Minimize Lifting Costs?",
+            description: "Whether you need a newly built API rod pump, failure analysis, or 24/7 wellsite hot-shot delivery, our Odessa shop is ready.",
+            buttonText: "Talk to Our Team",
+            buttonHref: "/contact-us/"
           }
         });
       }
@@ -684,7 +685,7 @@ export default function ServiceAreaEditor({ pageId, data, setData }: { pageId: s
                             <label className="text-[11px] font-bold text-slate-600">Button Link <span className="text-slate-400 font-normal">(optional)</span></label>
                             <input
                               type="text"
-                              placeholder="e.g. /maryland-sports-massage-therapist/"
+                              placeholder="e.g. /permian-basin-pump-repair/"
                               value={item.buttonHref || ""}
                               onChange={(e) => {
                                 const newItems = [...data.materials.items];
@@ -856,7 +857,7 @@ export default function ServiceAreaEditor({ pageId, data, setData }: { pageId: s
                                   updateField("servicesSection", "items", newItems);
                                 }}
                                 className={UI.input}
-                                placeholder="e.g. /maryland-sports-massage-therapist/"
+                                placeholder="e.g. /permian-basin-pump-repair/"
                               />
                             </div>
                           </div>
@@ -1157,7 +1158,7 @@ export default function ServiceAreaEditor({ pageId, data, setData }: { pageId: s
                         value={data.overview?.image || ""}
                         onChange={(e) => updateField("overview", "image", e.target.value)}
                         className={UI.input}
-                        placeholder="e.g. /uploads/blog/2_massage-service.jpg"
+                        placeholder="e.g. /uploads/blog/pump-repair.jpg"
                       />
                       <button
                         type="button"

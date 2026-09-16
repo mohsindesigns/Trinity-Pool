@@ -97,7 +97,7 @@ const MarqueeItem = ({ project }: { project: Project }) => {
           />
         ) : (
           <Image
-            src={project.image || "/uploads/blog/2_massage-service.jpg"}
+            src={project.image || "/images/hero-bg.jpg"}
             alt={project.title}
             className="object-cover"
             fill

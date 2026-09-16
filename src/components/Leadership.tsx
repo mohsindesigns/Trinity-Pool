@@ -58,11 +58,15 @@ export default function Leadership() {
     ? leadership.stats
     : defaultStats;
 
-  const keyHighlights = [
+  const defaultKeyHighlights = [
     "Certified industrial fluid handling & precision equipment",
     "Direct supplier access with fast, reliable turnaround",
     "Continuous technical support for maximum equipment uptime"
   ];
+
+  const keyHighlights = (Array.isArray(leadership?.keyHighlights) && leadership.keyHighlights.length > 0)
+    ? leadership.keyHighlights
+    : defaultKeyHighlights;
 
   return (
     <section className="py-20 md:py-28 bg-white relative overflow-hidden border-t border-border-light/40">
@@ -160,7 +164,7 @@ export default function Leadership() {
 
             {/* Feature Checkpoints */}
             <div className="space-y-2.5 mb-8">
-              {keyHighlights.map((pt, i) => (
+              {keyHighlights.map((pt: string, i: number) => (
                 <div key={i} className="flex items-center gap-3">
                   <div className="h-5 w-5 rounded-full flex items-center justify-center bg-gold/15 text-gold-dark flex-shrink-0">
                     <CheckCircle2 size={14} className="text-gold-dark" strokeWidth={2.5} />

@@ -181,6 +181,12 @@ export default function ArtificialLiftEditor({ data, setData }: Props) {
               <input type="text" value={d.subPagesTitle2 || ""} onChange={(e) => update("subPagesTitle2", e.target.value)} className={UI.input} placeholder="e.g. Products & Services." />
             </div>
           </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="space-y-1.5">
+              <label className={UI.label}>Card Button Text</label>
+              <input type="text" value={d.subPagesCta || ""} onChange={(e) => update("subPagesCta", e.target.value)} className={UI.input} placeholder="e.g. View Details" />
+            </div>
+          </div>
         </div>
 
         <div className="flex justify-between items-center">

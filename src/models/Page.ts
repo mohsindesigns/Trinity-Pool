@@ -18,7 +18,8 @@ const PageSchema = new mongoose.Schema({
       'services',
       'service-detail',
       'service-area',
-      'artificial-lift-landing'
+      'artificial-lift-landing',
+      'blog'
     ]
   },
   status: { type: String, enum: ['draft', 'published'], default: 'published' },

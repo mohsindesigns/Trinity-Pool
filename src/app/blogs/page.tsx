@@ -1,7 +1,7 @@
 import connectToDatabase from '@/lib/mongodb';
 import Post from '@/models/Post';
 import Category from '@/models/Category';
-import { Calendar, User, ArrowRight, BookOpen, Search } from 'lucide-react';
+import { BookOpen } from 'lucide-react';
 import Link from 'next/link';
 import { Metadata } from 'next';
 import { BASE_URL } from '@/lib/constants';
@@ -10,10 +10,20 @@ export const revalidate = 60; // Cache for 1 minute
 
 import SiteContent from '@/models/Content';
 import Page from '@/models/Page';
-import Image from 'next/image';
 import { getRobotsMetadata } from "@/lib/seo";
 import { normalizeBlogImage } from '@/lib/blogImage';
 import { mergePageContent } from '@/lib/deepMerge';
+import BlogCard from '@/components/templates/BlogCard';
+import CtaBanner from '@/components/CtaBanner';
+import QAForm from '@/components/QAForm';
+
+const DEFAULT_CTA_BANNER = {
+  label: "NEED PARTS OR SERVICE?",
+  title: "Talk to Our Team About Your Well.",
+  description: "From sucker rods to rod pump tracking, our Odessa shop is ready to help — call or send us the details of your job.",
+  button: "Get a Quote",
+  buttonUrl: "/contact-us/",
+};
 
 export async function generateMetadata(): Promise<Metadata> {
   await connectToDatabase();
@@ -91,6 +101,16 @@ export default async function BlogsIndexPage() {
   const titleLine2 = blogsPage.titleLine2 || blogsPage.header?.titleHighlight || "Journal.";
   const description = blogsPage.description || blogsPage.header?.description || "Explore our latest articles, insights, and clinical tips on deep tissue therapy, mobility, and athletic recovery.";
   const ctaReadMore = blogsPage.ctaReadMore || "Read More";
+  const emptyStateTitle = blogsPage.emptyStateTitle || "No posts yet";
+  const emptyStateDescription = blogsPage.emptyStateDescription || "Check back later for new updates.";
+  const heroImage = blogsPage.header?.image || "/images/trinity/about.jpg";
+  const heroImageAlt = blogsPage.header?.imageAlt || "Trinity Pump & Supply";
+
+  // CTA banner gets its own independent content here (never the shared homepage
+  // useContent() data), so editing this page can never change what shows on
+  // the homepage or vice versa.
+  const ctaBannerData = blogsPage.ctaBanner && Object.keys(blogsPage.ctaBanner).length > 0 ? blogsPage.ctaBanner : DEFAULT_CTA_BANNER;
+  const pageDataForForm = pageDoc ? JSON.parse(JSON.stringify(pageDoc)) : null;
 
   // Filter posts based on selected posts list, keeping custom selection order
   let posts = allPosts;
@@ -116,92 +136,133 @@ export default async function BlogsIndexPage() {
   });
 
   return (
-    <main className="bg-dark min-h-screen pt-[140px] pb-24 relative overflow-hidden">
+    <main className="w-full bg-off-white text-body overflow-hidden">
       <script
         id="blogs-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
       />
-      {/* Subtle background texture */}
-      <div className="absolute inset-0 opacity-[0.03] bg-radial-dots-gold pointer-events-none" />
 
-      <div className="site-container relative z-10">
-        <div className="mb-12 md:mb-20 text-center flex flex-col items-center">
-          <p className="section-label mb-4">{label}</p>
-          <h1 className="display-heading text-[32px] min-[400px]:text-[44px] md:text-[64px] text-white leading-tight">
-            {titleLine1} <span className="text-gold italic font-light">{titleLine2}</span>
-          </h1>
-          {description && (
-            <div
-              className="text-white/60 text-[14px] md:text-[15px] max-w-2xl mx-auto mt-6 leading-relaxed [&_p]:text-white/60 [&_p]:text-center [&_p]:text-[14px] [&_p]:md:text-[15px] [&_p]:leading-relaxed"
-              dangerouslySetInnerHTML={{ __html: description }}
-            />
+      {/* ════════════════════════════════════════════════════════
+         HERO
+         ════════════════════════════════════════════════════════ */}
+      <section className="relative bg-dark min-h-[55vh] flex items-center pt-[130px] pb-14 border-b border-border-dark overflow-hidden">
+        <div className="absolute inset-0 z-0 pointer-events-none opacity-40">
+          <img
+            src={heroImage}
+            alt={heroImageAlt}
+            className="w-full h-full object-cover object-center filter contrast-105 saturate-110"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-dark via-dark/85 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-dark/60 via-transparent to-dark" />
+        </div>
+
+        <div className="absolute top-1/2 left-1/3 -translate-y-1/2 w-[450px] h-[450px] bg-gold/[0.07] rounded-full blur-[140px] pointer-events-none z-0" />
+
+        <div className="site-container relative z-10 w-full text-left">
+          <div className="mb-6 flex flex-wrap items-center gap-3">
+            <nav
+              aria-label="Breadcrumb"
+              className="flex items-center gap-2 text-[11.5px] sm:text-[12px] font-mono tracking-wider text-white/60 bg-dark/50 backdrop-blur-md border border-white/10 rounded-full px-4 py-2 shadow-lg"
+            >
+              <Link href="/" className="hover:text-gold transition-colors text-white/80">
+                Home
+              </Link>
+              <span className="text-gold/50">/</span>
+              <span className="text-gold font-medium">Blog</span>
+            </nav>
+          </div>
+
+          <div className="max-w-[680px]">
+            <div className="flex items-center gap-3 mb-4">
+              <span className="w-6 h-[1px] bg-gold flex-shrink-0" />
+              <p className="section-label text-gold">{label}</p>
+            </div>
+
+            <h1 className="font-display font-medium text-[38px] min-[400px]:text-[48px] md:text-[62px] lg:text-[68px] text-white leading-[1.08] mb-6 tracking-tight">
+              {titleLine1} <span className="text-gold italic font-light">{titleLine2}</span>
+            </h1>
+
+            {description && (
+              <div
+                className="text-white/80 md:text-white/70 text-[15px] md:text-[17px] leading-[1.8] max-w-[560px] mb-2 font-light [&_p]:text-white/80 [&_p]:md:text-white/70 [&_p]:text-[15px] [&_p]:md:text-[17px] [&_p]:leading-[1.8] [&_p]:font-light"
+                dangerouslySetInnerHTML={{ __html: description }}
+              />
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════════════════════
+         ARTICLES GRID
+         ════════════════════════════════════════════════════════ */}
+      <section className="py-14 md:py-20 bg-white relative overflow-hidden border-b border-border-light/40">
+        <div
+          className="bg-radial-dots-gold absolute top-0 right-0 w-[480px] h-[480px] opacity-[0.14] pointer-events-none"
+          style={{
+            WebkitMaskImage: "radial-gradient(circle at top right, black, transparent 70%)",
+            maskImage: "radial-gradient(circle at top right, black, transparent 70%)",
+          }}
+        />
+
+        <div className="site-container relative z-10">
+          {posts.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {posts.map((post) => {
+                const tag =
+                  post.category ||
+                  (post.categories && post.categories[0]?.name) ||
+                  "";
+
+                const rawExcerpt = post.excerpt || post.content || "";
+                const cleanExcerpt = rawExcerpt.replace(/<[^>]*>/g, '').substring(0, 140).trim() + "...";
+
+                let postDate = "";
+                const rawDate = post.publishedAt || post.date || (post as any).createdAt;
+                if (rawDate) {
+                  const d = new Date(rawDate);
+                  if (!Number.isNaN(d.getTime())) {
+                    postDate = d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+                  }
+                }
+
+                return (
+                  <BlogCard
+                    key={String(post._id)}
+                    href={`/blogs/${post.slug}/`}
+                    image={post.featuredImage ? normalizeBlogImage(post.featuredImage) : "/images/trinity/process-4.jpg"}
+                    imageAlt={post.title}
+                    category={tag}
+                    title={post.title}
+                    excerpt={cleanExcerpt}
+                    date={postDate}
+                    ctaText={ctaReadMore}
+                  />
+                );
+              })}
+            </div>
+          ) : (
+            <div className="text-center py-16 bg-off-white rounded-2xl border border-border-light">
+              <BookOpen className="w-10 h-10 text-dark/20 mx-auto mb-4" />
+              <h3 className="text-xl font-bold text-dark">{emptyStateTitle}</h3>
+              <p className="text-dark/40 text-sm mt-2">{emptyStateDescription}</p>
+            </div>
           )}
         </div>
+      </section>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {posts.map((post) => {
-            const tag =
-              post.category ||
-              (post.categories && post.categories[0]?.name) ||
-              "";
-
-            const rawExcerpt = post.excerpt || post.content || "";
-            const cleanExcerpt = rawExcerpt.replace(/<[^>]*>/g, '').substring(0, 140) + "...";
-
-            return (
-              <Link
-                key={post._id}
-                href={`/blogs/${post.slug}/`}
-                className="bg-black/40 border border-white/5 rounded-sm overflow-hidden group shadow-2xl flex flex-col hover:border-gold/30 hover:shadow-[0_0_30px_rgba(190,156,37,0.06)] transition-all duration-300"
-              >
-                <div className="relative w-full h-[240px] overflow-hidden">
-                  {post.featuredImage ? (
-                    <Image
-                      src={normalizeBlogImage(post.featuredImage)}
-                      alt={post.title}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                      className="object-cover transition-transform duration-700 group-hover:scale-105 group-hover:opacity-80"
-                    />
-                  ) : (
-                    <div className="w-full h-full bg-slate-950 flex items-center justify-center">
-                      <BookOpen className="w-12 h-12 text-slate-800" />
-                    </div>
-                  )}
-                  <div className="absolute inset-0 pointer-events-none ring-1 ring-inset ring-white/10" />
-                  {tag && (
-                    <span className="absolute top-4 left-4 bg-gold text-dark text-[10px] font-bold tracking-wider uppercase px-3 py-1.5 shadow-lg">
-                      {tag}
-                    </span>
-                  )}
-                </div>
-                <div className="p-6 md:p-8 flex flex-col flex-grow text-left">
-                  <h2 className="text-white font-bold text-[18px] md:text-[20px] leading-snug mb-3 group-hover:text-gold transition-colors duration-200">
-                    {post.title}
-                  </h2>
-                  <p className="text-white/60 text-[13.5px] leading-relaxed mb-6 flex-grow">
-                    {cleanExcerpt}
-                  </p>
-                  <div
-                    className="flex items-center gap-2 text-gold text-[12px] font-bold tracking-wide uppercase group-hover:gap-3 transition-all duration-200 mt-auto"
-                  >
-                    {ctaReadMore} <ArrowRight size={14} />
-                  </div>
-                </div>
-              </Link>
-            );
-          })}
-        </div>
-
-        {posts.length === 0 && (
-          <div className="text-center py-20 bg-black/20 rounded-lg border border-border-dark/50">
-            <BookOpen className="w-12 h-12 text-slate-700 mx-auto mb-4" />
-            <h3 className="text-2xl font-bold text-white">No posts yet</h3>
-            <p className="text-white/40 mt-2">Check back later for new updates.</p>
-          </div>
-        )}
+      {/* ════════════════════════════════════════════════════════
+         CTA — reuses the homepage's component for visual consistency,
+         with this page's own independent content.
+         ════════════════════════════════════════════════════════ */}
+      <div className="-mt-10 md:-mt-16 relative">
+        <CtaBanner overrideData={ctaBannerData} />
       </div>
+
+      {/* ════════════════════════════════════════════════════════
+         CONTACT FORM + FAQ — shared sitewide, same as every other page.
+         ════════════════════════════════════════════════════════ */}
+      <QAForm pageData={pageDataForForm} />
     </main>
   );
 }

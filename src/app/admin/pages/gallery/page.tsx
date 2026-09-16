@@ -118,7 +118,29 @@ export default function GalleryPageEditor() {
           </div>
 
           <div className="space-y-2">
-            <label className="text-xs uppercase tracking-widest text-slate-500 font-extrabold">Page Title</label>
+            <label className="text-xs uppercase tracking-widest text-slate-500 font-extrabold">Headline Prefix</label>
+            <input
+              type="text"
+              value={data.galleryPage?.header?.titlePrefix || ""}
+              onChange={(e) => updateHeader("titlePrefix", e.target.value)}
+              className="w-full bg-slate-50 border border-slate-200 rounded-2xl px-6 py-4 text-slate-900 font-bold focus:ring-2 focus:ring-primary/20 outline-none transition-all shadow-inner"
+              placeholder="e.g. Real Results,"
+            />
+          </div>
+
+          <div className="space-y-2">
+            <label className="text-xs uppercase tracking-widest text-slate-500 font-extrabold">Headline Highlight</label>
+            <input
+              type="text"
+              value={data.galleryPage?.header?.titleHighlight || ""}
+              onChange={(e) => updateHeader("titleHighlight", e.target.value)}
+              className="w-full bg-slate-50 border border-slate-200 rounded-2xl px-6 py-4 text-slate-900 font-bold focus:ring-2 focus:ring-primary/20 outline-none transition-all shadow-inner"
+              placeholder="e.g. Real Stories"
+            />
+          </div>
+
+          <div className="space-y-2">
+            <label className="text-xs uppercase tracking-widest text-slate-500 font-extrabold">SEO Title (browser tab / search results only)</label>
             <input
               type="text"
               value={data.galleryPage?.header?.title || ""}
@@ -130,9 +152,20 @@ export default function GalleryPageEditor() {
 
           <div className="space-y-2">
             <label className="text-xs uppercase tracking-widest text-slate-500 font-extrabold">Page Description</label>
-            <RichTextEditor 
-              content={data.galleryPage?.header?.description || ""} 
-              onChange={(v) => updateHeader("description", v)} 
+            <RichTextEditor
+              content={data.galleryPage?.header?.description || ""}
+              onChange={(v) => updateHeader("description", v)}
+            />
+          </div>
+
+          <div className="space-y-2">
+            <label className="text-xs uppercase tracking-widest text-slate-500 font-extrabold">Request Quote Button Text</label>
+            <input
+              type="text"
+              value={data.galleryPage?.header?.ctaBook || ""}
+              onChange={(e) => updateHeader("ctaBook", e.target.value)}
+              className="w-full bg-slate-50 border border-slate-200 rounded-2xl px-6 py-4 text-slate-900 font-bold focus:ring-2 focus:ring-primary/20 outline-none transition-all shadow-inner"
+              placeholder="e.g. REQUEST A QUOTE"
             />
           </div>
         </div>

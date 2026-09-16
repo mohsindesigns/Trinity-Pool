@@ -66,6 +66,7 @@ export default function ArtificialLiftTemplate({ pageData }: { pageData?: any; p
     subPagesLabel: content.subPagesLabel || "OUR LINEUP",
     subPagesTitle1: content.subPagesTitle1 || "Artificial Lift",
     subPagesTitle2: content.subPagesTitle2 || "Products & Services.",
+    subPagesCta: content.subPagesCta || "View Details",
     subPages: Array.isArray(content.subPages) ? content.subPages : [],
 
     faqBadge: content.faqBadge,
@@ -241,7 +242,7 @@ export default function ArtificialLiftTemplate({ pageData }: { pageData?: any; p
                     )}
                   </div>
                   <div className="mt-6 pt-4 border-t border-border-light flex items-center gap-2 text-gold-dark text-[11.5px] font-mono font-bold tracking-wider uppercase">
-                    <span>View Details</span>
+                    <span>{pg.subPagesCta}</span>
                     <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                   </div>
                 </Link>

@@ -655,11 +655,71 @@ export default function HomeEditor({ pageId, data, setData }: { pageId: string, 
                 </div>
               </div>
 
-              {/* 4. Dedicated About Us Stats (Independent from StatsBar) */}
+              {/* 4. Key Highlights (Checkmark Points) */}
+              <div className="space-y-4">
+                <div>
+                  <h3 className={UI.sectionHeader}>4. Key Highlights (Checkmark Points)</h3>
+                  <p className="text-[12px] text-[#646970] mt-0.5">
+                    Short checkmark bullet points shown under the narrative paragraph.
+                  </p>
+                </div>
+                <div className={UI.card + " space-y-3"}>
+                  {(() => {
+                    const highlightsList = Array.isArray(data.leadership?.keyHighlights) && data.leadership.keyHighlights.length > 0
+                      ? data.leadership.keyHighlights
+                      : [
+                          "Certified industrial fluid handling & precision equipment",
+                          "Direct supplier access with fast, reliable turnaround",
+                          "Continuous technical support for maximum equipment uptime"
+                        ];
+
+                    return (
+                      <>
+                        {highlightsList.map((point: string, idx: number) => (
+                          <div key={idx} className="flex gap-2">
+                            <input
+                              type="text"
+                              value={point || ""}
+                              onChange={(e) => {
+                                const updated = [...highlightsList];
+                                updated[idx] = e.target.value;
+                                updateSection("leadership", "keyHighlights", updated);
+                              }}
+                              className={UI.input}
+                              placeholder="e.g. Certified industrial fluid handling & precision equipment"
+                            />
+                            <button
+                              type="button"
+                              onClick={() => {
+                                const updated = highlightsList.filter((_: any, i: number) => i !== idx);
+                                updateSection("leadership", "keyHighlights", updated);
+                              }}
+                              className="text-slate-400 hover:text-[#d63638]"
+                              title="Delete Highlight"
+                            >
+                              <Trash2 className="w-4 h-4" />
+                            </button>
+                          </div>
+                        ))}
+
+                        <button
+                          type="button"
+                          onClick={() => updateSection("leadership", "keyHighlights", [...highlightsList, "New highlight point"])}
+                          className={UI.buttonAdd}
+                        >
+                          + Add Highlight
+                        </button>
+                      </>
+                    );
+                  })()}
+                </div>
+              </div>
+
+              {/* 5. Dedicated About Us Stats (Independent from StatsBar) */}
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className={UI.sectionHeader}>4. About Us Dedicated Stats (4 Highlights)</h3>
+                    <h3 className={UI.sectionHeader}>5. About Us Dedicated Stats (4 Highlights)</h3>
                     <p className="text-[12px] text-[#646970] mt-0.5">
                       Dedicated numbers displayed horizontally directly under the description.
                     </p>
@@ -743,9 +803,9 @@ export default function HomeEditor({ pageId, data, setData }: { pageId: string, 
                 </div>
               </div>
 
-              {/* 5. Call to Action Button */}
+              {/* 6. Call to Action Button */}
               <div className="space-y-4">
-                <h3 className={UI.sectionHeader}>5. Call to Action Button</h3>
+                <h3 className={UI.sectionHeader}>6. Call to Action Button</h3>
                 <div className={UI.card + " space-y-4"}>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-1.5">
@@ -1611,7 +1671,25 @@ export default function HomeEditor({ pageId, data, setData }: { pageId: string, 
           {activeTab === "blog" && (
             <div className="space-y-8">
               <div className="space-y-4">
-                <h3 className={UI.sectionHeader}>1. Section Intro & Headlines</h3>
+                <h3 className={UI.sectionHeader}>1. Section Visibility</h3>
+                <div className={UI.card}>
+                  <label className="flex items-center gap-2 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      className="rounded-sm border-[#c3c4c7]"
+                      checked={!!data.blogSection?.hidden}
+                      onChange={(e) => updateSection("blogSection", "hidden", e.target.checked)}
+                    />
+                    <span className="text-[12px] text-[#1d2327]">Hide this section on the homepage</span>
+                  </label>
+                  <p className="text-[11px] text-[#646970] mt-1.5 ml-6">
+                    The blog carousel stays fully editable below — this only controls whether it shows on the homepage.
+                  </p>
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                <h3 className={UI.sectionHeader}>2. Section Intro & Headlines</h3>
                 <div className={UI.card + " space-y-4"}>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-1.5">
@@ -1671,7 +1749,7 @@ export default function HomeEditor({ pageId, data, setData }: { pageId: string, 
               </div>
 
               <div className="space-y-4 pt-4 border-t border-[#f0f0f1]">
-                <h3 className={UI.sectionHeader}>2. Featured Blog Posts Selection</h3>
+                <h3 className={UI.sectionHeader}>3. Featured Blog Posts Selection</h3>
                 <BlogSelector
                   selectedIds={data.blogSection?.selectedPosts || []}
                   onChange={(ids) => updateSection("blogSection", "selectedPosts", ids)}

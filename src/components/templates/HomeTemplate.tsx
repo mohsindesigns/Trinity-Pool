@@ -38,21 +38,23 @@ export default function HomeTemplate({ pageData, params }: { pageData?: any, par
       <HowWeWork />
       <Testimonials />
 
-      <BlogSection
-        title={pageData?.content?.blogSection?.title || blogSection?.title}
-        subtitle={pageData?.content?.blogSection?.subtitle || blogSection?.subtitle}
-        ctaAll={pageData?.content?.blogSection?.ctaAll || blogSection?.ctaAll}
-        ctaReadMore={pageData?.content?.blogSection?.ctaReadMore || blogSection?.ctaReadMore}
-        viewAllLink={pageData?.content?.blogSection?.viewAllLink || blogSection?.viewAllLink || "/blogs/"}
-        posts={(() => {
-          const selected = pageData?.content?.blogSection?.selectedPosts || blogSection?.selectedPosts || [];
-          const filtered = Array.isArray(selected) && selected.length > 0
-            ? allBlogs.filter((p: any) => selected.map(String).includes(String(p._id)))
-            : [];
-          // Home carousel shows the latest 12 posts; the full list lives at /blogs/
-          return filtered.length > 0 ? filtered : allBlogs.slice(0, 12);
-        })()}
-      />
+      {!(pageData?.content?.blogSection?.hidden ?? blogSection?.hidden) && (
+        <BlogSection
+          title={pageData?.content?.blogSection?.title || blogSection?.title}
+          subtitle={pageData?.content?.blogSection?.subtitle || blogSection?.subtitle}
+          ctaAll={pageData?.content?.blogSection?.ctaAll || blogSection?.ctaAll}
+          ctaReadMore={pageData?.content?.blogSection?.ctaReadMore || blogSection?.ctaReadMore}
+          viewAllLink={pageData?.content?.blogSection?.viewAllLink || blogSection?.viewAllLink || "/blogs/"}
+          posts={(() => {
+            const selected = pageData?.content?.blogSection?.selectedPosts || blogSection?.selectedPosts || [];
+            const filtered = Array.isArray(selected) && selected.length > 0
+              ? allBlogs.filter((p: any) => selected.map(String).includes(String(p._id)))
+              : [];
+            // Home carousel shows the latest 12 posts; the full list lives at /blogs/
+            return filtered.length > 0 ? filtered : allBlogs.slice(0, 12);
+          })()}
+        />
+      )}
 
       <CtaBanner />
       <section id="contact">

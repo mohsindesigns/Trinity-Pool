@@ -2,9 +2,10 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Loader2, Type, BookOpen } from "lucide-react";
+import { Loader2, Type, BookOpen, Megaphone } from "lucide-react";
 import dynamic from "next/dynamic";
 import BlogSelector from "@/components/admin/BlogSelector";
+import ImageField from "@/components/admin/ImageField";
 
 const RichTextEditor = dynamic(() => import("@/components/admin/RichTextEditor"), { 
   ssr: false,
@@ -24,6 +25,8 @@ export default function BlogEditor({ pageId, data, setData }: { pageId: string, 
         titleLine2: "Journal.",
         description: "Explore our latest articles, insights, and clinical tips on deep tissue therapy, mobility, and athletic recovery.",
         ctaReadMore: "Read More",
+        emptyStateTitle: "No posts yet",
+        emptyStateDescription: "Check back later for new updates.",
         selectedPosts: []
       });
     }
@@ -38,9 +41,24 @@ export default function BlogEditor({ pageId, data, setData }: { pageId: string, 
     });
   };
 
+  const updateHeader = (field: string, value: any) => {
+    setData({
+      ...data,
+      header: { ...(data.header || {}), [field]: value }
+    });
+  };
+
+  const updateCtaBanner = (field: string, value: any) => {
+    setData({
+      ...data,
+      ctaBanner: { ...(data.ctaBanner || {}), [field]: value }
+    });
+  };
+
   const tabs = [
     { id: "header", label: "Blog Page Narrative", icon: Type, title: "Blog Journal Introduction" },
-    { id: "posts", label: "Selected Posts", icon: BookOpen, title: "Manage Visible Blog Posts" }
+    { id: "posts", label: "Selected Posts", icon: BookOpen, title: "Manage Visible Blog Posts" },
+    { id: "cta", label: "CTA Banner", icon: Megaphone, title: "Bottom Call-To-Action Banner" }
   ];
 
   const activeTabTitle = tabs.find(t => t.id === activeTab)?.title;
@@ -79,6 +97,15 @@ export default function BlogEditor({ pageId, data, setData }: { pageId: string, 
             {activeTab === "header" && (
               <div className="max-w-3xl space-y-6">
                 <div className={UI.card + " space-y-5"}>
+                  <ImageField
+                    label="Hero Background Image"
+                    value={data.header?.image || ""}
+                    onChange={(url: string) => updateHeader("image", url)}
+                    altValue={data.header?.imageAlt || ""}
+                    onAltChange={(alt: string) => updateHeader("imageAlt", alt)}
+                    description="Full-bleed dark hero photo behind the headline."
+                  />
+
                   <div className="space-y-1.5">
                     <label className={UI.label}>Section Badge</label>
                     <input 
@@ -124,12 +151,36 @@ export default function BlogEditor({ pageId, data, setData }: { pageId: string, 
 
                   <div className="space-y-1.5">
                     <label className={UI.label}>Read More Button Label</label>
-                    <input 
-                      type="text" 
-                      value={data.ctaReadMore || ""} 
-                      onChange={(e) => updateBlogContent("ctaReadMore", e.target.value)} 
-                      className={UI.input} 
-                      placeholder="e.g. Read More" 
+                    <input
+                      type="text"
+                      value={data.ctaReadMore || ""}
+                      onChange={(e) => updateBlogContent("ctaReadMore", e.target.value)}
+                      className={UI.input}
+                      placeholder="e.g. Read More"
+                    />
+                  </div>
+                </div>
+
+                <div className={UI.card + " space-y-5"}>
+                  <label className={UI.label}>Empty State (shown when there are no posts)</label>
+                  <div className="space-y-1.5">
+                    <label className="text-[11px] text-[#646970] font-semibold uppercase">Title</label>
+                    <input
+                      type="text"
+                      value={data.emptyStateTitle || ""}
+                      onChange={(e) => updateBlogContent("emptyStateTitle", e.target.value)}
+                      className={UI.input}
+                      placeholder="e.g. No posts yet"
+                    />
+                  </div>
+                  <div className="space-y-1.5">
+                    <label className="text-[11px] text-[#646970] font-semibold uppercase">Description</label>
+                    <input
+                      type="text"
+                      value={data.emptyStateDescription || ""}
+                      onChange={(e) => updateBlogContent("emptyStateDescription", e.target.value)}
+                      className={UI.input}
+                      placeholder="e.g. Check back later for new updates."
                     />
                   </div>
                 </div>
@@ -138,10 +189,71 @@ export default function BlogEditor({ pageId, data, setData }: { pageId: string, 
 
             {activeTab === "posts" && (
               <div className="space-y-6">
-                <BlogSelector 
-                  selectedIds={data.selectedPosts || []} 
-                  onChange={(ids) => updateBlogContent("selectedPosts", ids)} 
+                <BlogSelector
+                  selectedIds={data.selectedPosts || []}
+                  onChange={(ids) => updateBlogContent("selectedPosts", ids)}
                 />
+              </div>
+            )}
+
+            {activeTab === "cta" && (
+              <div className="max-w-3xl space-y-6">
+                <div className={UI.card + " space-y-5"}>
+                  <p className="text-[12px] text-[#646970] -mt-1">
+                    Shown at the bottom of the blog page, below the article grid. This is independent from the homepage's CTA banner — editing one never changes the other.
+                  </p>
+                  <div className="space-y-1.5">
+                    <label className={UI.label}>Badge</label>
+                    <input
+                      type="text"
+                      value={data.ctaBanner?.label || ""}
+                      onChange={(e) => updateCtaBanner("label", e.target.value)}
+                      className={UI.input}
+                      placeholder="e.g. NEED PARTS OR SERVICE?"
+                    />
+                  </div>
+                  <div className="space-y-1.5">
+                    <label className={UI.label}>Title</label>
+                    <input
+                      type="text"
+                      value={data.ctaBanner?.title || ""}
+                      onChange={(e) => updateCtaBanner("title", e.target.value)}
+                      className={UI.input + " font-bold"}
+                      placeholder="e.g. Talk to Our Team About Your Well."
+                    />
+                  </div>
+                  <div className="space-y-1.5">
+                    <label className={UI.label}>Description</label>
+                    <textarea
+                      value={data.ctaBanner?.description || ""}
+                      onChange={(e) => updateCtaBanner("description", e.target.value)}
+                      className={UI.input + " h-24"}
+                      placeholder="e.g. From sucker rods to rod pump tracking, our Odessa shop is ready to help."
+                    />
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="space-y-1.5">
+                      <label className={UI.label}>Button Text</label>
+                      <input
+                        type="text"
+                        value={data.ctaBanner?.button || ""}
+                        onChange={(e) => updateCtaBanner("button", e.target.value)}
+                        className={UI.input}
+                        placeholder="e.g. Get a Quote"
+                      />
+                    </div>
+                    <div className="space-y-1.5">
+                      <label className={UI.label}>Button Link</label>
+                      <input
+                        type="text"
+                        value={data.ctaBanner?.buttonUrl || ""}
+                        onChange={(e) => updateCtaBanner("buttonUrl", e.target.value)}
+                        className={UI.input}
+                        placeholder="e.g. /contact-us/"
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
             )}
           </motion.div>

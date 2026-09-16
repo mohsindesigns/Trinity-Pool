@@ -193,6 +193,13 @@ export const useContent = () => {
             const ctaAll = s.ctaAll || "VIEW ALL SERVICES";
             const ctaLearnMore = s.ctaLearnMore || "LEARN MORE";
 
+            const rawCategoryLabels = s.categoryLabels || {};
+            const categoryLabels = {
+                "artificial-lift": rawCategoryLabels["artificial-lift"] || "Artificial Lift",
+                "projects-supplies": rawCategoryLabels["projects-supplies"] || "Projects & Supplies",
+                "other": rawCategoryLabels["other"] || "More Services",
+            };
+
             return {
                 ...s,
                 label,
@@ -203,6 +210,7 @@ export const useContent = () => {
                 titleItalicWord,
                 ctaAll,
                 ctaLearnMore,
+                categoryLabels,
                 services: formattedServices,
                 items: formattedItems,
                 headline: {
@@ -242,6 +250,12 @@ export const useContent = () => {
                 { value: "24/7", label: "Support" }
             ];
 
+            const keyHighlights = getSafe(l, 'keyHighlights', [
+                "Certified industrial fluid handling & precision equipment",
+                "Direct supplier access with fast, reliable turnaround",
+                "Continuous technical support for maximum equipment uptime"
+            ]);
+
             return {
                 ...l,
                 label,
@@ -259,6 +273,7 @@ export const useContent = () => {
                 ctaMore,
                 ctaLink,
                 stats,
+                keyHighlights,
 
                 // Back-compat for admin editor
                 section: {

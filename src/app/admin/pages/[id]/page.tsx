@@ -20,6 +20,15 @@ const RichTextEditor = dynamic(() => import("@/components/admin/RichTextEditor")
   loading: () => <div className="h-20 bg-[#f6f7f7] animate-pulse border border-[#c3c4c7] rounded-sm flex items-center justify-center text-[#8c8f94] text-xs">Loading Rich Text Editor...</div>
 });
 
+// Templates whose live page renders the shared, sitewide FAQ (ContactFaqSection,
+// reading the global useContent().faq) instead of these page-specific flat fields
+// -- for those, the "Page FAQs" tab below is a dead end and shows a read-only note
+// pointing at Admin -> FAQ instead. Every other template still shown here (e.g.
+// 'faq' and 'artificial-lift-landing', which read faqBadge/faqTitle/faqDescription/
+// faqs straight off page.content -- see ArtificialLiftEditor.tsx's own comment on
+// this) keeps the tab fully editable, unchanged.
+const TEMPLATES_WITH_SHARED_SITEWIDE_FAQ = ['services'];
+
 const EDITOR_TEMPLATES = [
   { id: 'home', label: 'Home Page', icon: LayoutTemplate },
   { id: 'about', label: 'About Us', icon: Type },
@@ -250,6 +259,14 @@ export default function DynamicPageEditor({ params }: { params: Promise<{ id: st
                   pageTitle={page.title}
                   pageContent={content}
                 />
+              ) : TEMPLATES_WITH_SHARED_SITEWIDE_FAQ.includes(page.template) ? (
+                <div className="p-10 text-center space-y-3">
+                  <p className="text-[#1d2327] text-[14px] font-semibold">This page's FAQ section is shared sitewide, not page-specific.</p>
+                  <p className="text-[#646970] text-[13px]">This template always shows the same sitewide FAQ shown elsewhere on the site, so anything entered here would have no effect on the live page.</p>
+                  <Link href="/admin/faq" className="inline-flex items-center gap-1 text-[#2271b1] hover:underline text-[13px] font-semibold">
+                    Edit it from Admin &rarr; FAQ <ArrowUpRight className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
               ) : (
                 <div className="p-5 sm:p-6 space-y-6">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#f0f0f1] pb-4">

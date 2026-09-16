@@ -1,19 +1,11 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Image from "next/image";
 import Link from "next/link";
 import Script from "next/script";
 import {
   Calendar,
-  User,
-  Tag as TagIcon,
   Clock,
   BookOpen,
-  ArrowLeft,
-  ArrowRight,
-  Share2,
-  CheckCircle2,
-  ChevronLeft,
   Star,
   MapPin
 } from "lucide-react";
@@ -25,10 +17,22 @@ import SiteContent from "@/models/Content";
 import ReadingProgress from "@/components/blog/ReadingProgress";
 import ShareButton from "@/components/blog/ShareButton";
 import PageInlineFaqs from "@/components/PageInlineFaqs";
+import BlogCard from "@/components/templates/BlogCard";
+import CtaBanner from "@/components/CtaBanner";
+import QAForm from "@/components/QAForm";
 import { BASE_URL } from "@/lib/constants";
 import { makeLinksDoFollow, cleanMojibake } from "@/lib/utils";
 import { getRobotsMetadata } from "@/lib/seo";
 import { normalizeBlogImage } from "@/lib/blogImage";
+import { mergePageContent } from "@/lib/deepMerge";
+
+const DEFAULT_CTA_BANNER = {
+  label: "NEED PARTS OR SERVICE?",
+  title: "Talk to Our Team About Your Well.",
+  description: "From sucker rods to rod pump tracking, our Odessa shop is ready to help — call or send us the details of your job.",
+  button: "Get a Quote",
+  buttonUrl: "/contact-us/",
+};
 
 export const revalidate = 60; // Cache for 1 minute, updated via revalidatePath in admin panel
 
@@ -129,18 +133,24 @@ export default async function BlogPostPage({ params }: Props) {
   ]);
 
   const globalContent = contentDoc?.data || {};
-  const blogPageData =
-    blogPageDoc?.content?.blogPage ||
-    blogPageDoc?.content ||
-    globalContent.blogsPage ||
-    globalContent.blogPage ||
-    {};
+  const globalBlogPageData = globalContent.blogsPage || globalContent.blogPage || {};
+  const pageBlogPageData = blogPageDoc?.content?.blogPage || blogPageDoc?.content || {};
+  // Deep-merge (page content wins per-leaf) instead of picking whichever
+  // object is truthy first — otherwise a field only set globally (e.g. the
+  // CTA banner) silently disappears the moment the Page doc has ANY content.
+  const blogPageData = mergePageContent(globalBlogPageData, pageBlogPageData);
 
   // Resolve Related Section Header
   const relatedSection = {
     eyebrow: blogPageData.relatedSection?.eyebrow || "CONTINUE READING",
     title: blogPageData.relatedSection?.title || "Related Articles & Clinical Guides"
   };
+
+  // CTA banner reuses the blog index's own independent content (never the
+  // shared homepage useContent() data), so it stays in sync with /blogs/
+  // without leaking homepage content onto article pages.
+  const ctaBannerData = blogPageData.ctaBanner && Object.keys(blogPageData.ctaBanner).length > 0 ? blogPageData.ctaBanner : DEFAULT_CTA_BANNER;
+  const pageDataForForm = blogPageDoc ? JSON.parse(JSON.stringify(blogPageDoc)) : null;
 
   // 3. Fetch 3 Related Articles (excluding current post)
   const postCategoryIds = Array.isArray(post.categories) ? post.categories.map((c: any) => c._id || c) : [];
@@ -171,9 +181,9 @@ export default async function BlogPostPage({ params }: Props) {
   }
 
   const relatedPosts = relatedPostsRaw.map((r: any) => {
-    let catBadge = "Clinical Insight";
+    let catBadge = "Field Insight";
     if (Array.isArray(r.categories) && r.categories.length > 0) {
-      catBadge = r.categories[0]?.name || "Clinical Insight";
+      catBadge = r.categories[0]?.name || "Field Insight";
     }
 
     let rDate = "Recent";
@@ -207,7 +217,7 @@ export default async function BlogPostPage({ params }: Props) {
   });
 
   // 4. Resolve Post Metadata & Author Information (retained for SEO JSON-LD)
-  let categoryBadge = "Clinical Insight";
+  let categoryBadge = "Field Insight";
   if (Array.isArray(post.categories) && post.categories.length > 0) {
     categoryBadge = post.categories[0].name || categoryBadge;
   } else if (post.category) {
@@ -233,10 +243,10 @@ export default async function BlogPostPage({ params }: Props) {
 
   const wordCount = rawHtmlContent.replace(/<[^>]*>/g, "").split(/\s+/).filter(Boolean).length;
   const readTimeDisplay = `${Math.max(3, Math.ceil(wordCount / 200))} min read`;
-  const featuredImage = normalizeBlogImage(post.featuredImage) || "/images/blog-3.webp";
+  const featuredImage = normalizeBlogImage(post.featuredImage) || "/images/trinity/blog-pump.jpg";
 
   const rawAuthor = post.author as any;
-  let cleanName = "Antoine Lyles";
+  let cleanName = "Trinity Pump & Supply";
   if (rawAuthor) {
     if (typeof rawAuthor === "string" && rawAuthor.trim()) {
       cleanName = rawAuthor.trim();
@@ -247,7 +257,7 @@ export default async function BlogPostPage({ params }: Props) {
     }
   }
 
-  let cleanRole = "Founder & Licensed Massage Therapist";
+  let cleanRole = "Oilfield Equipment & Supply Specialists";
   if (rawAuthor?.role) {
     if (typeof rawAuthor.role === "object" && rawAuthor.role?.name) {
       cleanRole = String(rawAuthor.role.name);
@@ -384,8 +394,8 @@ export default async function BlogPostPage({ params }: Props) {
     const originalTag = match[0];
     const newTag = `<${tag} id="${id}" class="scroll-mt-32 font-display ${
       level <= 2
-        ? "text-2xl sm:text-3xl mt-12 mb-4 font-bold text-white border-b border-white/10 pb-3"
-        : "text-xl sm:text-2xl mt-8 mb-3 font-semibold text-white"
+        ? "text-2xl sm:text-3xl mt-12 mb-4 font-bold text-dark border-b border-border-light pb-3"
+        : "text-xl sm:text-2xl mt-8 mb-3 font-semibold text-dark"
     } leading-snug">${match[2]}</${tag}>`;
     processedContent = processedContent.replace(originalTag, newTag);
   }
@@ -393,13 +403,13 @@ export default async function BlogPostPage({ params }: Props) {
   // Convert any markdown links [Text](url) to HTML anchors
   processedContent = processedContent.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_match: string, label: string, url: string) => {
     const target = url.startsWith("http") ? ' target="_blank" rel="noopener noreferrer"' : "";
-    return `<a href="${url}" class="text-gold font-semibold underline decoration-gold/50 hover:text-gold-light hover:decoration-gold transition-colors"${target}>${label}</a>`;
+    return `<a href="${url}" class="text-gold-dark font-semibold underline decoration-gold/40 hover:text-gold transition-colors"${target}>${label}</a>`;
   });
 
   processedContent = cleanMojibake(makeLinksDoFollow(processedContent));
 
   return (
-    <article className="min-h-screen bg-dark text-white selection:bg-gold selection:text-dark transition-colors duration-300 pb-24 relative overflow-x-clip font-sans">
+    <article className="w-full bg-off-white text-body selection:bg-gold selection:text-dark transition-colors duration-300 pb-24 relative overflow-x-clip">
       <Script
         id="blog-post-schema"
         type="application/ld+json"
@@ -407,75 +417,74 @@ export default async function BlogPostPage({ params }: Props) {
       />
       <ReadingProgress />
 
-      {/* ── 1. HERO SECTION WITH RICH TEXTURE & BREADCRUMBS ─────────────── */}
-      <section className="pt-[140px] sm:pt-[160px] lg:pt-[180px] pb-12 sm:pb-16 relative overflow-hidden border-b border-white/10">
-        {/* Ambient Dark & Gold Background */}
-        <div className="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-hidden">
-          <div className="absolute inset-0 opacity-[0.035] bg-radial-dots-gold" />
-          <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-gold/5 rounded-full blur-[140px] pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-b from-dark/40 via-transparent to-dark pointer-events-none" />
+      {/* ════════════════════════════════════════════════════════
+         HERO — post's own featured image as the full-bleed background
+         ════════════════════════════════════════════════════════ */}
+      <section className="relative bg-dark min-h-[50vh] flex items-end pt-[130px] pb-14 border-b border-border-dark overflow-hidden">
+        <div className="absolute inset-0 z-0 pointer-events-none opacity-40">
+          <img
+            src={featuredImage}
+            alt={post.title}
+            className="w-full h-full object-cover object-center filter contrast-105 saturate-110"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-dark via-dark/85 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-dark/70 via-dark/20 to-dark" />
         </div>
 
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 relative z-10 w-full">
-          {/* Breadcrumb Row - Bold & Highly Visible */}
-          <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-2.5 text-xs sm:text-[13px] font-mono font-bold uppercase tracking-wider mb-6">
-            <Link href="/" className="text-white hover:text-gold transition-colors">
-              HOME
-            </Link>
-            <span className="text-gold font-bold">/</span>
-            <Link href="/blogs/" className="text-white hover:text-gold transition-colors">
-              BLOGS
-            </Link>
-            <span className="text-gold font-bold">/</span>
-            <span className="text-gold font-black">{categoryBadge}</span>
-          </nav>
+        <div className="absolute top-1/2 left-1/3 -translate-y-1/2 w-[450px] h-[450px] bg-gold/[0.07] rounded-full blur-[140px] pointer-events-none z-0" />
 
-          {/* Title */}
-          <h1 className="display-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-[1.18] tracking-tight mb-6 max-w-4xl drop-shadow-sm">
-            {post.title}
-          </h1>
+        <div className="site-container relative z-10 w-full text-left">
+          <div className="mb-6 flex flex-wrap items-center gap-3">
+            <nav
+              aria-label="Breadcrumb"
+              className="flex items-center gap-2 text-[11.5px] sm:text-[12px] font-mono tracking-wider text-white/60 bg-dark/50 backdrop-blur-md border border-white/10 rounded-full px-4 py-2 shadow-lg"
+            >
+              <Link href="/" className="hover:text-gold transition-colors text-white/80">
+                Home
+              </Link>
+              <span className="text-gold/50">/</span>
+              <Link href="/blogs/" className="hover:text-gold transition-colors text-white/80">
+                Blog
+              </Link>
+              <span className="text-gold/50">/</span>
+              <span className="text-gold font-medium">{categoryBadge}</span>
+            </nav>
+          </div>
 
-          {/* Meta Info Row */}
-          <div className="flex flex-wrap items-center gap-4 text-xs font-sans">
-            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider bg-gold text-dark shadow-md shadow-gold/20">
-              <Star className="w-3 h-3 fill-current" />
-              {categoryBadge}
-            </span>
+          <div className="max-w-[760px]">
+            <h1 className="font-display font-medium text-[30px] min-[400px]:text-[38px] md:text-[50px] lg:text-[56px] text-white leading-[1.12] mb-6 tracking-tight">
+              {post.title}
+            </h1>
 
-            <span className="inline-flex items-center gap-1.5 text-white/70 font-mono font-medium">
-              <Calendar className="w-3.5 h-3.5 text-gold" />
-              {formattedDate}
-            </span>
-
-            <span className="inline-flex items-center gap-1.5 font-mono font-bold text-gold">
-              <Clock className="w-3.5 h-3.5" />
-              {readTimeDisplay}
-            </span>
-
-            {post.location && (
-              <span className="inline-flex items-center gap-1.5 text-white/70 font-mono font-medium">
-                <MapPin className="w-3.5 h-3.5 text-gold" />
-                {post.location}
+            <div className="flex flex-wrap items-center gap-4 text-xs">
+              <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider bg-gold text-dark shadow-md shadow-gold/20">
+                <Star className="w-3 h-3 fill-current" />
+                {categoryBadge}
               </span>
-            )}
+
+              <span className="inline-flex items-center gap-1.5 text-white/70 font-mono font-medium">
+                <Calendar className="w-3.5 h-3.5 text-gold" />
+                {formattedDate}
+              </span>
+
+              <span className="inline-flex items-center gap-1.5 font-mono font-bold text-gold">
+                <Clock className="w-3.5 h-3.5" />
+                {readTimeDisplay}
+              </span>
+
+              {post.location && (
+                <span className="inline-flex items-center gap-1.5 text-white/70 font-mono font-medium">
+                  <MapPin className="w-3.5 h-3.5 text-gold" />
+                  {post.location}
+                </span>
+              )}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ── 2. FEATURED COVER IMAGE CONTAINER ────────────────────────── */}
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 mt-8 sm:mt-10 relative z-20">
-        <div className="bg-dark-2 rounded-[24px] sm:rounded-[28px] overflow-hidden shadow-2xl border border-white/10 aspect-[16/9] sm:aspect-[21/9] relative group">
-          <img
-            src={featuredImage}
-            alt={post.title}
-            className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-dark/70 via-transparent to-transparent pointer-events-none" />
-        </div>
-      </div>
-
-      {/* ── 3. MAIN CONTENT LAYOUT WITH STICKY SIDEBAR ────────────────── */}
-      <div className="container mx-auto px-4 mt-14 sm:mt-16 max-w-6xl">
+      {/* ── MAIN CONTENT LAYOUT WITH STICKY SIDEBAR ────────────────── */}
+      <div className="site-container mt-14 sm:mt-16">
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">
 
           {/* Left: Blog Content */}
@@ -483,20 +492,20 @@ export default async function BlogPostPage({ params }: Props) {
 
             {/* Main Content Body */}
             <div
-              className="prose prose-invert max-w-none 
-              prose-headings:font-display prose-headings:font-bold prose-headings:text-white
-              prose-p:text-white/75 prose-p:leading-relaxed prose-p:text-base sm:prose-p:text-lg prose-p:font-light
-              prose-a:text-gold prose-a:font-semibold prose-a:underline prose-a:decoration-gold/50 hover:prose-a:text-gold-light hover:prose-a:decoration-gold transition-colors
-              [&_a]:!text-gold [&_a]:underline [&_a]:decoration-gold/50 hover:[&_a]:!text-gold-light hover:[&_a]:decoration-gold
+              className="prose max-w-none
+              prose-headings:font-display prose-headings:font-semibold prose-headings:text-dark
+              prose-p:text-dark/75 prose-p:leading-[1.8] prose-p:text-base sm:prose-p:text-lg prose-p:font-light
+              prose-a:text-gold-dark prose-a:font-semibold prose-a:underline prose-a:decoration-gold/40 hover:prose-a:text-gold transition-colors
+              [&_a]:!text-gold-dark [&_a]:underline [&_a]:decoration-gold/40 hover:[&_a]:!text-gold
               [&_a_*]:!text-inherit [&_a_b]:!text-inherit [&_a_strong]:!text-inherit [&_a_span]:!text-inherit
-              [&_b_a]:!text-gold [&_strong_a]:!text-gold
-              prose-img:rounded-2xl md:prose-img:rounded-3xl prose-img:my-8 prose-img:shadow-2xl prose-img:border prose-img:border-white/10
-              prose-blockquote:border-l-4 prose-blockquote:border-gold prose-blockquote:bg-white/[0.02] prose-blockquote:p-6 md:prose-blockquote:p-8 prose-blockquote:rounded-2xl prose-blockquote:text-white/85 prose-blockquote:italic
-              prose-ul:text-white/75 prose-ul:my-4 prose-li:my-1.5 prose-li:text-[15px]
+              [&_b_a]:!text-gold-dark [&_strong_a]:!text-gold-dark
+              prose-img:rounded-2xl md:prose-img:rounded-3xl prose-img:my-8 prose-img:shadow-lg prose-img:border prose-img:border-border-light
+              prose-blockquote:border-l-4 prose-blockquote:border-gold prose-blockquote:bg-gold/5 prose-blockquote:p-6 md:prose-blockquote:p-8 prose-blockquote:rounded-2xl prose-blockquote:text-dark/80 prose-blockquote:italic prose-blockquote:not-italic
+              prose-ul:text-dark/75 prose-ul:my-4 prose-li:my-1.5 prose-li:text-[15px]
               prose-table:w-full prose-table:border-collapse prose-table:my-6
-              prose-th:bg-white/5 prose-th:text-white prose-th:p-3 prose-th:border prose-th:border-white/10 prose-th:text-left prose-th:text-[13px]
-              prose-td:p-3 prose-td:border prose-td:border-white/10 prose-td:text-white/70 prose-td:text-[13px]
-              prose-strong:text-white prose-strong:font-bold"
+              prose-th:bg-dark/[0.04] prose-th:text-dark prose-th:p-3 prose-th:border prose-th:border-border-light prose-th:text-left prose-th:text-[13px]
+              prose-td:p-3 prose-td:border prose-td:border-border-light prose-td:text-dark/70 prose-td:text-[13px]
+              prose-strong:text-dark prose-strong:font-bold"
               dangerouslySetInnerHTML={{ __html: processedContent }}
             />
           </div>
@@ -506,17 +515,17 @@ export default async function BlogPostPage({ params }: Props) {
             <div className="space-y-6 md:space-y-8">
 
               {/* Table of Contents Box */}
-              <div className="bg-dark-2 border border-white/10 rounded-[28px] p-6 sm:p-8 shadow-2xl relative overflow-hidden backdrop-blur-md">
+              <div className="bg-white border border-border-light rounded-[28px] p-6 sm:p-8 shadow-[0_1px_2px_rgba(7,27,28,0.04),0_12px_30px_-18px_rgba(7,27,28,0.16)] relative overflow-hidden">
                 {/* Header */}
-                <div className="flex items-center gap-3 mb-6 pb-4 border-b border-white/10">
-                  <div className="w-9 h-9 rounded-xl bg-gold/10 flex items-center justify-center shrink-0">
-                    <BookOpen className="w-4 h-4 text-gold" />
+                <div className="flex items-center gap-3 mb-6 pb-4 border-b border-border-light">
+                  <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-gold-light via-gold to-gold-dark flex items-center justify-center shrink-0 shadow-sm">
+                    <BookOpen className="w-4 h-4 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-xs font-mono font-bold uppercase tracking-widest text-white">
+                    <h3 className="text-xs font-mono font-bold uppercase tracking-widest text-dark">
                       Navigation
                     </h3>
-                    <p className="text-[9px] text-gold uppercase tracking-widest mt-0.5">
+                    <p className="text-[9px] text-gold-dark uppercase tracking-widest mt-0.5">
                       Quick Select
                     </p>
                   </div>
@@ -531,15 +540,15 @@ export default async function BlogPostPage({ params }: Props) {
                         href={`#${item.id}`}
                         className={`flex items-center gap-3.5 py-2 px-3 rounded-xl transition-all duration-300 group ${
                           item.level <= 2
-                            ? "text-white font-bold hover:bg-gold/10 hover:text-gold bg-white/[0.03]"
-                            : "pl-7 text-white/50 hover:text-gold hover:bg-white/[0.02]"
+                            ? "text-dark font-bold hover:bg-gold/10 hover:text-gold-dark bg-dark/[0.03]"
+                            : "pl-7 text-dark/50 hover:text-gold-dark hover:bg-dark/[0.02]"
                         }`}
                       >
                         <div
                           className={`shrink-0 w-2 h-2 rounded-full transition-all duration-300 ${
                             item.level <= 2
-                              ? "bg-gold scale-100 shadow-[0_0_8px_rgba(243,227,140,0.5)]"
-                              : "bg-white/30 scale-75 group-hover:bg-gold group-hover:scale-100"
+                              ? "bg-gold scale-100 shadow-[0_0_8px_rgba(200,154,69,0.5)]"
+                              : "bg-dark/20 scale-75 group-hover:bg-gold group-hover:scale-100"
                           }`}
                         />
                         <span className="text-xs sm:text-sm font-semibold line-clamp-1 flex-1">
@@ -550,32 +559,32 @@ export default async function BlogPostPage({ params }: Props) {
                   </nav>
                 ) : (
                   <div className="py-2 space-y-2">
-                    <p className="text-xs text-white/40 italic">
+                    <p className="text-xs text-dark/40 italic">
                       Comprehensive guide outlined above.
                     </p>
                   </div>
                 )}
 
                 {/* Article Impact / Quick Stats */}
-                <div className="mt-6 pt-6 border-t border-white/10">
-                  <h5 className="text-[10px] font-mono font-bold uppercase tracking-widest text-white/40 mb-3">
+                <div className="mt-6 pt-6 border-t border-border-light">
+                  <h5 className="text-[10px] font-mono font-bold uppercase tracking-widest text-dark/40 mb-3">
                     Article Impact
                   </h5>
                   <div className="grid grid-cols-2 gap-3">
-                    <div className="bg-white/[0.02] p-3.5 rounded-2xl border border-white/5 text-left">
-                      <p className="text-[9px] font-mono font-bold text-white/40 uppercase tracking-wider">Words</p>
-                      <p className="text-lg font-mono font-bold text-gold mt-0.5">{wordCount}</p>
+                    <div className="bg-off-white p-3.5 rounded-2xl border border-border-light text-left">
+                      <p className="text-[9px] font-mono font-bold text-dark/40 uppercase tracking-wider">Words</p>
+                      <p className="text-lg font-mono font-bold text-gold-dark mt-0.5">{wordCount}</p>
                     </div>
-                    <div className="bg-white/[0.02] p-3.5 rounded-2xl border border-white/5 text-left">
-                      <p className="text-[9px] font-mono font-bold text-white/40 uppercase tracking-wider">Read Time</p>
-                      <p className="text-lg font-mono font-bold text-gold mt-0.5">{readTimeDisplay}</p>
+                    <div className="bg-off-white p-3.5 rounded-2xl border border-border-light text-left">
+                      <p className="text-[9px] font-mono font-bold text-dark/40 uppercase tracking-wider">Read Time</p>
+                      <p className="text-lg font-mono font-bold text-gold-dark mt-0.5">{readTimeDisplay}</p>
                     </div>
                   </div>
                 </div>
 
                 {/* Engage */}
-                <div className="mt-6 pt-6 border-t border-white/10">
-                  <p className="text-[10px] font-mono font-bold uppercase tracking-widest text-white/40 mb-3">
+                <div className="mt-6 pt-6 border-t border-border-light">
+                  <p className="text-[10px] font-mono font-bold uppercase tracking-widest text-dark/40 mb-3">
                     Engage
                   </p>
                   <ShareButton title={post.title} url={post.slug} />
@@ -590,7 +599,7 @@ export default async function BlogPostPage({ params }: Props) {
 
       {/* Inline FAQs attached to this post */}
       {((post.faq && post.faq.length > 0) || (post.faqSchemaMarkup && post.faqSchemaMarkup.trim())) && (
-        <div className="mt-16 pt-8 border-t border-white/10">
+        <div className="site-container mt-16 pt-8 border-t border-border-light">
           <PageInlineFaqs
             faqs={post.faq}
             faqSchemaMarkup={post.faqSchemaMarkup}
@@ -601,58 +610,48 @@ export default async function BlogPostPage({ params }: Props) {
         </div>
       )}
 
-      {/* ── 4. RELATED ARTICLES SECTION ───────────────────────────── */}
+      {/* ── RELATED ARTICLES SECTION ───────────────────────────── */}
       {relatedPosts.length > 0 && (
-        <section className="container mx-auto px-4 my-20 pt-12 border-t border-white/10 max-w-6xl">
-          <div className="text-left mb-8 space-y-2">
-            <span className="text-xs font-mono font-bold uppercase text-gold tracking-widest">
-              {relatedSection.eyebrow}
-            </span>
-            <h2 className="display-heading text-2xl sm:text-3xl font-bold text-white">
-              {relatedSection.title}
-            </h2>
+        <section className="site-container my-20 pt-12 border-t border-border-light">
+          <div className="text-left mb-8 flex items-center gap-3">
+            <span className="w-6 h-[1px] bg-gold flex-shrink-0" />
+            <div>
+              <p className="section-label text-gold-dark mb-1">{relatedSection.eyebrow}</p>
+              <h2 className="display-heading text-2xl sm:text-3xl font-bold text-dark">
+                {relatedSection.title}
+              </h2>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {relatedPosts.map((rPost) => (
-              <Link
+              <BlogCard
                 key={rPost.id}
                 href={`/blogs/${rPost.slug}/`}
-                className="bg-dark-2 border border-white/10 hover:border-gold/40 rounded-[28px] overflow-hidden shadow-xl hover:shadow-[0_0_30px_rgba(190,156,37,0.1)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group select-none relative block cursor-pointer"
-              >
-                <div>
-                  <div className="relative h-56 w-full overflow-hidden bg-black/40 border-b border-white/10">
-                    <img
-                      src={rPost.image}
-                      alt={rPost.title}
-                      className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-                    />
-                    <span className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider bg-gold text-dark shadow-md shadow-gold/20">
-                      <Star className="w-3 h-3 fill-current" />
-                      {rPost.badge}
-                    </span>
-                  </div>
-                  <div className="p-6">
-                    <h3 className="font-display text-lg font-bold text-white group-hover:text-gold transition-colors leading-snug line-clamp-2">
-                      {rPost.title}
-                    </h3>
-                  </div>
-                </div>
-
-                <div className="px-6 pb-6 flex items-center justify-between text-xs font-sans border-t border-white/5 pt-4">
-                  <span className="text-white/40 font-mono font-medium">
-                    {rPost.date}
-                  </span>
-                  <span className="font-mono font-bold text-gold flex items-center gap-1">
-                    <Clock className="w-3.5 h-3.5" />
-                    {rPost.readTime}
-                  </span>
-                </div>
-              </Link>
+                image={rPost.image}
+                imageAlt={rPost.title}
+                category={rPost.badge}
+                title={rPost.title}
+                date={rPost.date}
+                readTime={rPost.readTime}
+                ctaText="Read Article"
+              />
             ))}
           </div>
         </section>
       )}
+
+      {/* ════════════════════════════════════════════════════════
+         CTA — reuses the blog index's own independent content.
+         ════════════════════════════════════════════════════════ */}
+      <div className="-mt-4 md:-mt-6 relative">
+        <CtaBanner overrideData={ctaBannerData} />
+      </div>
+
+      {/* ════════════════════════════════════════════════════════
+         CONTACT FORM + FAQ — shared sitewide, same as every other page.
+         ════════════════════════════════════════════════════════ */}
+      <QAForm pageData={pageDataForForm} />
     </article>
   );
 }

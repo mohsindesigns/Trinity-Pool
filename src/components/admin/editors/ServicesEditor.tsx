@@ -199,11 +199,49 @@ export default function ServicesEditor({ pageId, data, setData }: { pageId: stri
             {/* CATALOG SECTION */}
             {activeTab === "catalog" && (
               <div className="space-y-6">
-                 <ContentSelector 
-                    type="services" 
-                    label="Service Catalog (Select from Managed Inventory)" 
-                    selectedItems={services.services || []} 
-                    onSelect={(items) => updateSection("services", "services", items)} 
+                 <div className={UI.card + " space-y-4"}>
+                   <div className="space-y-1">
+                     <h3 className={UI.sectionHeader}>Category Group Headings</h3>
+                     <p className="text-[12px] text-[#646970]">Section headings shown above each group of cards on the public Services page.</p>
+                   </div>
+                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                     <div className="space-y-1.5">
+                       <label className={UI.label}>Artificial Lift Group</label>
+                       <input
+                         type="text"
+                         value={services.categoryLabels?.["artificial-lift"] || ""}
+                         onChange={(e) => updateSection("services", "categoryLabels", { ...(services.categoryLabels || {}), "artificial-lift": e.target.value })}
+                         className={UI.input}
+                         placeholder="Artificial Lift"
+                       />
+                     </div>
+                     <div className="space-y-1.5">
+                       <label className={UI.label}>Projects & Supplies Group</label>
+                       <input
+                         type="text"
+                         value={services.categoryLabels?.["projects-supplies"] || ""}
+                         onChange={(e) => updateSection("services", "categoryLabels", { ...(services.categoryLabels || {}), "projects-supplies": e.target.value })}
+                         className={UI.input}
+                         placeholder="Projects & Supplies"
+                       />
+                     </div>
+                     <div className="space-y-1.5">
+                       <label className={UI.label}>Uncategorized / Fallback Group</label>
+                       <input
+                         type="text"
+                         value={services.categoryLabels?.["other"] || ""}
+                         onChange={(e) => updateSection("services", "categoryLabels", { ...(services.categoryLabels || {}), "other": e.target.value })}
+                         className={UI.input}
+                         placeholder="More Services"
+                       />
+                     </div>
+                   </div>
+                 </div>
+                 <ContentSelector
+                    type="services"
+                    label="Service Catalog (Select from Managed Inventory)"
+                    selectedItems={services.services || []}
+                    onSelect={(items) => updateSection("services", "services", items)}
                  />
               </div>
             )}

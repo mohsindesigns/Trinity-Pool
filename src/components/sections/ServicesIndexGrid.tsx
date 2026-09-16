@@ -156,16 +156,17 @@ export default function ServicesIndexGrid() {
 
   const items = rawItems.filter((s: any) => s.status === "published" || s.status === undefined);
   const onMove = useSpotlight();
-  const learnMore = "Learn more";
+  const learnMore = stripHtml(servicesData?.ctaLearnMore || "") || "Learn more";
+  const categoryLabels = servicesData?.categoryLabels || {};
 
   if (items.length === 0) return null;
 
   const groups: { key: string; label: string; items: any[] }[] = [
-    { key: "artificial-lift", label: "Artificial Lift", items: items.filter((s: any) => s.category === "artificial-lift") },
-    { key: "projects-supplies", label: "Projects & Supplies", items: items.filter((s: any) => s.category === "projects-supplies") },
+    { key: "artificial-lift", label: categoryLabels["artificial-lift"] || "Artificial Lift", items: items.filter((s: any) => s.category === "artificial-lift") },
+    { key: "projects-supplies", label: categoryLabels["projects-supplies"] || "Projects & Supplies", items: items.filter((s: any) => s.category === "projects-supplies") },
   ];
   const uncategorized = items.filter((s: any) => s.category !== "artificial-lift" && s.category !== "projects-supplies");
-  if (uncategorized.length > 0) groups.push({ key: "other", label: "More Services", items: uncategorized });
+  if (uncategorized.length > 0) groups.push({ key: "other", label: categoryLabels["other"] || "More Services", items: uncategorized });
 
   return (
     <section className="relative bg-white py-16 md:py-24 overflow-x-clip border-t border-border-light/40">

@@ -9,7 +9,7 @@ import { stripHtml } from "../../lib/utils";
 const QAForm = dynamic(() => import("@/components/QAForm"), { ssr: false });
 
 export default function ContactTemplate({ pageData }: { pageData?: any }) {
-  const { contactPage, globalMetadata } = useContent();
+  const { contactPage, globalMetadata, footer } = useContent();
 
   const header = contactPage?.header || {};
   const badge = stripHtml(header.badge || "GET IN TOUCH");
@@ -21,7 +21,13 @@ export default function ContactTemplate({ pageData }: { pageData?: any }) {
   const heroImage = header.image || "/images/trinity/about.jpg";
   const heroImageAlt = header.imageAlt || "Trinity Pump & Supply";
   const bookingUrl = globalMetadata?.bookingUrl || "/contact-us/";
-  const phone = "830-279-3996";
+  // Real business phone — single source of truth is the shared footer contact
+  // info (editable from Home editor → Contact & FAQs), never hardcoded here.
+  const phone = footer?.contact?.phone || "830-279-3996";
+  const ctaText = header.ctaText || `Call ${phone}`;
+  const ctaUrl = header.ctaUrl || `tel:${phone.replace(/[^0-9+]/g, "")}`;
+  const ctaSecondaryText = header.ctaSecondaryText || "Send a Message";
+  const ctaSecondaryUrl = header.ctaSecondaryUrl || "#contact-support";
 
   return (
     <main className="w-full bg-off-white text-body overflow-hidden">
@@ -70,11 +76,11 @@ export default function ContactTemplate({ pageData }: { pageData?: any }) {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
-              <a href={`tel:${phone.replace(/[^0-9+]/g, "")}`} className="btn-gold w-full sm:w-auto justify-center text-center px-8 py-4">
-                Call {phone} <ArrowRight size={14} className="ml-1" />
+              <a href={ctaUrl} className="btn-gold w-full sm:w-auto justify-center text-center px-8 py-4">
+                {ctaText} <ArrowRight size={14} className="ml-1" />
               </a>
-              <a href={`#contact-support`} className="btn-outline-white w-full sm:w-auto justify-center text-center px-8 py-4">
-                Send a Message <ArrowRight size={14} className="ml-1" />
+              <a href={ctaSecondaryUrl} className="btn-outline-white w-full sm:w-auto justify-center text-center px-8 py-4">
+                {ctaSecondaryText} <ArrowRight size={14} className="ml-1" />
               </a>
             </div>
           </div>

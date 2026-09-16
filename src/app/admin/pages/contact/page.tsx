@@ -132,6 +132,49 @@ export default function ContactEditor() {
                                 onChange={(v) => updateHeader("description", v)}
                             />
                         </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 border-t border-gray-100">
+                            <div className="space-y-2">
+                                <label className="text-xs uppercase tracking-widest text-slate-400 font-bold">Primary Button Text</label>
+                                <input
+                                    type="text"
+                                    value={data.contactPage?.header?.ctaText || ""}
+                                    onChange={(e) => updateHeader("ctaText", e.target.value)}
+                                    placeholder="Defaults to “Call ” + your real phone number"
+                                    className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-gray-900 text-sm focus:border-primary/50 focus:outline-none transition-all shadow-inner"
+                                />
+                            </div>
+                            <div className="space-y-2">
+                                <label className="text-xs uppercase tracking-widest text-slate-400 font-bold">Primary Button Link</label>
+                                <input
+                                    type="text"
+                                    value={data.contactPage?.header?.ctaUrl || ""}
+                                    onChange={(e) => updateHeader("ctaUrl", e.target.value)}
+                                    placeholder="Defaults to tel: your real phone number"
+                                    className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-gray-900 text-sm focus:border-primary/50 focus:outline-none transition-all shadow-inner"
+                                />
+                            </div>
+                            <div className="space-y-2">
+                                <label className="text-xs uppercase tracking-widest text-slate-400 font-bold">Secondary Button Text</label>
+                                <input
+                                    type="text"
+                                    value={data.contactPage?.header?.ctaSecondaryText || ""}
+                                    onChange={(e) => updateHeader("ctaSecondaryText", e.target.value)}
+                                    placeholder="e.g. Send a Message"
+                                    className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-gray-900 text-sm focus:border-primary/50 focus:outline-none transition-all shadow-inner"
+                                />
+                            </div>
+                            <div className="space-y-2">
+                                <label className="text-xs uppercase tracking-widest text-slate-400 font-bold">Secondary Button Link</label>
+                                <input
+                                    type="text"
+                                    value={data.contactPage?.header?.ctaSecondaryUrl || ""}
+                                    onChange={(e) => updateHeader("ctaSecondaryUrl", e.target.value)}
+                                    placeholder="e.g. #contact-support"
+                                    className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-gray-900 text-sm focus:border-primary/50 focus:outline-none transition-all shadow-inner"
+                                />
+                            </div>
+                        </div>
                     </div>
                 </div>
 

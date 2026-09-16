@@ -99,6 +99,10 @@ export default function ReviewsTemplate({ pageData }: { pageData?: any; params?:
   const heroImage = section.image || "/images/trinity/about.jpg";
   const heroImageAlt = section.imageAlt || "Trinity Pump & Supply";
   const bookingUrl = globalMetadata?.bookingUrl || "/contact-us/";
+  const heroCtaText = section.ctaText || "Request a Quote";
+  const heroCtaUrl = section.ctaUrl || bookingUrl;
+  const heroCtaSecondaryText = section.ctaSecondaryText || "Leave a Review";
+  const heroCtaSecondaryUrl = section.ctaSecondaryUrl || GOOGLE_REVIEW_URL;
 
   const reviews: any[] = Array.isArray(testimonials?.items) && testimonials.items.length > 0 ? testimonials.items : [];
 
@@ -155,11 +159,11 @@ export default function ReviewsTemplate({ pageData }: { pageData?: any; params?:
             </p>
 
             <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
-              <a href={bookingUrl} className="btn-gold w-full sm:w-auto justify-center text-center px-8 py-4">
-                Request a Quote <ArrowRight size={14} className="ml-1" />
+              <a href={heroCtaUrl} className="btn-gold w-full sm:w-auto justify-center text-center px-8 py-4">
+                {heroCtaText} <ArrowRight size={14} className="ml-1" />
               </a>
-              <a href={GOOGLE_REVIEW_URL} target="_blank" rel="noopener noreferrer" className="btn-outline-white w-full sm:w-auto justify-center text-center px-8 py-4">
-                Leave a Review <ArrowRight size={14} className="ml-1" />
+              <a href={heroCtaSecondaryUrl} target={heroCtaSecondaryUrl.startsWith("http") ? "_blank" : undefined} rel={heroCtaSecondaryUrl.startsWith("http") ? "noopener noreferrer" : undefined} className="btn-outline-white w-full sm:w-auto justify-center text-center px-8 py-4">
+                {heroCtaSecondaryText} <ArrowRight size={14} className="ml-1" />
               </a>
             </div>
           </div>

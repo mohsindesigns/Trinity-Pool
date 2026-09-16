@@ -23,7 +23,7 @@ const UI = {
 const ICON_OPTIONS = ["Star", "ShieldCheck", "Award", "Truck", "Clock", "Users", "MapPin", "Wrench", "CheckCircle2", "Zap", "Headphones", "Package"];
 
 const EMPTY = {
-  section: { badge: "", headline: "", description: "", image: "", imageAlt: "" },
+  section: { badge: "", headline: "", description: "", image: "", imageAlt: "", ctaText: "", ctaUrl: "", ctaSecondaryText: "", ctaSecondaryUrl: "" },
   stats: { items: [] },
   ctaBanner: { label: "", title: "", description: "", button: "", buttonUrl: "", phone: "" },
 };
@@ -197,6 +197,25 @@ export default function ReviewsPageEditor() {
                     content={t.section.description}
                     onChange={(v) => updateSection("section", "description", v)}
                   />
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 border-t border-slate-100">
+                  <div className="space-y-2">
+                    <label className={UI.label}>Primary Button Text</label>
+                    <input type="text" value={t.section.ctaText} onChange={(e) => updateSection("section", "ctaText", e.target.value)} className={UI.input} placeholder="e.g. Request a Quote" />
+                  </div>
+                  <div className="space-y-2">
+                    <label className={UI.label}>Primary Button Link</label>
+                    <input type="text" value={t.section.ctaUrl} onChange={(e) => updateSection("section", "ctaUrl", e.target.value)} className={UI.input} placeholder="Defaults to your booking/contact URL" />
+                  </div>
+                  <div className="space-y-2">
+                    <label className={UI.label}>Secondary Button Text</label>
+                    <input type="text" value={t.section.ctaSecondaryText} onChange={(e) => updateSection("section", "ctaSecondaryText", e.target.value)} className={UI.input} placeholder="e.g. Leave a Review" />
+                  </div>
+                  <div className="space-y-2">
+                    <label className={UI.label}>Secondary Button Link</label>
+                    <input type="text" value={t.section.ctaSecondaryUrl} onChange={(e) => updateSection("section", "ctaSecondaryUrl", e.target.value)} className={UI.input} placeholder="Your Google review link" />
+                  </div>
                 </div>
               </motion.div>
             )}

@@ -5,7 +5,8 @@ import Link from "next/link";
 import { 
   Plus, Search, Filter, MoreVertical, Edit, 
   Trash2, Copy, Eye, EyeOff, Calendar, 
-  CheckCircle2, Clock, FileText, ChevronRight
+  CheckCircle2, Clock, FileText, ChevronRight,
+  LayoutTemplate, Settings2, Loader2, Save, X, ExternalLink
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -18,8 +19,16 @@ export default function BlogPosts() {
   const [bulkAction, setBulkAction] = useState("");
   const [editingPost, setEditingPost] = useState<any>(null);
 
+  // Homepage Blog Section Management State
+  const [sectionSettings, setSectionSettings] = useState<any>(null);
+  const [loadingSection, setLoadingSection] = useState(true);
+  const [savingSection, setSavingSection] = useState(false);
+  const [sectionMessage, setSectionMessage] = useState("");
+  const [showSectionDrawer, setShowSectionDrawer] = useState(false);
+
   useEffect(() => {
     fetchPosts();
+    fetchSectionSettings();
   }, [statusFilter]);
 
   const fetchPosts = async () => {
@@ -32,6 +41,70 @@ export default function BlogPosts() {
       console.error("Failed to fetch posts:", err);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const fetchSectionSettings = async () => {
+    try {
+      const res = await fetch('/api/admin/blog/settings/');
+      if (res.ok) {
+        const data = await res.json();
+        setSectionSettings(data.blogSection || {});
+      }
+    } catch (err) {
+      console.error("Failed to fetch blog section settings:", err);
+    } finally {
+      setLoadingSection(false);
+    }
+  };
+
+  const toggleHomepageVisibility = async (newHiddenState: boolean) => {
+    setSavingSection(true);
+    setSectionMessage("");
+    try {
+      const res = await fetch('/api/admin/blog/settings/', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ hidden: newHiddenState })
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setSectionSettings(data.blogSection);
+        setSectionMessage(newHiddenState ? "Homepage blog section is now hidden." : "Homepage blog section is now visible on the homepage.");
+        setTimeout(() => setSectionMessage(""), 4000);
+      } else {
+        alert("Failed to update homepage blog section visibility.");
+      }
+    } catch (err) {
+      alert("Error updating homepage blog section visibility.");
+    } finally {
+      setSavingSection(false);
+    }
+  };
+
+  const saveDrawerSettings = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSavingSection(true);
+    setSectionMessage("");
+    try {
+      const res = await fetch('/api/admin/blog/settings/', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(sectionSettings)
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setSectionSettings(data.blogSection);
+        setSectionMessage("Homepage blog section settings saved successfully!");
+        setTimeout(() => setSectionMessage(""), 4000);
+        setShowSectionDrawer(false);
+      } else {
+        alert("Failed to save settings.");
+      }
+    } catch (err) {
+      alert("Error saving settings.");
+    } finally {
+      setSavingSection(false);
     }
   };
 
@@ -179,12 +252,212 @@ export default function BlogPosts() {
   };
 
   return (
-    <div className="bg-[#f0f0f1] min-h-screen font-sans">
+    <div className="bg-[#f0f0f1] min-h-screen font-sans pb-12">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <h1 className="text-[23px] font-normal text-[#1d2327] font-serif">Posts</h1>
           <Link href="/admin/blog/new" className="bg-white border border-[#2271b1] text-[#2271b1] text-[13px] px-2 py-0.5 rounded-[3px] hover:bg-[#f0f6fb] transition-colors">Add New</Link>
         </div>
+      </div>
+
+      {/* ── Homepage Blog Section Management Card ── */}
+      <div className="bg-white border border-[#c3c4c7] rounded-sm shadow-[0_1px_1px_rgba(0,0,0,0.04)] mb-6 overflow-hidden">
+        <div className="p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-gradient-to-r from-white via-white to-[#f8f9fa] border-b border-[#f0f0f1]">
+          <div className="space-y-1">
+            <div className="flex items-center gap-2">
+              <span className="p-1.5 bg-[#f0f6fb] text-[#2271b1] rounded">
+                <LayoutTemplate className="w-4 h-4" />
+              </span>
+              <h2 className="text-[14px] font-bold text-[#1d2327]">
+                Homepage Blog Section
+              </h2>
+              {loadingSection ? (
+                <Loader2 className="w-3.5 h-3.5 animate-spin text-[#646970]" />
+              ) : sectionSettings?.hidden ? (
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-semibold bg-amber-50 text-amber-800 border border-amber-200">
+                  <EyeOff className="w-3 h-3" /> Hidden on Homepage
+                </span>
+              ) : (
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200">
+                  <CheckCircle2 className="w-3 h-3" /> Visible on Homepage
+                </span>
+              )}
+            </div>
+            <p className="text-[12px] text-[#646970]">
+              Control whether the blog carousel section is displayed to visitors on your homepage.
+            </p>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2">
+            <button
+              onClick={() => toggleHomepageVisibility(!sectionSettings?.hidden)}
+              disabled={savingSection || loadingSection}
+              className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-[3px] text-[12px] font-semibold transition-all shadow-sm disabled:opacity-50 ${
+                sectionSettings?.hidden
+                  ? "bg-[#2271b1] hover:bg-[#135e96] text-white"
+                  : "bg-amber-600 hover:bg-amber-700 text-white"
+              }`}
+            >
+              {savingSection ? (
+                <Loader2 className="w-3.5 h-3.5 animate-spin" />
+              ) : sectionSettings?.hidden ? (
+                <Eye className="w-3.5 h-3.5" />
+              ) : (
+                <EyeOff className="w-3.5 h-3.5" />
+              )}
+              {savingSection
+                ? "Updating..."
+                : sectionSettings?.hidden
+                ? "Show on Homepage"
+                : "Hide from Homepage"}
+            </button>
+
+            <button
+              onClick={() => setShowSectionDrawer((prev) => !prev)}
+              disabled={loadingSection}
+              className="flex items-center gap-1 bg-white border border-[#8c8f94] hover:bg-[#f6f7f7] text-[#2c3338] text-[12px] font-medium px-3 py-1.5 rounded-[3px] transition-colors"
+            >
+              <Settings2 className="w-3.5 h-3.5 text-[#646970]" />
+              {showSectionDrawer ? "Close Settings" : "Section Content"}
+            </button>
+
+            <Link
+              href="/"
+              target="_blank"
+              className="flex items-center gap-1 text-[#2271b1] hover:underline text-[12px] px-2 py-1"
+            >
+              Preview <ExternalLink className="w-3 h-3" />
+            </Link>
+          </div>
+        </div>
+
+        {sectionMessage && (
+          <div className="px-4 py-2 bg-emerald-50 border-b border-emerald-200 text-emerald-800 text-[12px] font-medium flex items-center gap-2">
+            <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+            {sectionMessage}
+          </div>
+        )}
+
+        {/* Collapsible Section Settings Drawer */}
+        <AnimatePresence>
+          {showSectionDrawer && (
+            <motion.form
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              onSubmit={saveDrawerSettings}
+              className="p-4 sm:p-5 bg-[#fcfcfc] border-b border-[#f0f0f1] space-y-4"
+            >
+              <div className="flex items-center justify-between pb-2 border-b border-[#f0f0f1]">
+                <span className="text-[12px] font-bold text-[#1d2327] uppercase tracking-wide">
+                  Customize Homepage Blog Section Texts
+                </span>
+                <span className="text-[11px] text-[#646970]">
+                  Changes here appear directly in the homepage blog section.
+                </span>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="space-y-1">
+                  <label className="text-[12px] font-medium text-[#1d2327]">
+                    Section Badge / Subtitle
+                  </label>
+                  <input
+                    type="text"
+                    value={sectionSettings?.subtitle || ""}
+                    onChange={(e) =>
+                      setSectionSettings((prev: any) => ({
+                        ...prev,
+                        subtitle: e.target.value,
+                      }))
+                    }
+                    className="w-full bg-white border border-[#8c8f94] px-2.5 py-1.5 text-[13px] rounded-[3px] outline-none focus:border-[#2271b1]"
+                    placeholder="e.g. LATEST NEWS"
+                  />
+                </div>
+
+                <div className="space-y-1">
+                  <label className="text-[12px] font-medium text-[#1d2327]">
+                    Section Main Headline
+                  </label>
+                  <input
+                    type="text"
+                    value={sectionSettings?.title || ""}
+                    onChange={(e) =>
+                      setSectionSettings((prev: any) => ({
+                        ...prev,
+                        title: e.target.value,
+                      }))
+                    }
+                    className="w-full bg-white border border-[#8c8f94] px-2.5 py-1.5 text-[13px] font-semibold rounded-[3px] outline-none focus:border-[#2271b1]"
+                    placeholder="e.g. Insights & Industry Updates"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="space-y-1">
+                  <label className="text-[12px] font-medium text-[#1d2327]">
+                    "View All" Button Label
+                  </label>
+                  <input
+                    type="text"
+                    value={sectionSettings?.ctaAll || ""}
+                    onChange={(e) =>
+                      setSectionSettings((prev: any) => ({
+                        ...prev,
+                        ctaAll: e.target.value,
+                      }))
+                    }
+                    className="w-full bg-white border border-[#8c8f94] px-2.5 py-1.5 text-[13px] rounded-[3px] outline-none focus:border-[#2271b1]"
+                    placeholder="e.g. View All Articles"
+                  />
+                </div>
+
+                <div className="space-y-1">
+                  <label className="text-[12px] font-medium text-[#1d2327]">
+                    "Read More" Card Link Label
+                  </label>
+                  <input
+                    type="text"
+                    value={sectionSettings?.ctaReadMore || ""}
+                    onChange={(e) =>
+                      setSectionSettings((prev: any) => ({
+                        ...prev,
+                        ctaReadMore: e.target.value,
+                      }))
+                    }
+                    className="w-full bg-white border border-[#8c8f94] px-2.5 py-1.5 text-[13px] rounded-[3px] outline-none focus:border-[#2271b1]"
+                    placeholder="e.g. Read More"
+                  />
+                </div>
+              </div>
+
+              <div className="flex items-center justify-end gap-2 pt-2">
+                <button
+                  type="button"
+                  onClick={() => setShowSectionDrawer(false)}
+                  className="px-3 py-1.5 text-[12px] text-[#646970] hover:text-[#1d2327] rounded transition-colors"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  disabled={savingSection}
+                  className="flex items-center gap-1.5 bg-[#2271b1] hover:bg-[#135e96] text-white text-[12px] font-semibold px-4 py-1.5 rounded-[3px] shadow-sm transition-all disabled:opacity-50"
+                >
+                  {savingSection ? (
+                    <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                  ) : (
+                    <Save className="w-3.5 h-3.5" />
+                  )}
+                  Save Changes
+                </button>
+              </div>
+            </motion.form>
+          )}
+        </AnimatePresence>
       </div>
 
       <div className="flex flex-wrap items-center justify-between gap-4 mb-4 text-[13px]">

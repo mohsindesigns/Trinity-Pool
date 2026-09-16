@@ -110,7 +110,7 @@ export async function generateMetadata(): Promise<Metadata> {
     homePageDoc?.title ||
     homeData?.seo?.metaTitle ||
     settings?.siteTitle ||
-    "Massage Therapy in Timonium Maryland | Trinity Pump & Supply";
+    "Downhole Rod Pumps & Oilfield Equipment | Trinity Pump & Supply";
 
   const metaDescription =
     seo.metaDescription ||
@@ -119,7 +119,7 @@ export async function generateMetadata(): Promise<Metadata> {
     homeData?.hero?.description ||
     homeData?.hero?.subheadline ||
     settings?.siteDescription ||
-    "Get real pain relief with massage therapy Timonium Maryland. Trinity Pump & Supply melts deep knots, eases stiffness and gets you moving. Book your session now.";
+    "Trinity Pump & Supply supplies and repairs downhole rod pumps, sucker rods, and artificial lift equipment from our Odessa, Texas facility across the Permian Basin.";
 
   return {
     ...metadata,

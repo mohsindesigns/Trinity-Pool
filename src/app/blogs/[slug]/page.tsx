@@ -7,7 +7,8 @@ import {
   Clock,
   BookOpen,
   Star,
-  MapPin
+  MapPin,
+  ArrowLeft
 } from "lucide-react";
 
 import connectToDatabase from "@/lib/mongodb";
@@ -34,7 +35,7 @@ const DEFAULT_CTA_BANNER = {
   buttonUrl: "/contact-us/",
 };
 
-export const revalidate = 60; // Cache for 1 minute, updated via revalidatePath in admin panel
+export const revalidate = 60; // Cache for 1 minute
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -60,7 +61,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const pageDesc =
     post.seo?.metaDescription ||
     post.excerpt ||
-    `${post.title} - Specialized recovery insights, deep tissue protocols, and clinical tips from Trinity Pump & Supply.`;
+    `${post.title} - Technical guidance, downhole rod pump maintenance, and artificial lift equipment insights from Trinity Pump & Supply in Odessa, Texas.`;
   const pageImage = normalizeBlogImage(post.seo?.ogImage || post.featuredImage) || `${BASE_URL}/logo.png`;
   let canonicalUrl = post.seo?.canonicalUrl || `${BASE_URL}/blogs/${post.slug}/`;
   if (canonicalUrl.includes('/blog/')) {
@@ -135,20 +136,15 @@ export default async function BlogPostPage({ params }: Props) {
   const globalContent = contentDoc?.data || {};
   const globalBlogPageData = globalContent.blogsPage || globalContent.blogPage || {};
   const pageBlogPageData = blogPageDoc?.content?.blogPage || blogPageDoc?.content || {};
-  // Deep-merge (page content wins per-leaf) instead of picking whichever
-  // object is truthy first — otherwise a field only set globally (e.g. the
-  // CTA banner) silently disappears the moment the Page doc has ANY content.
   const blogPageData = mergePageContent(globalBlogPageData, pageBlogPageData);
 
   // Resolve Related Section Header
   const relatedSection = {
     eyebrow: blogPageData.relatedSection?.eyebrow || "CONTINUE READING",
-    title: blogPageData.relatedSection?.title || "Related Articles & Clinical Guides"
+    title: blogPageData.relatedSection?.title || "Related Field Guides & Technical Articles"
   };
 
-  // CTA banner reuses the blog index's own independent content (never the
-  // shared homepage useContent() data), so it stays in sync with /blogs/
-  // without leaking homepage content onto article pages.
+  // CTA banner
   const ctaBannerData = blogPageData.ctaBanner && Object.keys(blogPageData.ctaBanner).length > 0 ? blogPageData.ctaBanner : DEFAULT_CTA_BANNER;
   const pageDataForForm = blogPageDoc ? JSON.parse(JSON.stringify(blogPageDoc)) : null;
 
@@ -210,13 +206,13 @@ export default async function BlogPostPage({ params }: Props) {
       slug: r.slug || String(r._id),
       title: r.title,
       badge: catBadge,
-      image: normalizeBlogImage(r.featuredImage) || "/images/blog-3.webp",
+      image: normalizeBlogImage(r.featuredImage) || "/images/trinity/blog-pump.jpg",
       date: rDate,
       readTime: rReadTime
     };
   });
 
-  // 4. Resolve Post Metadata & Author Information (retained for SEO JSON-LD)
+  // 4. Resolve Post Metadata & Author Information
   let categoryBadge = "Field Insight";
   if (Array.isArray(post.categories) && post.categories.length > 0) {
     categoryBadge = post.categories[0].name || categoryBadge;
@@ -246,7 +242,7 @@ export default async function BlogPostPage({ params }: Props) {
   const featuredImage = normalizeBlogImage(post.featuredImage) || "/images/trinity/blog-pump.jpg";
 
   const rawAuthor = post.author as any;
-  let cleanName = "Trinity Pump & Supply";
+  let cleanName = "Trinity Technical Specialists";
   if (rawAuthor) {
     if (typeof rawAuthor === "string" && rawAuthor.trim()) {
       cleanName = rawAuthor.trim();
@@ -257,7 +253,7 @@ export default async function BlogPostPage({ params }: Props) {
     }
   }
 
-  let cleanRole = "Oilfield Equipment & Supply Specialists";
+  let cleanRole = "Downhole Rod Pump & Artificial Lift Specialists — Odessa, TX";
   if (rawAuthor?.role) {
     if (typeof rawAuthor.role === "object" && rawAuthor.role?.name) {
       cleanRole = String(rawAuthor.role.name);
@@ -266,10 +262,10 @@ export default async function BlogPostPage({ params }: Props) {
     }
   }
 
-  let cleanAvatar = "/images/theraphist.jpeg";
+  let cleanAvatar = "/images/trinity/avatar-1.jpg";
   if (rawAuthor) {
     const candidate = rawAuthor.image || rawAuthor.avatar;
-    if (candidate && typeof candidate === "string" && (candidate.startsWith("http") || candidate.startsWith("/"))) {
+    if (candidate && typeof candidate === "string" && (candidate.startsWith("http") || candidate.startsWith("/")) && !candidate.includes("theraphist")) {
       cleanAvatar = candidate;
     }
   }
@@ -277,7 +273,8 @@ export default async function BlogPostPage({ params }: Props) {
   const authorInfo = {
     name: String(cleanName),
     role: String(cleanRole),
-    avatar: String(cleanAvatar)
+    avatar: String(cleanAvatar),
+    bio: "The technical specialists at Trinity Pump & Supply bring over a century of hands-on expertise building, repairing, and troubleshooting downhole sucker rod pumps, TACs, and artificial lift equipment across the Permian Basin."
   };
 
   const url = `${BASE_URL}/blogs/${post.slug}/`;
@@ -337,7 +334,7 @@ export default async function BlogPostPage({ params }: Props) {
         "isPartOf": { "@id": url },
         "author": {
           "@type": "Person",
-          "@id": `${BASE_URL}/#/schema/person/${post.author?._id || "antoine-lyles"}`,
+          "@id": `${BASE_URL}/#/schema/person/${post.author?._id || "trinity-technical-team"}`,
           "name": authorInfo.name,
           "jobTitle": authorInfo.role
         },
@@ -361,7 +358,6 @@ export default async function BlogPostPage({ params }: Props) {
           "@id": `${url}#primaryimage`,
           "url": featuredImage
         },
-        "thumbnailUrl": featuredImage,
         "keywords": post.tags?.map((t: any) => t.name).join(", "),
         "inLanguage": "en-US"
       }
@@ -418,9 +414,9 @@ export default async function BlogPostPage({ params }: Props) {
       <ReadingProgress />
 
       {/* ════════════════════════════════════════════════════════
-         HERO — post's own featured image as the full-bleed background
+         1. HERO — Featured image as full-bleed background
          ════════════════════════════════════════════════════════ */}
-      <section className="relative bg-dark min-h-[50vh] flex items-end pt-[130px] pb-14 border-b border-border-dark overflow-hidden">
+      <section className="relative bg-dark min-h-[52vh] flex items-end pt-[140px] pb-14 border-b border-border-dark overflow-hidden">
         <div className="absolute inset-0 z-0 pointer-events-none opacity-40">
           <img
             src={featuredImage}
@@ -434,6 +430,7 @@ export default async function BlogPostPage({ params }: Props) {
         <div className="absolute top-1/2 left-1/3 -translate-y-1/2 w-[450px] h-[450px] bg-gold/[0.07] rounded-full blur-[140px] pointer-events-none z-0" />
 
         <div className="site-container relative z-10 w-full text-left">
+          {/* Breadcrumb pill */}
           <div className="mb-6 flex flex-wrap items-center gap-3">
             <nav
               aria-label="Breadcrumb"
@@ -444,14 +441,14 @@ export default async function BlogPostPage({ params }: Props) {
               </Link>
               <span className="text-gold/50">/</span>
               <Link href="/blogs/" className="hover:text-gold transition-colors text-white/80">
-                Blog
+                Blogs
               </Link>
               <span className="text-gold/50">/</span>
               <span className="text-gold font-medium">{categoryBadge}</span>
             </nav>
           </div>
 
-          <div className="max-w-[760px]">
+          <div className="max-w-[800px]">
             <h1 className="font-display font-medium text-[30px] min-[400px]:text-[38px] md:text-[50px] lg:text-[56px] text-white leading-[1.12] mb-6 tracking-tight">
               {post.title}
             </h1>
@@ -472,23 +469,32 @@ export default async function BlogPostPage({ params }: Props) {
                 {readTimeDisplay}
               </span>
 
-              {post.location && (
-                <span className="inline-flex items-center gap-1.5 text-white/70 font-mono font-medium">
-                  <MapPin className="w-3.5 h-3.5 text-gold" />
-                  {post.location}
-                </span>
-              )}
+              <span className="inline-flex items-center gap-1.5 text-white/70 font-mono font-medium">
+                <MapPin className="w-3.5 h-3.5 text-gold" />
+                {post.location || "Odessa, TX"}
+              </span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── MAIN CONTENT LAYOUT WITH STICKY SIDEBAR ────────────────── */}
-      <div className="site-container mt-14 sm:mt-16">
+      {/* ════════════════════════════════════════════════════════
+         2. MAIN CONTENT WITH STICKY SIDEBAR
+         ════════════════════════════════════════════════════════ */}
+      <div className="site-container mt-12 sm:mt-16">
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">
 
-          {/* Left: Blog Content */}
+          {/* Left: Article Content */}
           <div className="lg:w-[65%] min-w-0 w-full">
+            {/* Back to all articles link */}
+            <div className="mb-8">
+              <Link
+                href="/blogs/"
+                className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-dark/60 hover:text-gold-dark transition-colors"
+              >
+                <ArrowLeft className="w-3.5 h-3.5" /> Back to All Articles
+              </Link>
+            </div>
 
             {/* Main Content Body */}
             <div
@@ -500,7 +506,7 @@ export default async function BlogPostPage({ params }: Props) {
               [&_a_*]:!text-inherit [&_a_b]:!text-inherit [&_a_strong]:!text-inherit [&_a_span]:!text-inherit
               [&_b_a]:!text-gold-dark [&_strong_a]:!text-gold-dark
               prose-img:rounded-2xl md:prose-img:rounded-3xl prose-img:my-8 prose-img:shadow-lg prose-img:border prose-img:border-border-light
-              prose-blockquote:border-l-4 prose-blockquote:border-gold prose-blockquote:bg-gold/5 prose-blockquote:p-6 md:prose-blockquote:p-8 prose-blockquote:rounded-2xl prose-blockquote:text-dark/80 prose-blockquote:italic prose-blockquote:not-italic
+              prose-blockquote:border-l-4 prose-blockquote:border-gold prose-blockquote:bg-gold/5 prose-blockquote:p-6 md:prose-blockquote:p-8 prose-blockquote:rounded-2xl prose-blockquote:text-dark/80 prose-blockquote:not-italic
               prose-ul:text-dark/75 prose-ul:my-4 prose-li:my-1.5 prose-li:text-[15px]
               prose-table:w-full prose-table:border-collapse prose-table:my-6
               prose-th:bg-dark/[0.04] prose-th:text-dark prose-th:p-3 prose-th:border prose-th:border-border-light prose-th:text-left prose-th:text-[13px]
@@ -508,15 +514,30 @@ export default async function BlogPostPage({ params }: Props) {
               prose-strong:text-dark prose-strong:font-bold"
               dangerouslySetInnerHTML={{ __html: processedContent }}
             />
+
+            {/* Tags (if any) */}
+            {Array.isArray(post.tags) && post.tags.length > 0 && (
+              <div className="mt-12 pt-6 border-t border-border-light flex flex-wrap items-center gap-2">
+                <span className="text-xs font-mono font-bold uppercase tracking-wider text-dark/40 mr-2">Tags:</span>
+                {post.tags.map((t: any, idx: number) => (
+                  <span
+                    key={idx}
+                    className="px-3 py-1 rounded-full text-xs font-mono bg-white border border-border-light text-dark/70"
+                  >
+                    #{typeof t === 'string' ? t : t.name}
+                  </span>
+                ))}
+              </div>
+            )}
+
           </div>
 
-          {/* Right: Sticky Table of Contents (Sidebar) */}
+          {/* Right: Sticky Sidebar */}
           <aside className="lg:w-[35%] shrink-0 lg:sticky lg:top-28 w-full">
             <div className="space-y-6 md:space-y-8">
 
               {/* Table of Contents Box */}
               <div className="bg-white border border-border-light rounded-[28px] p-6 sm:p-8 shadow-[0_1px_2px_rgba(7,27,28,0.04),0_12px_30px_-18px_rgba(7,27,28,0.16)] relative overflow-hidden">
-                {/* Header */}
                 <div className="flex items-center gap-3 mb-6 pb-4 border-b border-border-light">
                   <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-gold-light via-gold to-gold-dark flex items-center justify-center shrink-0 shadow-sm">
                     <BookOpen className="w-4 h-4 text-white" />
@@ -531,9 +552,8 @@ export default async function BlogPostPage({ params }: Props) {
                   </div>
                 </div>
 
-                {/* Table of Contents Links */}
                 {tableOfContents.length > 0 ? (
-                  <nav className="space-y-1.5 max-h-[380px] overflow-y-auto pr-2 custom-scrollbar">
+                  <nav className="space-y-1.5 max-h-[360px] overflow-y-auto pr-2 custom-scrollbar">
                     {tableOfContents.map((item, idx) => (
                       <a
                         key={idx}
@@ -560,7 +580,7 @@ export default async function BlogPostPage({ params }: Props) {
                 ) : (
                   <div className="py-2 space-y-2">
                     <p className="text-xs text-dark/40 italic">
-                      Comprehensive guide outlined above.
+                      Technical guide outlined above.
                     </p>
                   </div>
                 )}
@@ -582,35 +602,38 @@ export default async function BlogPostPage({ params }: Props) {
                   </div>
                 </div>
 
-                {/* Engage */}
+                {/* Engage / Share */}
                 <div className="mt-6 pt-6 border-t border-border-light">
                   <p className="text-[10px] font-mono font-bold uppercase tracking-widest text-dark/40 mb-3">
-                    Engage
+                    Share Article
                   </p>
                   <ShareButton title={post.title} url={post.slug} />
                 </div>
               </div>
-
             </div>
           </aside>
 
         </div>
       </div>
 
-      {/* Inline FAQs attached to this post */}
+      {/* ════════════════════════════════════════════════════════
+         3. INLINE FAQS (IF ATTACHED TO POST)
+         ════════════════════════════════════════════════════════ */}
       {((post.faq && post.faq.length > 0) || (post.faqSchemaMarkup && post.faqSchemaMarkup.trim())) && (
         <div className="site-container mt-16 pt-8 border-t border-border-light">
           <PageInlineFaqs
             faqs={post.faq}
             faqSchemaMarkup={post.faqSchemaMarkup}
-            badge={post.faqBadge || "ARTICLE FAQ"}
+            badge={post.faqBadge || "TECHNICAL FAQ"}
             title={post.faqTitle || "Frequently Asked Questions"}
-            subtitle={post.faqDescription || "Key clinical insights and treatment queries answered."}
+            subtitle={post.faqDescription || "Key specifications, equipment diagnostics, and maintenance queries answered."}
           />
         </div>
       )}
 
-      {/* ── RELATED ARTICLES SECTION ───────────────────────────── */}
+      {/* ════════════════════════════════════════════════════════
+         4. RELATED ARTICLES
+         ════════════════════════════════════════════════════════ */}
       {relatedPosts.length > 0 && (
         <section className="site-container my-20 pt-12 border-t border-border-light">
           <div className="text-left mb-8 flex items-center gap-3">
@@ -642,14 +665,14 @@ export default async function BlogPostPage({ params }: Props) {
       )}
 
       {/* ════════════════════════════════════════════════════════
-         CTA — reuses the blog index's own independent content.
+         5. CTA BANNER
          ════════════════════════════════════════════════════════ */}
       <div className="-mt-4 md:-mt-6 relative">
         <CtaBanner overrideData={ctaBannerData} />
       </div>
 
       {/* ════════════════════════════════════════════════════════
-         CONTACT FORM + FAQ — shared sitewide, same as every other page.
+         6. CONTACT FORM + FAQ
          ════════════════════════════════════════════════════════ */}
       <QAForm pageData={pageDataForForm} />
     </article>

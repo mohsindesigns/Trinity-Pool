@@ -18,6 +18,8 @@ import StatsBar from "@/components/StatsBar";
 
 export default function HomeTemplate({ pageData, params }: { pageData?: any, params?: any }) {
   const { allBlogs, blogSection } = useContent();
+  const isBlogSectionHidden = Boolean(pageData?.content?.blogSection?.hidden ?? blogSection?.hidden);
+
   return (
     <div className="relative">
       <Hero />
@@ -38,7 +40,7 @@ export default function HomeTemplate({ pageData, params }: { pageData?: any, par
       <HowWeWork />
       <Testimonials />
 
-      {!(pageData?.content?.blogSection?.hidden ?? blogSection?.hidden) && (
+      {!isBlogSectionHidden && (
         <BlogSection
           title={pageData?.content?.blogSection?.title || blogSection?.title}
           subtitle={pageData?.content?.blogSection?.subtitle || blogSection?.subtitle}

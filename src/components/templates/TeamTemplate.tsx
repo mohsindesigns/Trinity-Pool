@@ -99,21 +99,38 @@ const TeamPortrait = ({ image, title, badge1, badge2, alignRight = false }: any)
   const ref = useRef<any>(null);
   const inView = useInView(ref, { once: true, margin: "-50px" });
 
-  const fallbackImage = "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80";
+  // Bios don't require a photo — a name-initials panel (same treatment as
+  // ContactPersonCard) reads as intentional and on-brand, unlike substituting
+  // a stock photo of an unrelated stranger when no real photo is on file yet.
+  const hasPhoto = !!image && !imageError;
+  const initials = (title || "")
+    .split(" ")
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((w: string) => w[0]?.toUpperCase())
+    .join("");
 
   return (
     <motion.div ref={ref} initial={{ opacity: 0, y: 40 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }} className={`relative group w-full ${alignRight ? 'lg:ml-auto' : ''}`} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
       <div className="relative z-10 w-full max-w-[500px] mx-auto lg:mx-0">
         <div className="absolute -inset-2 sm:-inset-3 bg-gradient-to-br from-gold/10 via-slate-500/10 to-gold-dark/10 rounded-[2rem] sm:rounded-[2.5rem] blur-xl sm:blur-2xl group-hover:from-gold/20 group-hover:via-slate-500/20 group-hover:to-gold-dark/20 transition-all duration-700" />
         <div className="relative rounded-[1.5rem] sm:rounded-[2rem] overflow-hidden shadow-[0_10px_40px_rgb(0,0,0,0.08)] group-hover:shadow-[0_20px_50px_rgb(0,0,0,0.15)] transition-shadow duration-700">
-          <motion.img 
-            src={imageError ? fallbackImage : image} 
-            alt={title} 
-            onError={() => setImageError(true)}
-            animate={isHovered ? { scale: 1.05 } : { scale: 1 }} 
-            transition={{ duration: 1.5, ease: "easeOut" }} 
-            className="w-full h-[280px] min-[350px]:h-[380px] sm:h-[450px] lg:h-[550px] object-cover" 
-          />
+          {hasPhoto ? (
+            <motion.img
+              src={image}
+              alt={title}
+              onError={() => setImageError(true)}
+              animate={isHovered ? { scale: 1.05 } : { scale: 1 }}
+              transition={{ duration: 1.5, ease: "easeOut" }}
+              className="w-full h-[280px] min-[350px]:h-[380px] sm:h-[450px] lg:h-[550px] object-cover"
+            />
+          ) : (
+            <div className="w-full h-[280px] min-[350px]:h-[380px] sm:h-[450px] lg:h-[550px] flex items-center justify-center bg-gradient-to-br from-gold-light via-gold to-gold-dark">
+              <span className="text-white font-display font-medium text-[72px] sm:text-[96px] tracking-tight opacity-95">
+                {initials || "•"}
+              </span>
+            </div>
+          )}
           <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/10 to-transparent opacity-80" />
         </div>
         <motion.div initial={{ opacity: 0, x: -10 }} animate={inView ? { opacity: 1, x: 0 } : {}} transition={{ delay: 0.3 }} className="absolute top-4 left-4 sm:top-6 sm:left-6 z-20">

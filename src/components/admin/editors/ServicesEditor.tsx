@@ -238,65 +238,70 @@ export default function ServicesEditor({ pageId, data, setData }: { pageId: stri
                    </div>
                  </div>
 
-                 <div className={UI.card + " space-y-4"}>
-                   <div className="space-y-1">
-                     <h3 className={UI.sectionHeader}>Projects & Supplies Contact</h3>
-                     <p className="text-[12px] text-[#646970]">Shown as a small contact card under the "Projects & Supplies" heading on the public Services page. Leave the name blank to hide it entirely. Independent from the Artificial Lift landing page's own contact card.</p>
-                   </div>
-                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                     <div className="space-y-1.5">
-                       <label className={UI.label}>Name</label>
-                       <input
-                         type="text"
-                         value={services.categoryContacts?.["projects-supplies"]?.name || ""}
-                         onChange={(e) => updateSection("services", "categoryContacts", { ...(services.categoryContacts || {}), "projects-supplies": { ...(services.categoryContacts?.["projects-supplies"] || {}), name: e.target.value } })}
-                         className={UI.input}
-                         placeholder="e.g. Sim"
-                       />
+                 {[
+                   { key: "artificial-lift", title: "Artificial Lift Contact", namePlaceholder: "e.g. Josh", emailPlaceholder: "e.g. josh@trinitypumpsupply.com", labelPlaceholder: "e.g. CONTACT FOR ARTIFICIAL LIFT" },
+                   { key: "projects-supplies", title: "Projects & Supplies Contact", namePlaceholder: "e.g. Sim", emailPlaceholder: "e.g. sim@trinitypumpsupply.com", labelPlaceholder: "e.g. CONTACT FOR PROJECTS & SUPPLIES" },
+                 ].map(({ key, title, namePlaceholder, emailPlaceholder, labelPlaceholder }) => (
+                   <div key={key} className={UI.card + " space-y-4"}>
+                     <div className="space-y-1">
+                       <h3 className={UI.sectionHeader}>{title}</h3>
+                       <p className="text-[12px] text-[#646970]">Shown as a contact card on the "{title.replace(" Contact", "")}" landing/index page, and automatically on every individual service page in this category (unless that page sets its own contact). Leave the name blank to hide it entirely.</p>
+                     </div>
+                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                       <div className="space-y-1.5">
+                         <label className={UI.label}>Name</label>
+                         <input
+                           type="text"
+                           value={services.categoryContacts?.[key]?.name || ""}
+                           onChange={(e) => updateSection("services", "categoryContacts", { ...(services.categoryContacts || {}), [key]: { ...(services.categoryContacts?.[key] || {}), name: e.target.value } })}
+                           className={UI.input}
+                           placeholder={namePlaceholder}
+                         />
+                       </div>
+                       <div className="space-y-1.5">
+                         <label className={UI.label}>Role</label>
+                         <input
+                           type="text"
+                           value={services.categoryContacts?.[key]?.role || ""}
+                           onChange={(e) => updateSection("services", "categoryContacts", { ...(services.categoryContacts || {}), [key]: { ...(services.categoryContacts?.[key] || {}), role: e.target.value } })}
+                           className={UI.input}
+                           placeholder="e.g. Shop Manager"
+                         />
+                       </div>
+                     </div>
+                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                       <div className="space-y-1.5">
+                         <label className={UI.label}>Email</label>
+                         <input
+                           type="text"
+                           value={services.categoryContacts?.[key]?.email || ""}
+                           onChange={(e) => updateSection("services", "categoryContacts", { ...(services.categoryContacts || {}), [key]: { ...(services.categoryContacts?.[key] || {}), email: e.target.value } })}
+                           className={UI.input}
+                           placeholder={emailPlaceholder}
+                         />
+                       </div>
+                       <div className="space-y-1.5">
+                         <label className={UI.label}>Phone (optional)</label>
+                         <input
+                           type="text"
+                           value={services.categoryContacts?.[key]?.phone || ""}
+                           onChange={(e) => updateSection("services", "categoryContacts", { ...(services.categoryContacts || {}), [key]: { ...(services.categoryContacts?.[key] || {}), phone: e.target.value } })}
+                           className={UI.input}
+                         />
+                       </div>
                      </div>
                      <div className="space-y-1.5">
-                       <label className={UI.label}>Role</label>
+                       <label className={UI.label}>Card Label</label>
                        <input
                          type="text"
-                         value={services.categoryContacts?.["projects-supplies"]?.role || ""}
-                         onChange={(e) => updateSection("services", "categoryContacts", { ...(services.categoryContacts || {}), "projects-supplies": { ...(services.categoryContacts?.["projects-supplies"] || {}), role: e.target.value } })}
+                         value={services.categoryContacts?.[key]?.label || ""}
+                         onChange={(e) => updateSection("services", "categoryContacts", { ...(services.categoryContacts || {}), [key]: { ...(services.categoryContacts?.[key] || {}), label: e.target.value } })}
                          className={UI.input}
-                         placeholder="e.g. Project Manager"
+                         placeholder={labelPlaceholder}
                        />
                      </div>
                    </div>
-                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                     <div className="space-y-1.5">
-                       <label className={UI.label}>Email</label>
-                       <input
-                         type="text"
-                         value={services.categoryContacts?.["projects-supplies"]?.email || ""}
-                         onChange={(e) => updateSection("services", "categoryContacts", { ...(services.categoryContacts || {}), "projects-supplies": { ...(services.categoryContacts?.["projects-supplies"] || {}), email: e.target.value } })}
-                         className={UI.input}
-                         placeholder="e.g. sim@trinitypumpsupply.com"
-                       />
-                     </div>
-                     <div className="space-y-1.5">
-                       <label className={UI.label}>Phone (optional)</label>
-                       <input
-                         type="text"
-                         value={services.categoryContacts?.["projects-supplies"]?.phone || ""}
-                         onChange={(e) => updateSection("services", "categoryContacts", { ...(services.categoryContacts || {}), "projects-supplies": { ...(services.categoryContacts?.["projects-supplies"] || {}), phone: e.target.value } })}
-                         className={UI.input}
-                       />
-                     </div>
-                   </div>
-                   <div className="space-y-1.5">
-                     <label className={UI.label}>Card Label</label>
-                     <input
-                       type="text"
-                       value={services.categoryContacts?.["projects-supplies"]?.label || ""}
-                       onChange={(e) => updateSection("services", "categoryContacts", { ...(services.categoryContacts || {}), "projects-supplies": { ...(services.categoryContacts?.["projects-supplies"] || {}), label: e.target.value } })}
-                       className={UI.input}
-                       placeholder="e.g. CONTACT FOR PROJECTS & SUPPLIES"
-                     />
-                   </div>
-                 </div>
+                 ))}
 
                  <ContentSelector
                     type="services"

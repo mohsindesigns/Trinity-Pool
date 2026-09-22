@@ -210,9 +210,12 @@ export default function ServiceDetailTemplate({ pageData, params: syncParams }: 
     supplierLogosLabel: service.supplierLogosLabel || serviceDetailPage.supplierLogosLabel || "Proud Suppliers Of",
     galleryImages: service.galleryImages || serviceDetailPage.galleryImages || [],
 
-    // Optional page-specific point-of-contact (hidden when not set)
-    contactPerson: service.contactPerson || serviceDetailPage.contactPerson || null,
-    contactPersonLabel: service.contactPersonLabel || serviceDetailPage.contactPersonLabel || "YOUR CONTACT",
+    // Optional page-specific point-of-contact — falls back to the shared
+    // per-category contact (e.g. Josh for every Artificial Lift page, Sim for
+    // every Projects & Supplies page) so every service in a category shows a
+    // contact without having to set it individually on each one.
+    contactPerson: service.contactPerson || serviceDetailPage.contactPerson || (servicesData as any)?.categoryContacts?.[service.category] || null,
+    contactPersonLabel: service.contactPersonLabel || serviceDetailPage.contactPersonLabel || (servicesData as any)?.categoryContacts?.[service.category]?.label || "YOUR CONTACT",
 
     // Dynamic Step Sequence
     sessionSteps: service.sessionSteps || (service.process && service.process.length > 0 ? service.process.map((step: any, idx: number) => ({

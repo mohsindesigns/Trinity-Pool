@@ -129,11 +129,11 @@ export default async function RootLayout({
   let initialBlogs = [];
   try {
     const [globalContent, blogPosts] = await Promise.all([
-      SiteContent.findOne({ key: 'complete_data' }),
+      SiteContent.findOne({ key: 'complete_data' }).lean(),
       import('@/models/Post').then(m => m.default.find({ status: 'published', isTrashed: { $ne: true } }).sort({ date: -1 }).limit(10).populate('categories', 'name').populate('author', 'name').lean())
     ]);
 
-    if (globalContent?.data) initialGlobalData = globalContent.data;
+    if ((globalContent as any)?.data) initialGlobalData = (globalContent as any).data;
     if (blogPosts) initialBlogs = JSON.parse(JSON.stringify(blogPosts));
   } catch (e) {
     console.error("Failed to fetch initial data for provider", e);

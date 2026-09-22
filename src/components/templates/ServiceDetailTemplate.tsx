@@ -15,6 +15,7 @@ import { useContent } from "../../hooks/useContent";
 import ContactFaqSection from '../QAForm';
 import SupplierLogos from './SupplierLogos';
 import ServiceGallery from './ServiceGallery';
+import ContactPersonCard from './ContactPersonCard';
 
 /** Convert markdown links [Label](url) and HTML links to styled clickable anchors */
 function formatRichText(content: string | undefined | null, isDark: boolean = false): string {
@@ -208,6 +209,10 @@ export default function ServiceDetailTemplate({ pageData, params: syncParams }: 
     supplierLogos: service.supplierLogos || serviceDetailPage.supplierLogos || [],
     supplierLogosLabel: service.supplierLogosLabel || serviceDetailPage.supplierLogosLabel || "Proud Suppliers Of",
     galleryImages: service.galleryImages || serviceDetailPage.galleryImages || [],
+
+    // Optional page-specific point-of-contact (hidden when not set)
+    contactPerson: service.contactPerson || serviceDetailPage.contactPerson || null,
+    contactPersonLabel: service.contactPersonLabel || serviceDetailPage.contactPersonLabel || "YOUR CONTACT",
 
     // Dynamic Step Sequence
     sessionSteps: service.sessionSteps || (service.process && service.process.length > 0 ? service.process.map((step: any, idx: number) => ({
@@ -520,6 +525,13 @@ export default function ServiceDetailTemplate({ pageData, params: syncParams }: 
 
                   {/* Optional Supplier Logo Strip */}
                   <SupplierLogos logos={pg.supplierLogos} label={pg.supplierLogosLabel} />
+
+                  {/* Optional Page-Specific Contact */}
+                  {pg.contactPerson && (
+                    <div className="mb-10">
+                      <ContactPersonCard person={pg.contactPerson} label={pg.contactPersonLabel} />
+                    </div>
+                  )}
                 </div>
 
                 {/* Bottom Action Footer */}

@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { ArrowRight, ArrowLeft, ShieldCheck } from 'lucide-react';
 import { Icon } from '../../config/icons';
 import ContactFaqSection from '../QAForm';
+import ContactPersonCard from './ContactPersonCard';
 
 /** Convert markdown links [Label](url) and decode HTML entities — same helper as ServiceDetailTemplate. */
 function formatRichText(content: string | undefined | null): string {
@@ -68,6 +69,9 @@ export default function ArtificialLiftTemplate({ pageData }: { pageData?: any; p
     subPagesTitle2: content.subPagesTitle2 || "Products & Services.",
     subPagesCta: content.subPagesCta || "View Details",
     subPages: Array.isArray(content.subPages) ? content.subPages : [],
+
+    contactPerson: content.contactPerson || null,
+    contactPersonLabel: content.contactPersonLabel || "YOUR CONTACT",
 
     faqBadge: content.faqBadge,
     faqTitle: content.faqTitle,
@@ -205,7 +209,18 @@ export default function ArtificialLiftTemplate({ pageData }: { pageData?: any; p
         </section>
 
         {/* ════════════════════════════════════════════════════════
-           4. SUB-PAGE INDEX
+           4. POINT OF CONTACT (hidden when not set)
+           ════════════════════════════════════════════════════════ */}
+        {pg.contactPerson && (
+        <section className="py-14 md:py-16 bg-white border-b border-border-light">
+          <div className="site-container">
+            <ContactPersonCard person={pg.contactPerson} label={pg.contactPersonLabel} />
+          </div>
+        </section>
+        )}
+
+        {/* ════════════════════════════════════════════════════════
+           5. SUB-PAGE INDEX
            ════════════════════════════════════════════════════════ */}
         {pg.subPages.length > 0 && (
         <section id="lineup" className="py-24 md:py-32 bg-brand-bg-light border-b border-border-light relative">

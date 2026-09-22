@@ -199,6 +199,7 @@ export const useContent = () => {
                 "projects-supplies": rawCategoryLabels["projects-supplies"] || "Projects & Supplies",
                 "other": rawCategoryLabels["other"] || "More Services",
             };
+            const categoryContacts = s.categoryContacts || {};
 
             return {
                 ...s,
@@ -211,6 +212,7 @@ export const useContent = () => {
                 ctaAll,
                 ctaLearnMore,
                 categoryLabels,
+                categoryContacts,
                 services: formattedServices,
                 items: formattedItems,
                 headline: {

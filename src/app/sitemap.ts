@@ -77,7 +77,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ];
 
   // Dynamic service detail pages
-  const serviceRoutes: MetadataRoute.Sitemap = dynamicServices.map((service: any) => {
+  const serviceRoutes: MetadataRoute.Sitemap = dynamicServices
+    .filter((service: any) => service.status !== 'draft')
+    .map((service: any) => {
     const slug = String(service.slug || '')
       .replace(/^\/+/, '')
       .replace(/\/+$|^services\//, '');

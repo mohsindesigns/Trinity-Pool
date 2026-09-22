@@ -31,8 +31,17 @@ export default function ServicesSection() {
     services: allServices = [],
   } = servicesContent || {};
 
+  // TEMPORARY: these two slugs are hard-excluded regardless of upstream data,
+  // because something in the SSR/cache pipeline keeps re-surfacing them even
+  // after they were fully deleted from the DB catalogue and every cache was
+  // busted (verified with a raw render marker + explicit revalidatePath()).
+  // Root cause not yet found -- remove this once that's tracked down.
+  const REMOVED_SLUGS = new Set(["complete-facility-buildouts", "general-oilfield-supply"]);
+
   const curated: any[] = Array.isArray(items) ? items : [];
-  const list: any[] = curated.length > 0 ? curated : (Array.isArray(allServices) ? allServices : []);
+  const list: any[] = (curated.length > 0 ? curated : (Array.isArray(allServices) ? allServices : [])).filter(
+    (s: any) => s?.status !== "draft" && !REMOVED_SLUGS.has(s?.slug)
+  );
   const learnMore = stripHtml(ctaLearnMore || "") || "Learn more";
   const onMove = useSpotlight();
 

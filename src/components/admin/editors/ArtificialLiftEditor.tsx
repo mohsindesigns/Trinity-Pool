@@ -161,9 +161,46 @@ export default function ArtificialLiftEditor({ data, setData }: Props) {
         </div>
       </div>
 
-      {/* 4. Sub-page index */}
+      {/* 4. Point of Contact */}
       <div className="space-y-4">
-        <h3 className={UI.sectionHeader}>4. Product & Service Index</h3>
+        <h3 className={UI.sectionHeader}>4. Point of Contact</h3>
+        <div className={UI.card + " space-y-3"}>
+          <p className="text-[12px] text-[#646970]">Shown as a small contact card on this page. Leave the name blank to hide it entirely.</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="space-y-1.5">
+              <label className={UI.label}>Name</label>
+              <input type="text" value={d.contactPerson?.name || ""} onChange={(e) => update("contactPerson", { ...(d.contactPerson || {}), name: e.target.value })} className={UI.input} placeholder="e.g. Josh" />
+            </div>
+            <div className="space-y-1.5">
+              <label className={UI.label}>Role</label>
+              <input type="text" value={d.contactPerson?.role || ""} onChange={(e) => update("contactPerson", { ...(d.contactPerson || {}), role: e.target.value })} className={UI.input} placeholder="e.g. Shop Manager" />
+            </div>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="space-y-1.5">
+              <label className={UI.label}>Email</label>
+              <input type="text" value={d.contactPerson?.email || ""} onChange={(e) => update("contactPerson", { ...(d.contactPerson || {}), email: e.target.value })} className={UI.input} placeholder="e.g. josh@trinitypumpsupply.com" />
+            </div>
+            <div className="space-y-1.5">
+              <label className={UI.label}>Phone (optional)</label>
+              <input type="text" value={d.contactPerson?.phone || ""} onChange={(e) => update("contactPerson", { ...(d.contactPerson || {}), phone: e.target.value })} className={UI.input} />
+            </div>
+          </div>
+          <ImageField
+            label="Photo (optional -- shows initials until set)"
+            value={d.contactPerson?.image || ""}
+            onChange={(url) => update("contactPerson", { ...(d.contactPerson || {}), image: url })}
+          />
+          <div className="space-y-1.5">
+            <label className={UI.label}>Card Label</label>
+            <input type="text" value={d.contactPersonLabel || ""} onChange={(e) => update("contactPersonLabel", e.target.value)} className={UI.input} placeholder="e.g. YOUR CONTACT" />
+          </div>
+        </div>
+      </div>
+
+      {/* 5. Sub-page index */}
+      <div className="space-y-4">
+        <h3 className={UI.sectionHeader}>5. Product & Service Index</h3>
         <div className={UI.card + " space-y-4"}>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-1.5">

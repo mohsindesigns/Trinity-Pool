@@ -244,7 +244,11 @@ const DEFAULT_SERVICE_FIELDS = {
   // page when empty)
   supplierLogos: [],
   supplierLogosLabel: "Proud Suppliers Of",
-  galleryImages: []
+  galleryImages: [],
+
+  // Optional page-specific point of contact (hidden when name is blank)
+  contactPerson: null,
+  contactPersonLabel: "YOUR CONTACT"
 };
 
 export default function ServicesAdminPage() {
@@ -375,7 +379,9 @@ export default function ServicesAdminPage() {
       protocolDurations: (service.protocolDurations && service.protocolDurations.length > 0) ? service.protocolDurations : DEFAULT_SERVICE_FIELDS.protocolDurations,
       faq: service.faq !== undefined ? service.faq : (service.faqs || DEFAULT_SERVICE_FIELDS.faq),
       supplierLogos: service.supplierLogos !== undefined ? service.supplierLogos : DEFAULT_SERVICE_FIELDS.supplierLogos,
-      galleryImages: service.galleryImages !== undefined ? service.galleryImages : DEFAULT_SERVICE_FIELDS.galleryImages
+      galleryImages: service.galleryImages !== undefined ? service.galleryImages : DEFAULT_SERVICE_FIELDS.galleryImages,
+      contactPerson: service.contactPerson !== undefined ? service.contactPerson : DEFAULT_SERVICE_FIELDS.contactPerson,
+      contactPersonLabel: service.contactPersonLabel !== undefined ? service.contactPersonLabel : DEFAULT_SERVICE_FIELDS.contactPersonLabel
     });
     setSeo(service.seo || {});
     setIsEditing(originalIdx);
@@ -875,6 +881,63 @@ export default function ServicesAdminPage() {
                               />
                             </div>
                           ))}
+                        </div>
+                      </div>
+
+                      {/* Point of Contact */}
+                      <div className="border-t border-[#c3c4c7] pt-6 space-y-4">
+                        <div>
+                          <h3 className="text-[14px] font-bold text-[#1d2327]">Point of Contact</h3>
+                          <p className="text-[12px] text-[#646970]">Shown as a small contact card on this page. Leave the name blank to hide it entirely.</p>
+                        </div>
+                        <div className="bg-[#f6f7f7] border border-[#c3c4c7] p-4 rounded-sm space-y-3">
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <input
+                              type="text"
+                              value={form.contactPerson?.name || ""}
+                              onChange={(e) => setForm({ ...form, contactPerson: { ...(form.contactPerson || {}), name: e.target.value } })}
+                              className="w-full border border-[#8c8f94] px-3 py-1.5 text-xs"
+                              placeholder="Name (e.g. Sim)"
+                            />
+                            <input
+                              type="text"
+                              value={form.contactPerson?.role || ""}
+                              onChange={(e) => setForm({ ...form, contactPerson: { ...(form.contactPerson || {}), role: e.target.value } })}
+                              className="w-full border border-[#8c8f94] px-3 py-1.5 text-xs"
+                              placeholder="Role (e.g. Project Manager)"
+                            />
+                          </div>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <input
+                              type="text"
+                              value={form.contactPerson?.email || ""}
+                              onChange={(e) => setForm({ ...form, contactPerson: { ...(form.contactPerson || {}), email: e.target.value } })}
+                              className="w-full border border-[#8c8f94] px-3 py-1.5 text-xs"
+                              placeholder="Email (e.g. sim@trinitypumpsupply.com)"
+                            />
+                            <input
+                              type="text"
+                              value={form.contactPerson?.phone || ""}
+                              onChange={(e) => setForm({ ...form, contactPerson: { ...(form.contactPerson || {}), phone: e.target.value } })}
+                              className="w-full border border-[#8c8f94] px-3 py-1.5 text-xs"
+                              placeholder="Phone (optional)"
+                            />
+                          </div>
+                          <ImageField
+                            label="Photo (optional -- shows initials until set)"
+                            value={form.contactPerson?.image || ""}
+                            onChange={(url) => setForm({ ...form, contactPerson: { ...(form.contactPerson || {}), image: url } })}
+                          />
+                          <div className="space-y-1">
+                            <label className="text-[13px] font-bold">Card Label</label>
+                            <input
+                              type="text"
+                              value={form.contactPersonLabel || ""}
+                              onChange={(e) => setForm({ ...form, contactPersonLabel: e.target.value })}
+                              className="w-full border border-[#8c8f94] px-3 py-1.5 text-[14px] rounded-[3px]"
+                              placeholder="e.g. YOUR CONTACT"
+                            />
+                          </div>
                         </div>
                       </div>
                     </div>

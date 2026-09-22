@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 import { useContent } from "@/hooks/useContent";
 import { stripHtml } from "@/lib/utils";
 import { Icon } from "@/config/icons";
+import ContactPersonCard from "@/components/templates/ContactPersonCard";
 
 /** Cursor-following spotlight: sets CSS vars the card's overlay reads. Same recipe as the homepage Services grid. */
 function useSpotlight() {
@@ -158,6 +159,7 @@ export default function ServicesIndexGrid() {
   const onMove = useSpotlight();
   const learnMore = stripHtml(servicesData?.ctaLearnMore || "") || "Learn more";
   const categoryLabels = servicesData?.categoryLabels || {};
+  const categoryContacts = servicesData?.categoryContacts || {};
 
   if (items.length === 0) return null;
 
@@ -189,6 +191,11 @@ export default function ServicesIndexGrid() {
               <span className="w-8 h-[1px] bg-gold-dark flex-shrink-0" />
               <h2 className="display-heading text-[24px] md:text-[30px] text-dark leading-tight">{group.label}</h2>
             </div>
+            {categoryContacts[group.key] && (
+              <div className="mb-8 md:mb-10">
+                <ContactPersonCard person={categoryContacts[group.key]} label={categoryContacts[group.key]?.label || "CONTACT FOR THIS CATEGORY"} />
+              </div>
+            )}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
               {group.items.map((svc: any, i: number) => {
                 const total = group.items.length;

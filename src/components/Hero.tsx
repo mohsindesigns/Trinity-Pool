@@ -9,7 +9,7 @@ import { stripHtml } from "../lib/utils";
 import { Icon } from "../config/icons";
 
 export default function HeroSection() {
-  const { hero, globalMetadata } = useContent();
+  const { hero, globalMetadata, stats } = useContent();
 
   const {
     label = "",
@@ -28,6 +28,7 @@ export default function HeroSection() {
   const cleanTitle2 = stripHtml(title2);
   const cleanDescription = stripHtml(description);
   const badges: any[] = Array.isArray(features) ? features.slice(0, 3) : [];
+  const heroStat = stats?.items?.[0];
 
   const primaryUrl = hero?.ctaBookUrl || hero?.bookingUrl || hero?.ctaUrl1 || globalMetadata?.bookingUrl || "/contact-us";
   const secondaryUrl = hero?.ctaServicesUrl || hero?.ctaUrl2 || "/#services";
@@ -49,92 +50,52 @@ export default function HeroSection() {
   } as const;
 
   return (
-    <section className="relative bg-dark min-h-[92vh] md:min-h-screen flex items-center overflow-hidden border-b border-white/10">
-      {/* ── Full-bleed background image ─────────────────────── */}
-      <motion.div
-        initial={{ opacity: 0, scale: 1.08 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.8, ease: "easeOut" }}
-        className="absolute inset-0 z-0 pointer-events-none"
-      >
-        {image.startsWith("http") || image.startsWith("/uploads") || image.startsWith("/cdn-images") ? (
-          <img
-            src={image}
-            alt={imageAlt}
-            className="w-full h-full object-cover object-center"
-          />
-        ) : (
-          <Image
-            src={image}
-            alt={imageAlt}
-            fill
-            sizes="100vw"
-            className="object-cover object-center"
-            priority
-          />
-        )}
-
-        {/* Left dark gradient — covers text column */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(to right, #071B1C 0%, #071B1C 30%, rgba(7,27,28,0.86) 48%, rgba(7,27,28,0.18) 68%, transparent 82%)",
-          }}
-        />
-        {/* Right dark gradient — grounds the floating trust badges */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(to left, #111516 0%, #111516 10%, rgba(17,21,22,0.7) 24%, transparent 44%)",
-          }}
-        />
-        {/* Bottom gradient — anchors the content and hides the seam into the next section */}
-        <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/10 to-transparent" />
-        {/* Top vignette */}
-        <div className="absolute inset-0 bg-gradient-to-b from-dark/50 via-transparent to-transparent" />
-      </motion.div>
-
-      {/* Ambient gold glow — same recipe used elsewhere on the site for depth */}
+    <section className="relative bg-dark overflow-hidden border-b border-white/10">
+      {/* Faint dot-grid texture on the ink panel — the same ambient-texture
+          language used elsewhere on the site, so the left side reads as
+          intentional rather than empty now that it's no longer a photo. */}
       <div
-        className="absolute top-1/3 -right-40 w-[620px] h-[620px] rounded-full pointer-events-none z-[1]"
-        style={{ background: "radial-gradient(circle, rgba(200,154,69,0.16) 0%, rgba(200,154,69,0) 68%)" }}
+        className="absolute inset-0 opacity-[0.05] pointer-events-none"
+        style={{
+          backgroundImage: "radial-gradient(circle, #E8C87A 1px, transparent 1px)",
+          backgroundSize: "26px 26px",
+        }}
+      />
+      {/* Ambient gold glow, anchored behind the headline */}
+      <div
+        className="absolute top-1/4 -left-32 w-[560px] h-[560px] rounded-full pointer-events-none z-0"
+        style={{ background: "radial-gradient(circle, rgba(200,154,69,0.14) 0%, rgba(200,154,69,0) 68%)" }}
       />
 
-      {/* ── Main Content ───────────────────────────────── */}
-      <div className="relative z-10 site-container pt-32 pb-20 md:pt-40 md:pb-28 w-full">
+      <div className="relative z-10 site-container grid grid-cols-1 lg:grid-cols-12 items-center gap-y-14 lg:gap-x-12 pt-28 pb-16 lg:pt-40 lg:pb-24">
 
+        {/* ── Left: Ink panel with the pitch ───────────────────── */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="max-w-[640px] flex flex-col items-start"
+          className="lg:col-span-6 flex flex-col items-start"
         >
-          {/* Label */}
           <motion.div variants={itemVariants} className="flex items-center gap-3 mb-5">
             <span className="w-6 h-[1px] bg-gradient-to-r from-gold to-gold/40 flex-shrink-0" />
             <p className="section-label">{cleanLabel}</p>
           </motion.div>
 
-          {/* Headline */}
           <motion.h1
             variants={itemVariants}
-            className="display-heading text-[40px] min-[400px]:text-[48px] md:text-[64px] lg:text-[74px] leading-[1.04] mb-6 tracking-tight"
+            className="display-heading text-[40px] min-[400px]:text-[48px] md:text-[58px] lg:text-[60px] xl:text-[68px] leading-[1.04] mb-6 tracking-tight"
           >
             <span className="block text-white">{cleanTitle1}</span>
             <span className="block text-gold italic font-light">{cleanTitle2}</span>
           </motion.h1>
 
-          {/* Description */}
           <motion.p
             variants={itemVariants}
-            className="text-white/70 text-[14.5px] md:text-[16px] leading-[1.8] font-light max-w-[480px] mb-9"
+            className="text-white/70 text-[14.5px] md:text-[16px] leading-[1.8] font-light max-w-[440px] mb-9"
           >
             {cleanDescription}
           </motion.p>
 
-          {/* CTA Buttons */}
           <motion.div
             variants={itemVariants}
             className="flex flex-col sm:flex-row items-start gap-3.5 mb-11"
@@ -175,26 +136,65 @@ export default function HeroSection() {
             )}
           </motion.div>
 
-          {/* Trust strip — same glass-pill treatment used on service pages, so the
-              headline claim isn't left to just be taken on faith. */}
+          {/* Trust list — stacked rows instead of a wide pill, since this
+              column is narrower now than the old full-bleed layout. */}
           {badges.length > 0 && (
-            <motion.div
-              variants={itemVariants}
-              className="flex flex-wrap items-center gap-5 py-3.5 px-6 rounded-full bg-white/[0.05] border border-white/10 backdrop-blur-md shadow-xl"
-            >
+            <motion.div variants={itemVariants} className="flex flex-col gap-3.5 w-full max-w-[360px]">
               {badges.map((b: any, i: number) => (
-                <div key={i} className="flex items-center gap-4">
-                  {i > 0 && <span className="text-white/15 hidden sm:inline">|</span>}
-                  <div className="flex items-center gap-2.5">
-                    <Icon name={b.icon || "ShieldCheck"} className="text-gold flex-shrink-0" size={17} strokeWidth={1.9} />
-                    <span className="text-white text-[13px] font-medium whitespace-nowrap">
-                      {stripHtml(b.title)} <span className="text-white/55 font-light">{stripHtml(b.subtitle)}</span>
-                    </span>
-                  </div>
+                <div key={i} className="flex items-center gap-3 pb-3.5 border-b border-white/10 last:border-b-0 last:pb-0">
+                  <span className="flex items-center justify-center w-9 h-9 rounded-full bg-white/[0.06] border border-white/10 flex-shrink-0">
+                    <Icon name={b.icon || "ShieldCheck"} className="text-gold" size={15} strokeWidth={1.9} />
+                  </span>
+                  <span className="text-white text-[13.5px] font-medium">
+                    {stripHtml(b.title)} <span className="text-white/50 font-light">{stripHtml(b.subtitle)}</span>
+                  </span>
                 </div>
               ))}
             </motion.div>
           )}
+        </motion.div>
+
+        {/* ── Right: Framed photo card, not full-bleed ─────────────── */}
+        <motion.div
+          initial={{ opacity: 0, x: 30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.25 }}
+          className="lg:col-span-6 relative"
+        >
+          <div className="relative mx-auto max-w-[520px] lg:max-w-none">
+            {/* Soft gold glow behind the card for depth */}
+            <div
+              className="absolute -top-8 -right-8 w-64 h-64 rounded-full pointer-events-none blur-3xl"
+              style={{ background: "radial-gradient(circle, rgba(200,154,69,0.35) 0%, rgba(200,154,69,0) 70%)" }}
+            />
+
+            <div className="relative rounded-[2rem] overflow-hidden shadow-[0_30px_70px_-20px_rgba(0,0,0,0.6)] ring-1 ring-white/10 aspect-[4/5] sm:aspect-[5/6] lg:aspect-[4/5]">
+              {image.startsWith("http") || image.startsWith("/uploads") || image.startsWith("/cdn-images") ? (
+                <img src={image} alt={imageAlt} className="w-full h-full object-cover" />
+              ) : (
+                <Image src={image} alt={imageAlt} fill sizes="(max-width: 1024px) 90vw, 45vw" className="object-cover" priority />
+              )}
+              <div className="absolute inset-0 bg-gradient-to-t from-dark/70 via-transparent to-transparent" />
+              <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-[2rem] pointer-events-none" />
+            </div>
+
+            {/* Floating stat card — overlapping the frame for depth, the
+                classic layered-composition move that a flat full-bleed
+                photo can't do. */}
+            {heroStat && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.7 }}
+                className="absolute -bottom-7 -left-6 sm:-left-9 bg-dark-2/95 backdrop-blur-md border border-white/10 rounded-2xl px-6 py-5 shadow-2xl"
+              >
+                <p className="display-heading text-gold text-[34px] sm:text-[40px] leading-none mb-1.5">{stripHtml(heroStat.value)}</p>
+                <p className="text-white/60 text-[11px] font-semibold tracking-[0.12em] uppercase max-w-[140px] leading-snug">
+                  {stripHtml(heroStat.label)}
+                </p>
+              </motion.div>
+            )}
+          </div>
         </motion.div>
       </div>
 
@@ -203,7 +203,7 @@ export default function HeroSection() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.1, duration: 0.8 }}
-        className="hidden md:flex absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex-col items-center gap-2 pointer-events-none"
+        className="hidden lg:flex absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex-col items-center gap-2 pointer-events-none"
       >
         <span className="text-white/40 text-[10px] font-semibold tracking-[0.25em] uppercase">Scroll</span>
         <motion.div

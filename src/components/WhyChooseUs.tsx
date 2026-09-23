@@ -143,20 +143,20 @@ export default function WhyChooseUs({ overrideData }: { overrideData?: any } = {
             className="lg:col-span-5 relative"
           >
             <div className="relative mx-auto max-w-[480px] lg:max-w-none">
-              {/* Top-Right Decorative Amber Accent Block */}
+              {/* Soft ambient gold glow — same depth recipe used elsewhere on the
+                  site, replacing the old flat amber blocks that peeked out from
+                  behind the corners looking like a rendering glitch. */}
               <div
-                className="absolute -top-3 -right-3 sm:-top-4 sm:-right-4 w-28 sm:w-36 h-36 sm:h-44 rounded-2xl pointer-events-none z-0"
-                style={{ background: "#D99F26" }}
+                className="absolute -top-10 -right-10 w-56 h-56 rounded-full pointer-events-none z-0 blur-2xl"
+                style={{ background: "radial-gradient(circle, rgba(200,154,69,0.5) 0%, rgba(200,154,69,0) 70%)" }}
               />
-
-              {/* Bottom-Left Decorative Amber Accent Block */}
               <div
-                className="absolute -bottom-3 -left-3 sm:-bottom-4 sm:-left-4 w-28 sm:w-36 h-36 sm:h-44 rounded-2xl pointer-events-none z-0"
-                style={{ background: "#D99F26" }}
+                className="absolute -bottom-10 -left-10 w-56 h-56 rounded-full pointer-events-none z-0 blur-2xl"
+                style={{ background: "radial-gradient(circle, rgba(200,154,69,0.35) 0%, rgba(200,154,69,0) 70%)" }}
               />
 
               {/* Foreground Image Card */}
-              <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl aspect-[4/3] bg-slate-900 w-full">
+              <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl ring-1 ring-gold/25 aspect-[4/3] bg-slate-900 w-full">
                 <img
                   src={image}
                   alt={imageAlt}

@@ -175,7 +175,7 @@ export default function TestimonialsSection() {
                 style={{ flex: `0 0 calc((100% - ${GAP_PX * (per - 1)}px) / ${per})` }}
               >
                 <Quote size={26} className="text-gold mb-4 fill-gold" strokeWidth={0} />
-                <p className="text-dark/75 text-[14.5px] leading-[1.7] mb-7 flex-1">
+                <p className="text-dark/75 text-[14.5px] leading-[1.7] mb-7 flex-1 flex items-center">
                   {stripHtml(t.quote)}
                 </p>
                 <div className="flex items-center gap-3 pt-5 border-t border-border-light/70">

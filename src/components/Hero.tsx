@@ -115,10 +115,10 @@ export default function HeroSection() {
           text below) — a thin diagonal sliver of photo doesn't read on a
           narrow screen, so this isn't the same layout scaled down, it's a
           deliberately different arrangement of the same pieces. ── */}
-      <div className="md:hidden rounded-[1.75rem] overflow-hidden bg-dark-2">
+      <div className="md:hidden rounded-[1.75rem] overflow-hidden bg-[#0b2a2c]">
         <div className="relative h-[280px] min-[400px]:h-[320px]">
           <PhotoImg />
-          <div className="absolute inset-0 bg-gradient-to-t from-dark-2 via-dark-2/10 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0b2a2c] via-[#0b2a2c]/10 to-transparent" />
         </div>
         <div className="p-7 pt-0 -mt-10 relative">
           <Content />
@@ -126,7 +126,7 @@ export default function HeroSection() {
       </div>
 
       {/* ── md+: diagonal split card ─────────────────────────────── */}
-      <div className="hidden md:block relative rounded-[2.25rem] overflow-hidden bg-dark-2 min-h-[600px] lg:min-h-[660px]">
+      <div className="hidden md:block relative rounded-[2.25rem] overflow-hidden bg-[#0b2a2c] min-h-[600px] lg:min-h-[660px]">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

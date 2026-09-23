@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, DM_Sans } from "next/font/google";
+import { Space_Grotesk, DM_Sans, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/components/Providers";
 import SiteLayout from "@/components/SiteLayout";
@@ -18,6 +18,17 @@ const spaceGrotesk = Space_Grotesk({
 const dmSans = DM_Sans({
   subsets: ["latin"],
   variable: "--font-body",
+});
+
+// globals.css's --font-display references --font-playfair for every large
+// headline sitewide (home, about, team, services...), but nothing was ever
+// loading it -- every one of those headlines was silently falling back to
+// the browser's generic system serif (Georgia/Times New Roman) the whole
+// time, faux-italic and all. Loading it here is what actually fixes that.
+const playfairDisplay = Playfair_Display({
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  variable: "--font-playfair",
 });
 
 
@@ -140,7 +151,7 @@ export default async function RootLayout({
   }
 
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className={`${spaceGrotesk.variable} ${dmSans.variable} ${playfairDisplay.variable}`}>
       <head>
         {/* Site-wide schemas removed - handled dynamically by pages/services */}
         {/* Preconnect to external origins for performance */}
@@ -150,7 +161,7 @@ export default async function RootLayout({
         {/* ── CMS-managed <head> scripts ── */}
         <SiteScriptsRenderer scripts={headScripts} location="head" />
       </head>
-      <body className={`${spaceGrotesk.variable} ${dmSans.variable} antialiased`}>
+      <body className={`${spaceGrotesk.variable} ${dmSans.variable} ${playfairDisplay.variable} antialiased`}>
         {/* ── CMS-managed body_start scripts ── */}
         <SiteScriptsRenderer scripts={effectiveBodyStartScripts} location="body_start" />
         <ContentProvider initialData={initialGlobalData} initialBlogs={initialBlogs}>

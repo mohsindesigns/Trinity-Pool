@@ -122,7 +122,7 @@ const TeamPortrait = ({ image, title, badge1, badge2, alignRight = false }: any)
               onError={() => setImageError(true)}
               animate={isHovered ? { scale: 1.05 } : { scale: 1 }}
               transition={{ duration: 1.5, ease: "easeOut" }}
-              className="w-full h-[280px] min-[350px]:h-[380px] sm:h-[450px] lg:h-[550px] object-cover"
+              className="w-full h-[280px] min-[350px]:h-[380px] sm:h-[450px] lg:h-[550px] object-cover object-[50%_18%]"
             />
           ) : (
             <div className="w-full h-[280px] min-[350px]:h-[380px] sm:h-[450px] lg:h-[550px] flex items-center justify-center bg-gradient-to-br from-gold-light via-gold to-gold-dark">

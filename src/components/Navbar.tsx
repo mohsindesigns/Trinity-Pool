@@ -85,11 +85,15 @@ const Navbar = () => {
           {/* ── Logo ───────────────────────────────────── */}
           <Link href="/" className="flex items-center gap-2.5 md:gap-3" onClick={handleLinkClick}>
             {navbar.logo && (navbar.logo.startsWith('http') || navbar.logo.startsWith('/uploads') || navbar.logo.startsWith('/cdn-images')) ? (
-              <div className="relative h-16 w-16 sm:h-[84px] sm:w-[84px] flex items-center justify-center overflow-hidden flex-shrink-0">
+              // The source file is a full icon+wordmark lockup (wide, not square) — a fixed
+              // square box forces object-contain to shrink it far more than needed to satisfy
+              // the width constraint. Constraining height only and letting width follow the
+              // logo's own aspect ratio renders it at its natural, much larger size.
+              <div className="relative h-14 sm:h-[72px] w-auto flex items-center flex-shrink-0">
                 <img
                   src={navbar.logo}
                   alt={navbar.siteTitle || "Company Logo"}
-                  className="object-contain w-full h-full"
+                  className="h-full w-auto object-contain"
                 />
               </div>
             ) : (

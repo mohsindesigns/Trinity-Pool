@@ -26,7 +26,7 @@ const DEFAULT_VALUES = [
   {
     icon: "Users",
     title: "Family-Run, Field-Tested",
-    description: "100+ years of combined experience, and a team that still picks up the phone when your pumper calls.",
+    description: "150+ years of combined experience, and a team that still picks up the phone when your pumper calls.",
   },
   {
     icon: "MapPin",
@@ -36,7 +36,7 @@ const DEFAULT_VALUES = [
 ];
 
 const DEFAULT_STATS = [
-  { value: "100+", label: "Years Combined Experience", icon: "Award" },
+  { value: "150+", label: "Years Combined Experience", icon: "Award" },
   { value: "1", label: "Odessa, TX Shop", icon: "MapPin" },
   { value: "TX & NM", label: "States Served", icon: "Truck" },
   { value: "24/7", label: "On-Call Support", icon: "Headphones" },
@@ -51,7 +51,7 @@ const DEFAULT_WHY_CHOOSE_US = {
   features: [
     { icon: "ShieldCheck", title: "USA-Built Materials", description: "Alloy steel, 316 Stainless and Monel parts built to outlast cheaper imports." },
     { icon: "Truck", title: "Odessa Shop, Fast Turnaround", description: "In-house build and repair means your equipment isn't waiting on a warehouse three states away." },
-    { icon: "Award", title: "100+ Years Combined Experience", description: "Our team had already spent decades on this exact equipment before Trinity existed." },
+    { icon: "Award", title: "150+ Years Combined Experience", description: "Our team had already spent decades on this exact equipment before Trinity existed." },
     { icon: "Star", title: "Exclusive Iron Bear Supplier", description: "The only West Texas source for the Iron Bear HD Rod Rotator and HD Plunger." },
     { icon: "Package", title: "Tracked From Bench to Well", description: "Every pump we build or repair is logged with Rod Pump Tracker software." },
     { icon: "Headphones", title: "Direct Line to Real People", description: "Call and reach the shop, not a call center." },

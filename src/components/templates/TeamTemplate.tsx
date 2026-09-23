@@ -22,7 +22,7 @@ const QAForm = dynamic(() => import("@/components/QAForm"), { ssr: false });
 
 const DEFAULT_STATS = [
   { value: "5", label: "Team Members", icon: "Users" },
-  { value: "100+", label: "Years Combined Experience", icon: "Award" },
+  { value: "150+", label: "Years Combined Experience", icon: "Award" },
   { value: "1", label: "Odessa, TX Shop", icon: "MapPin" },
   { value: "24/7", label: "On-Call Support", icon: "Headphones" },
 ];

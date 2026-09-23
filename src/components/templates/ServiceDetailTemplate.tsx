@@ -132,7 +132,7 @@ export default function ServiceDetailTemplate({ pageData, params: syncParams }: 
     heroCtaSecondaryUrl: service.heroCtaSecondaryUrl || "#overview",
 
     // Stats Strip
-    statsItem1Val: service.statsItem1Val || serviceDetailPage.statsItem1Val || "100+",
+    statsItem1Val: service.statsItem1Val || serviceDetailPage.statsItem1Val || "150+",
     statsItem1Label: service.statsItem1Label || serviceDetailPage.statsItem1Label || "Years Combined Experience",
     statsItem2Val: service.statsItem2Val || serviceDetailPage.statsItem2Val || "USA",
     statsItem2Label: service.statsItem2Label || serviceDetailPage.statsItem2Label || "Built Parts",
@@ -166,7 +166,7 @@ export default function ServiceDetailTemplate({ pageData, params: syncParams }: 
     candidateSuitability: service.candidateSuitability ?? serviceDetailPage.candidateSuitability ?? "TRINITY STANDARD",
     whoProfiles: service.whoProfiles || serviceDetailPage.whoProfiles || [
       {
-        label: "100+ Years Combined Experience",
+        label: "150+ Years Combined Experience",
         desc: "Decades of hands-on rod pump and oilfield supply experience guide every recommendation we make for your well.",
         suitability: "FIELD-TESTED"
       },

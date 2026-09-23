@@ -17,7 +17,7 @@ const DEFAULT_STATS = [
   { value: "5.0", label: "Average Rating", icon: "Star" },
   { value: "100%", label: "Google Verified", icon: "ShieldCheck" },
   { value: "TX & NM", label: "Service Area", icon: "Truck" },
-  { value: "100+", label: "Years Combined Experience", icon: "Award" },
+  { value: "150+", label: "Years Combined Experience", icon: "Award" },
 ];
 
 const DEFAULT_CTA_BANNER = {

@@ -25,7 +25,7 @@ const DEFAULT_CTA_BANNER = {
 };
 
 const DEFAULT_STATS = [
-  { value: "100+", label: "Years Combined Experience", icon: "Award" },
+  { value: "150+", label: "Years Combined Experience", icon: "Award" },
   { value: "Odessa, TX", label: "Permian Basin Shop", icon: "MapPin" },
   { value: "100% USA", label: "Built Pump Parts", icon: "ShieldCheck" },
   { value: "24/7", label: "On-Call Field Support", icon: "Headphones" },

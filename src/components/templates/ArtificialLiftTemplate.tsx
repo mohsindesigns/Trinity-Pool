@@ -42,7 +42,7 @@ export default function ArtificialLiftTemplate({ pageData }: { pageData?: any; p
     image: content.image || "/images/trinity/hero.jpg",
     imageAlt: content.imageAlt || "Pump jack on a Permian Basin lease",
 
-    statsItem1Val: content.statsItem1Val || "100+",
+    statsItem1Val: content.statsItem1Val || "150+",
     statsItem1Label: content.statsItem1Label || "Years Combined Experience",
     statsItem2Val: content.statsItem2Val || "USA",
     statsItem2Label: content.statsItem2Label || "Built Components",

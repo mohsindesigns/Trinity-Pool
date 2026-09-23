@@ -126,7 +126,7 @@ export default function ServiceAreaTemplate({ pageData }: { pageData?: any }) {
   ];
 
   const stats = content.stats || [
-    { value: "100+", label: "Years Combined Pump Experience" },
+    { value: "150+", label: "Years Combined Pump Experience" },
     { value: "24/7", label: "On-Call Hot Shot Field Delivery" },
     { value: "100%", label: "USA Built Downhole Pump Parts" }
   ];
@@ -182,7 +182,7 @@ export default function ServiceAreaTemplate({ pageData }: { pageData?: any }) {
     title: "Permian Basin Equipment Standards",
     items: [
       { title: "100% USA Made Parts", description: "We refuse cheap imports. Every component is machined in America to exacting API tolerances." },
-      { title: "100+ Years Combined Expertise", description: "Our seasoned pump technicians understand Permian Basin metallurgy, sand, and gas challenges." },
+      { title: "150+ Years Combined Expertise", description: "Our seasoned pump technicians understand Permian Basin metallurgy, sand, and gas challenges." },
       { title: "24/7 Field Support", description: "Minimizing downtime with rapid wellhead delivery and dedicated artificial lift service." }
     ]
   };

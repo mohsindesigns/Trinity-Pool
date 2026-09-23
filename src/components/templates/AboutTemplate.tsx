@@ -197,7 +197,7 @@ export default function AboutTemplate({ pageData }: { pageData?: any; params?: a
 
             <h1 className="font-display font-medium text-[38px] min-[400px]:text-[48px] md:text-[62px] lg:text-[70px] text-white leading-[1.08] mb-6 tracking-tight">
               {heroTitle1}{' '}
-              <span className="text-gold italic font-light block sm:inline">{heroTitle2}</span>
+              <span className="text-gold font-medium block sm:inline">{heroTitle2}</span>
             </h1>
 
             <p className="text-white/80 md:text-white/70 text-[15px] md:text-[17px] leading-[1.8] max-w-[560px] mb-9 font-light">
@@ -268,7 +268,7 @@ export default function AboutTemplate({ pageData }: { pageData?: any; params?: a
               </div>
 
               <h2 className="display-heading text-[30px] min-[400px]:text-[34px] sm:text-[40px] lg:text-[44px] text-dark leading-[1.14] tracking-tight mb-6">
-                {storyTitle1} <span className="text-gold-dark italic font-light">{storyTitle2}</span>
+                {storyTitle1} <span className="text-gold-dark font-medium">{storyTitle2}</span>
               </h2>
 
               <div className="space-y-4 mb-7">
@@ -307,7 +307,7 @@ export default function AboutTemplate({ pageData }: { pageData?: any; params?: a
             </div>
             <h2 className="font-display font-medium text-[34px] min-[400px]:text-[44px] md:text-[52px] text-dark leading-[1.08] tracking-tight">
               {valuesTitle1}{' '}
-              <span className="text-gold-dark italic font-light block sm:inline">{valuesTitle2}</span>
+              <span className="text-gold-dark font-medium block sm:inline">{valuesTitle2}</span>
             </h2>
           </div>
 

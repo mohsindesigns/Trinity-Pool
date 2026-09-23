@@ -41,7 +41,14 @@ export async function middleware(req: NextRequest) {
         headers: {
           'x-internal-request': 'true'
         },
-        signal: AbortSignal.timeout(3000)
+        // Every single page request round-trips through this self-fetch back
+        // into the app's own /api/redirects/match route. In dev, the very
+        // first request after a restart has to wait for that route to
+        // cold-compile before it can even respond, which was regularly
+        // eating the whole old 3s budget and making every fresh restart feel
+        // like the server had hung. Shorter budget: worst case degrades to
+        // "redirect check skipped for this one request" instead of a stall.
+        signal: AbortSignal.timeout(1200)
       });
       
       if (res.ok) {

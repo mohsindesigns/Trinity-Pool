@@ -81,7 +81,7 @@ export default function ServicesHeroSection() {
 
           {/* Headline with Clean Non-Breaking Highlighted Text */}
           <motion.h1 variants={itemVariants} className="display-heading text-[32px] min-[400px]:text-[42px] md:text-[58px] lg:text-[64px] text-white leading-[1.1] mb-6 md:mb-8 tracking-tight max-w-[650px]">
-            {title1} {title2} <span className="text-gold italic font-light block sm:inline">{title3}</span>
+            {title1} {title2} <span className="text-gold font-medium block sm:inline">{title3}</span>
           </motion.h1>
 
           {/* Description */}

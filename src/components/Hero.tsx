@@ -86,7 +86,7 @@ export default function HeroSection() {
             className="display-heading text-[40px] min-[400px]:text-[48px] md:text-[58px] lg:text-[60px] xl:text-[68px] leading-[1.04] mb-6 tracking-tight"
           >
             <span className="block text-white">{cleanTitle1}</span>
-            <span className="block text-gold italic font-light">{cleanTitle2}</span>
+            <span className="block text-gold font-medium">{cleanTitle2}</span>
           </motion.h1>
 
           <motion.p

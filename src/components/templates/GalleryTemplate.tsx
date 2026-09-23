@@ -50,7 +50,7 @@ export default function GalleryTemplate({ pageData }: { pageData?: any }) {
           <div className="mb-12 md:mb-20 text-center flex flex-col items-center">
             <p className="section-label mb-4">{label}</p>
             <h1 className="display-heading text-[32px] min-[400px]:text-[44px] md:text-[64px] text-white leading-tight">
-              {titleLine1} <span className="text-gold italic font-light">{titleLine2}</span>
+              {titleLine1} <span className="text-gold font-medium">{titleLine2}</span>
             </h1>
             <p className="text-white/60 text-[14px] md:text-[15px] max-w-2xl mx-auto mt-6 leading-relaxed">
               {description}

@@ -219,13 +219,13 @@ export default function TeamTemplate({ pageData, params }: { pageData?: any, par
                 <>
                   {section.headlinePrefix}{' '}
                   {section.headlineHighlight && (
-                    <span className="text-gold italic font-light">{section.headlineHighlight}</span>
+                    <span className="text-gold font-medium">{section.headlineHighlight}</span>
                   )}
                   {section.headlineSuffix ? ` ${section.headlineSuffix}` : ""}
                 </>
               ) : (
                 <>
-                  Built by <span className="text-gold italic font-light">Real People.</span>
+                  Built by <span className="text-gold font-medium">Real People.</span>
                 </>
               )}
             </h1>

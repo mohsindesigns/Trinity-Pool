@@ -141,7 +141,11 @@
 
     /* ── Typography ─────────────────────────────────────── */
     --font-sans:    var(--font-inter), Inter, ui-sans-serif, system-ui, -apple-system, sans-serif;
-    --font-display: var(--font-playfair), 'Playfair Display', Georgia, 'Times New Roman', serif;
+    /* Switched from the editorial serif (Playfair) to the same bold geometric
+       sans already used for nav/labels sitewide -- reads as more confident
+       and industrial for an oilfield equipment brand, and stays visually
+       consistent with the rest of the UI instead of mixing two typefaces. */
+    --font-display: var(--font-heading), 'Space Grotesk', sans-serif;
   }
 
   /* Dark mode — Deep Petroleum base */

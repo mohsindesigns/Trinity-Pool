@@ -353,7 +353,7 @@ export default function ServiceDetailTemplate({ pageData, params: syncParams }: 
               {/* Headline with Playfair Display Italic Gold Accent */}
               <h1 className="font-display font-medium text-[38px] min-[400px]:text-[48px] md:text-[62px] lg:text-[70px] text-white leading-[1.08] mb-6 tracking-tight">
                 {mainTitle ? mainTitle : serviceName}{' '}
-                {mainTitle && <span className="text-gold italic font-light block sm:inline">{lastTitleWord}</span>}
+                {mainTitle && <span className="text-gold font-medium block sm:inline">{lastTitleWord}</span>}
               </h1>
 
               {/* Single Hero Description with Link Support */}
@@ -440,7 +440,7 @@ export default function ServiceDetailTemplate({ pageData, params: syncParams }: 
 
               <h2 className="font-display font-medium text-[36px] min-[400px]:text-[44px] md:text-[60px] text-dark leading-[1.06] tracking-tight">
                 {pg.overviewTitle1}{' '}
-                <span className="text-gold-dark italic font-light block sm:inline">
+                <span className="text-gold-dark font-medium block sm:inline">
                   {pg.overviewTitle2}
                 </span>
               </h2>
@@ -578,7 +578,7 @@ export default function ServiceDetailTemplate({ pageData, params: syncParams }: 
               </div>
               <h2 className="font-display font-medium text-[34px] min-[400px]:text-[44px] md:text-[52px] text-dark leading-[1.08] tracking-tight mb-4">
                 {pg.candidateTitle1}{' '}
-                <span className="text-gold-dark italic font-light block sm:inline">
+                <span className="text-gold-dark font-medium block sm:inline">
                   {pg.candidateTitle2}
                 </span>
               </h2>
@@ -651,7 +651,7 @@ export default function ServiceDetailTemplate({ pageData, params: syncParams }: 
               </div>
               <h2 className="font-display font-medium text-[36px] min-[400px]:text-[46px] md:text-[54px] text-white leading-[1.06] tracking-tight mb-4">
                 {pg.protocolTitle1} <br />
-                <span className="text-gold italic font-light">{pg.protocolTitle2}</span>
+                <span className="text-gold font-medium">{pg.protocolTitle2}</span>
               </h2>
               {pg.protocolDescription && (
                 <div

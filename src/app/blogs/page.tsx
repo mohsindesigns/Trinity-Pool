@@ -194,7 +194,7 @@ export default async function BlogsIndexPage() {
             {/* Display Heading */}
             <h1 className="font-display font-medium text-[38px] min-[400px]:text-[48px] md:text-[62px] lg:text-[70px] text-white leading-[1.08] mb-6 tracking-tight">
               {titleLine1}{' '}
-              <span className="text-gold italic font-light block sm:inline">{titleLine2}</span>
+              <span className="text-gold font-medium block sm:inline">{titleLine2}</span>
             </h1>
 
             {/* Subtitle description */}

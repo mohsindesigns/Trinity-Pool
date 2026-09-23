@@ -130,7 +130,7 @@ export default function ArtificialLiftTemplate({ pageData }: { pageData?: any; p
 
               <h1 className="font-display font-medium text-[38px] min-[400px]:text-[48px] md:text-[62px] lg:text-[70px] text-white leading-[1.08] mb-6 tracking-tight">
                 {pg.heroTitle1}{' '}
-                <span className="text-gold italic font-light block sm:inline">{pg.heroTitle2}</span>
+                <span className="text-gold font-medium block sm:inline">{pg.heroTitle2}</span>
               </h1>
 
               <div
@@ -180,7 +180,7 @@ export default function ArtificialLiftTemplate({ pageData }: { pageData?: any; p
               </div>
               <h2 className="font-display font-medium text-[36px] min-[400px]:text-[44px] md:text-[56px] text-dark leading-[1.06] tracking-tight mb-4">
                 {pg.whyTitle1}{' '}
-                <span className="text-gold-dark italic font-light block sm:inline">{pg.whyTitle2}</span>
+                <span className="text-gold-dark font-medium block sm:inline">{pg.whyTitle2}</span>
               </h2>
               <p className="text-dark/70 text-[15px] md:text-[17px] font-light leading-relaxed max-w-2xl">
                 {pg.whyDescription}
@@ -232,7 +232,7 @@ export default function ArtificialLiftTemplate({ pageData }: { pageData?: any; p
               </div>
               <h2 className="font-display font-medium text-[36px] min-[400px]:text-[44px] md:text-[56px] text-dark leading-[1.06] tracking-tight">
                 {pg.subPagesTitle1}{' '}
-                <span className="text-gold-dark italic font-light block sm:inline">{pg.subPagesTitle2}</span>
+                <span className="text-gold-dark font-medium block sm:inline">{pg.subPagesTitle2}</span>
               </h2>
             </div>
 

@@ -15,9 +15,9 @@ function FooterBrand({
   return (
     <Link href="/" className="nav-link inline-flex items-center gap-3 mb-5">
       {hasImage ? (
-        <span className="relative h-11 w-11 flex items-center justify-center overflow-hidden flex-shrink-0">
-          <img src={logoUrl} alt={siteTitle || text1} className="object-contain w-full h-full" />
-        </span>
+        // The uploaded logo is a full icon + wordmark lockup, so it renders on
+        // its own -- adding the text spans beside it would print the name twice.
+        <img src={logoUrl} alt={siteTitle || text1} className="h-14 w-auto object-contain" />
       ) : (
         <span className="h-11 w-11 flex items-center justify-center flex-shrink-0">
           <svg width="100%" height="100%" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -26,10 +26,12 @@ function FooterBrand({
           </svg>
         </span>
       )}
-      <span className="flex flex-col leading-none">
-        {text1 && <span className="text-[17px] font-extrabold tracking-wide text-white uppercase whitespace-nowrap">{text1}</span>}
-        {text2 && <span className="text-[8.5px] font-semibold tracking-[0.16em] text-gold uppercase mt-1.5 whitespace-nowrap">{text2}</span>}
-      </span>
+      {!hasImage && (
+        <span className="flex flex-col leading-none">
+          {text1 && <span className="text-[17px] font-extrabold tracking-wide text-white uppercase whitespace-nowrap">{text1}</span>}
+          {text2 && <span className="text-[8.5px] font-semibold tracking-[0.16em] text-gold uppercase mt-1.5 whitespace-nowrap">{text2}</span>}
+        </span>
+      )}
     </Link>
   );
 }

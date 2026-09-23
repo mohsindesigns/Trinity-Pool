@@ -89,7 +89,7 @@ const Navbar = () => {
               // square box forces object-contain to shrink it far more than needed to satisfy
               // the width constraint. Constraining height only and letting width follow the
               // logo's own aspect ratio renders it at its natural, much larger size.
-              <div className="relative h-14 sm:h-[72px] w-auto flex items-center flex-shrink-0">
+              <div className="relative h-12 sm:h-[68px] w-auto flex items-center flex-shrink-0">
                 <img
                   src={navbar.logo}
                   alt={navbar.siteTitle || "Company Logo"}

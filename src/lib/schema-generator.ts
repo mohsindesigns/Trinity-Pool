@@ -17,7 +17,7 @@ interface SchemaOptions {
 
 const BUSINESS_NAME = "Trinity Pump & Supply";
 const BUSINESS_PHONE = "830-279-3996";
-const BUSINESS_EMAIL = "trinitypumpsupply@gmail.com";
+const BUSINESS_EMAIL = "olin@trinitypumpsupply.com";
 const BUSINESS_ADDRESS = {
   "@type": "PostalAddress",
   "streetAddress": "4608 Gist Ave",

@@ -26,6 +26,7 @@ import * as LucideIcons from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import ImageField from "@/components/admin/ImageField";
+import JsonBlockField from "@/components/admin/JsonBlockField";
 import SeoEditor from "@/components/admin/SeoEditor";
 import dynamic from "next/dynamic";
 
@@ -248,7 +249,15 @@ const DEFAULT_SERVICE_FIELDS = {
 
   // Optional page-specific point of contact (hidden when name is blank)
   contactPerson: null,
-  contactPersonLabel: "YOUR CONTACT"
+  contactPersonLabel: "YOUR CONTACT",
+
+  // Optional specialty-page blocks (each hidden when empty)
+  overviewImage: "",
+  hideFromCatalog: false,
+  productSections: [],
+  factSections: [],
+  infographic: null,
+  pageBlocks: []
 };
 
 export default function ServicesAdminPage() {
@@ -939,6 +948,49 @@ export default function ServicesAdminPage() {
                             />
                           </div>
                         </div>
+                      </div>
+
+                      {/* Specialty page sections */}
+                      <div className="border-t border-[#c3c4c7] pt-6 space-y-4">
+                        <div>
+                          <h3 className="text-[14px] font-bold text-[#1d2327]">Specialty Page Sections (advanced)</h3>
+                          <p className="text-[12px] text-[#646970]">Optional blocks used by pages like Specialty Rod Pump Solutions, Gas Pistol and Bypass Cage. Every block is hidden when left empty.</p>
+                        </div>
+                        <ImageField label="Overview Photo (tall frame — optional, defaults to the hero image)" value={form.overviewImage || ""} onChange={(url) => setForm({ ...form, overviewImage: url })} />
+                        <label className="flex items-start gap-2 text-[13px]">
+                          <input type="checkbox" checked={!!form.hideFromCatalog} onChange={(e) => setForm({ ...form, hideFromCatalog: e.target.checked })} className="mt-0.5" />
+                          <span><strong>Hide from the homepage grid and Services page.</strong> The page stays live and in the sitemap — it just isn&apos;t listed as a card (use for product sub-pages reached from another page).</span>
+                        </label>
+                        <JsonBlockField
+                          label="Product Card Sections"
+                          help='List of sections: { label, title1, title2, description, tone: "light"|"white", cards: [{ title, image, badge, description, points: [], href, cta }] }'
+                          value={form.productSections}
+                          emptyValue={[]}
+                          onChange={(v) => setForm({ ...form, productSections: v })}
+                        />
+                        <JsonBlockField
+                          label="Fact / Proof Tile Sections"
+                          help='List of sections: { label, title1, title2, description, tone: "dark"|"light", footnote, tiles: [{ value, label, note } or { from, to, fromLabel, toLabel, unit }] }'
+                          value={form.factSections}
+                          emptyValue={[]}
+                          onChange={(v) => setForm({ ...form, factSections: v })}
+                        />
+                        <JsonBlockField
+                          label="Ordered Page Blocks (advanced)"
+                          help='Rendered in the order listed, after the sections above. Each block has a type: "products", "facts", "chart", "spec", "figures" or "infographic", plus the same fields as its section. chart: { chartTitle, xLabel, yLabel, yTicks, series: [{ name, color, points: [[x, y]], labelAt: [x] }], notes }. spec: { figure, list: [{ key, text, highlight }], callout, rowsTitle, rows: [{ label, value }], notes: [{ title, text }] }. figures: { figures: [{ src, alt, caption }], points: [{ title, text }], result, chips, tagline }.'
+                          value={form.pageBlocks}
+                          emptyValue={[]}
+                          rows={14}
+                          onChange={(v) => setForm({ ...form, pageBlocks: v })}
+                        />
+                        <JsonBlockField
+                          label="Infographic (shown full-width, never cropped)"
+                          help="{ src, alt, label, title1, title2, caption } — clear the box to remove it."
+                          value={form.infographic}
+                          emptyValue={null}
+                          rows={7}
+                          onChange={(v) => setForm({ ...form, infographic: v })}
+                        />
                       </div>
                     </div>
                   )}

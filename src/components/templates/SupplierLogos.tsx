@@ -78,7 +78,7 @@ export default function SupplierLogos({ logos = [], label = "Proud Suppliers Of"
   if (!logos || logos.length === 0) return null;
 
   return (
-    <div className="mt-8 pt-6 border-t border-border-light">
+    <div className="mt-8 mb-8 pt-6 border-t border-border-light">
       {label && (
         <span className="text-dark/40 text-[10.5px] font-mono font-bold uppercase tracking-widest block mb-4">
           {label}

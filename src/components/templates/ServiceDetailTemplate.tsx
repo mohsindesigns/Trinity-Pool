@@ -16,6 +16,8 @@ import ContactFaqSection from '../QAForm';
 import SupplierLogos from './SupplierLogos';
 import ServiceGallery from './ServiceGallery';
 import ContactPersonCard from './ContactPersonCard';
+import { ProductSections, FactSections, InfographicBlock } from './SpecialtyBlocks';
+import { PageBlocks } from './SpecialtyBlocksMore';
 
 /** Convert markdown links [Label](url) and HTML links to styled clickable anchors */
 function formatRichText(content: string | undefined | null, isDark: boolean = false): string {
@@ -210,6 +212,11 @@ export default function ServiceDetailTemplate({ pageData, params: syncParams }: 
     supplierLogosLabel: service.supplierLogosLabel || serviceDetailPage.supplierLogosLabel || "Proud Suppliers Of",
     galleryImages: service.galleryImages || serviceDetailPage.galleryImages || [],
 
+    productSections: service.productSections || serviceDetailPage.productSections || [],
+    factSections: service.factSections || serviceDetailPage.factSections || [],
+    infographic: service.infographic || serviceDetailPage.infographic || null,
+    pageBlocks: service.pageBlocks || serviceDetailPage.pageBlocks || [],
+
     // Optional page-specific point-of-contact — falls back to the shared
     // per-category contact (e.g. Josh for every Artificial Lift page, Sim for
     // every Projects & Supplies page) so every service in a category shows a
@@ -251,6 +258,9 @@ export default function ServiceDetailTemplate({ pageData, params: syncParams }: 
   const mainTitle = titleWords.slice(0, -1).join(' ');
   const lastTitleWord = titleWords[titleWords.length - 1] || "";
   const serviceImage = service.image || service.featuredImage || "/images/trinity/hero.jpg";
+  // Optional separate image for the tall overview frame (e.g. a portrait crop),
+  // so a wide hero composition doesn't have to double as it.
+  const overviewImage = service.overviewImage || serviceImage;
 
   // Format benefits array
   const benefits = (service.benefits && service.benefits.length > 0) ? service.benefits : [
@@ -449,11 +459,11 @@ export default function ServiceDetailTemplate({ pageData, params: syncParams }: 
             {/* Asymmetric 2-Column Grid */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-stretch">
               {/* Left Column: Offset Photography Frame with Floating Badge */}
-              <div className="lg:col-span-5 flex flex-col">
-                <div className="relative w-full h-full min-h-[460px] rounded-lg overflow-hidden shadow-2xl border border-border-light p-2.5 bg-warm-white/80 group">
-                  <div className="relative w-full h-full min-h-[440px] rounded-md overflow-hidden">
+              <div className={`lg:col-span-5 flex flex-col ${service.overviewImage ? "lg:self-start lg:sticky lg:top-28" : ""}`}>
+                <div className={`relative w-full ${service.overviewImage ? "aspect-[4/5]" : "h-full min-h-[460px]"} rounded-lg overflow-hidden shadow-2xl border border-border-light p-2.5 bg-warm-white/80 group`}>
+                  <div className={`relative w-full h-full ${service.overviewImage ? "" : "min-h-[440px]"} rounded-md overflow-hidden`}>
                     <img
-                      src={serviceImage}
+                      src={overviewImage}
                       alt={serviceName}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 filter contrast-[1.02]"
                     />
@@ -558,6 +568,13 @@ export default function ServiceDetailTemplate({ pageData, params: syncParams }: 
             </div>
           </div>
         </section>
+
+        {/* Optional content blocks (product cards, fact tiles, infographic) —
+            each renders nothing unless the page supplies data for it. */}
+        <ProductSections sections={pg.productSections} />
+        <FactSections sections={pg.factSections} />
+        <InfographicBlock data={pg.infographic} />
+        <PageBlocks blocks={pg.pageBlocks} />
 
         {/* ════════════════════════════════════════════════════════
            4. WHY US & TARGET CANDIDATES (Editorial Grid)

@@ -155,7 +155,7 @@ export default function ServicesIndexGrid() {
     ? servicesData.services
     : (servicesData?.items || []);
 
-  const items = rawItems.filter((s: any) => s.status === "published" || s.status === undefined);
+  const items = rawItems.filter((s: any) => (s.status === "published" || s.status === undefined) && !s.hideFromCatalog);
   const onMove = useSpotlight();
   const learnMore = stripHtml(servicesData?.ctaLearnMore || "") || "Learn more";
   const categoryLabels = servicesData?.categoryLabels || {};

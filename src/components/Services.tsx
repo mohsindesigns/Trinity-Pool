@@ -40,7 +40,7 @@ export default function ServicesSection() {
 
   const curated: any[] = Array.isArray(items) ? items : [];
   const list: any[] = (curated.length > 0 ? curated : (Array.isArray(allServices) ? allServices : [])).filter(
-    (s: any) => s?.status !== "draft" && !REMOVED_SLUGS.has(s?.slug)
+    (s: any) => s?.status !== "draft" && !s?.hideFromCatalog && !REMOVED_SLUGS.has(s?.slug)
   );
   const learnMore = stripHtml(ctaLearnMore || "") || "Learn more";
   const onMove = useSpotlight();

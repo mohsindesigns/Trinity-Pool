@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from 'react';
+import TurnstileWidget, { turnstileEnabled, type TurnstileHandle } from '../TurnstileWidget';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Upload, Send, Briefcase, FileText, User, Mail, Phone, CheckCircle, ArrowRight } from 'lucide-react';
 import { useContent } from "../../hooks/useContent";
@@ -34,6 +35,8 @@ export default function CareersTemplate({ pageData, params }: { pageData?: any, 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const turnstileRef = useRef<TurnstileHandle>(null);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -45,9 +48,15 @@ export default function CareersTemplate({ pageData, params }: { pageData?: any, 
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (turnstileEnabled && !turnstileToken) {
+      setErrorMsg("Please complete the security check.");
+      return;
+    }
     setIsSubmitting(true);
     setErrorMsg(null);
     const formData = new FormData(e.currentTarget);
+    formData.delete("cf-turnstile-response");
+    formData.append("turnstileToken", turnstileToken);
     formData.append("type", "Job Application");
     formData.append("_subject", "New Job Application - Trinity Pump & Supply");
 
@@ -57,6 +66,12 @@ export default function CareersTemplate({ pageData, params }: { pageData?: any, 
         body: formData,
       });
       const data = await response.json().catch(() => ({}));
+      if (response.status === 400) {
+        // Captcha rejected: show the message and stop (no mailto fallback)
+        turnstileRef.current?.reset();
+        setErrorMsg(data.error || "Security check failed. Please try again.");
+        return;
+      }
       if (response.ok || data.success || data.submissionId) {
         setIsSuccess(true);
       } else {
@@ -177,7 +192,8 @@ ${message}
                     <label className="text-xs font-bold tracking-widest uppercase text-slate-500 flex items-center gap-2"><FileText className="w-4 h-4 text-gold-dark" />{careersData?.labels?.summary}</label>
                     <textarea name="message" required rows={4} className="w-full px-5 py-4 bg-slate-50/50 border rounded-xl focus:ring-2 focus:ring-gold-dark outline-none transition-all"></textarea>
                   </div>
-                  <button type="submit" disabled={isSubmitting} className="w-full py-5 btn-gold font-bold uppercase tracking-widest text-xs rounded-xl transition-all disabled:opacity-70 shadow-lg cursor-pointer">
+                  <TurnstileWidget ref={turnstileRef} onToken={setTurnstileToken} className="min-h-[65px]" />
+                  <button type="submit" disabled={isSubmitting || (turnstileEnabled && !turnstileToken)} className="w-full py-5 btn-gold font-bold uppercase tracking-widest text-xs rounded-xl transition-all disabled:opacity-70 shadow-lg cursor-pointer">
                     {isSubmitting ? 'SENDING...' : 'SUBMIT APPLICATION'}
                   </button>
                   {errorMsg && (

@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import connectDB from '@/lib/mongodb';
 import Submission from '@/models/Submission';
+import { verifyTurnstile, clientIp } from '@/lib/turnstile';
 import { buildSubmissionHtml, getReceiverEmail, sendNotification } from '@/lib/mailer';
 
 export async function POST(request: Request) {
@@ -8,6 +9,7 @@ export async function POST(request: Request) {
     await connectDB();
     const contentType = request.headers.get('content-type') || '';
     let name, email, phone, message, subject, type, attachmentUrl: string | undefined, extraData: any = {};
+    let turnstileToken: string | undefined;
     let attachments: { filename: string; content: Buffer }[] = [];
 
     if (contentType.includes('multipart/form-data')) {
@@ -18,6 +20,7 @@ export async function POST(request: Request) {
       message = formData.get('message') as string;
       subject = formData.get('subject') as string || formData.get('_subject') as string;
       type = formData.get('type') as string || 'Career Application';
+      turnstileToken = (formData.get('turnstileToken') as string) || undefined;
 
       // Handle file attachment
       const file = formData.get('attachment') as File;
@@ -31,13 +34,19 @@ export async function POST(request: Request) {
 
       // Collect other fields
       formData.forEach((value, key) => {
-        if (!['name', 'email', 'phone', 'message', 'subject', '_subject', 'type', 'attachment', '_captcha', '_template'].includes(key)) {
+        if (!['name', 'email', 'phone', 'message', 'subject', '_subject', 'type', 'attachment', '_captcha', '_template', 'turnstileToken', 'cf-turnstile-response'].includes(key)) {
           extraData[key] = value;
         }
       });
     } else {
       const body = await request.json();
-      ({ name, email, phone, message, subject, type, ...extraData } = body);
+      ({ name, email, phone, message, subject, type, turnstileToken, ...extraData } = body);
+    }
+
+    // Verify the captcha before any file upload or DB/email work
+    const captcha = await verifyTurnstile(turnstileToken, clientIp(request));
+    if (!captcha.ok) {
+      return NextResponse.json({ error: captcha.error }, { status: 400 });
     }
 
     // Resilience: ensure required fields for DB save

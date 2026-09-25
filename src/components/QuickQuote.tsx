@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useRef, useState, useEffect } from 'react';
+import TurnstileWidget, { turnstileEnabled, type TurnstileHandle } from './TurnstileWidget';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Icon } from '../config/icons';
@@ -97,6 +98,8 @@ const QuickQuote = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
     const [step, setStep] = useState(1);
+    const [turnstileToken, setTurnstileToken] = useState('');
+    const turnstileRef = useRef<TurnstileHandle>(null);
 
     // Get project types from actual services only
     const projectTypes = (() => {
@@ -125,6 +128,11 @@ const QuickQuote = () => {
             return;
         }
 
+        if (turnstileEnabled && !turnstileToken) {
+            alert('Please complete the security check.');
+            return;
+        }
+
         setIsSubmitting(true);
 
         const emailContent = `
@@ -147,7 +155,7 @@ ${formData.message}
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ⏱️ Submitted: ${new Date().toLocaleString()}
 🌐 Source: Quick Quote Widget
-⚡ Trinity Pump & Supply • Performance Bodywork
+⚡ Trinity Pump & Supply • Oilfield Supply
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     `;
 
@@ -166,7 +174,8 @@ ${formData.message}
                         phone: formData.phone,
                         project_type: (projectTypes as any[]).find((t: any) => t.value === formData.projectType)?.label,
                         message: formData.message,
-                        sms_consent: 'Yes'
+                        sms_consent: 'Yes',
+                        turnstileToken
                     })
                 });
 
@@ -176,6 +185,13 @@ ${formData.message}
 
                 if (response.ok) {
                     showSuccess();
+                    return;
+                }
+
+                // Captcha rejected: stop here (no mailto bypass) and ask for a fresh check
+                if (response.status === 400) {
+                    turnstileRef.current?.reset();
+                    alert(result?.error || 'Security check failed. Please try again.');
                     return;
                 }
             } catch (fetchError) {
@@ -676,7 +692,7 @@ ${formData.message}
                                                                 required
                                                                 rows={5}
                                                                 className="w-full px-5 py-4 bg-muted border border-border rounded-xl focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all text-foreground resize-none"
-                                                                placeholder="Briefly describe your exterior remodeling needs..."
+                                                                placeholder="Briefly describe your well conditions or what you need..."
                                                             />
                                                         </div>
                                                     </motion.div>
@@ -689,6 +705,11 @@ ${formData.message}
                                                     checked={smsConsent}
                                                     onChange={(e) => setSmsConsent(e.target.checked)}
                                                 />
+                                            )}
+
+                                            {/* Cloudflare Turnstile - shown in step 3 */}
+                                            {step === 3 && (
+                                                <TurnstileWidget ref={turnstileRef} onToken={setTurnstileToken} className="mt-4 min-h-[65px]" />
                                             )}
 
                                             <div className="flex items-center justify-between pt-6 border-t border-border">
@@ -719,10 +740,10 @@ ${formData.message}
                                                 ) : (
                                                     <motion.button
                                                         type="submit"
-                                                        disabled={isSubmitting || !smsConsent}
+                                                        disabled={isSubmitting || !smsConsent || (turnstileEnabled && !turnstileToken)}
                                                         className="ml-auto px-8 py-3 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground text-sm font-medium rounded-xl shadow-lg shadow-primary/30 hover:shadow-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
-                                                        whileHover={{ scale: isSubmitting || !smsConsent ? 1 : 1.02 }}
-                                                        whileTap={{ scale: isSubmitting || !smsConsent ? 1 : 0.98 }}
+                                                        whileHover={{ scale: isSubmitting || !smsConsent || (turnstileEnabled && !turnstileToken) ? 1 : 1.02 }}
+                                                        whileTap={{ scale: isSubmitting || !smsConsent || (turnstileEnabled && !turnstileToken) ? 1 : 0.98 }}
                                                     >
                                                         {isSubmitting ? (
                                                             <>

@@ -4,6 +4,7 @@ import User from '@/models/User';
 import nodemailer from 'nodemailer';
 import crypto from 'crypto';
 import { BASE_URL } from '@/lib/constants';
+import { verifyTurnstile, clientIp } from '@/lib/turnstile';
 
 // Configure SMTP transport
 const transporter = nodemailer.createTransport({
@@ -18,10 +19,15 @@ const transporter = nodemailer.createTransport({
 
 export async function POST(req: Request) {
   try {
-    const { email } = await req.json();
+    const { email, turnstileToken } = await req.json();
 
     if (!email) {
       return NextResponse.json({ error: 'Email is required' }, { status: 400 });
+    }
+
+    const captcha = await verifyTurnstile(turnstileToken, clientIp(req));
+    if (!captcha.ok) {
+      return NextResponse.json({ error: captcha.error }, { status: 400 });
     }
 
     if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {

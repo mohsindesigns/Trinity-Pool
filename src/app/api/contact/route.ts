@@ -1,19 +1,25 @@
 import { NextResponse } from 'next/server';
 import connectDB from '@/lib/mongodb';
 import Submission from '@/models/Submission';
+import { verifyTurnstile, clientIp } from '@/lib/turnstile';
 import { buildSubmissionHtml, getReceiverEmail, sendNotification } from '@/lib/mailer';
 
 export async function POST(request: Request) {
   try {
     await connectDB();
     const body = await request.json();
-    const { name, email, phone, service, message } = body;
+    const { name, email, phone, service, message, turnstileToken } = body;
 
     if (!name || !email) {
       return NextResponse.json(
         { error: 'Name and email are required.' },
         { status: 400 }
       );
+    }
+
+    const captcha = await verifyTurnstile(turnstileToken, clientIp(request));
+    if (!captcha.ok) {
+      return NextResponse.json({ error: captcha.error }, { status: 400 });
     }
 
     // Save to database first so a mail problem can never lose a lead

@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
+import TurnstileWidget, { turnstileEnabled, type TurnstileHandle } from "@/components/TurnstileWidget";
 import { Shield, Mail, ArrowLeft, Loader2, CheckCircle2 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -11,6 +12,8 @@ export default function ForgotPasswordPage() {
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const turnstileRef = useRef<TurnstileHandle>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -22,7 +25,7 @@ export default function ForgotPasswordPage() {
       const res = await fetch("/api/admin/forgot-password", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, turnstileToken }),
       });
 
       const data = await res.json();
@@ -37,6 +40,7 @@ export default function ForgotPasswordPage() {
       setError("Failed to connect to the server");
     } finally {
       setLoading(false);
+      turnstileRef.current?.reset();
     }
   };
 
@@ -105,9 +109,11 @@ export default function ForgotPasswordPage() {
                     </div>
                   )}
 
+                  <TurnstileWidget ref={turnstileRef} onToken={setTurnstileToken} className="min-h-[65px]" />
+
                   <button 
                     type="submit"
-                    disabled={loading}
+                    disabled={loading || (turnstileEnabled && !turnstileToken)}
                     className="w-full bg-[#2430d2] text-white font-bold py-4 rounded-xl shadow-[0_10px_20px_rgba(36,48,210,0.2)] hover:shadow-[0_15px_25px_rgba(36,48,210,0.3)] hover:-translate-y-0.5 active:translate-y-0 transition-all flex items-center justify-center gap-3 disabled:opacity-70 disabled:hover:translate-y-0"
                   >
                     {loading ? (

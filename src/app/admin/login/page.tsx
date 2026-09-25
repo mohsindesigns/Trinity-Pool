@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect, Suspense } from "react";
+import { useState, useEffect, useRef, Suspense } from "react";
+import TurnstileWidget, { turnstileEnabled, type TurnstileHandle } from "@/components/TurnstileWidget";
 import { useRouter, useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Eye, EyeOff, Shield, Lock, User, AlertCircle, Loader2, ChevronRight } from "lucide-react";
@@ -18,6 +19,8 @@ function LoginForm() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const turnstileRef = useRef<TurnstileHandle>(null);
 
   useEffect(() => { 
     setMounted(true); 
@@ -34,7 +37,7 @@ function LoginForm() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ username, password, turnstileToken }),
       });
 
       const data = await res.json();
@@ -45,6 +48,7 @@ function LoginForm() {
         window.location.href = dest;
       } else {
         setError(data.error || "Invalid credentials. Please try again.");
+        turnstileRef.current?.reset();
       }
 
 
@@ -122,6 +126,8 @@ function LoginForm() {
               </div>
             </div>
 
+            <TurnstileWidget ref={turnstileRef} onToken={setTurnstileToken} className="pt-2 min-h-[65px]" />
+
             <div className="flex items-center justify-between pt-2">
               <label className="flex items-center gap-2 text-[13px] text-[#50575e] cursor-pointer">
                 <input type="checkbox" className="rounded-[2px] border-[#8c8f94] text-[#2271b1] focus:ring-[#2271b1]" />
@@ -129,7 +135,7 @@ function LoginForm() {
               </label>
               <button
                 type="submit"
-                disabled={loading || !username || !password}
+                disabled={loading || !username || !password || (turnstileEnabled && !turnstileToken)}
                 className="bg-[#2271b1] hover:bg-[#135e96] disabled:bg-[#a7aaad] text-white text-[13px] font-bold px-4 py-2 rounded-[3px] transition-colors shadow-sm"
               >
                 {loading ? "Logging in..." : "Log In"}

@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
+import TurnstileWidget, { turnstileEnabled, type TurnstileHandle } from "./TurnstileWidget";
 import { Send, ArrowRight, ShieldCheck, Clock, Plus, Minus, Phone, Mail, MapPin, CheckCircle2, ChevronDown, User, MessageSquare, Briefcase } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useContent } from "../hooks/useContent";
@@ -104,19 +105,35 @@ export default function ContactFaqSection({ pageData }: QAFormProps) {
 
   const [formData, setFormData] = useState({ name: "", email: "", phone: "", service: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [formError, setFormError] = useState("");
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const turnstileRef = useRef<TurnstileHandle>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    try {
-      await fetch("/api/contact", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(formData) });
-    } catch (err) {
-      console.error("Submission error:", err);
+    if (turnstileEnabled && !turnstileToken) {
+      setFormError("Please complete the security check.");
+      return;
     }
-    setTimeout(() => {
-      setSubmitted(false);
-      setFormData({ name: "", email: "", phone: "", service: "", message: "" });
-    }, 3500);
+    setFormError("");
+    setSending(true);
+    try {
+      const res = await fetch("/api/contact", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ...formData, turnstileToken }) });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error || "Submission failed. Please try again or call us.");
+      setSubmitted(true);
+      setTimeout(() => {
+        setSubmitted(false);
+        setFormData({ name: "", email: "", phone: "", service: "", message: "" });
+      }, 3500);
+    } catch (err: any) {
+      console.error("Submission error:", err);
+      setFormError(err?.message || "Submission failed. Please try again or call us.");
+    } finally {
+      setSending(false);
+      turnstileRef.current?.reset();
+    }
   };
 
   return (
@@ -283,7 +300,10 @@ export default function ContactFaqSection({ pageData }: QAFormProps) {
                 </div>
               </div>
 
-              <button type="submit" disabled={submitted} className="btn-gold-pill justify-center w-full py-4 text-[14px] mt-1 disabled:opacity-80">
+              <TurnstileWidget ref={turnstileRef} onToken={setTurnstileToken} className="min-h-[65px]" />
+              {formError && <p role="alert" className="text-[13px] text-red-600 -mt-2">{formError}</p>}
+
+              <button type="submit" disabled={submitted || sending || (turnstileEnabled && !turnstileToken)} className="btn-gold-pill justify-center w-full py-4 text-[14px] mt-1 disabled:opacity-80">
                 {submitted ? (
                   <><CheckCircle2 size={16} /><span>{stripHtml(formBtnSuccess)}</span></>
                 ) : (

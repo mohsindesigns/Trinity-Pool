@@ -5,6 +5,7 @@ import Role from '@/models/Role';
 import { signToken } from '@/lib/auth';
 import { recordActivity } from '@/lib/logger';
 import bcrypt from 'bcryptjs';
+import { verifyTurnstile, clientIp } from '@/lib/turnstile';
 
 const DEFAULT_ADMIN_PERMISSIONS = {
   pages: { create: true, read: true, update: true, delete: true, publish: true },
@@ -23,16 +24,19 @@ export async function POST(req: NextRequest) {
   try {
     let rawUsername = '';
     let rawPassword = '';
+    let rawToken = '';
 
     const contentType = req.headers.get('content-type') || '';
     if (contentType.includes('application/json')) {
       const body = await req.json().catch(() => ({}));
       rawUsername = body?.username || '';
       rawPassword = body?.password || '';
+      rawToken = body?.turnstileToken || '';
     } else if (contentType.includes('form') || contentType.includes('urlencoded')) {
       const formData = await req.formData().catch(() => new FormData());
       rawUsername = (formData.get('username') as string) || '';
       rawPassword = (formData.get('password') as string) || '';
+      rawToken = (formData.get('turnstileToken') as string) || '';
     } else {
       const rawText = await req.text().catch(() => '');
       if (rawText) {
@@ -40,11 +44,13 @@ export async function POST(req: NextRequest) {
           const body = JSON.parse(rawText);
           rawUsername = body?.username || '';
           rawPassword = body?.password || '';
+          rawToken = body?.turnstileToken || '';
         } catch {
           // If query string format (e.g. username=x&password=y)
           const params = new URLSearchParams(rawText);
           rawUsername = params.get('username') || '';
           rawPassword = params.get('password') || '';
+          rawToken = params.get('turnstileToken') || '';
         }
       }
     }
@@ -56,6 +62,10 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Username/email and password are required.' }, { status: 400 });
     }
 
+    const captcha = await verifyTurnstile(rawToken, clientIp(req));
+    if (!captcha.ok) {
+      return NextResponse.json({ error: captcha.error }, { status: 400 });
+    }
 
     await connectToDatabase();
 

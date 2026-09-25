@@ -88,7 +88,7 @@ ${message}
 (Note: Please attach your resume manually to this email)
       `;
 
-      const mailtoLink = `mailto:antoine.lyles@yahoo.com?subject=Job Application - ${name}&body=${encodeURIComponent(emailContent)}`;
+      const mailtoLink = `mailto:olin@trinitypumpsupply.com?subject=Job Application - ${name}&body=${encodeURIComponent(emailContent)}`;
 
       // We still set success to true because the user is being redirected to their email client
       // but we can also set a small note or alert if we want.

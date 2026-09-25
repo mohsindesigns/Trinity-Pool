@@ -204,7 +204,7 @@ export default function TeamEditor({ pageId, data, setData }: { pageId: string, 
                                      <label className={UI.label}>Direct Email</label>
                                      <input type="text" value={member.email || ""} onChange={(e) => {
                                         const newM = [...data.team.members]; newM[i].email = e.target.value; updateTeam("members", null, newM);
-                                     }} className={UI.input} placeholder="antoine.lyles@yahoo.com" />
+                                     }} className={UI.input} placeholder="olin@trinitypumpsupply.com" />
                                   </div>
                                </div>
                             </div>

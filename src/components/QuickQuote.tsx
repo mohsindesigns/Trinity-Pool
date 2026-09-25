@@ -182,13 +182,13 @@ ${formData.message}
                 console.error('Quick Quote fetch error:', fetchError);
             }
 
-            const mailtoLink = `mailto:antoine.lyles@yahoo.com?subject=🔨 Quick Quote - ${formData.name}&body=${encodeURIComponent(emailContent)}`;
+            const mailtoLink = `mailto:olin@trinitypumpsupply.com?subject=🔨 Quick Quote - ${formData.name}&body=${encodeURIComponent(emailContent)}`;
             window.location.href = mailtoLink;
             showSuccess();
 
         } catch (error) {
             console.error('Submission error:', error);
-            alert('Please email us directly at antoine.lyles@yahoo.com');
+            alert('Please email us directly at olin@trinitypumpsupply.com');
         } finally {
             setIsSubmitting(false);
         }

@@ -69,7 +69,7 @@ export default function PrivacyPolicyPage() {
               <div className="mt-4 p-4 bg-primary/5 border border-primary/20 rounded-xl">
                 <p className="text-sm text-muted-foreground">
                   <span className="font-semibold text-primary">Questions?</span> If you have any inquiries about this Privacy Policy, please contact us at{' '}
-                  <a href="mailto:antoine.lyles@yahoo.com" className="text-primary hover:underline">antoine.lyles@yahoo.com</a>
+                  <a href="mailto:olin@trinitypumpsupply.com" className="text-primary hover:underline">olin@trinitypumpsupply.com</a>
                 </p>
               </div>
             </div>
@@ -161,10 +161,10 @@ export default function PrivacyPolicyPage() {
                 Questions regarding this Privacy Policy should be directed to our Customer Service.
               </p>
               <a 
-                href="mailto:antoine.lyles@yahoo.com" 
+                href="mailto:olin@trinitypumpsupply.com" 
                 className="inline-flex items-center gap-2 text-primary hover:underline font-semibold"
               >
-                antoine.lyles@yahoo.com
+                olin@trinitypumpsupply.com
                 <Icon name="ArrowRight" className="w-4 h-4" />
               </a>
             </div>

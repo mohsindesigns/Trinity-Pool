@@ -278,10 +278,10 @@ export default function TermsPage() {
                 If you have any questions about these Terms & Conditions, please contact us:
               </p>
               <a 
-                href="mailto:antoine.lyles@yahoo.com" 
+                href="mailto:olin@trinitypumpsupply.com" 
                 className="inline-flex items-center gap-2 text-primary hover:underline font-semibold"
               >
-                antoine.lyles@yahoo.com
+                olin@trinitypumpsupply.com
                 <Icon name="ArrowRight" className="w-4 h-4" />
               </a>
             </div>
